@@ -13,7 +13,10 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements'
 import { FormLabel, FormInput } from 'react-native-elements'
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons.js';
+import g_styles from './Styles'
+import LoginPage from "./pages/LoginPage";
 
 
 const instructions = Platform.select({
@@ -23,25 +26,72 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+
 const HomeScreen = ({ navigation }) => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={g_styles.container}>
         <Text>Home Screen</Text>
         <Button
-            onPress={() => navigation.navigate('Details')}
+
+            onPress={() => navigation.navigate('Login')}
             title="Go to details"
         />
     </View>
 );
 
 const DetailsScreen = () => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.container}>
         <Text>Details Screen</Text>
     </View>
 );
 
-const RootNavigator = StackNavigator({
+HomeScreen.navigationOptions = {
+    tabBarLabel: '首页',
+    tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+            name={focused ? 'ios-home' : 'ios-home-outline'}
+            size={26}
+            style={{ color: tintColor }}
+        />
+    ),
+    // header: null,
+};
+
+DetailsScreen.navigationOptions = {
+    tabBarLabel: '通知',
+    tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+            name={focused ? 'ios-home' : 'ios-home-outline'}
+            size={26}
+            style={{ color: tintColor }}
+        />
+    ),
+};
+
+const IndexScreen = TabNavigator({
     Home: {
         screen: HomeScreen,
+    },
+    Notifications: {
+        screen: DetailsScreen,
+    },
+}, {
+    tabBarPosition: 'bottom',
+    animationEnabled: false,
+    tabBarOptions: {
+        // activeTintColor: '#e91e63',
+    },
+});
+
+const RootNavigator = StackNavigator({
+    Login: {
+        screen: LoginPage,
+        navigationOptions: {
+            headerTitle: '登录',
+            header: null,
+        }
+    },
+    Home: {
+        screen: IndexScreen,
         navigationOptions: {
             headerTitle: '首页',
         }
@@ -52,6 +102,12 @@ const RootNavigator = StackNavigator({
             headerTitle: '详情页',
         }
     },
+    Login1: {
+        screen: LoginPage,
+        navigationOptions: {
+            headerTitle: '登录',
+        }
+    }
 });
 
 export default RootNavigator;
@@ -86,7 +142,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // backgroundColor: '#F5FCFF',
+      backgroundColor: '#FFFFFF',
   },
   welcome: {
     fontSize: 20,
