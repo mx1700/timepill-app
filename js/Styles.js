@@ -2,13 +2,15 @@ import {StyleSheet} from "react-native";
 
 const colors = {
     primary: '#007AFF',
-    text: '#333333',
+    text: '#484848',
     warning: '#ffdd57',
     danger: '#ff3860',
 
     inactiveText: '#9B9B9B',
-    darkText: '#032250',
+    darkText: '#333333',
     lightText: '#7F91A7',
+
+    spaceBackground: '#f3f3ff', //空内容背景
 };
 
 const styles = StyleSheet.create({
@@ -16,8 +18,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: '#F5FCFF',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F5FCFF',
+        // backgroundColor: '#FFFFFF',
     },
     welcome: {
         fontSize: 20,
