@@ -142,16 +142,16 @@ export default class LoginPage extends Component {
         this.setState({loading: false});
         if (result) {
             // Answers.logLogin('Email', true);
-            this.props.navigator.resetTo({
-                name: 'HomePage',
-                component: HomePage
-            });
+            // this.props.navigator.resetTo({       //TODO
+            //     name: 'HomePage',
+            //     component: HomePage
+            // });
         } else {
             // Answers.logLogin('Email', false);
             // Answers.logCustom('LoginError', {message: 'Password error'});
             Toast.show("邮箱或密码不正确", {
                 duration: 2000,
-                position: 195 - TIP_TOP,
+                position: -50,
                 shadow: false,
                 hideOnPress: true,
             });
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     },
     line: {
         borderColor: '#ccc',
-        borderTopWidth: 1,
+        borderTopWidth: StyleSheet.hairlineWidth,
         marginHorizontal:10,
     },
     input: {
