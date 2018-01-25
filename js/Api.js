@@ -8,8 +8,8 @@ import UpdateInfo from './UpdateInfo';
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
   return call('GET', '/diaries/today?page=' + page + '&page_size=' + page_size + `&first_id=${first_id}`)
   .then((json) => {
-    json.page = Number(json.page)
-    json.page_size = Number(json.page_size)
+    json.page = Number(json.page);
+    json.page_size = Number(json.page_size);
     return json;
   });
 }
@@ -344,7 +344,7 @@ async function call(method, api, body, _timeout = 10000) {
 
 async function upload(method, api, body) {
   console.log('request upload:', baseUrl + api)
-  var token = await TokenManager.getToken();
+  let token = await TokenManager.getToken();
   let formData = new FormData();
   for (let prop of Object.keys(body)) {
     formData.append(prop, body[prop]);

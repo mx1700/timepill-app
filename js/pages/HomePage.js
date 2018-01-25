@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '../components/Button'
 import Diary from '../components/Diary'
 import {View} from "react-native";
+import DiaryList from '../components/DiaryList'
 
 export default class HomeScreen extends React.Component {
     render() {
@@ -17,15 +18,16 @@ export default class HomeScreen extends React.Component {
             "comment_count": 3,
             "photoUrl": "http://s.mt.timepill.net/s/w640/photos/2018-01-23/7g4sztvy.jpg",
             "photoThumbUrl": "http://s.mt.timepill.net/s/w240-h320/photos/2018-01-23/7g4sztvy.jpg",
-            // "user": {
-            //     "id": 100672440,
-            //     "name": "我超凶",
-            //     "iconUrl": "http://s.mt.timepill.net/user_icon/20134/s100672440.jpg?v=2"
-            // }
+            "user": {
+                "id": 100672440,
+                "name": "我超凶",
+                "iconUrl": "http://s.mt.timepill.net/user_icon/20134/s100672440.jpg?v=2"
+            }
         };
         return (
             <View>
-                <Diary diary={diary} showBookSubject={true} showComment={true} editable={true}/>
+                <DiaryList />
+                {/*<Diary diary={diary} showBookSubject={true} showComment={true} editable={true}/>*/}
             {/*<Button*/}
                 {/*onPress={() => this.props.navigation.navigate('Login', {name: 'Lucy'})}*/}
                 {/*title="Go to Lucy's profile"*/}

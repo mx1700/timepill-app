@@ -10,7 +10,7 @@ import RadiusTouchable from '../components/RadiusTouchable'
 //TODO:复制内容未实现
 /**
  * 日记视图
- * @param props(diary|onIconPress|showBookSubject|showAllContent|navigator|onActionPress|deletable|editable)
+ * @param props(diary|onIconPress|showBookSubject|showComment|showAllContent|navigator|onActionPress|deletable|editable)
  * @constructor
  *
  */
@@ -152,9 +152,9 @@ const styles = StyleSheet.create({
         marginLeft: -10,
     },
     user_icon: {
-        width: 32,
-        height: 32,
-        borderRadius: 16,
+        width: 34,
+        height: 34,
+        borderRadius: 17,
         backgroundColor: colors.spaceBackground,
         marginRight: 2,
     },
