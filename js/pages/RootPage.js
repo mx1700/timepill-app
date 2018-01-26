@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View } from 'react-native'
+import {Platform, View} from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import HomePage from './HomePage';
 import FollowDiaryPage from './FollowDiaryPage';
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
+import {colors} from "../Styles";
 
 HomePage.navigationOptions = {
     tabBarLabel: '首页',
@@ -52,6 +53,25 @@ WritePage.navigationOptions = {
     // header: null,
 };
 
+let tabBarOptions = Platform.OS === 'android' ? {
+    showIcon: true,
+    showLabel: false,
+    activeTintColor: colors.primary,
+    inactiveTintColor: colors.inactiveText,
+    indicatorStyle: {
+        backgroundColor: 'transparent'
+    },
+    tabStyle: {
+        backgroundColor: '#FFFFFF'
+    },
+    style: {
+        backgroundColor: '#FFFFFF'
+    }
+} : {
+    showIcon: true,
+    showLabel: false,
+};
+
 RootPage = TabNavigator({
     Home: {
         screen: HomePage,
@@ -65,9 +85,8 @@ RootPage = TabNavigator({
 }, {
     tabBarPosition: 'bottom',
     animationEnabled: false,
-    tabBarOptions: {
-        // activeTintColor: '#e91e63',
-    },
+    swipeEnabled: false,
+    tabBarOptions: tabBarOptions,
     lazy: true,
 });
 export default RootPage
