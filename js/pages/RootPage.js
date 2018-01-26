@@ -66,7 +66,7 @@ let tabBarOptions = Platform.OS === 'android' ? {
         backgroundColor: 'transparent'
     },
     style: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.navBackground,
         elevation: 4,
         borderTopWidth: StyleSheet.hairlineWidth,
         borderTopColor: '#dddddd'

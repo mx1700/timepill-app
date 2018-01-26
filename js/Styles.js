@@ -11,6 +11,7 @@ const colors = {
     lightText: '#7F91A7',
 
     spaceBackground: '#f3f3ff', //空内容背景
+    navBackground: '#F7F7F7',
 };
 
 const styles = StyleSheet.create({

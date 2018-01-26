@@ -1,4 +1,5 @@
 import {Platform} from "react-native";
+import {colors} from "../Styles";
 
 let defaultNavigationOptions = {
     headerTitleStyle: {
@@ -8,7 +9,7 @@ let defaultNavigationOptions = {
 
 if (Platform.OS === 'android') {
     defaultNavigationOptions.headerStyle = {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.navBackground,
         shadowColor: '#777777',
         shadowOpacity: 0.1,
         elevation: 1.2,
