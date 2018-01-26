@@ -8,11 +8,13 @@ let defaultNavigationOptions = {
 
 if (Platform.OS === 'android') {
     defaultNavigationOptions.headerStyle = {
-        backgroundColor: Platform.OS === 'ios' ? '#F7F7F7' : '#FFFFFF',
+        backgroundColor: '#FFFFFF',
         shadowColor: '#777777',
         shadowOpacity: 0.1,
-        elevation: 1,
-    }
+        elevation: 1.2,
+        height: 50,
+    };
+    defaultNavigationOptions.headerTitleStyle.fontSize = 18;
 }
 
 function navOption(option) {

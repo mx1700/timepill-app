@@ -58,14 +58,18 @@ let tabBarOptions = Platform.OS === 'android' ? {
     showLabel: false,
     activeTintColor: colors.primary,
     inactiveTintColor: colors.inactiveText,
+    pressColor: colors.primary,
     indicatorStyle: {
         backgroundColor: 'transparent'
     },
     tabStyle: {
-        backgroundColor: '#FFFFFF'
+        backgroundColor: 'transparent'
     },
     style: {
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        elevation: 4,
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderTopColor: '#dddddd'
     }
 } : {
     showIcon: true,
