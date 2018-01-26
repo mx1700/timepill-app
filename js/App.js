@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import LoginPage from "./pages/LoginPage";
 import RootPage from './pages/RootPage';
+import navOption from "./components/NavOption";
 
 
 const RootNavigator = StackNavigator({
@@ -16,9 +17,9 @@ const RootNavigator = StackNavigator({
     },
     Login: {
         screen: LoginPage,
-        navigationOptions: {
+        navigationOptions: navOption({
             headerTitle: '登录',
-        }
+        })
     }
 });
 

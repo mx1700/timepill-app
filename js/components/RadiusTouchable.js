@@ -34,4 +34,4 @@ const TPTouchable = Platform.OS === 'android'
   ? RadiusTouchableAndroid
   : RadiusTouchableIOS;
 
-module.exports = TPTouchable;
+module.exports = RadiusTouchableIOS;

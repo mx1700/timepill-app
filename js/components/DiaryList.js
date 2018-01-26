@@ -32,6 +32,7 @@ export default class DiaryList extends Component {
 
     async refresh() {
         if (this.state.refreshing) {
+            //TODO:如果有 load_more, 取消 load_more 回调
             return;
         }
 
@@ -152,7 +153,7 @@ export default class DiaryList extends Component {
                 refreshing={this.state.refreshing}
                 onEndReached={this.loadMore.bind(this)}
                 ListFooterComponent={this.renderFooter()}
-                onEndReachedThreshold={0.1}
+                // onEndReachedThreshold={0.1}
                 // ListEmptyComponent={this.renderEmpty()}
             />
         )

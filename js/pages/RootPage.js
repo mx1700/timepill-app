@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import {Platform, View} from 'react-native'
+import {Platform, StyleSheet, View} from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import HomePage from './HomePage';
 import FollowDiaryPage from './FollowDiaryPage';
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import {colors} from "../Styles";
+import navOption from "../components/NavOption";
 
-HomePage.navigationOptions = {
+
+HomePage.navigationOptions = navOption({
     tabBarLabel: '首页',
     headerTitle: '首页',
     tabBarIcon: ({ tintColor, focused }) => (
@@ -16,10 +18,9 @@ HomePage.navigationOptions = {
             style={{ color: tintColor }}
         />
     ),
-    // header: null,
-};
+});
 
-FollowDiaryPage.navigationOptions = {
+FollowDiaryPage.navigationOptions = navOption({
     tabBarLabel: '关注',
     headerTitle: '关注日记',
     tabBarIcon: ({ tintColor, focused }) => (
@@ -29,8 +30,7 @@ FollowDiaryPage.navigationOptions = {
             style={{ color: tintColor }}
         />
     ),
-    // header: null,
-};
+});
 
 WritePage = () => {
     return <View />
