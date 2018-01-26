@@ -10,9 +10,10 @@ import {Divider} from "react-native-elements";
 import Toast from 'react-native-root-toast';
 import {colors} from "../Styles";
 import Button from "./Button";
-import {NavigationActions} from "react-navigation";
+import {NavigationActions, withNavigation} from "react-navigation";
 import Touchable from "./Touchable";
 
+@withNavigation
 export default class DiaryList extends Component {
     constructor(props) {
         super(props);
@@ -159,7 +160,7 @@ export default class DiaryList extends Component {
                 }}
                 renderItem={({item}) => {
                     return (
-                        <Touchable onPress={() => console.log(item)}>
+                        <Touchable onPress={() => this.props.navigation.navigate('DiaryDetail', {diary: item})}>
                             <Diary key={item.id} diary={item} showComment={true}/>
                         </Touchable>
                     )

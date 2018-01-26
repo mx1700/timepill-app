@@ -15,7 +15,7 @@ if (Platform.OS === 'android') {
         elevation: 1.2,
         height: 50,
     };
-    defaultNavigationOptions.headerTitleStyle.fontSize = 18;
+    defaultNavigationOptions.headerTitleStyle.fontSize = 19;
 }
 
 function navOption(option) {

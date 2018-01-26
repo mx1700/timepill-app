@@ -9,6 +9,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import LoginPage from "./pages/LoginPage";
 import RootPage from './pages/RootPage';
 import navOption from "./components/NavOption";
+import DiaryDetail from "./pages/DiaryDetail";
 
 
 const RootNavigator = StackNavigator({
@@ -20,6 +21,12 @@ const RootNavigator = StackNavigator({
         navigationOptions: navOption({
             headerTitle: '登录',
             header: null,
+        })
+    },
+    DiaryDetail: {
+        screen: DiaryDetail,
+        navigationOptions: navOption({
+            headerTitle: '日记详情',
         })
     }
 }, {
