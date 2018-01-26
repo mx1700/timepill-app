@@ -19,8 +19,11 @@ const RootNavigator = StackNavigator({
         screen: LoginPage,
         navigationOptions: navOption({
             headerTitle: '登录',
+            header: null,
         })
     }
+}, {
+    initialRouteName: "Home"
 });
 
 export default RootNavigator;

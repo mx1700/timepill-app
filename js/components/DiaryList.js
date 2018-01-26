@@ -163,7 +163,7 @@ export default class DiaryList extends Component {
         if (this.state.refreshing) {
             return (
                 <View style={{alignItems:'center', justifyContent: 'center' , height: '100%'}}>
-                    <ActivityIndicator animating={true} color={colors.primary} size={0}/>
+                    <ActivityIndicator animating={true} color={colors.primary} size="large"/>
                 </View>
             )
         }

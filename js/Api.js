@@ -317,7 +317,7 @@ export async function getSettings() {
 var baseUrl = 'http://open.timepill.net/api';
 //var baseUrl = 'http://openbeta.timepill.net/api';
 async function call(method, api, body, _timeout = 10000) {
-  //console.log('request:', baseUrl + api, body);
+  console.log('request:', baseUrl + api, body);
   var token = await TokenManager.getToken();
   //console.log(token);
   // if (body) {
@@ -344,7 +344,7 @@ async function call(method, api, body, _timeout = 10000) {
 
 async function upload(method, api, body) {
   console.log('request upload:', baseUrl + api)
-  let token = await TokenManager.getToken();
+  var token = await TokenManager.getToken();
   let formData = new FormData();
   for (let prop of Object.keys(body)) {
     formData.append(prop, body[prop]);
