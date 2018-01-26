@@ -145,7 +145,6 @@ export default Diary
 
 const styles = StyleSheet.create({
     box: {
-        backgroundColor: 'white',
         overflow: "hidden",
         paddingHorizontal: 15,
         paddingTop: 20,

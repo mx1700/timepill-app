@@ -11,6 +11,7 @@ import Toast from 'react-native-root-toast';
 import {colors} from "../Styles";
 import Button from "./Button";
 import {NavigationActions} from "react-navigation";
+import Touchable from "./Touchable";
 
 export default class DiaryList extends Component {
     constructor(props) {
@@ -151,11 +152,18 @@ export default class DiaryList extends Component {
         // console.log(this.state);
         return (
             <FlatList
+                style={{backgroundColor: 'white'}}
                 data={this.state.diaries}
                 keyExtractor={(item, index) => {
                     return item.id
                 }}
-                renderItem={({item}) => <Diary key={item.id} diary={item} showComment={true}/>}
+                renderItem={({item}) => {
+                    return (
+                        <Touchable onPress={() => console.log(item)}>
+                            <Diary key={item.id} diary={item} showComment={true}/>
+                        </Touchable>
+                    )
+                }}
                 ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
                 onRefresh={this.onRefresh.bind(this)}
                 refreshing={this.state.refreshing}
