@@ -2,6 +2,7 @@ import {StyleSheet} from "react-native";
 
 const colors = {
     primary: '#007AFF',
+    light: '#007AFF',
     text: '#484848',
     warning: '#ffdd57',
     danger: '#ff3860',
@@ -12,6 +13,7 @@ const colors = {
 
     spaceBackground: '#f3f3ff', //空内容背景
     navBackground: '#F7F7F7',
+    line: '#eee',
 };
 
 const styles = StyleSheet.create({

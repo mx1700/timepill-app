@@ -281,11 +281,11 @@ export default class LoginPage extends Component {
                         title={this.state.isLoginPage ? "登录" : "注册"}
                         onPress={this._passwordSubmit.bind(this)}
                         type="bordered"
-                        style={{marginLeft: -5, marginRight: -5}}/>
+                        style={{ }}/>
 
                     <View style={{flex: 1, alignItems: "center", paddingTop: 22}}>
                         <TouchableOpacity onPress={this.toRegister.bind(this)}>
-                            <Text style={{fontSize: 13, color: colors.primary, padding: 10}}>
+                            <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
                                 {this.state.isLoginPage ? '没有账号？注册一个' : '已有账号？马上登录'}
                             </Text>
                         </TouchableOpacity>
@@ -311,11 +311,4 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderBottomWidth: 1,
     },
-    icon_box: {
-        width: 42,
-        borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        opacity: 0.7,
-    }
 });

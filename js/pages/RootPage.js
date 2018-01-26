@@ -10,7 +10,11 @@ import navOption from "../components/NavOption";
 
 HomePage.navigationOptions = navOption({
     tabBarLabel: '首页',
-    headerTitle: '首页',
+    title:"首页",
+    headerTitle: '胶囊日记',
+    // headerStyle: {
+    //     height: 0,
+    // },
     tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
             name={focused ? 'ios-home' : 'ios-home-outline'}
