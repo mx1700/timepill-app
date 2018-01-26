@@ -12,7 +12,7 @@ import navOption from "./components/NavOption";
 
 
 const RootNavigator = StackNavigator({
-    Home: {
+    Root: {
         screen: RootPage
     },
     Login: {
@@ -23,7 +23,7 @@ const RootNavigator = StackNavigator({
         })
     }
 }, {
-    initialRouteName: "Home"
+    initialRouteName: "Root"
 });
 
 export default RootNavigator;

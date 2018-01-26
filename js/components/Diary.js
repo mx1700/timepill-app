@@ -5,6 +5,7 @@ import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons';
 import {StyleSheet} from "react-native";
 import RadiusTouchable from '../components/RadiusTouchable'
+import {Avatar} from "react-native-elements";
 
 
 //TODO:复制内容未实现
@@ -68,12 +69,16 @@ Diary = (props) => {
 UserIcon = (props) => {
     let user = props.user;
     if(!user) return null;
-    let img = <Image style={styles.user_icon} source={{uri: user.iconUrl}} />
-    return props.onPress ? (
-        <RadiusTouchable style={styles.user_icon_box} onPress={props.onPress}>
-            {img}
-        </RadiusTouchable>
-    ) : img;
+    return (
+        <Avatar
+            small
+            rounded
+            containerStyle={styles.user_icon}
+            source={{uri: user.iconUrl}}
+            onPress={props.onPress}
+            activeOpacity={0.7}
+        />
+    );
 };
 
 /**
@@ -146,17 +151,8 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         flexDirection: "row"
     },
-    user_icon_box: {
-        padding: 10,
-        marginTop: -10,
-        marginLeft: -10,
-    },
     user_icon: {
-        width: 34,
-        height: 34,
-        borderRadius: 17,
-        backgroundColor: colors.spaceBackground,
-        marginRight: 2,
+        marginRight: 8,
     },
     body: {
         flexDirection: "column",

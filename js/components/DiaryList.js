@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     ActivityIndicator,
     FlatList,
-    InteractionManager, Platform, Text, TouchableOpacity, View,
+    InteractionManager, Platform, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import * as Api from "../Api";
 import Diary from "./Diary";
@@ -10,6 +10,7 @@ import {Divider} from "react-native-elements";
 import Toast from 'react-native-root-toast';
 import {colors} from "../Styles";
 import Button from "./Button";
+import {NavigationActions} from "react-navigation";
 
 export default class DiaryList extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class DiaryList extends Component {
     }
 
     componentWillMount(){
+        //TODO:检查token是否存在
         InteractionManager.runAfterInteractions(() => {
             this.refresh();
         });
@@ -42,7 +44,13 @@ export default class DiaryList extends Component {
             data = await this.getList(0);
         } catch (e) {
             if (e.code && e.code === 401) {
-                // this.props.navigator.toLogin();      //TODO:跳转登录
+                const resetAction = NavigationActions.reset({
+                    index: 0,
+                    actions: [
+                        NavigationActions.navigate({ routeName: 'Login'})
+                    ]
+                });
+                this.props.navigation.dispatch(resetAction);
                 return;
             } else {
                 console.log(e); //TODO: toast 提示加载失败
@@ -89,7 +97,7 @@ export default class DiaryList extends Component {
         try {
             data = await this.getList(this.state.last_id);
         } catch (e) {
-            console.log(e); //TODO: toast 提示加载失败
+            console.log(e);
         }
         if (!data) {    //加载失败
             this.setState({
@@ -148,7 +156,7 @@ export default class DiaryList extends Component {
                     return item.id
                 }}
                 renderItem={({item}) => <Diary key={item.id} diary={item} showComment={true}/>}
-                ItemSeparatorComponent={({highlighted}) => <Divider/>}
+                ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
                 onRefresh={this.onRefresh.bind(this)}
                 refreshing={this.state.refreshing}
                 onEndReached={this.loadMore.bind(this)}

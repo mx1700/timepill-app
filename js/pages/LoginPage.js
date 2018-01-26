@@ -145,7 +145,7 @@ export default class LoginPage extends Component {
                 const resetAction = NavigationActions.reset({
                     index: 0,
                     actions: [
-                        NavigationActions.navigate({ routeName: 'Home'})
+                        NavigationActions.navigate({ routeName: 'Root'})
                     ]
                 });
                 this.props.navigation.dispatch(resetAction);
