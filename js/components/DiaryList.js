@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     ActivityIndicator,
     FlatList,
-    InteractionManager, Text, TouchableOpacity, View,
+    InteractionManager, Platform, Text, TouchableOpacity, View,
 } from 'react-native';
 import * as Api from "../Api";
 import Diary from "./Diary";
@@ -163,7 +163,7 @@ export default class DiaryList extends Component {
         if (this.state.refreshing) {
             return (
                 <View style={{alignItems:'center', justifyContent: 'center' , height: '100%'}}>
-                    <ActivityIndicator animating={true} color={colors.primary} size="small"/>
+                    <ActivityIndicator animating={true} color={colors.primary} size={0}/>
                 </View>
             )
         }
@@ -194,13 +194,6 @@ export default class DiaryList extends Component {
             );
         }
 
-        if (this.state.loading_more) {
-            return (
-                <View style={{height: 60, justifyContent: "center", alignItems: "center"}}>
-                    <ActivityIndicator animating={true} color={colors.primary} size="small"/>
-                </View>
-            );
-        }
         if (!this.state.more) {
             return (
                 <View style={{ height: 100, justifyContent: "center", alignItems: "center", paddingBottom: 5}}>
@@ -208,5 +201,11 @@ export default class DiaryList extends Component {
                 </View>
             );
         }
+
+        return (
+            <View style={{height: 60, justifyContent: "center", alignItems: "center"}}>
+                <ActivityIndicator animating={true} color={colors.primary} size={Platform.OS === 'android' ? 'large' : 'small'}/>
+            </View>
+        );
     }
 }
