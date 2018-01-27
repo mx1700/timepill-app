@@ -8,7 +8,7 @@ import {colors} from "../Styles";
 export default class HomeScreen extends React.Component {
     render() {
         return (
-            <View>
+            <View style={{backgroundColor:'#FFFFFF'}}>
                 <StatusBar
                     backgroundColor={colors.navBackground}
                     barStyle="dark-content"

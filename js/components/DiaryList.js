@@ -170,6 +170,13 @@ export default class DiaryList extends Component {
                 refreshing={this.state.refreshing}
                 onEndReached={this.loadMore.bind(this)}
                 ListFooterComponent={this.renderFooter()}
+                ListHeaderComponent={() => {
+                    return (<View style={{paddingTop: 35, paddingHorizontal: 20}}>
+                        <Text style={{color: colors.inactiveText}}>1月27日</Text>
+                        <Text style={{fontSize:30 }}>Today</Text>
+                    </View>)
+                }}
+                automaticallyAdjustContentInsets={true}
                 // onEndReachedThreshold={0.1}
                 // ListEmptyComponent={this.renderEmpty()}
             />
