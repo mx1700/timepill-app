@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     user_icon: {
+        marginTop: 3,
         marginRight: 8,
     },
     body: {

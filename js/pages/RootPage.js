@@ -8,21 +8,8 @@ import {colors} from "../Styles";
 import navOption from "../components/NavOption";
 
 
-HomePage.navigationOptions = navOption({
+HomePage.navigationOptions = Object.assign({
     tabBarLabel: '首页',
-    title:"首页",
-    headerTitle: '',
-    headerStyle: {
-        // backgroundColor: '#FFF',
-        // borderWidth:0,
-        // borderBottomColor: 'transparent',
-        // position: 'absolute',
-        // backgroundColor: 'transparent',
-        // zIndex: 100, top: 0, left: 0, right: 0
-        backgroundColor: '#FFF',
-        borderBottomColor: 'transparent',
-        height: 0,
-    },
     tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
             name={focused ? 'ios-home' : 'ios-home-outline'}
@@ -30,7 +17,8 @@ HomePage.navigationOptions = navOption({
             style={{ color: tintColor }}
         />
     ),
-});
+}, HomePage.navigationOptions);
+console.log(HomePage.navigationOptions);
 
 FollowDiaryPage.navigationOptions = navOption({
     tabBarLabel: '关注',
