@@ -1,7 +1,7 @@
 import React from "react";
 import {
     View, InteractionManager, Alert, ActionSheetIOS, Clipboard, ActivityIndicator, StyleSheet,
-    TextInput, TouchableOpacity, ListView, FlatList, Text
+    TextInput, TouchableOpacity, ListView, FlatList, Text, Platform
 } from "react-native";
 import moment from 'moment';
 import * as Api from "../Api";
@@ -413,7 +413,7 @@ export default class DiaryDetail extends React.Component {
         //         <NavigationBar.Icon name="ios-more" onPress={this._onDiaryMorePress.bind(this)}/>
         //     ) : null;
 
-
+        const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null;
         return (
             <View style={{flex: 1, backgroundColor: 'white', justifyContent: "space-between"}}>
                 <FlatList
@@ -429,7 +429,7 @@ export default class DiaryDetail extends React.Component {
                     keyboardDismissMode="on-drag"
                 />
                 {commentInput}
-                <KeyboardSpacer />
+                {keyboardSpacer}
             </View>
         );
     }
@@ -478,16 +478,9 @@ export default class DiaryDetail extends React.Component {
                            selectionColor={colors.light}
                            multiline={true}
                            showsVerticalScrollIndicator={false}
+                           underlineColorAndroid="transparent"
                            onChangeText={(text) => this._onCommentContentChange(text)}
-                           onContentSizeChange={(event) => {
-                               const h = event.nativeEvent.contentSize.height + 37;
-                               const max = 74 + 37;
-                               if (this.state.inputHeight !== h) {
-                                   this.setState({
-                                       inputHeight: h > max ? max : h,
-                                   });
-                               }
-                           }}
+                           onContentSizeChange={this.resetInputHeight.bind(this)}
                 />
                 <TouchableOpacity style={{
                     position: 'absolute',
@@ -516,8 +509,34 @@ export default class DiaryDetail extends React.Component {
         );
     }
 
+    resetInputHeight(event) {
+        let height = 0;
+        if(Platform.OS === "ios") {
+            //iOS 一开始是 29，只要一编辑就变成每行 18，36
+            const h = event.nativeEvent.contentSize.height + 37;
+            const max = 74 + 37;
+            height = h > max ? max : h
+        } else {
+            //android 一开始是 41.5，57，75
+            const h = event.nativeEvent.contentSize.height;
+            const max = 107;
+            if (h < DefaultInputHeight) {
+                height = DefaultInputHeight;
+            } else {
+                height = h + (DefaultInputHeight - 40);
+                height = height > max ? max : height;
+            }
+        }
+        console.log(height);
+        if (this.state.inputHeight !== height) {
+            this.setState({
+                inputHeight: height,
+            });
+        }
+    }
+
     renderComment(comment) {
-        console.log(comment)
+        // console.log(comment)
         const new_comment = this.props.new_comments != null
             && this.props.new_comments.some(it => it === comment.id);
         const style = new_comment ? {backgroundColor: '#eef5ff'} : null;
@@ -657,12 +676,13 @@ const styles = StyleSheet.create({
         borderColor: '#bbb',
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 19,
-        paddingHorizontal: 15,
-        fontSize: 15,
-        margin: 8,
         paddingRight: 30,
+        paddingLeft: 15,
         paddingTop: 10,
         paddingBottom: 10,
+        fontSize: 15,
+        lineHeight: 18,
+        margin: 8,
     },
     comment_sending: {
         flexGrow: 1,
