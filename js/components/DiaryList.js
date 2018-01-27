@@ -12,15 +12,17 @@ import {colors} from "../Styles";
 import Button from "./Button";
 import {NavigationActions, withNavigation} from "react-navigation";
 import Touchable from "./Touchable";
+import HomeListData from "../common/HomeListData";
+import ErrorView from "./ErrorView";
 
 @withNavigation
 export default class DiaryList extends Component {
     constructor(props) {
         super(props);
+        this.dataSource = props.dataSource;
         this.state = {
             diaries: [],
             more: false,
-            last_id: 0,
             loading_more: false,
             refreshing: false,
             error: false,
@@ -43,7 +45,7 @@ export default class DiaryList extends Component {
         this.setState({refreshing: true});
         let data = null;
         try {
-            data = await this.getList(0);
+            data = await this.dataSource.refresh()
         } catch (e) {
             if (e.code && e.code === 401) {
                 const resetAction = NavigationActions.reset({
@@ -55,7 +57,7 @@ export default class DiaryList extends Component {
                 this.props.navigation.dispatch(resetAction);
                 return;
             } else {
-                console.log(e); //TODO: toast 提示加载失败
+                console.log(e);
             }
         }
         if (!data) {    //加载失败
@@ -69,7 +71,7 @@ export default class DiaryList extends Component {
             });
             return;
         }
-        let diaries = data.diaries;
+        let diaries = data.list;
         let old = this.state.diaries;
         if (old.length > 0 && diaries.length > 0 && old[0].id === diaries[0].id) {
             this.showToast('没有新内容');
@@ -79,11 +81,9 @@ export default class DiaryList extends Component {
             refreshing: false,
             more: data.more,
             loading_more: false,
-            last_id: data.last_id,
             errorPage: false,
             loadMoreError: false,
         });
-        //         this.refs.list.scrollTo({x: 0, y: -60, animated: false});
     }
 
     async loadMore() {
@@ -91,13 +91,11 @@ export default class DiaryList extends Component {
         if (this.state.refreshing || this.state.loading_more) {
             return;
         }
-        console.log('loadMore', this.state.last_id);
-        console.log(this.state);
 
         this.setState({loading_more: true, error: false});
         let data = null;
         try {
-            data = await this.getList(this.state.last_id);
+            data = await this.dataSource.load_more()
         } catch (e) {
             console.log(e);
         }
@@ -108,7 +106,7 @@ export default class DiaryList extends Component {
             });
             return;
         }
-        let diaries = data.diaries.length > 0 ? this.state.diaries.concat(data.diaries) : this.state.diaries;
+        let diaries = data.list;
         this.setState({
             diaries: diaries,
             refreshing: false,
@@ -122,18 +120,6 @@ export default class DiaryList extends Component {
 
     onRefresh() {
         this.refresh();
-    }
-
-    async getList(last_id) {
-        let pageSize = 11;
-        let data = await Api.getTodayDiaries(0, pageSize, last_id);
-        let more = data.diaries.length === pageSize;
-        // console.log(data);
-        return {
-            diaries: data.diaries.slice(0, pageSize - 1),
-            more: data.diaries.length === pageSize,
-            last_id: more ? data.diaries[pageSize - 1].id : 0,
-        };
     }
 
     showToast(msg) {
@@ -170,13 +156,8 @@ export default class DiaryList extends Component {
                 refreshing={this.state.refreshing}
                 onEndReached={this.loadMore.bind(this)}
                 ListFooterComponent={this.renderFooter()}
-                ListHeaderComponent={() => {
-                    return (<View style={{paddingTop: 35, paddingHorizontal: 20}}>
-                        <Text style={{color: colors.inactiveText}}>1月27日</Text>
-                        <Text style={{fontSize:30 }}>Today</Text>
-                    </View>)
-                }}
                 automaticallyAdjustContentInsets={true}
+                {...this.props}
                 // onEndReachedThreshold={0.1}
                 // ListEmptyComponent={this.renderEmpty()}
             />
@@ -191,12 +172,9 @@ export default class DiaryList extends Component {
                 </View>
             )
         }
-        let text = this.state.error ? '出错了!':'今天还没有日记，马上写一篇吧';
+        let text = this.state.error ? '出错了 :(':'今天还没有日记，马上写一篇吧';
         return (
-            <View style={{alignItems:'center', justifyContent: 'center' , height: '100%'}}>
-                <Text style={{paddingBottom: 15, color: colors.text}}>{text}</Text>
-                <Button fontSize={14} title="  刷新一下  " onPress={this.refresh.bind(this)} />
-            </View>
+            <ErrorView text={text} buttonText="刷新一下" onButtonPress={this.refresh.bind(this)}/>
         );
     }
 
