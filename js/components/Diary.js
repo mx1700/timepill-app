@@ -37,10 +37,8 @@ Diary = (props) => {
     }
 
     const content = props.showAllContent
-        ? (
-                <Text style={styles.content} selectable={true}>{diary.content}</Text>
-        )
-        : <Text style={styles.content} numberOfLines={5}>{diary.content}</Text>;
+        ? (<Text style={styles.content} selectable={true} selectionColor={colors.textSelect}>{diary.content}</Text>)
+        : <Text style={styles.content} numberOfLines={5}>{diary.content.trim()}</Text>;
 
     return (
         <View style={styles.box}>

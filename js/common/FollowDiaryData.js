@@ -13,7 +13,8 @@ export default class FollowDiaryData {
         let more = data.diaries.length === PAGE_SIZE;
         this.list = data.diaries.slice(0, PAGE_SIZE - 1);
         this.last_id = more ? data.diaries[PAGE_SIZE - 1].id : 0;
-
+        // console.log(data);
+        // console.log('refresh', this.list, more);
         return {
             list: this.list,
             more: more,
@@ -29,6 +30,7 @@ export default class FollowDiaryData {
         }
         this.last_id = more ? data.diaries[PAGE_SIZE - 1].id : 0;
 
+        // console.log('load_more', this.list, more);
         return {
             list: this.list,
             more: more,

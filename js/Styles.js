@@ -14,6 +14,7 @@ const colors = {
     spaceBackground: '#f3f3ff', //空内容背景
     navBackground: '#F7F7F7',
     line: '#eee',
+    textSelect: '#b6d8ff'
 };
 
 const styles = StyleSheet.create({

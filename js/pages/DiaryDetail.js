@@ -423,7 +423,7 @@ export default class DiaryDetail extends React.Component {
                         return item.id
                     }}
                     renderItem={({item}) => this.renderComment(item) }
-                    ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
+                    ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: colors.line, height: StyleSheet.hairlineWidth}}/>}
                     ListFooterComponent={this.renderFooter()}
                     ListHeaderComponent={this.renderTop()}
                     keyboardDismissMode="on-drag"
@@ -551,12 +551,12 @@ export default class DiaryDetail extends React.Component {
 
         const action = this.isToday && this.state.isMy
             ? (
-                <TouchableOpacity onPress={() => this._onCommentActionPress(comment)}>
+                <Touchable onPress={() => this._onCommentActionPress(comment)}>
                     <Icon name="ios-more"
                           size={16}
                           color={colors.inactiveText}
                           style={{ position: 'absolute', bottom: 0, right: 10, paddingHorizontal: 12, paddingVertical: 5}} />
-                </TouchableOpacity>
+                </Touchable>
             ) : null;
 
         return (
@@ -597,9 +597,9 @@ export default class DiaryDetail extends React.Component {
         if (!this.state.loading_comments && this.state.commentsLoadingError && this.state.diary.comment_count > 0) {
             return (
                 <View style={{height: 100, justifyContent: "center", alignItems: "center", paddingBottom: 5}}>
-                    <TouchableOpacity style={{marginTop: 15}} onPress={this._loadComments.bind(this)}>
+                    <Touchable style={{marginTop: 15}} onPress={this._loadComments.bind(this)}>
                         <Text style={{color: colors.primary}}>回复加载失败,请重试</Text>
-                    </TouchableOpacity>
+                    </Touchable>
                 </View>
             );
         }
@@ -643,7 +643,7 @@ const styles = StyleSheet.create({
     title_name: {
         flexGrow: 1,
         fontWeight: 'bold',
-        color: colors.contentText,
+        color: colors.text,
         fontSize: 14,
         marginRight: 5,
     },
@@ -654,7 +654,7 @@ const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
         lineHeight: 26,
-        color: colors.contentText,
+        color: colors.text,
         fontSize: 15,
         marginBottom: 10
     },
