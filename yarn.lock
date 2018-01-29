@@ -3692,6 +3692,16 @@ react-native-elements@^0.19.0:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
+react-native-fast-image@^2.0.1:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/react-native-fast-image/download/react-native-fast-image-2.0.1.tgz#210fe23a8ed5ae4a68977b555167eb7440ad7374"
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-image-pan-zoom@^2.0.16:
+  version "2.0.16"
+  resolved "http://registry.npm.taobao.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.0.16.tgz#84cf96b530da73141d25f10e1ee26c862444d4d2"
+
 react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"
   resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
