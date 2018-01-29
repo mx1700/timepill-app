@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Touchable from "./Touchable";
+import Touchable from "./TPTouchable";
 import {Text, View} from "react-native";
 import {colors} from '../Styles'
-import Button from "./Button";
+import Button from "./TPButton";
+import PropTypes from 'prop-types';
 
 
 function errorView(props) {
-    {/*<Touchable style={{marginTop: 15}} onPress={props.onButtonPress}>*/}
-    {/*<Text style={{color: colors.primary}}>{props.button}</Text>*/}
-    {/*</Touchable>*/}
     const button = props.buttonText
         ? (
             <Button fontSize={14} title={'  ' + props.buttonText + '  '} onPress={props.onButtonPress} />
@@ -21,5 +19,12 @@ function errorView(props) {
         </View>
     )
 }
+
+errorView.propTypes = {
+    text: PropTypes.string.isRequired,
+    buttonText: PropTypes.string,
+    onButtonPress: PropTypes.func,
+    style: View.propTypes.style,
+};
 
 export default errorView

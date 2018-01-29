@@ -4,19 +4,23 @@ import {
     FlatList,
     InteractionManager, Platform, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
-import * as Api from "../Api";
-import Diary from "./Diary";
+import Diary from "Diary";
 import {Divider} from "react-native-elements";
 import Toast from 'react-native-root-toast';
 import {colors} from "../Styles";
-import Button from "./Button";
 import {NavigationActions, withNavigation} from "react-navigation";
-import Touchable from "./Touchable";
-import HomeListData from "../common/HomeListData";
+import Touchable from "./TPTouchable";
 import ErrorView from "./ErrorView";
+import PropTypes from 'prop-types';
 
 @withNavigation
 export default class DiaryList extends Component {
+
+    static propTypes = {
+        dataSource: PropTypes.object.isRequired,
+        ...FlatList.propTypes
+    };
+
     constructor(props) {
         super(props);
         this.dataSource = props.dataSource;
@@ -147,7 +151,7 @@ export default class DiaryList extends Component {
                 renderItem={({item}) => {
                     return (
                         <Touchable onPress={() => this.props.navigation.navigate('DiaryDetail', {diary: item})}>
-                            <Diary key={item.id} diary={item} showComment={true}/>
+                            <Diary diary={item} showAllContent={false}/>
                         </Touchable>
                     )
                 }}

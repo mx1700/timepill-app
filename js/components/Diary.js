@@ -1,19 +1,20 @@
+/**
+ * @providesModule Diary
+ */
 import React, { Component } from 'react';
 import {Image, Text, TouchableOpacity, View} from "react-native";
 import { colors } from '../Styles'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons';
 import {StyleSheet} from "react-native";
-import RadiusTouchable from '../components/RadiusTouchable'
 import {Avatar} from "react-native-elements";
+import PropTypes from 'prop-types';
 
 
 //TODO:复制内容未实现
 /**
  * 日记视图
- * @param props(diary|onIconPress|showBookSubject|showComment|showAllContent|navigator|onActionPress|deletable|editable)
  * @constructor
- *
  */
 Diary = (props) => {
     let diary = props.diary;
@@ -57,6 +58,28 @@ Diary = (props) => {
         </View>
     );
 };
+
+Diary.propTypes = {
+    diary: PropTypes.object.isRequired,
+    onIconPress: PropTypes.func,
+    showBookSubject: PropTypes.bool,
+    showComment: PropTypes.bool,
+    showAllContent: PropTypes.bool,
+    navigator: PropTypes.object,
+    onActionPress: PropTypes.func,
+    deletable: PropTypes.bool,
+    editable: PropTypes.bool,
+};
+
+Diary.defaultProps = {
+    showBookSubject: true,
+    showComment: true,
+    showAllContent: true,
+    deletable: false,
+    editable: false,
+};
+
+export default Diary
 
 /**
  * 头像
@@ -138,8 +161,6 @@ ActionBar = (props) => {
         return <View style={{height: 24}} />
     }
 };
-
-export default Diary
 
 const styles = StyleSheet.create({
     box: {
