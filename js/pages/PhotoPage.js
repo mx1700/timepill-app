@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     StatusBar, Text, View, Animated, BackHandler, Easing, Dimensions, ActivityIndicator,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback, Platform
 } from "react-native";
 import navOption from "../components/NavOption";
 import {colors} from "../Styles";
@@ -134,7 +134,7 @@ function loadingView(props) {
     let text = process > 0 ? process + '%' : '';
     return (
         <View>
-            <ActivityIndicator />
+            <ActivityIndicator animating={true} color="#FFFFFF" size={Platform.OS === 'android' ? 'large' : 'small'}/>
             <Text style={{color: 'white', padding: 5, fontSize: 14}}>{text}</Text>
         </View>
     )
