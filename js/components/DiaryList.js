@@ -12,6 +12,7 @@ import {NavigationActions, withNavigation} from "react-navigation";
 import Touchable from "./TPTouchable";
 import ErrorView from "./ErrorView";
 import PropTypes from 'prop-types';
+import PhotoPage from "../pages/PhotoPage";
 
 @withNavigation
 export default class DiaryList extends Component {
@@ -137,7 +138,8 @@ export default class DiaryList extends Component {
 
     onPhotoPress(diary) {
         let url = diary.photoUrl.replace('w640', 'w640-q75');
-        this.props.navigation.navigate('Photo', {url: url})
+        // this.props.navigation.navigate('Photo', {url: url})
+        PhotoPage.open({url: url});
     }
 
     onIconPress() {

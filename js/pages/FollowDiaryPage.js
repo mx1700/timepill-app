@@ -6,18 +6,18 @@ import DiaryList from "../components/DiaryList";
 import navOption from "../components/NavOption";
 
 export default class FollowDiaryPage extends React.Component {
-    static navigationOptions = navOption({
-        title:"关注",
-        headerTitle: '关注',
-        headerStyle: {
-            backgroundColor: '#FFF',
-            borderBottomColor: 'transparent',
-            height: 0,
-        },
-        headerTitleStyle: {
-            color: 'transparent'
-        }
-    });
+    // static navigationOptions = navOption({
+    //     title:"关注",
+    //     headerTitle: '关注',
+    //     headerStyle: {
+    //         backgroundColor: '#FFF',
+    //         borderBottomColor: 'transparent',
+    //         height: 0,
+    //     },
+    //     headerTitleStyle: {
+    //         color: 'transparent'
+    //     }
+    // });
 
     render() {
         return (

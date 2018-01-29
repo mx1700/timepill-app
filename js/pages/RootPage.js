@@ -21,18 +21,18 @@ HomePage.navigationOptions = Object.assign({
 
 FollowDiaryPage.navigationOptions = navOption({
     tabBarLabel: '关注',
-    headerTitle: '',
-    headerStyle: {
-        // backgroundColor: '#FFF',
-        // borderWidth:0,
-        // borderBottomColor: 'transparent',
-        // position: 'absolute',
-        // backgroundColor: 'transparent',
-        // zIndex: 100, top: 0, left: 0, right: 0
-        backgroundColor: '#FFF',
-        borderBottomColor: 'transparent',
-        height: 0,
-    },
+    headerTitle: '关注',
+    // headerStyle: {
+    //     // backgroundColor: '#FFF',
+    //     // borderWidth:0,
+    //     // borderBottomColor: 'transparent',
+    //     // position: 'absolute',
+    //     // backgroundColor: 'transparent',
+    //     // zIndex: 100, top: 0, left: 0, right: 0
+    //     backgroundColor: '#FFF',
+    //     borderBottomColor: 'transparent',
+    //     height: 0,
+    // },
     tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
             name={focused ? 'ios-heart' : 'ios-heart-outline'}
@@ -101,6 +101,5 @@ RootPage = TabNavigator({
     animationEnabled: false,
     swipeEnabled: false,
     tabBarOptions: tabBarOptions,
-    lazy: true,
 });
 export default RootPage
