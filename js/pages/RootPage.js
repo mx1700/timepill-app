@@ -18,7 +18,6 @@ HomePage.navigationOptions = Object.assign({
         />
     ),
 }, HomePage.navigationOptions);
-console.log(HomePage.navigationOptions);
 
 FollowDiaryPage.navigationOptions = navOption({
     tabBarLabel: '关注',

@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import * as Api from '../Api'
 import { colors } from "../Styles";
-import TPButton from '../components/Button';
+import TPButton from '../components/TPButton';
 import { NavigationActions } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Toast from 'react-native-root-toast';

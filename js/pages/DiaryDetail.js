@@ -11,7 +11,7 @@ import {colors} from '../Styles'
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import KeyboardSpacer from "react-native-keyboard-spacer";
 import Diary from "../components/Diary";
-import Touchable from "../components/Touchable";
+import Touchable from "../components/TPTouchable";
 import {Avatar, Divider} from "react-native-elements";
 
 
@@ -575,9 +575,6 @@ export default class DiaryDetail extends React.Component {
                             onPress={() => this._onIconPress(comment.user)}
                             activeOpacity={0.7}
                         />
-                        {/*<RadiusTouchable style={styles.user_icon_box} onPress={() => this._onIconPress(comment.user)}>*/}
-                            {/*<Image style={styles.user_icon} source={{uri: comment.user.iconUrl}}/>*/}
-                        {/*</RadiusTouchable>*/}
                         <View style={styles.body}>
                             <View style={styles.title}>
                                 <Text style={styles.title_name}>{comment.user.name}</Text>

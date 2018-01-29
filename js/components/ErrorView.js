@@ -1,3 +1,7 @@
+/**
+ * @providesModule ErrorView
+ */
+
 import React, { Component } from 'react';
 import Touchable from "./TPTouchable";
 import {Text, View} from "react-native";

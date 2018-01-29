@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Button from '../components/Button'
-import Touchable from "../components/Touchable";
 import {Text, View, TouchableNativeFeedback} from "react-native";
 import {colors} from "../Styles";
 import FollowDiaryData from "../common/FollowDiaryData";
@@ -22,7 +20,6 @@ export default class FollowDiaryPage extends React.Component {
     });
 
     render() {
-        //this.props.navigation.navigate('Login', {name: 'Lucy'})
         return (
             <View style={{backgroundColor:'#FFFFFF'}}>
                 <DiaryList
