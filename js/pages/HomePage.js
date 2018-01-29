@@ -4,6 +4,7 @@ import DiaryList from '../components/DiaryList'
 import {colors} from "../Styles";
 import HomeListData from "../common/HomeListData";
 import navOption from "../components/NavOption";
+import Ionicons from 'react-native-vector-icons/Ionicons.js';
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = navOption({
@@ -22,7 +23,15 @@ export default class HomeScreen extends React.Component {
         },
         headerTitleStyle: {
             color: 'transparent'
-        }
+        },
+        tabBarLabel: '首页',
+        tabBarIcon: ({ tintColor, focused }) => (
+            <Ionicons
+                name={focused ? 'ios-home' : 'ios-home-outline'}
+                size={26}
+                style={{ color: tintColor }}
+            />
+        ),
     });
 
     render() {

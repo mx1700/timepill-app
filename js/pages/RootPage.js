@@ -5,42 +5,7 @@ import HomePage from './HomePage';
 import FollowDiaryPage from './FollowDiaryPage';
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import {colors} from "../Styles";
-import navOption from "../components/NavOption";
 
-
-HomePage.navigationOptions = Object.assign({
-    tabBarLabel: '首页',
-    tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-            name={focused ? 'ios-home' : 'ios-home-outline'}
-            size={26}
-            style={{ color: tintColor }}
-        />
-    ),
-}, HomePage.navigationOptions);
-
-FollowDiaryPage.navigationOptions = navOption({
-    tabBarLabel: '关注',
-    headerTitle: '关注',
-    // headerStyle: {
-    //     // backgroundColor: '#FFF',
-    //     // borderWidth:0,
-    //     // borderBottomColor: 'transparent',
-    //     // position: 'absolute',
-    //     // backgroundColor: 'transparent',
-    //     // zIndex: 100, top: 0, left: 0, right: 0
-    //     backgroundColor: '#FFF',
-    //     borderBottomColor: 'transparent',
-    //     height: 0,
-    // },
-    tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-            name={focused ? 'ios-heart' : 'ios-heart-outline'}
-            size={26}
-            style={{ color: tintColor }}
-        />
-    ),
-});
 
 WritePage = () => {
     return <View />

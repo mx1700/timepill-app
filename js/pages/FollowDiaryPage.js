@@ -4,20 +4,29 @@ import {colors} from "../Styles";
 import FollowDiaryData from "../common/FollowDiaryData";
 import DiaryList from "../components/DiaryList";
 import navOption from "../components/NavOption";
+import Ionicons from 'react-native-vector-icons/Ionicons.js';
 
 export default class FollowDiaryPage extends React.Component {
-    // static navigationOptions = navOption({
-    //     title:"关注",
-    //     headerTitle: '关注',
-    //     headerStyle: {
-    //         backgroundColor: '#FFF',
-    //         borderBottomColor: 'transparent',
-    //         height: 0,
-    //     },
-    //     headerTitleStyle: {
-    //         color: 'transparent'
-    //     }
-    // });
+    static navigationOptions = navOption({
+        title:"关注",
+        headerTitle: '关注',
+        headerStyle: {
+            backgroundColor: '#FFF',
+            borderBottomColor: 'transparent',
+            height: 0,
+        },
+        headerTitleStyle: {
+            color: 'transparent'
+        },
+        tabBarLabel: '关注',
+        tabBarIcon: ({ tintColor, focused }) => (
+            <Ionicons
+                name={focused ? 'ios-heart' : 'ios-heart-outline'}
+                size={26}
+                style={{ color: tintColor }}
+            />
+        ),
+    });
 
     render() {
         return (
