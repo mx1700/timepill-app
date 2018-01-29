@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {StyleSheet} from "react-native";
 import {Avatar} from "react-native-elements";
 import PropTypes from 'prop-types';
+import TPTouchable from "./TPTouchable";
 
 
 //TODO:复制内容未实现
@@ -49,9 +50,7 @@ Diary = (props) => {
             <View style={styles.body}>
                 {title}
                 {content}
-                <Photo url={diary.photoThumbUrl} onPress={() => {
-                    console.log('TODO:Photo Press')
-                }} diary={diary}/>
+                <Photo url={diary.photoThumbUrl} onPress={() => props.onPhotoPress ? props.onPhotoPress(diary) : null } diary={diary}/>
                 <ActionBar diary={diary} showComment={props.showComment} editable={props.editable}
                            deletable={props.deletable} onPress={props.onActionPress} />
             </View>
@@ -62,6 +61,7 @@ Diary = (props) => {
 Diary.propTypes = {
     diary: PropTypes.object.isRequired,
     onIconPress: PropTypes.func,
+    onPhotoPress: PropTypes.func,
     showBookSubject: PropTypes.bool,
     showComment: PropTypes.bool,
     showAllContent: PropTypes.bool,
@@ -109,12 +109,12 @@ UserIcon = (props) => {
  */
 Photo = (props) => {
     return (props.url) ? (
-        <TouchableOpacity
+        <TPTouchable
             onPress={props.onPress}
             style={styles.photo_box}>
             <Image style={styles.photo}
                    source={{uri: props.url.replace('w240-h320', 'w320-h320-c320:320-q75')}}/>
-        </TouchableOpacity>
+        </TPTouchable>
     ): null;
 };
 

@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import RootPage from './pages/RootPage';
 import navOption from "./components/NavOption";
 import DiaryDetail from "./pages/DiaryDetail";
+import PhotoPage from "./pages/PhotoPage";
 
 
 const RootNavigator = StackNavigator({
@@ -28,6 +29,9 @@ const RootNavigator = StackNavigator({
         navigationOptions: navOption({
             headerTitle: '日记详情',
         })
+    },
+    Photo: {
+        screen: PhotoPage
     }
 }, {
     initialRouteName: "Root"

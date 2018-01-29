@@ -135,6 +135,19 @@ export default class DiaryList extends Component {
         });
     }
 
+    onPhotoPress(diary) {
+        let url = diary.photoUrl.replace('w640', 'w640-q75');
+        this.props.navigation.navigate('Photo', {url: url})
+    }
+
+    onIconPress() {
+
+    }
+
+    onActionPress() {
+
+    }
+
     render() {
         if (this.state.diaries.length === 0) {
             return this.renderEmpty();
@@ -151,7 +164,11 @@ export default class DiaryList extends Component {
                 renderItem={({item}) => {
                     return (
                         <Touchable onPress={() => this.props.navigation.navigate('DiaryDetail', {diary: item})}>
-                            <Diary diary={item} showAllContent={false}/>
+                            <Diary diary={item} showAllContent={false}
+                                   onPhotoPress={this.onPhotoPress.bind(this)}
+                                   onIconPress={this.onIconPress.bind(this)}
+                                   onActionPress={this.onActionPress.bind(this)}
+                            />
                         </Touchable>
                     )
                 }}
