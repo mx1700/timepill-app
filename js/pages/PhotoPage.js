@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {StatusBar, Text, View, Animated, BackHandler, Easing, Dimensions} from "react-native";
+import {
+    StatusBar, Text, View, Animated, BackHandler, Easing, Dimensions, ActivityIndicator,
+    TouchableWithoutFeedback
+} from "react-native";
 import navOption from "../components/NavOption";
 import {colors} from "../Styles";
 import TPTouchable from "../components/TPTouchable";
@@ -7,6 +10,7 @@ import PropTypes from 'prop-types';
 import RootSiblings from "react-native-root-siblings";
 import FastImage from "react-native-fast-image";
 import ImageZoom from 'react-native-image-pan-zoom';
+import Image from 'react-native-image-progress';
 
 export default class PhotoPage extends Component {
 
@@ -18,13 +22,14 @@ export default class PhotoPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false,
+            loading: true,
             progress: 0,
             hiddenStatusBar: true,
             fadeAnimOpacity: new Animated.Value(0),
             width: 0,
             height: 0,
         };
+        //TODO:加载失败未实现
     }
 
     componentWillMount() {
@@ -43,12 +48,12 @@ export default class PhotoPage extends Component {
         //     hiddenStatusBar: true,
         // });
 
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
-            // Typically you would use the navigator here to go to the last state.
-            this.close();
-            return true;
-        });
+        BackHandler.addEventListener('hardwareBackPress', this.hardwareBackPress);
+    }
+
+    hardwareBackPress = () => {
+        this.close();
+        return true;
     }
 
     static open({ url }) {
@@ -62,6 +67,7 @@ export default class PhotoPage extends Component {
             hiddenStatusBar: false,
         });
         this.props.onClosePress();
+        BackHandler.removeEventListener('hardwareBackPress', this.hardwareBackPress)
         // Animated.timing(
         //     this.state.fadeAnimOpacity,
         //     {
@@ -78,6 +84,7 @@ export default class PhotoPage extends Component {
     }
 
     render() {
+        // let loading = this.state.loading ? this.renderLoadingView() : null;
         return (
             <Animated.View
                 style={{
@@ -108,20 +115,28 @@ export default class PhotoPage extends Component {
                            doubleClickInterval={350}
                            onLongPress={this.savePhoto.bind(this)}
                 >
-                    <FastImage
+                    <Image
                         style={{flex: 1, width: '100%', height: '100%'}}
                         source={{
                             uri: this.props.url,
                         }}
                         resizeMode={FastImage.resizeMode.contain}
-                        onProgress={(e) => {
-                            this.setState({
-                                progress: e.nativeEvent.loaded / e.nativeEvent.total
-                            })
-                        }}
+                        indicator={loadingView}
                     />
                 </ImageZoom>
             </Animated.View>
         )
     }
 }
+
+function loadingView(props) {
+    let process = Math.floor(props.progress * 100);
+    let text = process > 0 ? process + '%' : '';
+    return (
+        <View>
+            <ActivityIndicator />
+            <Text style={{color: 'white', padding: 5, fontSize: 14}}>{text}</Text>
+        </View>
+    )
+}
+

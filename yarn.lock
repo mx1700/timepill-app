@@ -3702,6 +3702,12 @@ react-native-image-pan-zoom@^2.0.16:
   version "2.0.16"
   resolved "http://registry.npm.taobao.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.0.16.tgz#84cf96b530da73141d25f10e1ee26c862444d4d2"
 
+react-native-image-progress@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/react-native-image-progress/download/react-native-image-progress-1.0.1.tgz#5ceb4cfefd39d7ebdffab802bc984b5a0fc41021"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"
   resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"

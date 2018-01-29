@@ -16,6 +16,7 @@
     "react-native-elements": "^0.19.0",
     "react-native-fast-image": "^2.0.1",
     "react-native-image-pan-zoom": "^2.0.16",
+    "react-native-image-progress": "^1.0.1",
     "react-native-keyboard-spacer": "^0.4.1",
     "react-native-root-siblings": "^3.0.0",
     "react-native-root-toast": "^3.0.0",
