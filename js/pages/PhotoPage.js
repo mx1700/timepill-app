@@ -8,7 +8,6 @@ import {colors} from "../Styles";
 import TPTouchable from "../components/TPTouchable";
 import PropTypes from 'prop-types';
 import RootSiblings from "react-native-root-siblings";
-import FastImage from "react-native-fast-image";
 import ImageZoom from 'react-native-image-pan-zoom';
 import Image from 'react-native-image-progress';
 
@@ -120,8 +119,9 @@ export default class PhotoPage extends Component {
                         source={{
                             uri: this.props.url,
                         }}
-                        resizeMode={FastImage.resizeMode.contain}
+                        resizeMode="contain"
                         indicator={loadingView}
+                        renderError={errorView}
                     />
                 </ImageZoom>
             </Animated.View>
@@ -138,5 +138,11 @@ function loadingView(props) {
             <Text style={{color: 'white', padding: 5, fontSize: 14}}>{text}</Text>
         </View>
     )
+}
+
+function errorView(props) {
+    return (
+        <Text>加载失败</Text>
+    );
 }
 
