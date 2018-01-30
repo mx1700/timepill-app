@@ -12,7 +12,7 @@ let TouchableIOS = (props) => {
 
 let TouchableAndroid = (props) => {
     return (<
-        TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()} {...props}>
+        TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()} useForeground={true} {...props}>
             <View>
                 {props.children}
             </View>

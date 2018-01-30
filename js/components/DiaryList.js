@@ -142,8 +142,8 @@ export default class DiaryList extends Component {
         PhotoPage.open({url: url});
     }
 
-    onIconPress() {
-
+    onIconPress(diary) {
+        this.props.navigation.navigate('User', {user: diary.user})
     }
 
     onActionPress() {

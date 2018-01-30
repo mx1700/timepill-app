@@ -45,14 +45,20 @@ Diary = (props) => {
     return (
         <View style={styles.box}>
             <UserIcon diary={diary} user={diary.user} onPress={() => {
-                console.log('TODO:Icon Press')
+                if (props.onIconPress) {
+                    props.onIconPress(diary);
+                }
             }}/>
             <View style={styles.body}>
                 {title}
                 {content}
                 <Photo url={diary.photoThumbUrl} onPress={() => props.onPhotoPress ? props.onPhotoPress(diary) : null } diary={diary}/>
                 <ActionBar diary={diary} showComment={props.showComment} editable={props.editable}
-                           deletable={props.deletable} onPress={props.onActionPress} />
+                           deletable={props.deletable} onPress={() => {
+                               if (props.onActionPress) {
+                                   props.onActionPress(diary)
+                               }
+                }} />
             </View>
         </View>
     );

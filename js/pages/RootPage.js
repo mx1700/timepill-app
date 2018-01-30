@@ -5,6 +5,8 @@ import HomePage from './HomePage';
 import FollowDiaryPage from './FollowDiaryPage';
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import {colors} from "../Styles";
+import NotificationPage from "./NotificationPage";
+import UserPage from "./UserPage";
 
 
 WritePage = () => {
@@ -60,6 +62,12 @@ RootPage = TabNavigator({
     },
     Write: {
         screen: WritePage
+    },
+    Notification: {
+        screen: NotificationPage
+    },
+    My: {
+        screen: UserPage
     }
 }, {
     tabBarPosition: 'bottom',

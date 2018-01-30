@@ -11,6 +11,7 @@ import RootPage from './pages/RootPage';
 import navOption from "./components/NavOption";
 import DiaryDetail from "./pages/DiaryDetail";
 import PhotoPage from "./pages/PhotoPage";
+import UserPage from "./pages/UserPage";
 
 
 const RootNavigator = StackNavigator({
@@ -32,6 +33,9 @@ const RootNavigator = StackNavigator({
     },
     Photo: {
         screen: PhotoPage
+    },
+    User: {
+        screen: UserPage
     }
 }, {
     initialRouteName: "Root"
