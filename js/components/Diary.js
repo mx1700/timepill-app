@@ -109,12 +109,12 @@ UserIcon = (props) => {
  */
 Photo = (props) => {
     return (props.url) ? (
-        <TPTouchable
+        <TouchableOpacity
             onPress={props.onPress}
             style={styles.photo_box}>
             <Image style={styles.photo}
                    source={{uri: props.url.replace('w240-h320', 'w320-h320-c320:320-q75')}}/>
-        </TPTouchable>
+        </TouchableOpacity>
     ): null;
 };
 
