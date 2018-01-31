@@ -14,7 +14,6 @@ import ErrorView from "./ErrorView";
 import PropTypes from 'prop-types';
 import PhotoPage from "../pages/PhotoPage";
 
-@withNavigation
 export default class DiaryList extends Component {
 
     static propTypes = {

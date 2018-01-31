@@ -18,12 +18,6 @@ import {Avatar, Divider} from "react-native-elements";
 const DefaultInputHeight = 55;
 
 export default class DiaryDetail extends React.Component {
-    // static navigationOptions = ({ navigation }) => ({
-    //     title: `Chat with ${navigation.state.params.user}`,
-    // });
-    static navigationOptions = {
-        title: "日记详情"
-    };
 
     constructor(props) {
         super(props);

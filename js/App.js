@@ -5,63 +5,64 @@
  */
 
 import React, { Component } from 'react';
-import { StackNavigator, TabNavigator } from 'react-navigation';
-import LoginPage from "./pages/LoginPage";
-import RootPage from './pages/RootPage';
-import navOption from "./components/NavOption";
-import DiaryDetail from "./pages/DiaryDetail";
-import PhotoPage from "./pages/PhotoPage";
-import UserPage from "./pages/UserPage";
-import Ionicons from 'react-native-vector-icons/Ionicons.js';
+import {registerScreens} from "./screens";
+import {Navigation} from "react-native-navigation";
+import Icon from "react-native-vector-icons/Ionicons";
 
+registerScreens();
 
-const RootNavigator = StackNavigator({
-    Root: {
-        screen: RootPage
-    },
-    Login: {
-        screen: LoginPage,
-        navigationOptions: navOption({
-            headerTitle: '登录',
-            header: null,
-        })
-    },
-    DiaryDetail: {
-        screen: DiaryDetail,
-        navigationOptions: navOption({
-            headerTitle: '日记详情',
-        })
-    },
-    Photo: {
-        screen: PhotoPage
-    },
-    User: {
-        screen: UserPage
-    }
-}, {
-    initialRouteName: "Root"
-});
+export default async function appStart() {
+    let [
+        homeIcon, homeSelectedIcon,
+        followIcon, followSelectedIcon,
+        writeIcon, writeSelectedIcon,
+        tipIcon, tipSelectedIcon,
+        myIcon, mySelectIcon,
+    ] = await Promise.all([
+        Icon.getImageSource('ios-home-outline', 26), Icon.getImageSource('ios-home', 26),
+        Icon.getImageSource('ios-heart-outline', 26), Icon.getImageSource('ios-heart', 26),
+        Icon.getImageSource('ios-create-outline', 26), Icon.getImageSource('ios-create', 26),
+        Icon.getImageSource('ios-notifications-outline', 26), Icon.getImageSource('ios-notifications', 26),
+        Icon.getImageSource('ios-contact-outline', 26), Icon.getImageSource('ios-contact', 26),
+    ]);
 
-export default RootNavigator;
-
-
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     // backgroundColor: '#F5FCFF',
-//       backgroundColor: '#FFFFFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
+    Navigation.startTabBasedApp({
+        tabs: [
+            {
+                label: '首页',
+                screen: 'Home',
+                icon: homeIcon,
+                selectedIcon: homeSelectedIcon, // iOS only
+                title: '首页'
+            },
+            {
+                label: '关注',
+                screen: 'Follow',
+                icon: followIcon,
+                selectedIcon: followSelectedIcon, // iOS only
+                title: '关注'
+            },
+            {
+                label: '写日记',
+                screen: 'Write',
+                icon: writeIcon,
+                selectedIcon: writeSelectedIcon, // iOS only
+                title: '写日记'
+            },
+            {
+                label: '提醒',
+                screen: 'Notification',
+                icon: tipIcon,
+                selectedIcon: tipSelectedIcon, // iOS only
+                title: '提醒'
+            },
+            {
+                label: '我的',
+                screen: 'User',
+                icon: myIcon,
+                selectedIcon: mySelectIcon, // iOS only
+                title: '我的'
+            },
+        ]
+    });
+}
