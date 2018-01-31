@@ -142,8 +142,16 @@ export default class DiaryList extends Component {
         PhotoPage.open({url: url});
     }
 
+    onDiaryPress(diary) {
+        this.props.navigator.push({
+            screen: 'login',
+            title: '登录'
+        });
+    }
+
     onIconPress(diary) {
         this.props.navigation.navigate('User', {user: diary.user})
+        //this.props.navigation.navigate('DiaryDetail', {diary: item})
     }
 
     onActionPress() {
@@ -165,7 +173,7 @@ export default class DiaryList extends Component {
                 }}
                 renderItem={({item}) => {
                     return (
-                        <Touchable onPress={() => this.props.navigation.navigate('DiaryDetail', {diary: item})}>
+                        <Touchable onPress={this.onDiaryPress.bind(this)}>
                             <Diary diary={item} showAllContent={false}
                                    onPhotoPress={this.onPhotoPress.bind(this)}
                                    onIconPress={this.onIconPress.bind(this)}

@@ -2910,7 +2910,7 @@ lodash.times@^4.3.2:
   version "4.3.2"
   resolved "http://registry.npm.taobao.org/lodash.times/download/lodash.times-4.3.2.tgz#3e1f2565c431754d54ab57f2ed1741939285ca1d"
 
-lodash@4.17.4, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.4, lodash@4.x.x, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3713,6 +3713,12 @@ react-native-image-progress@^1.0.1:
 react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"
   resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
+
+react-native-navigation@wix/react-native-navigation#2580/head:
+  version "1.1.314"
+  resolved "https://codeload.github.com/wix/react-native-navigation/tar.gz/c1baabf05208aee5a9cd64fb23368ade9961a5bb"
+  dependencies:
+    lodash "4.x.x"
 
 react-native-root-siblings@^3.0.0:
   version "3.0.0"

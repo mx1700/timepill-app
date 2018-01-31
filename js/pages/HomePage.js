@@ -49,6 +49,7 @@ export default class HomeScreen extends React.Component {
                             <Text style={{fontSize:30, color: colors.text, height: 40}}>Today</Text>
                         </View>)
                     }}
+                    navigator={this.props.navigator}
                 />
             </View>
         );

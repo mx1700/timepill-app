@@ -12,6 +12,7 @@ import navOption from "./components/NavOption";
 import DiaryDetail from "./pages/DiaryDetail";
 import PhotoPage from "./pages/PhotoPage";
 import UserPage from "./pages/UserPage";
+import Ionicons from 'react-native-vector-icons/Ionicons.js';
 
 
 const RootNavigator = StackNavigator({
