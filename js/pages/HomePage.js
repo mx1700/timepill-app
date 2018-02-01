@@ -7,13 +7,17 @@ import navOption from "../components/NavOption";
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 
 export default class HomeScreen extends React.Component {
+    componentWillMount() {
+        // StatusBar.setBarStyle('dark-content');
+        // StatusBar.setBackgroundColor(colors.navBackground);
+    }
     render() {
         return (
             <View style={{backgroundColor:'#FFFFFF'}}>
-                <StatusBar
-                    backgroundColor={colors.navBackground}
-                    barStyle="dark-content"
-                />
+                {/*<StatusBar*/}
+                    {/*backgroundColor={colors.navBackground}*/}
+                    {/*barStyle="dark-content"*/}
+                {/*/>*/}
                 <DiaryList
                     dataSource={new HomeListData()}
                     ListHeaderComponent={() => {

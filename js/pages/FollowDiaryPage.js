@@ -18,6 +18,7 @@ export default class FollowDiaryPage extends React.Component {
                             <Text style={{fontSize:30, color: colors.text, height: 40}}>关注</Text>
                         </View>)
                     }}
+                    navigator={this.props.navigator}
                 />
             </View>
         )

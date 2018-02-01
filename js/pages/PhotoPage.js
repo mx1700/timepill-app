@@ -18,13 +18,17 @@ export default class PhotoPage extends Component {
         onClosePress: PropTypes.func,
     };
 
+    static navigatorStyle = {
+        tabBarHidden: true,
+        navBarHidden: true,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
             progress: 0,
             hiddenStatusBar: true,
-            fadeAnimOpacity: new Animated.Value(0),
             width: 0,
             height: 0,
         };
@@ -32,50 +36,40 @@ export default class PhotoPage extends Component {
     }
 
     componentWillMount() {
-        Animated.timing(
-            this.state.fadeAnimOpacity,
-            {
-                toValue: 1,
-                duration: 250,
-                easing: Easing.out(Easing.cubic)
-            }
-        ).start(() => {
-
-        });
+        // Animated.timing(
+        //     this.state.fadeAnimOpacity,
+        //     {
+        //         toValue: 1,
+        //         duration: 250,
+        //         easing: Easing.out(Easing.cubic)
+        //     }
+        // ).start(() => {
+        //
+        // });
 
         // this.setState({
         //     hiddenStatusBar: true,
         // });
 
-        BackHandler.addEventListener('hardwareBackPress', this.hardwareBackPress);
+        // BackHandler.addEventListener('hardwareBackPress', this.hardwareBackPress);
     }
 
-    hardwareBackPress = () => {
-        this.close();
-        return true;
-    }
+    // hardwareBackPress = () => {
+    //     this.close();
+    //     return true;
+    // }
 
-    static open({ url }) {
-        let sibling = new RootSiblings(<PhotoPage url={url} onClosePress={() => {
-            sibling.destroy();
-        }} />);
-    }
+    // static open({ url }) {
+    //     let sibling = new RootSiblings(<PhotoPage url={url} onClosePress={() => {
+    //         sibling.destroy();
+    //     }} />);
+    // }
 
     close() {
-        this.setState({
-            hiddenStatusBar: false,
+        this.props.navigator.pop({
+            animated: true,
+            animationType: 'fade',
         });
-        this.props.onClosePress();
-        BackHandler.removeEventListener('hardwareBackPress', this.hardwareBackPress)
-        // Animated.timing(
-        //     this.state.fadeAnimOpacity,
-        //     {
-        //         toValue: 0,
-        //         duration: 0,
-        //     }
-        // ).start(() => {
-        //     this.props.onClosePress();
-        // });
     }
 
     savePhoto() {
@@ -85,10 +79,9 @@ export default class PhotoPage extends Component {
     render() {
         // let loading = this.state.loading ? this.renderLoadingView() : null;
         return (
-            <Animated.View
+            <View
                 style={{
-                    position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black',
-                    opacity: this.state.fadeAnimOpacity
+                    flex: 1, backgroundColor: 'black',
                 }}
                 onLayout={(event) => {
                     let {x, y, width, height} = event.nativeEvent.layout;
@@ -98,11 +91,9 @@ export default class PhotoPage extends Component {
                     })
                 }}
             >
-                <StatusBar
-                    hidden={this.state.hiddenStatusBar}
-                    animated={true}
-                    showHideTransition="slide"
-                />
+                {/*<StatusBar*/}
+                    {/*hidden={false}*/}
+                {/*/>*/}
                 {/*<TPTouchable onPress={this.close.bind(this)}>*/}
                 {/*<Text style={{backgroundColor:'green'}}>关闭-{this.state.progress}</Text>*/}
                 {/*</TPTouchable>*/}
@@ -124,7 +115,7 @@ export default class PhotoPage extends Component {
                         renderError={errorView}
                     />
                 </ImageZoom>
-            </Animated.View>
+            </View>
         )
     }
 }

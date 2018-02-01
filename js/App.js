@@ -8,10 +8,12 @@ import React, { Component } from 'react';
 import {registerScreens} from "./screens";
 import {Navigation} from "react-native-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
+import {colors} from "./Styles";
+import {StatusBar} from 'react-native'
 
 registerScreens();
 
-export default async function appStart() {
+async function appStart() {
     let [
         homeIcon, homeSelectedIcon,
         followIcon, followSelectedIcon,
@@ -33,7 +35,7 @@ export default async function appStart() {
                 screen: 'Home',
                 icon: homeIcon,
                 selectedIcon: homeSelectedIcon, // iOS only
-                title: '首页'
+                title: '胶囊日记'
             },
             {
                 label: '关注',
@@ -63,6 +65,26 @@ export default async function appStart() {
                 selectedIcon: mySelectIcon, // iOS only
                 title: '我的'
             },
-        ]
+        ],
+        tabsStyle: {
+            // tabBarHidden: true,
+            tabBarSelectedButtonColor: colors.primary,   //iOS
+            forceTitlesDisplay: false,
+            navBarTranslucent: true,
+            drawUnderNavBar: true,
+        },
+        appStyle: {
+            // tabBarHidden: true,
+            // hideBackButtonTitle: true,
+            tabBarSelectedButtonColor: colors.primary,   //android
+            forceTitlesDisplay: false,
+            navBarTranslucent: true,
+            // drawUnderNavBar: true,
+        },
+        animationType: 'none'
     });
+}
+
+export default () => {
+    appStart();
 }

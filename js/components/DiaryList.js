@@ -138,14 +138,22 @@ export default class DiaryList extends Component {
     onPhotoPress(diary) {
         let url = diary.photoUrl.replace('w640', 'w640-q75');
         // this.props.navigation.navigate('Photo', {url: url})
-        PhotoPage.open({url: url});
+        // PhotoPage.open({url: url});
+        this.props.navigator.push({
+            screen: 'Photo',
+            title: '照片',
+            passProps: { url: url },
+            animationType: 'fade'
+        });
     }
 
     onDiaryPress(diary) {
         this.props.navigator.push({
-            screen: 'login',
-            title: '登录'
+            screen: 'DiaryDetail',
+            title: '日记详情',
+            passProps: { diary: diary }
         });
+        //TODO:只穿 id 有问题
     }
 
     onIconPress(diary) {
@@ -172,7 +180,7 @@ export default class DiaryList extends Component {
                 }}
                 renderItem={({item}) => {
                     return (
-                        <Touchable onPress={this.onDiaryPress.bind(this)}>
+                        <Touchable onPress={() => this.onDiaryPress(item)}>
                             <Diary diary={item} showAllContent={false}
                                    onPhotoPress={this.onPhotoPress.bind(this)}
                                    onIconPress={this.onIconPress.bind(this)}
