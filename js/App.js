@@ -7,62 +7,51 @@
 import React, { Component } from 'react';
 import {registerScreens} from "./screens";
 import {Navigation, ScreenVisibilityListener} from "react-native-navigation";
-import Icon from "react-native-vector-icons/Ionicons";
 import {colors} from "./Styles";
 import {Platform, StatusBar} from 'react-native'
+import LocalIcon from "./common/LocalIcons";
 
 registerScreens();
 
 async function appStart() {
-    let [
-        homeIcon, homeSelectedIcon,
-        followIcon, followSelectedIcon,
-        writeIcon, writeSelectedIcon,
-        tipIcon, tipSelectedIcon,
-        myIcon, mySelectIcon,
-    ] = await Promise.all([
-        Icon.getImageSource('ios-home-outline', 26), Icon.getImageSource('ios-home', 26),
-        Icon.getImageSource('ios-heart-outline', 26), Icon.getImageSource('ios-heart', 26),
-        Icon.getImageSource('ios-create-outline', 26), Icon.getImageSource('ios-create', 26),
-        Icon.getImageSource('ios-notifications-outline', 26), Icon.getImageSource('ios-notifications', 26),
-        Icon.getImageSource('ios-contact-outline', 26), Icon.getImageSource('ios-contact', 26),
-    ]);
+
+    await LocalIcon.aLoad();
 
     Navigation.startTabBasedApp({
         tabs: [
             {
                 label: '首页',
                 screen: 'Home',
-                icon: homeIcon,
-                selectedIcon: homeSelectedIcon, // iOS only
+                icon: LocalIcon.homeIcon,
+                selectedIcon: LocalIcon.homeSelectedIcon, // iOS only
                 title: '首页'
             },
             {
                 label: '关注',
                 screen: 'Follow',
-                icon: followIcon,
-                selectedIcon: followSelectedIcon, // iOS only
+                icon: LocalIcon.followIcon,
+                selectedIcon: LocalIcon.followSelectedIcon, // iOS only
                 title: '关注'
             },
             {
                 label: '写日记',
-                screen: 'WriteTab',
-                icon: writeIcon,
-                selectedIcon: writeSelectedIcon, // iOS only
+                screen: 'Write',
+                icon: LocalIcon.writeIcon,
+                selectedIcon: LocalIcon.writeSelectedIcon, // iOS only
                 title: '写日记'
             },
             {
                 label: '提醒',
                 screen: 'Notification',
-                icon: tipIcon,
-                selectedIcon: tipSelectedIcon, // iOS only
+                icon: LocalIcon.tipIcon,
+                selectedIcon: LocalIcon.tipSelectedIcon, // iOS only
                 title: '提醒'
             },
             {
                 label: '我的',
                 screen: 'User',
-                icon: myIcon,
-                selectedIcon: mySelectIcon, // iOS only
+                icon: LocalIcon.myIcon,
+                selectedIcon: LocalIcon.mySelectIcon, // iOS only
                 title: '我的'
             },
         ],

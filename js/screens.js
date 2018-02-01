@@ -31,7 +31,7 @@ function WriteTab(props) {
             });
         }
     });
-    return <View style={{backgroundColor: 'transparent'}}></View>;
+    return <View style={{backgroundColor: 'transparent'}} />;
 }
 
 WriteTab.navigatorStyle = {
