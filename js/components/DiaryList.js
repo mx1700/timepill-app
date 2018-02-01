@@ -18,7 +18,19 @@ export default class DiaryList extends Component {
 
     static propTypes = {
         dataSource: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
+        showBookSubject: PropTypes.bool,
+        showComment: PropTypes.bool,
+        showAllContent: PropTypes.bool,
+        editable: PropTypes.bool,
         ...FlatList.propTypes
+    };
+
+    static defaultProps = {
+        showBookSubject: true,
+        showComment: true,
+        showAllContent: false,
+        editable: false,
     };
 
     constructor(props) {
@@ -137,8 +149,6 @@ export default class DiaryList extends Component {
 
     onPhotoPress(diary) {
         let url = diary.photoUrl.replace('w640', 'w640-q75');
-        // this.props.navigation.navigate('Photo', {url: url})
-        // PhotoPage.open({url: url});
         this.props.navigator.push({
             screen: 'Photo',
             title: '照片',
@@ -153,12 +163,11 @@ export default class DiaryList extends Component {
             title: '日记详情',
             passProps: { diary: diary }
         });
-        //TODO:只穿 id 有问题
+        //TODO:只传 id 有问题
     }
 
     onIconPress(diary) {
         this.props.navigation.navigate('User', {user: diary.user})
-        //this.props.navigation.navigate('DiaryDetail', {diary: item})
     }
 
     onActionPress() {
@@ -181,10 +190,14 @@ export default class DiaryList extends Component {
                 renderItem={({item}) => {
                     return (
                         <Touchable onPress={() => this.onDiaryPress(item)}>
-                            <Diary diary={item} showAllContent={false}
+                            <Diary diary={item}
                                    onPhotoPress={this.onPhotoPress.bind(this)}
                                    onIconPress={this.onIconPress.bind(this)}
                                    onActionPress={this.onActionPress.bind(this)}
+                                   showBookSubject={this.props.showBookSubject}
+                                   showComment={this.props.showComment}
+                                   showAllContent={this.props.showAllContent}
+                                   editable={this.props.editable}
                             />
                         </Touchable>
                     )

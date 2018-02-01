@@ -16,6 +16,7 @@ export default class HomeScreen extends React.Component {
     componentWillMount() {
         // StatusBar.setBarStyle('dark-content');
         // StatusBar.setBackgroundColor(colors.navBackground);
+
     }
     render() {
         // this.props.navigator.setSubTitle({

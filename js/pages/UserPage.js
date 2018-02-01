@@ -7,6 +7,8 @@ import {ButtonGroup} from "react-native-elements";
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import {colors} from "../Styles";
 import Touchable from "../components/TPTouchable";
+import DiaryList from "../components/DiaryList";
+import UserDiaryData from "../common/UserDiaryData";
 
 const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
@@ -16,10 +18,12 @@ export default class UserPage extends Component {
         super(props);
         this.state = {
             selectedIndex: 0,
+            isMyself: true,
         }
     }
 
     componentDidMount() {
+
     }
 
     _selectTab(selectedIndex) {
@@ -29,10 +33,12 @@ export default class UserPage extends Component {
     }
 
     render() {
-
         return (
-            <View>
-                <Text>{this.state.selectedIndex}</Text>
+            <View style={{flex: 1}}>
+                <DiaryList dataSource={new UserDiaryData()}
+                           navigator={this.props.navigator}
+                           editable={this.state.isMyself}
+                />
             </View>
         )
     }
