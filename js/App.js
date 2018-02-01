@@ -9,7 +9,7 @@ import {registerScreens} from "./screens";
 import {Navigation} from "react-native-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 import {colors} from "./Styles";
-import {StatusBar} from 'react-native'
+import {Platform, StatusBar} from 'react-native'
 
 registerScreens();
 
@@ -35,7 +35,7 @@ async function appStart() {
                 screen: 'Home',
                 icon: homeIcon,
                 selectedIcon: homeSelectedIcon, // iOS only
-                title: '胶囊日记'
+                title: '首页'
             },
             {
                 label: '关注',
@@ -77,11 +77,10 @@ async function appStart() {
             // tabBarHidden: true,
             // hideBackButtonTitle: true,
             tabBarSelectedButtonColor: colors.primary,   //android
-            forceTitlesDisplay: false,
-            navBarTranslucent: true,
+            forceTitlesDisplay: false,      //不起作用
+            navBarTranslucent: Platform.OS === 'ios',
             // drawUnderNavBar: true,
         },
-        animationType: 'none'
     });
 }
 
