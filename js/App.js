@@ -17,42 +17,54 @@ async function appStart() {
 
     await LocalIcon.aLoad();
 
+    let insets = { // add this to change icon position (optional, iOS only).
+        top: 6, // optional, default is 0.
+        left: 0, // optional, default is 0.
+        bottom: -6, // optional, default is 0.
+        right: 0 // optional, default is 0.
+    };
+
     Navigation.startTabBasedApp({
         tabs: [
             {
-                label: '首页',
+                // label: '首页',
                 screen: 'Home',
                 icon: LocalIcon.homeIcon,
                 selectedIcon: LocalIcon.homeSelectedIcon, // iOS only
-                title: '首页'
+                title: '首页',
+                iconInsets: insets,
             },
             {
-                label: '关注',
+                // label: '关注',
                 screen: 'Follow',
                 icon: LocalIcon.followIcon,
                 selectedIcon: LocalIcon.followSelectedIcon, // iOS only
-                title: '关注'
+                title: '关注',
+                iconInsets: insets,
             },
             {
-                label: '写日记',
+                // label: '写日记',
                 screen: 'Write',
                 icon: LocalIcon.writeIcon,
                 selectedIcon: LocalIcon.writeSelectedIcon, // iOS only
-                title: '写日记'
+                title: '写日记',
+                iconInsets: insets,
             },
             {
-                label: '提醒',
+                // label: '提醒',
                 screen: 'Notification',
                 icon: LocalIcon.tipIcon,
                 selectedIcon: LocalIcon.tipSelectedIcon, // iOS only
-                title: '提醒'
+                title: '提醒',
+                iconInsets: insets,
             },
             {
-                label: '我的',
+                // label: '我的',
                 screen: 'User',
                 icon: LocalIcon.myIcon,
                 selectedIcon: LocalIcon.mySelectIcon, // iOS only
-                title: '我的'
+                title: '我的',
+                iconInsets: insets,
             },
         ],
         tabsStyle: {
