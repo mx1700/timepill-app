@@ -80,7 +80,19 @@ async function appStart() {
             tabBarSelectedButtonColor: colors.primary,   //android
             forceTitlesDisplay: false,      //不起作用
             navBarTranslucent: Platform.OS === 'ios',
+            statusBarTextColorScheme: 'dark',
             // drawUnderNavBar: true,
+            // topBarElevationShadowEnabled: false,
+            topBarElevationShadowEnabled: false,
+            topBarShadowRadius: 1,
+            topBarShadowOpacity: 1,
+
+            //android only
+            navigationBarColor: '#FFF',
+            statusBarColor: '#FFF',
+            navBarHeight: 52,
+            navBarNoBorder: false,
+            topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
         },
     });
 
