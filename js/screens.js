@@ -10,6 +10,9 @@ import FollowDiaryPage from "./pages/FollowDiaryPage";
 import WritePage from "./pages/WritePage";
 import {Text, View} from "react-native";
 
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+
+
 /**
  * @return {null}
  */
@@ -60,4 +63,5 @@ export function registerScreens() {
 
     Navigation.registerComponent('UserHeader', () => UserHeader);
 
+    Navigation.registerComponent('TabBar', () => TabBar);
 }

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import {Text, View} from "react-native";
-import ErrorView from "../components/ErrorView";
-import Ionicons from 'react-native-vector-icons/Ionicons.js';
-import navOption from "../components/NavOption";
-import {ButtonGroup} from "react-native-elements";
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
-import {colors} from "../Styles";
-import Touchable from "../components/TPTouchable";
+import {Text, View, StyleSheet, Animated} from "react-native";
 import DiaryList from "../components/DiaryList";
 import UserDiaryData from "../common/UserDiaryData";
 import LocalIcons from "../common/LocalIcons";
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import {colors} from "../Styles";
 
 const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
 
 export default class UserPage extends Component {
+
+    static navigatorStyle = {
+        // navBarHidden: true,
+    };
 
     // static get navigatorStyle() {
     //     return {
@@ -42,36 +41,112 @@ export default class UserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedIndex: 0,
             isMyself: true,
+            index: 0,
+            routes: [
+                { key: 'diary', title: '日记' },
+                { key: 'notebooks', title: '日记本' },
+                { key: 'user', title: '简介' }
+            ],
         }
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.props.navigator.setStyle({
-                navBarCustomView: 'UserHeader',
-                navBarComponentAlignment: 'center',
-                navBarCustomViewInitialProps: {title: Math.random(), navigator: this.props.navigator}
-            });
-        }, 0);
-
+        // setTimeout(() => {
+        //     let time = Math.random();
+        //     console.log("8888888888888888888888", time);
+        //     this.props.navigator.setStyle({
+        //         navBarCustomView: 'UserHeader',
+        //         navBarComponentAlignment: 'center',
+        //         navBarCustomViewInitialProps: {title: time, navigator: this.props.navigator}
+        //     });
+        // }, 0);
     }
 
-    _selectTab(selectedIndex) {
-        this.setState({
-            selectedIndex: selectedIndex
+
+    _renderScene = SceneMap({
+        diary: () => <DiaryList
+            tabLabel="日记"
+            dataSource={new UserDiaryData()}
+            navigator={this.props.navigator}
+            editable={true}
+        />,
+        notebooks: () => <View tabLabel="简介"><Text>1</Text></View>,
+        user: () => <View tabLabel="日记本"><Text>2</Text></View>
+    });
+
+    _handleIndexChange = index => this.setState({ index });
+
+    _renderHeader = props => {
+        this.props.navigator.setStyle({
+            navBarCustomView: 'TabBar',
+            navBarComponentAlignment: 'center',
+            navBarCustomViewInitialProps: {
+                navigator: this.props.navigator,
+                ...props,
+                pressColor: colors.textSelect,
+                // onTabPress={this._handleTabItemPress}
+                renderLabel: _renderLabel(props),
+                indicatorStyle: styles.indicator,
+                tabStyle: styles.tab,
+                style: styles.tabbar
+            }
         });
-    }
+        return null;
+    };
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <DiaryList dataSource={new UserDiaryData()}
-                           navigator={this.props.navigator}
-                           editable={this.state.isMyself}
+                <TabViewAnimated
+                    style={{flex: 1, backgroundColor: '#FFFFFF'}}
+                    navigationState={this.state}
+                    renderScene={this._renderScene}
+                    renderHeader={this._renderHeader}
+                    onIndexChange={this._handleIndexChange}
                 />
-            </View>
         )
     }
 }
+
+_renderLabel = props => ({ route, index }) => {
+    const inputRange = props.navigationState.routes.map((x, i) => i);
+    const outputRange = inputRange.map(
+        inputIndex => (inputIndex === index ? colors.primary : '#222')
+    );
+    const color = props.position.interpolate({
+        inputRange,
+        outputRange,
+    });
+
+    return (
+        <Animated.Text style={[styles.label, { color }]}>
+            {route.title}
+        </Animated.Text>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    indicator: {
+        backgroundColor: colors.primary,
+    },
+    label: {
+        fontSize: 13,
+        fontWeight: 'bold',
+        margin: 8,
+    },
+    tabbar: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+    },
+    tab: {
+        opacity: 1,
+        width: 90,
+    },
+    page: {
+        backgroundColor: '#f9f9f9',
+    },
+});

@@ -64,13 +64,13 @@ export default class DiaryList extends Component {
             data = await this.dataSource.refresh()
         } catch (e) {
             if (e.code && e.code === 401) {
-                const resetAction = NavigationActions.reset({
-                    index: 0,
-                    actions: [
-                        NavigationActions.navigate({ routeName: 'Login'})
-                    ]
+                this.props.navigator.resetTo({
+                    screen: "Login",
+                    title: "登录"
                 });
-                this.props.navigation.dispatch(resetAction);
+                this.props.navigator.switchToTab({
+                    tabIndex: 0
+                });
                 return;
             } else {
                 console.log(e);

@@ -91,11 +91,11 @@ async function appStart() {
             topBarElevationShadowEnabled: false,
 
             //android only
-            // navigationBarColor: '#FFF',
-            // statusBarColor: '#FFF',
-            // navBarHeight: 52,
+            navigationBarColor: '#FFF',
+            statusBarColor: '#FFF',
+            navBarHeight: 52,
             // navBarNoBorder: false,
-            // topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
+            topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
 
             initialTabIndex: 4,
         },
