@@ -69,6 +69,7 @@ async function appStart() {
         ],
         tabsStyle: {
             // tabBarHidden: true,
+            tabBarButtonColor: '#bcd',
             tabBarSelectedButtonColor: colors.primary,   //iOS
             forceTitlesDisplay: false,
             navBarTranslucent: true,
@@ -77,6 +78,7 @@ async function appStart() {
         appStyle: {
             // tabBarHidden: true,
             // hideBackButtonTitle: true,
+            tabBarButtonColor: '#bcd',   //android
             tabBarSelectedButtonColor: colors.primary,   //android
             forceTitlesDisplay: false,      //不起作用
             navBarTranslucent: Platform.OS === 'ios',
