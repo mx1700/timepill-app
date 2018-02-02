@@ -8,7 +8,7 @@ import UserPage from "./pages/UserPage";
 import NotificationPage from "./pages/NotificationPage";
 import FollowDiaryPage from "./pages/FollowDiaryPage";
 import WritePage from "./pages/WritePage";
-import {View} from "react-native";
+import {Text, View} from "react-native";
 
 /**
  * @return {null}
@@ -39,6 +39,14 @@ WriteTab.navigatorStyle = {
     navBarHidden: true,
 };
 
+function UserHeader(props) {
+    return (
+        <View style={{backgroundColor: 'red', padding: 20}}>
+            <Text>Hello, world!{ props.title}</Text>
+        </View>
+    );
+}
+
 export function registerScreens() {
     Navigation.registerComponent('Home', () => HomePage);
     Navigation.registerComponent('Follow', () => FollowDiaryPage);
@@ -49,4 +57,7 @@ export function registerScreens() {
     Navigation.registerComponent('Notification', () => NotificationPage);
     Navigation.registerComponent('Write', () => WritePage);
     Navigation.registerComponent('WriteTab', () => WriteTab);
+
+    Navigation.registerComponent('UserHeader', () => UserHeader);
+
 }

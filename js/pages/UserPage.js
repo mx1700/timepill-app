@@ -9,11 +9,36 @@ import {colors} from "../Styles";
 import Touchable from "../components/TPTouchable";
 import DiaryList from "../components/DiaryList";
 import UserDiaryData from "../common/UserDiaryData";
+import LocalIcons from "../common/LocalIcons";
 
 const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
 
 export default class UserPage extends Component {
+
+    // static get navigatorStyle() {
+    //     return {
+    //         navBarCustomView: 'UserHeader'
+    //     }
+    // }
+    //
+    // static get appStyle() {
+    //     return {
+    //         navBarCustomView: 'UserHeader'
+    //     }
+    // }
+
+    static get navigatorButtons() {
+        //TODO:也可以通过 setButtons 设置
+        return {
+            rightButtons: [{
+                id: "follow",
+                icon: LocalIcons.navButtonFollowSelected,
+                buttonColor: 'red'
+            }],
+        };
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -23,6 +48,13 @@ export default class UserPage extends Component {
     }
 
     componentDidMount() {
+        setTimeout(() => {
+            this.props.navigator.setStyle({
+                navBarCustomView: 'UserHeader',
+                navBarComponentAlignment: 'center',
+                navBarCustomViewInitialProps: {title: Math.random(), navigator: this.props.navigator}
+            });
+        }, 0);
 
     }
 

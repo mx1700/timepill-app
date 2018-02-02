@@ -10,12 +10,13 @@ import {Navigation, ScreenVisibilityListener} from "react-native-navigation";
 import {colors} from "./Styles";
 import {Platform, StatusBar} from 'react-native'
 import LocalIcon from "./common/LocalIcons";
+import { loadIcon } from './common/LocalIcons';
 
 registerScreens();
 
 async function appStart() {
 
-    await LocalIcon.aLoad();
+    await loadIcon();
 
     let insets = { // add this to change icon position (optional, iOS only).
         top: 6, // optional, default is 0.
@@ -71,30 +72,32 @@ async function appStart() {
             // tabBarHidden: true,
             tabBarButtonColor: '#bcd',
             tabBarSelectedButtonColor: colors.primary,   //iOS
-            forceTitlesDisplay: false,
+
             navBarTranslucent: true,
             drawUnderNavBar: true,
+
+            initialTabIndex: 4,
         },
         appStyle: {
             // tabBarHidden: true,
             // hideBackButtonTitle: true,
             tabBarButtonColor: '#bcd',   //android
             tabBarSelectedButtonColor: colors.primary,   //android
-            forceTitlesDisplay: false,      //不起作用
+
             navBarTranslucent: Platform.OS === 'ios',
             statusBarTextColorScheme: 'dark',
+            keepStyleAcrossPush: false,     //iOS
             // drawUnderNavBar: true,
-            // topBarElevationShadowEnabled: false,
             topBarElevationShadowEnabled: false,
-            topBarShadowRadius: 1,
-            topBarShadowOpacity: 1,
 
             //android only
-            navigationBarColor: '#FFF',
-            statusBarColor: '#FFF',
-            navBarHeight: 52,
-            navBarNoBorder: false,
-            topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
+            // navigationBarColor: '#FFF',
+            // statusBarColor: '#FFF',
+            // navBarHeight: 52,
+            // navBarNoBorder: false,
+            // topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
+
+            initialTabIndex: 4,
         },
     });
 

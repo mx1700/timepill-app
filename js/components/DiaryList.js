@@ -167,7 +167,12 @@ export default class DiaryList extends Component {
     }
 
     onIconPress(diary) {
-        this.props.navigation.navigate('User', {user: diary.user})
+        // this.props.navigation.navigate('User', {user: diary.user})
+        this.props.navigator.push({
+            screen: 'User',
+            // title: '日记详情',
+            passProps: { user: diary.user }
+        });
     }
 
     onActionPress() {
