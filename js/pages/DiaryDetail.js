@@ -171,20 +171,7 @@ export default class DiaryDetail extends React.Component {
     }
 
     _scrollToBottom() {
-        /**
-         只有指定 initialListSize 足够大时，获取子内容高度才是准确的，不指定时，获取不准确
-         */
-        // setTimeout(() => {
-        //     if(this && this.refs.list) {
-        //         const listProps = this.refs.list.scrollProperties;
-        //         if (listProps.contentLength < listProps.visibleLength) {
-        //             return;
-        //         }
-        //         const y = listProps.contentLength - listProps.visibleLength;
-        //         this.refs.list.scrollTo({x: 0, y: y, animated: true});
-        //         //console.log(this.refs.list, listProps)
-        //     }
-        // }, 500)
+        this.list.scrollToEnd();
     }
 
     _onCommentPress(comment) {
@@ -227,23 +214,29 @@ export default class DiaryDetail extends React.Component {
     }
 
     _onIconPress(user) {
-        // this.props.navigator.push({
-        //     name: 'UserPage',
-        //     component: UserPage,
-        //     params: {
-        //         user: user
-        //     }
-        // })
+        this.props.navigator.push({
+            screen: 'User',
+            title: user.name,
+            passProps: { user: user }
+        });
     }
 
     _onDiaryIconPress(diary) {
-        // this.props.navigator.push({
-        //     name: 'UserPage',
-        //     component: UserPage,
-        //     params: {
-        //         user: diary.user
-        //     }
-        // })
+        this.props.navigator.push({
+            screen: 'User',
+            title: diary.user.name,
+            passProps: { user: diary.user }
+        });
+    }
+
+    onPhotoPress(diary) {
+        let url = diary.photoUrl.replace('w640', 'w640-q75');
+        this.props.navigator.push({
+            screen: 'Photo',
+            title: '照片',
+            passProps: { url: url },
+            animationType: 'fade'
+        });
     }
 
     _onActionPress(diary) {
@@ -411,7 +404,7 @@ export default class DiaryDetail extends React.Component {
         return (
             <View style={{flex: 1, backgroundColor: 'white', justifyContent: "space-between"}}>
                 <FlatList
-                    ref="list"
+                    ref={(r) => this.list = r}
                     data={this.state.comments}
                     keyExtractor={(item, index) => {
                         return item.id
@@ -444,6 +437,7 @@ export default class DiaryDetail extends React.Component {
                     showComment={false}
                     showAllContent={true}
                     onActionPress={this._onActionPress.bind(this)}
+                    onPhotoPress={this.onPhotoPress.bind(this)}
                 />
                 <View style={{borderBottomWidth: StyleSheet.hairlineWidth,
                     borderColor: colors.line, marginHorizontal: 15}} />
