@@ -6,14 +6,12 @@ import LocalIcons from "../common/LocalIcons";
 import {TabViewAnimated, TabBar, SceneMap, TabViewPagerPan, TabViewPagerScroll} from 'react-native-tab-view';
 import {colors} from "../Styles";
 import Events from "../Events";
+import * as Api from "../Api";
 
 const initialLayout = {
     height: 0,
     width: Dimensions.get('window').width,
 };
-
-const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
-const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
 
 export default class UserPage extends Component {
 
@@ -26,17 +24,6 @@ export default class UserPage extends Component {
     static appStyle = {
 
     };
-
-    static get navigatorButtons() {
-        //TODO:也可以通过 setButtons 设置
-        return {
-            rightButtons: [{
-                id: "follow",
-                icon: LocalIcons.navButtonFollowSelected,
-                buttonColor: 'red'
-            }],
-        };
-    }
 
     constructor(props) {
         super(props);
@@ -68,16 +55,6 @@ export default class UserPage extends Component {
 
 
     componentDidMount() {
-        // setTimeout(() => {
-        //     let time = Math.random();
-        //     console.log("8888888888888888888888", time);
-        //     this.props.navigator.setStyle({
-        //         navBarCustomView: 'UserHeader',
-        //         navBarComponentAlignment: 'center',
-        //         navBarCustomViewInitialProps: {title: time, navigator: this.props.navigator}
-        //     });
-        // }, 0);
-
         if (this.props.isMyself) {
             this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
                 //TODO:刷新日记本和个人信息
@@ -88,6 +65,27 @@ export default class UserPage extends Component {
                 this.diaryList.refresh()
             });
         }
+        this.loadNavButtons();
+    }
+
+    async loadNavButtons() {
+        if (this.props.isMyself) {
+            this.props.navigator.setButtons({
+                rightButtons: [{ id: 'setting', icon: LocalIcons.navButtonSetting }],
+                animated: false
+            });
+        } else {
+            const uid = this.getId();
+            const rel = await Api.getRelation(uid);
+            this.props.navigator.setButtons({
+                rightButtons: [{ id: 'setting', icon: rel ? LocalIcons.navButtonFollowSelected : LocalIcons.navButtonFollow }],
+                animated: true
+            });
+        }
+    }
+
+    getId() {
+        return this.props.user != null ? this.props.user.id : this.props.user_id;
     }
 
     componentWillUnmount() {

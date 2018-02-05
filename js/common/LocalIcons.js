@@ -23,6 +23,7 @@ let Icons = {
     navButtonFollow: null,
     navButtonFollowSelected: null,
     navButtonMore: null,
+    navButtonSetting: null,
 };
 
 async function loadIcon() {
@@ -51,6 +52,7 @@ async function loadIcon() {
         Icon.getImageSource('ios-heart-outline', 26, colors.primary),
         Icon.getImageSource('ios-heart', 26, "#d9534f"),
         Icon.getImageSource('ios-more', 26, colors.primary),
+        Icon.getImageSource('ios-cog', 26, colors.primary),
     ]);
 
     // for (let index = 0; index < icons.length; index++) {
