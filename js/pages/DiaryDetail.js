@@ -16,6 +16,7 @@ import Touchable from "../components/TPTouchable";
 import {Avatar, Divider} from "react-native-elements";
 import ActionSheet from 'react-native-actionsheet-api';
 import Events from "../Events";
+import LocalIcons from "../common/LocalIcons";
 
 const DefaultInputHeight = 55;
 
@@ -60,7 +61,53 @@ export default class DiaryDetail extends React.Component {
         });
         Api.getSelfInfoByStore().then(info => {
             this.selfInfo = info;
-        })
+        });
+
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+    /**
+     * 导航栏按钮点击事件
+     * @param event
+     */
+    onNavigatorEvent(event) {
+        if (event.type === 'NavBarButtonPress' && event.id === 'more') {
+
+            if (this.state.isMy === true) {
+                ActionSheet.showActionSheetWithOptions({
+                    options: ['修改', '删除', '取消'],
+                    cancelButtonIndex: 2,
+                    destructiveButtonIndex: 1,
+                }, (index) => {
+                    if (index === 0) {
+                        this.props.navigator.push({
+                            screen: 'Write',
+                            title: '修改日记',
+                            passProps: {
+                                diary: this.state.diary
+                            }
+                        });
+                    } else if (index === 1) {
+                        Alert.alert('提示', '确认删除日记?', [
+                            {text: '删除', style: 'destructive', onPress: () => this.deleteDiary(this.state.diary)},
+                            {text: '取消', onPress: () => console.log('OK Pressed!')},
+                        ]);
+                    }
+                });
+            } else if (this.state.isMy === false) {
+                ActionSheet.showActionSheetWithOptions({
+                    options: ['举报', '取消'],
+                    cancelButtonIndex: 1,
+                    destructiveButtonIndex: 0,
+                }, (index) => {
+                    if (index === 0) {
+                        Api.report(this.state.diary.user_id, this.state.diary.id)
+                            .catch(err => console.log(err));
+                        Alert.alert('提示', '感谢你的贡献')
+                    }
+                });
+            }
+        }
     }
 
     getDiaryId() {
@@ -348,9 +395,9 @@ export default class DiaryDetail extends React.Component {
             Alert.alert('删除失败', err.message);
             return;
         }
-        Alert.alert('提示', '日记已删除', [{text: '好', onPress: () =>  this.props.navigator.pop()}]);
+        Alert.alert('提示', '日记已删除', [{text: '好', onPress: () => this.props.navigator.pop()}]);
 
-        Events.emit(Events.diaryDelete)
+        DeviceEventEmitter.emit(Events.diaryDelete);
     }
 
     _editSuccess = (r) => {
@@ -367,6 +414,20 @@ export default class DiaryDetail extends React.Component {
             }
         });
     };
+
+    async setButtons(isToday) {
+        let buttons = [];
+        if (isToday) {
+            buttons = [{
+                id: "more",
+                icon: LocalIcons.navButtonMore
+            }];
+        }
+        this.props.navigator.setButtons({
+            rightButtons: buttons,
+            animated: false
+        });
+    }
 
     render() {
         if (this.state.diaryLoadingError) {
@@ -396,7 +457,9 @@ export default class DiaryDetail extends React.Component {
         }
 
         const isToday = this._isTodayDiary();
+        this.isToday = isToday;
         const commentInput = isToday ? this.renderCommentInputBox() : null;
+        this.setButtons(isToday);
         // const editButton = isToday           //TODO
         //     ? (
         //         <NavigationBar.Icon name="ios-more" onPress={this._onDiaryMorePress.bind(this)}/>
@@ -590,11 +653,11 @@ export default class DiaryDetail extends React.Component {
                 </View>
             );
         }
-        if (!this.state.loading_comments && this.state.diary.comment_count == 0) {
+        if (!this.state.loading_comments && this.state.diary.comment_count === 0) {
             return null;
         }
 
-        if (!this.state.loading_comments || this.state.diary.comment_count == 0) {
+        if (!this.state.loading_comments || this.state.diary.comment_count === 0) {
             return null;
         }
 

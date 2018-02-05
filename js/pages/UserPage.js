@@ -83,12 +83,17 @@ export default class UserPage extends Component {
                 //TODO:刷新日记本和个人信息
                 this.diaryList.refresh()
             });
+            this.deleteListener = DeviceEventEmitter.addListener(Events.diaryDelete, () => {
+                //TODO:刷新日记本和个人信息
+                this.diaryList.refresh()
+            });
         }
     }
 
     componentWillUnmount() {
         if (this.loginListener) {
             this.loginListener.remove();
+            this.deleteListener.remove();
         }
     }
 
