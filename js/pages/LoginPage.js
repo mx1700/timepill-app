@@ -213,6 +213,7 @@ export default class LoginPage extends Component {
                 <FormInput
                     containerStyle={styles.input}
                     underlineColorAndroid="transparent"
+                    selectionColor={colors.primary}
                     onChangeText={(text) => this.setState({nickname: text})}
                     value={this.state.nickname}
                     onSubmitEditing={this._nicknameSubmit.bind(this)}
@@ -254,6 +255,7 @@ export default class LoginPage extends Component {
                             ref="inputEmail"
                             containerStyle={styles.input}
                             underlineColorAndroid="transparent"
+                            selectionColor={colors.primary}
                             onChangeText={(text) => this.setState({username: text})}
                             value={this.state.username}
                             onSubmitEditing={this._usernameSubmit.bind(this)}
@@ -269,6 +271,7 @@ export default class LoginPage extends Component {
                             ref="inputPw"
                             containerStyle={styles.input}
                             underlineColorAndroid="transparent"
+                            selectionColor={colors.primary}
                             onChangeText={(text) => this.setState({password: text})}
                             value={this.state.password}
                             onSubmitEditing={this._passwordSubmit.bind(this)}

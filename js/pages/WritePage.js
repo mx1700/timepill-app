@@ -30,15 +30,19 @@ export default class WritePage extends Component {
         if (event.type === 'NavBarButtonPress') { // this is the event type for button presses
             if (event.id === 'cancel') { // this is the same id field from the static navigatorButtons definition
                 // this.props.navigator.dismissModal();
-                this.props.navigator.switchToTab({
-                    tabIndex: this.tabIndexToSelect
-                });
+                if (this.props.tabOpen) {
+                    this.props.navigator.switchToTab({
+                        tabIndex: this.tabIndexToSelect
+                    });
+                } else {
+                    this.props.navigator.pop();
+                }
             }
             if(event.id === 'save') {
 
             }
         }
-        if (event.selectedTabIndex === 2) {
+        if (event.selectedTabIndex === 2 && this.props.tabOpen) {
             this.tabIndexToSelect = !event.unselectedTabIndex || event.unselectedTabIndex === 2 ? 0 : event.unselectedTabIndex;
         }
     }

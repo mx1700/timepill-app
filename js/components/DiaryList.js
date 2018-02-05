@@ -3,6 +3,7 @@ import {
     ActivityIndicator,
     FlatList,
     InteractionManager, Platform, StyleSheet, Text, TouchableOpacity, View,
+    Alert,
 } from 'react-native';
 import Diary from "Diary";
 import {Divider} from "react-native-elements";
@@ -13,6 +14,8 @@ import Touchable from "./TPTouchable";
 import ErrorView from "./ErrorView";
 import PropTypes from 'prop-types';
 import PhotoPage from "../pages/PhotoPage";
+import ActionSheet from 'react-native-actionsheet-api';
+import * as Api from "../Api";
 
 export default class DiaryList extends Component {
 
@@ -54,7 +57,6 @@ export default class DiaryList extends Component {
 
     async refresh() {
         if (this.state.refreshing) {
-            //TODO:如果有 load_more, 取消 load_more 回调
             return;
         }
 
@@ -167,7 +169,6 @@ export default class DiaryList extends Component {
     }
 
     onIconPress(diary) {
-        // this.props.navigation.navigate('User', {user: diary.user})
         this.props.navigator.push({
             screen: 'User',
             title: diary.user.name,
@@ -175,8 +176,43 @@ export default class DiaryList extends Component {
         });
     }
 
-    onActionPress() {
+    onActionPress(diary) {
+        ActionSheet.showActionSheetWithOptions({
+            options:['修改','删除', '取消'],
+            cancelButtonIndex:2,
+            destructiveButtonIndex: 1,
+        }, (index) => {
+            if(index === 0) {   //修改
+                this.props.navigator.push({
+                    screen: 'Write',
+                    title: '修改日记',
+                    passProps: {
+                        diary: diary
+                    }
+                });
+            } else if (index === 1) {
+                Alert.alert('提示', '确认删除日记?',[
+                    {text: '删除', style: 'destructive', onPress: () => this._deleteDiary(diary)},
+                    {text: '取消', onPress: () => console.log('OK Pressed!')},
+                ]);
+            }
+        });
+    }
 
+    async _deleteDiary(diary) {
+        try {
+            console.log(Api, Api.deleteDiary);
+            await Api.deleteDiary(diary.id);
+            Toast.show("日记已删除", {
+                duration: 2000,
+                position: -80,
+                shadow: false,
+                hideOnPress: true,
+            });
+            await this.refresh()
+        } catch (err) {
+            Alert.alert('删除失败', err.message)
+        }
     }
 
     render() {
@@ -186,38 +222,42 @@ export default class DiaryList extends Component {
         console.log('render: ');
         // console.log(this.state);
         return (
-            <FlatList
-                style={{backgroundColor: 'white'}}
-                data={this.state.diaries}
-                keyExtractor={(item, index) => {
-                    return item.id
-                }}
-                renderItem={({item}) => {
-                    return (
-                        <Touchable onPress={() => this.onDiaryPress(item)}>
-                            <Diary diary={item}
-                                   onPhotoPress={this.onPhotoPress.bind(this)}
-                                   onIconPress={this.onIconPress.bind(this)}
-                                   onActionPress={this.onActionPress.bind(this)}
-                                   showBookSubject={this.props.showBookSubject}
-                                   showComment={this.props.showComment}
-                                   showAllContent={this.props.showAllContent}
-                                   editable={this.props.editable}
-                            />
-                        </Touchable>
-                    )
-                }}
-                ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
-                onRefresh={this.onRefresh.bind(this)}
-                refreshing={this.state.refreshing}
-                ListFooterComponent={this.renderFooter()}
-                automaticallyAdjustContentInsets={true}
-                onEndReached={this.state.more ? this.loadMore.bind(this) : null}
-                onEndReachedThreshold={0.5}
-                {...this.props}
-                // onEndReachedThreshold={0.1}
-                // ListEmptyComponent={this.renderEmpty()}
-            />
+            <View>
+                <FlatList
+                    style={{backgroundColor: 'white'}}
+                    data={this.state.diaries}
+                    keyExtractor={(item, index) => {
+                        return item.id
+                    }}
+                    renderItem={({item}) => {
+                        return (
+                            <Touchable onPress={() => this.onDiaryPress(item)}>
+                                <Diary diary={item}
+                                       onPhotoPress={this.onPhotoPress.bind(this)}
+                                       onIconPress={this.onIconPress.bind(this)}
+                                       onActionPress={this.onActionPress.bind(this)}
+                                       showBookSubject={this.props.showBookSubject}
+                                       showComment={this.props.showComment}
+                                       showAllContent={this.props.showAllContent}
+                                       editable={this.props.editable}
+                                />
+                            </Touchable>
+                        )
+                    }}
+                    ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
+                    onRefresh={this.onRefresh.bind(this)}
+                    refreshing={this.state.refreshing}
+                    ListFooterComponent={this.renderFooter()}
+                    automaticallyAdjustContentInsets={true}
+                    onEndReached={this.state.more ? this.loadMore.bind(this) : null}
+                    onEndReachedThreshold={0.5}
+                    {...this.props}
+                    // onEndReachedThreshold={0.1}
+                    // ListEmptyComponent={this.renderEmpty()}
+                >
+                </FlatList>
+                <ActionSheet/>
+            </View>
         )
     }
 
