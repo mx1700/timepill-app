@@ -5,6 +5,8 @@ import UserDiaryData from "../common/UserDiaryData";
 import LocalIcons from "../common/LocalIcons";
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import {colors} from "../Styles";
+var ScrollableTabView = require('react-native-scrollable-tab-view');
+
 
 const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
@@ -13,19 +15,8 @@ export default class UserPage extends Component {
 
     static navigatorStyle = {
         // navBarHidden: true,
+        navBarHideOnScroll: true,
     };
-
-    // static get navigatorStyle() {
-    //     return {
-    //         navBarCustomView: 'UserHeader'
-    //     }
-    // }
-    //
-    // static get appStyle() {
-    //     return {
-    //         navBarCustomView: 'UserHeader'
-    //     }
-    // }
 
     static get navigatorButtons() {
         //TODO:也可以通过 setButtons 设置
@@ -78,21 +69,39 @@ export default class UserPage extends Component {
     _handleIndexChange = index => this.setState({ index });
 
     _renderHeader = props => {
-        this.props.navigator.setStyle({
-            navBarCustomView: 'TabBar',
-            navBarComponentAlignment: 'center',
-            navBarCustomViewInitialProps: {
-                navigator: this.props.navigator,
-                ...props,
-                pressColor: colors.textSelect,
-                // onTabPress={this._handleTabItemPress}
-                renderLabel: _renderLabel(props),
-                indicatorStyle: styles.indicator,
-                tabStyle: styles.tab,
-                style: styles.tabbar
-            }
-        });
-        return null;
+        // this.props.navigator.setStyle({
+        //     navBarCustomView: 'TabBar',
+        //     navBarComponentAlignment: 'center',
+        //     navBarCustomViewInitialProps: {
+        //         navigator: this.props.navigator,
+        //         ...props,
+        //         pressColor: colors.textSelect,
+        //         // onTabPress={this._handleTabItemPress}
+        //         renderLabel: _renderLabel(props),
+        //         indicatorStyle: styles.indicator,
+        //         tabStyle: styles.tab,
+        //         style: styles.tabbar
+        //     }
+        // });
+        // return (
+        //     <TabBar
+        //         {...props}
+        //         pressColor={colors.textSelect}
+        //         renderLabel={_renderLabel(props)}
+        //         indicatorStyle={styles.indicator}
+        //         tabStyle={styles.tab}
+        //         style={styles.tabbar}
+        //     />
+        // );
+        // return null;
+        return <TabBar
+            {...props}
+            pressColor={colors.textSelect}
+            indicatorStyle={styles.indicator}
+            renderLabel={_renderLabel(props)}
+            tabStyle={styles.tab}
+            style={styles.tabbar}
+        />
     };
 
     render() {
@@ -133,18 +142,22 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primary,
     },
     label: {
+        flex: 1,
         fontSize: 13,
         fontWeight: 'bold',
         margin: 8,
     },
     tabbar: {
-        flex: 1,
-        backgroundColor: 'transparent',
+        // flex: 1,
+        backgroundColor: '#FFFFFF',
         justifyContent: 'center',
+        // borderBottomColor: colors.line,
+        // borderBottomWidth: StyleSheet.hairlineWidth,
     },
     tab: {
+        flex: 1,
         opacity: 1,
-        width: 90,
+        // color: colors.primary
     },
     page: {
         backgroundColor: '#f9f9f9',

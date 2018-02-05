@@ -12,7 +12,7 @@ const colors = {
     lightText: '#7F91A7',
 
     spaceBackground: '#f3f3ff', //空内容背景
-    navBackground: '#F7F7F7',
+    navBackground: '#F9F9F9',
     line: '#eee',
     textSelect: '#b6d8ff'
 };
