@@ -170,7 +170,7 @@ export default class DiaryList extends Component {
         // this.props.navigation.navigate('User', {user: diary.user})
         this.props.navigator.push({
             screen: 'User',
-            // title: '日记详情',
+            title: diary.user.name,
             passProps: { user: diary.user }
         });
     }

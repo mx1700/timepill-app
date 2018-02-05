@@ -8,10 +8,6 @@ import LocalIcons from '../common/LocalIcons'
 
 export default class WritePage extends Component {
 
-    static navigatorStyle = {
-        tabBarHidden: true,
-    };
-
     static get navigatorButtons() {
         return {
             leftButtons: [{

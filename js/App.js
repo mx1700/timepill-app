@@ -34,6 +34,9 @@ async function appStart() {
                 selectedIcon: LocalIcon.homeSelectedIcon, // iOS only
                 title: '首页',
                 iconInsets: insets,
+                navigatorStyle: {
+                    tabBarHidden: false,
+                }
             },
             {
                 // label: '关注',
@@ -42,6 +45,9 @@ async function appStart() {
                 selectedIcon: LocalIcon.followSelectedIcon, // iOS only
                 title: '关注',
                 iconInsets: insets,
+                navigatorStyle: {
+                    tabBarHidden: false,
+                }
             },
             {
                 // label: '写日记',
@@ -50,6 +56,10 @@ async function appStart() {
                 selectedIcon: LocalIcon.writeSelectedIcon, // iOS only
                 title: '写日记',
                 iconInsets: insets,
+                navigatorStyle: {
+                    tabBarHidden: true,
+
+                }
             },
             {
                 // label: '提醒',
@@ -58,6 +68,9 @@ async function appStart() {
                 selectedIcon: LocalIcon.tipSelectedIcon, // iOS only
                 title: '提醒',
                 iconInsets: insets,
+                navigatorStyle: {
+                    tabBarHidden: false,
+                }
             },
             {
                 // label: '我的',
@@ -66,10 +79,13 @@ async function appStart() {
                 selectedIcon: LocalIcon.mySelectIcon, // iOS only
                 title: '我的',
                 iconInsets: insets,
+                navigatorStyle: {
+                    tabBarHidden: false,
+                }
             },
         ],
         tabsStyle: {
-            // tabBarHidden: true,
+            tabBarHidden: true,
             tabBarButtonColor: '#bcd',
             tabBarSelectedButtonColor: colors.primary,   //iOS
 
@@ -79,8 +95,9 @@ async function appStart() {
             initialTabIndex: 4,
         },
         appStyle: {
-            // tabBarHidden: true,
+            tabBarHidden: true,
             // hideBackButtonTitle: true,
+            // forceTitlesDisplay: true,
             tabBarButtonColor: '#bcd',   //android
             tabBarSelectedButtonColor: colors.primary,   //android
 
@@ -88,7 +105,7 @@ async function appStart() {
             statusBarTextColorScheme: 'dark',
             keepStyleAcrossPush: false,     //iOS
             // drawUnderNavBar: true,
-            topBarElevationShadowEnabled: false,
+            // topBarElevationShadowEnabled: false,
 
             //android only
             navigationBarColor: '#FFF',

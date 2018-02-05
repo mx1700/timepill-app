@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, Animated} from "react-native";
+import {Text, View, StyleSheet, Animated, Dimensions} from "react-native";
 import DiaryList from "../components/DiaryList";
 import UserDiaryData from "../common/UserDiaryData";
 import LocalIcons from "../common/LocalIcons";
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import {TabViewAnimated, TabBar, SceneMap, TabViewPagerPan, TabViewPagerScroll} from 'react-native-tab-view';
 import {colors} from "../Styles";
-var ScrollableTabView = require('react-native-scrollable-tab-view');
 
+const initialLayout = {
+    height: 0,
+    width: Dimensions.get('window').width,
+};
 
 const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
@@ -14,8 +17,13 @@ const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#
 export default class UserPage extends Component {
 
     static navigatorStyle = {
-        // navBarHidden: true,
-        navBarHideOnScroll: true,
+        navBarNoBorder: true,
+        topBarElevationShadowEnabled: false,
+        topBarBorderColor: '#FFF',
+    };
+
+    static appStyle = {
+
     };
 
     static get navigatorButtons() {
@@ -39,8 +47,24 @@ export default class UserPage extends Component {
                 { key: 'notebooks', title: '日记本' },
                 { key: 'user', title: '简介' }
             ],
+            visible: true,
+        };
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+    onNavigatorEvent(event) {
+        if (event.id === 'willAppear') {
+            this.setState({
+                visible: true
+            });
+        }
+        if (event.id === 'willDisappear') {
+            this.setState({
+                visible: false
+            });
         }
     }
+
 
     componentDidMount() {
         // setTimeout(() => {
@@ -83,16 +107,6 @@ export default class UserPage extends Component {
         //         style: styles.tabbar
         //     }
         // });
-        // return (
-        //     <TabBar
-        //         {...props}
-        //         pressColor={colors.textSelect}
-        //         renderLabel={_renderLabel(props)}
-        //         indicatorStyle={styles.indicator}
-        //         tabStyle={styles.tab}
-        //         style={styles.tabbar}
-        //     />
-        // );
         // return null;
         return <TabBar
             {...props}
@@ -104,14 +118,18 @@ export default class UserPage extends Component {
         />
     };
 
+    _renderPager = props => <TabViewPagerPan {...props} />;
+
     render() {
         return (
                 <TabViewAnimated
-                    style={{flex: 1, backgroundColor: '#FFFFFF'}}
+                    style={[styles.container, {flex: this.state.visible ? 1 : 0}]}
                     navigationState={this.state}
                     renderScene={this._renderScene}
                     renderHeader={this._renderHeader}
                     onIndexChange={this._handleIndexChange}
+                    initialLayout={initialLayout}
+                    // renderPager={this._renderPager}
                 />
         )
     }
@@ -137,6 +155,7 @@ _renderLabel = props => ({ route, index }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#FFFFFF'
     },
     indicator: {
         backgroundColor: colors.primary,
@@ -146,18 +165,15 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: 'bold',
         margin: 8,
+        marginTop: -6,
     },
     tabbar: {
-        // flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.navBackground,
         justifyContent: 'center',
-        // borderBottomColor: colors.line,
-        // borderBottomWidth: StyleSheet.hairlineWidth,
     },
     tab: {
         flex: 1,
         opacity: 1,
-        // color: colors.primary
     },
     page: {
         backgroundColor: '#f9f9f9',

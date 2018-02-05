@@ -19,7 +19,6 @@ export default class PhotoPage extends Component {
     };
 
     static navigatorStyle = {
-        tabBarHidden: true,
         navBarHidden: true,
     };
 

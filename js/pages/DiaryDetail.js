@@ -19,10 +19,6 @@ const DefaultInputHeight = 55;
 
 export default class DiaryDetail extends React.Component {
 
-    static navigatorStyle = {
-        tabBarHidden: true
-    };
-
     constructor(props) {
         super(props);
         const params = this.props;

@@ -21,6 +21,7 @@
     "react-native-navigation": "wix/react-native-navigation#2580/head",
     "react-native-root-siblings": "^3.0.0",
     "react-native-root-toast": "^3.0.0",
+    "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-tab-view": "^0.0.74",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.0.0-beta.27"

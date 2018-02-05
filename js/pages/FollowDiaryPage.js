@@ -10,10 +10,6 @@ const HEADER_PADDING = Platform.OS === 'android' ? 20 : 40;
 
 export default class FollowDiaryPage extends React.Component {
 
-    static navigatorStyle = {
-        navBarHidden: true,
-    };
-
     render() {
         return (
             <View style={{backgroundColor:'#FFFFFF'}}>

@@ -11,6 +11,7 @@ export default class HomeScreen extends React.Component {
 
     static navigatorStyle = {
         navBarHidden: true,
+        // navBarHideOnScroll: true,
     };
 
     componentWillMount() {

@@ -29,7 +29,6 @@ import {FormInput} from "react-native-elements";
 export default class LoginPage extends Component {
 
     static navigatorStyle = {
-        tabBarHidden: true,
         navBarHidden: true,
     };
 

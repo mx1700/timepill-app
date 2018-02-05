@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, Platform} from "react-native";
 
 const colors = {
     primary: '#007AFF',
@@ -12,7 +12,7 @@ const colors = {
     lightText: '#7F91A7',
 
     spaceBackground: '#f3f3ff', //空内容背景
-    navBackground: '#F9F9F9',
+    navBackground: Platform.OS === 'ios' ? '#F9F9F9' : '#FFFFFF',
     line: '#eee',
     textSelect: '#b6d8ff'
 };
