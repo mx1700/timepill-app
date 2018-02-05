@@ -9,10 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {StyleSheet} from "react-native";
 import {Avatar} from "react-native-elements";
 import PropTypes from 'prop-types';
-import TPTouchable from "./TPTouchable";
 
-
-//TODO:复制内容未实现
 /**
  * 日记视图
  * @constructor

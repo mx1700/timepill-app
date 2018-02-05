@@ -11,25 +11,14 @@ export default class HomeScreen extends React.Component {
 
     static navigatorStyle = {
         navBarHidden: true,
-        // navBarHideOnScroll: true,
     };
 
     componentWillMount() {
-        // StatusBar.setBarStyle('dark-content');
-        // StatusBar.setBackgroundColor(colors.navBackground);
 
     }
     render() {
-        // this.props.navigator.setSubTitle({
-        //     subtitle: '1月27日'
-        // });
-
         return (
             <View style={{backgroundColor:'#FFFFFF'}}>
-                {/*<StatusBar*/}
-                    {/*backgroundColor={colors.navBackground}*/}
-                    {/*barStyle="dark-content"*/}
-                {/*/>*/}
                 <DiaryList
                     dataSource={new HomeListData()}
                     ListHeaderComponent={() => {

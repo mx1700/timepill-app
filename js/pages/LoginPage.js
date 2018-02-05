@@ -132,7 +132,6 @@ export default class LoginPage extends Component {
     }
 
     async login() {
-        console.log("login");
         let result;
         this.setState({loading: true});
         try {
