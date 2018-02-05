@@ -77,8 +77,9 @@ export default class UserPage extends Component {
         } else {
             const uid = this.getId();
             const rel = await Api.getRelation(uid);
+            const icon = rel ? LocalIcons.navButtonFollowSelected : LocalIcons.navButtonFollow;
             this.props.navigator.setButtons({
-                rightButtons: [{ id: 'setting', icon: rel ? LocalIcons.navButtonFollowSelected : LocalIcons.navButtonFollow }],
+                rightButtons: [{ id: 'setting', icon: icon, disableIconTint: true }],
                 animated: true
             });
         }
