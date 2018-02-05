@@ -20,6 +20,7 @@ export default class PhotoPage extends Component {
 
     static navigatorStyle = {
         navBarHidden: true,
+        statusBarColor: '#000000'
     };
 
     constructor(props) {

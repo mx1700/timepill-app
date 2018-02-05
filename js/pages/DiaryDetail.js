@@ -1,7 +1,8 @@
 import React from "react";
 import {
     View, InteractionManager, Alert, ActionSheetIOS, Clipboard, ActivityIndicator, StyleSheet,
-    TextInput, TouchableOpacity, ListView, FlatList, Text, Platform
+    TextInput, TouchableOpacity, ListView, FlatList, Text, Platform,
+    DeviceEventEmitter
 } from "react-native";
 import moment from 'moment';
 import * as Api from "../Api";
@@ -13,7 +14,8 @@ import KeyboardSpacer from "react-native-keyboard-spacer";
 import Diary from "../components/Diary";
 import Touchable from "../components/TPTouchable";
 import {Avatar, Divider} from "react-native-elements";
-
+import ActionSheet from 'react-native-actionsheet-api';
+import Events from "../Events";
 
 const DefaultInputHeight = 55;
 
@@ -240,20 +242,19 @@ export default class DiaryDetail extends React.Component {
     }
 
     _onActionPress(diary) {
-        ActionSheetIOS.showActionSheetWithOptions({
+        ActionSheet.showActionSheetWithOptions({
             options:['修改','删除', '取消'],
-            //title: '日记',
             cancelButtonIndex:2,
             destructiveButtonIndex: 1,
         }, (index) => {
             if(index === 0) {
-                // this.props.navigator.push({
-                //     name: 'WritePage',
-                //     component: WritePage,
-                //     params: {
-                //         diary: diary
-                //     }
-                // })
+                this.props.navigator.push({
+                    screen: 'Write',
+                    title: '修改日记',
+                    passProps: {
+                        diary: diary
+                    }
+                });
             } else if (index === 1) {
                 Alert.alert('提示', '确认删除日记?',[
                     {text: '删除', style: 'destructive', onPress: () => this.deleteDiary(diary)},
@@ -348,7 +349,8 @@ export default class DiaryDetail extends React.Component {
             return;
         }
         Alert.alert('提示', '日记已删除', [{text: '好', onPress: () =>  this.props.navigator.pop()}]);
-        // NotificationCenter.trigger('onDeleteDiary');     //TODO
+
+        Events.emit(Events.diaryDelete)
     }
 
     _editSuccess = (r) => {

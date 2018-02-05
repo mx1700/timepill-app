@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, Animated, Dimensions} from "react-native";
+import {Text, View, StyleSheet, Animated, Dimensions, DeviceEventEmitter} from "react-native";
 import DiaryList from "../components/DiaryList";
 import UserDiaryData from "../common/UserDiaryData";
 import LocalIcons from "../common/LocalIcons";
 import {TabViewAnimated, TabBar, SceneMap, TabViewPagerPan, TabViewPagerScroll} from 'react-native-tab-view';
 import {colors} from "../Styles";
+import Events from "../Events";
 
 const initialLayout = {
     height: 0,
@@ -40,7 +41,7 @@ export default class UserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isMyself: true,
+            isMyself: props.isMyself,
             index: 0,
             routes: [
                 { key: 'diary', title: '日记' },
@@ -76,11 +77,25 @@ export default class UserPage extends Component {
         //         navBarCustomViewInitialProps: {title: time, navigator: this.props.navigator}
         //     });
         // }, 0);
+
+        if (this.props.isMyself) {
+            this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
+                //TODO:刷新日记本和个人信息
+                this.diaryList.refresh()
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.loginListener) {
+            this.loginListener.remove();
+        }
     }
 
 
     _renderScene = SceneMap({
         diary: () => <DiaryList
+            ref={(r) => this.diaryList = r }
             tabLabel="日记"
             dataSource={new UserDiaryData()}
             navigator={this.props.navigator}

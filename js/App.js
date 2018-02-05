@@ -83,6 +83,9 @@ async function appStart() {
                 iconInsets: insets,
                 navigatorStyle: {
                     tabBarHidden: false,
+                },
+                passProps: {
+                    isMyself: true,
                 }
             },
         ],

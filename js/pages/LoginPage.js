@@ -13,7 +13,7 @@ import {
     Animated,
     LayoutAnimation,
     InteractionManager,
-    Alert, StatusBar,
+    Alert, StatusBar, DeviceEventEmitter,
 } from 'react-native';
 import * as Api from '../Api'
 import { colors } from "../Styles";
@@ -22,6 +22,8 @@ import { NavigationActions } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Toast from 'react-native-root-toast';
 import {FormInput} from "react-native-elements";
+import Events from "../Events";
+import {Navigation} from "react-native-navigation";
 
 // var Fabric = require('react-native-fabric');
 // var { Answers } = Fabric;
@@ -144,14 +146,8 @@ export default class LoginPage extends Component {
         this.setState({loading: false});
         setTimeout(() => {
             if (result) {
-                // Answers.logLogin('Email', true);
-                const resetAction = NavigationActions.reset({
-                    index: 0,
-                    actions: [
-                        NavigationActions.navigate({ routeName: 'Root'})
-                    ]
-                });
-                this.props.navigation.dispatch(resetAction);
+                DeviceEventEmitter.emit(Events.login, { user: result });
+                Navigation.dismissAllModals();
             } else {
                 Alert.alert(
                     '账号或密码不正确',
@@ -179,13 +175,8 @@ export default class LoginPage extends Component {
         setTimeout(() => {
             if (result) {
                 //Answers.log注册('Email', true);
-                const resetAction = NavigationActions.reset({
-                    index: 0,
-                    actions: [
-                        NavigationActions.navigate({ routeName: 'Home'})
-                    ]
-                });
-                this.props.navigation.dispatch(resetAction);
+                DeviceEventEmitter.emit(Events.login, { user: result });
+                Navigation.dismissAllModals();
             } else {
                 //Answers.logLogin('Email', false);
                 // Answers.logCustom('RegisterError', {message: errMsg});

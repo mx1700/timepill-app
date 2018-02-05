@@ -9,11 +9,9 @@ import Diary from "Diary";
 import {Divider} from "react-native-elements";
 import Toast from 'react-native-root-toast';
 import {colors} from "../Styles";
-import {NavigationActions, withNavigation} from "react-navigation";
 import Touchable from "./TPTouchable";
 import ErrorView from "./ErrorView";
 import PropTypes from 'prop-types';
-import PhotoPage from "../pages/PhotoPage";
 import ActionSheet from 'react-native-actionsheet-api';
 import * as Api from "../Api";
 
@@ -26,6 +24,8 @@ export default class DiaryList extends Component {
         showComment: PropTypes.bool,
         showAllContent: PropTypes.bool,
         editable: PropTypes.bool,
+        openLogin: PropTypes.bool,  //如果接口返回没有登录，是否打开登录页
+        autoLoad: PropTypes.bool,   //是否自动加载数据
         ...FlatList.propTypes
     };
 
@@ -34,6 +34,8 @@ export default class DiaryList extends Component {
         showComment: true,
         showAllContent: false,
         editable: false,
+        openLogin: false,
+        autoLoad: true,
     };
 
     constructor(props) {
@@ -50,9 +52,11 @@ export default class DiaryList extends Component {
 
     componentWillMount(){
         //TODO:检查token是否存在
-        InteractionManager.runAfterInteractions(() => {
-            this.refresh();
-        });
+        if (this.props.autoLoad) {
+            InteractionManager.runAfterInteractions(() => {
+                this.refresh();
+            });
+        }
     }
 
     async refresh() {
@@ -66,13 +70,22 @@ export default class DiaryList extends Component {
             data = await this.dataSource.refresh()
         } catch (e) {
             if (e.code && e.code === 401) {
-                this.props.navigator.resetTo({
-                    screen: "Login",
-                    title: "登录"
+                if (this.props.openLogin) {
+                    this.props.navigator.showModal({
+                        screen: "Login",
+                        title: "登录"
+                    });
+                }
+
+                this.setState({
+                    diaries: [],
+                    last_id: 0,
+                    more: false,
+                    refreshing: false,
+                    loading_more: false,
+                    error: true,
                 });
-                this.props.navigator.switchToTab({
-                    tabIndex: 0
-                });
+
                 return;
             } else {
                 console.log(e);
