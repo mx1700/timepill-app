@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, Animated, Dimensions, DeviceEventEmitter} from "react-native";
+import {Text, View, StyleSheet, Animated, Dimensions, DeviceEventEmitter, Alert} from "react-native";
 import DiaryList from "../components/DiaryList";
 import UserDiaryData from "../common/UserDiaryData";
 import LocalIcons from "../common/LocalIcons";
@@ -51,6 +51,22 @@ export default class UserPage extends Component {
                 visible: false
             });
         }
+        if (event.type === 'NavBarButtonPress' && event.id === 'follow') {
+            this.updateRelation();
+        }
+    }
+
+    async updateRelation() {
+        try {
+            if (this.followed) {
+                await Api.deleteFollow(this.getId());
+            } else {
+                await Api.addFollow(this.getId());
+            }
+        } catch (err) {
+            Alert.alert(this.followed ? '取消关注失败':'关注失败', err.message);
+        }
+        await this.loadNavButtons();
     }
 
 
@@ -77,9 +93,10 @@ export default class UserPage extends Component {
         } else {
             const uid = this.getId();
             const rel = await Api.getRelation(uid);
+            this.followed = rel;
             const icon = rel ? LocalIcons.navButtonFollowSelected : LocalIcons.navButtonFollow;
             this.props.navigator.setButtons({
-                rightButtons: [{ id: 'setting', icon: icon, disableIconTint: true }],
+                rightButtons: [{ id: 'follow', icon: icon, disableIconTint: true }],
                 animated: true
             });
         }
