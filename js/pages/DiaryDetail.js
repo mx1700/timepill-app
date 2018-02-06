@@ -72,41 +72,7 @@ export default class DiaryDetail extends React.Component {
      */
     onNavigatorEvent(event) {
         if (event.type === 'NavBarButtonPress' && event.id === 'more') {
-
-            if (this.state.isMy === true) {
-                ActionSheet.showActionSheetWithOptions({
-                    options: ['修改', '删除', '取消'],
-                    cancelButtonIndex: 2,
-                    destructiveButtonIndex: 1,
-                }, (index) => {
-                    if (index === 0) {
-                        this.props.navigator.push({
-                            screen: 'Write',
-                            title: '修改日记',
-                            passProps: {
-                                diary: this.state.diary
-                            }
-                        });
-                    } else if (index === 1) {
-                        Alert.alert('提示', '确认删除日记?', [
-                            {text: '删除', style: 'destructive', onPress: () => this.deleteDiary(this.state.diary)},
-                            {text: '取消', onPress: () => console.log('OK Pressed!')},
-                        ]);
-                    }
-                });
-            } else if (this.state.isMy === false) {
-                ActionSheet.showActionSheetWithOptions({
-                    options: ['举报', '取消'],
-                    cancelButtonIndex: 1,
-                    destructiveButtonIndex: 0,
-                }, (index) => {
-                    if (index === 0) {
-                        Api.report(this.state.diary.user_id, this.state.diary.id)
-                            .catch(err => console.log(err));
-                        Alert.alert('提示', '感谢你的贡献')
-                    }
-                });
-            }
+            this._onDiaryMorePress()
         }
     }
 
@@ -288,31 +254,8 @@ export default class DiaryDetail extends React.Component {
         });
     }
 
-    _onActionPress(diary) {
-        ActionSheet.showActionSheetWithOptions({
-            options:['修改','删除', '取消'],
-            cancelButtonIndex:2,
-            destructiveButtonIndex: 1,
-        }, (index) => {
-            if(index === 0) {
-                this.props.navigator.push({
-                    screen: 'Write',
-                    title: '修改日记',
-                    passProps: {
-                        diary: diary
-                    }
-                });
-            } else if (index === 1) {
-                Alert.alert('提示', '确认删除日记?',[
-                    {text: '删除', style: 'destructive', onPress: () => this.deleteDiary(diary)},
-                    {text: '取消', onPress: () => console.log('OK Pressed!')},
-                ]);
-            }
-        });
-    }
-
     _onCommentActionPress(comment) {
-        ActionSheetIOS.showActionSheetWithOptions({
+        ActionSheet.showActionSheetWithOptions({
             options:['删除回复', '取消'],
             cancelButtonIndex:1,
             destructiveButtonIndex: 0,
@@ -351,20 +294,19 @@ export default class DiaryDetail extends React.Component {
 
     _onDiaryMorePress() {
         if (this.state.isMy === true) {
-            ActionSheetIOS.showActionSheetWithOptions({
+            ActionSheet.showActionSheetWithOptions({
                 options: ['修改', '删除', '取消'],
                 cancelButtonIndex: 2,
                 destructiveButtonIndex: 1,
             }, (index) => {
                 if (index === 0) {
-                    // this.props.navigator.push({
-                    //     name: 'WritePage',
-                    //     component: WritePage,
-                    //     params: {
-                    //         diary: this.state.diary,
-                    //         onSuccess: this._editSuccess
-                    //     }
-                    // })
+                    this.props.navigator.push({
+                        screen: 'Write',
+                        title: '修改日记',
+                        passProps: {
+                            diary: this.state.diary
+                        }
+                    });
                 } else if (index === 1) {
                     Alert.alert('提示', '确认删除日记?', [
                         {text: '删除', style: 'destructive', onPress: () => this.deleteDiary(this.state.diary)},
@@ -372,8 +314,8 @@ export default class DiaryDetail extends React.Component {
                     ]);
                 }
             });
-        } else if(this.state.isMy === false) {
-            ActionSheetIOS.showActionSheetWithOptions({
+        } else if (this.state.isMy === false) {
+            ActionSheet.showActionSheetWithOptions({
                 options: ['举报', '取消'],
                 cancelButtonIndex: 1,
                 destructiveButtonIndex: 0,
@@ -460,10 +402,6 @@ export default class DiaryDetail extends React.Component {
         this.isToday = isToday;
         const commentInput = isToday ? this.renderCommentInputBox() : null;
         this.setButtons(isToday);
-        // const editButton = isToday           //TODO
-        //     ? (
-        //         <NavigationBar.Icon name="ios-more" onPress={this._onDiaryMorePress.bind(this)}/>
-        //     ) : null;
 
         const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null;
         return (
@@ -501,7 +439,6 @@ export default class DiaryDetail extends React.Component {
                     onIconPress={this._onDiaryIconPress.bind(this)}
                     showComment={false}
                     showAllContent={true}
-                    onActionPress={this._onActionPress.bind(this)}
                     onPhotoPress={this.onPhotoPress.bind(this)}
                 />
                 <View style={{borderBottomWidth: StyleSheet.hairlineWidth,
