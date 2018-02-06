@@ -21,8 +21,10 @@ function bookView(props) {
                 shadowColor: '#444',
                 shadowOpacity: 0.1,
                 shadowOffset: { width: 0, height: 0 },
+                elevation: 1,
                 backgroundColor: '#fff',
                 alignItems:'center',
+                margin:3,
             }}>
                 <ImageBackground key={book.id} style={{width: 140, height: 105, flexDirection: 'row', justifyContent: 'flex-end'}} source={{uri: book.coverUrl}}>
                     {label}
