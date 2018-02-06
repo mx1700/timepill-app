@@ -1,4 +1,4 @@
-function now() {
+export function now() {
     const d = new Date();
     const localTime = d.getTime();
     const localOffset = d.getTimezoneOffset() * 60000;
@@ -8,6 +8,6 @@ function now() {
     return new Date(beijingTime);
 }
 
-module.exports = {
-    now : now
-};
+export function isToday(date) {
+    
+}

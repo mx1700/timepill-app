@@ -7,6 +7,8 @@ import {TabViewAnimated, TabBar, SceneMap, TabViewPagerPan, TabViewPagerScroll} 
 import {colors} from "../Styles";
 import Events from "../Events";
 import * as Api from "../Api";
+import UserIntro from "../components/UserIntro";
+import UserBooks from "../components/UserBooks";
 
 const initialLayout = {
     height: 0,
@@ -29,11 +31,11 @@ export default class UserPage extends Component {
         super(props);
         this.state = {
             isMyself: props.isMyself,
-            index: 0,
+            index: props.isMyself ? 1 : 0,
             routes: [
+                { key: 'user', title: '简介' },
                 { key: 'diary', title: '日记' },
                 { key: 'notebooks', title: '日记本' },
-                { key: 'user', title: '简介' }
             ],
             visible: true,
         };
@@ -115,6 +117,11 @@ export default class UserPage extends Component {
 
 
     _renderScene = SceneMap({
+        user: () => <UserIntro
+            user={this.props.user}
+            userId={this.getId()}
+            mySelf={this.props.isMyself}
+        />,
         diary: () => <DiaryList
             ref={(r) => this.diaryList = r }
             tabLabel="日记"
@@ -122,8 +129,12 @@ export default class UserPage extends Component {
             navigator={this.props.navigator}
             editable={this.props.isMyself}
         />,
-        notebooks: () => <View tabLabel="简介"><Text>1</Text></View>,
-        user: () => <View tabLabel="日记本"><Text>2</Text></View>
+        notebooks: () => <UserBooks
+            ref={(r) => this.notebooks = r }
+            userId={this.getId()}
+            mySelf={this.props.isMyself}
+            navigator={this.props.navigator}
+        />,
     });
 
     _handleIndexChange = index => this.setState({ index });
@@ -165,7 +176,6 @@ export default class UserPage extends Component {
                     renderHeader={this._renderHeader}
                     onIndexChange={this._handleIndexChange}
                     initialLayout={initialLayout}
-                    // renderPager={this._renderPager}
                 />
         )
     }

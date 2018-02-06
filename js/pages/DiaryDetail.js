@@ -59,9 +59,6 @@ export default class DiaryDetail extends React.Component {
                     }
                 });
         });
-        Api.getSelfInfoByStore().then(info => {
-            this.selfInfo = info;
-        });
 
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
@@ -82,6 +79,7 @@ export default class DiaryDetail extends React.Component {
 
     async _loadIsMy() {
         const user = await Api.getSelfInfoByStore();
+        this.selfInfo = user;
         this.setState({
             isMy: this.state.diary.user_id === user.id
         });
