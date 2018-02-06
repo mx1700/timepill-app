@@ -32,38 +32,10 @@ export default class PhotoPage extends Component {
             width: 0,
             height: 0,
         };
-        //TODO:加载失败未实现
     }
 
     componentWillMount() {
-        // Animated.timing(
-        //     this.state.fadeAnimOpacity,
-        //     {
-        //         toValue: 1,
-        //         duration: 250,
-        //         easing: Easing.out(Easing.cubic)
-        //     }
-        // ).start(() => {
-        //
-        // });
-
-        // this.setState({
-        //     hiddenStatusBar: true,
-        // });
-
-        // BackHandler.addEventListener('hardwareBackPress', this.hardwareBackPress);
     }
-
-    // hardwareBackPress = () => {
-    //     this.close();
-    //     return true;
-    // }
-
-    // static open({ url }) {
-    //     let sibling = new RootSiblings(<PhotoPage url={url} onClosePress={() => {
-    //         sibling.destroy();
-    //     }} />);
-    // }
 
     close() {
         this.props.navigator.pop({
@@ -77,7 +49,6 @@ export default class PhotoPage extends Component {
     }
 
     render() {
-        // let loading = this.state.loading ? this.renderLoadingView() : null;
         return (
             <View
                 style={{
@@ -91,12 +62,6 @@ export default class PhotoPage extends Component {
                     })
                 }}
             >
-                {/*<StatusBar*/}
-                    {/*hidden={false}*/}
-                {/*/>*/}
-                {/*<TPTouchable onPress={this.close.bind(this)}>*/}
-                {/*<Text style={{backgroundColor:'green'}}>关闭-{this.state.progress}</Text>*/}
-                {/*</TPTouchable>*/}
                 <ImageZoom cropWidth={this.state.width}
                            cropHeight={this.state.height}
                            imageWidth={this.state.width}

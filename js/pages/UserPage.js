@@ -101,9 +101,9 @@ export default class UserPage extends Component {
         diary: () => <DiaryList
             ref={(r) => this.diaryList = r }
             tabLabel="日记"
-            dataSource={new UserDiaryData()}
+            dataSource={new UserDiaryData(this.getId())}
             navigator={this.props.navigator}
-            editable={true}
+            editable={this.props.isMyself}
         />,
         notebooks: () => <View tabLabel="简介"><Text>1</Text></View>,
         user: () => <View tabLabel="日记本"><Text>2</Text></View>
@@ -129,7 +129,7 @@ export default class UserPage extends Component {
         // return null;
         return <TabBar
             {...props}
-            pressColor={colors.textSelect}
+            pressColor="transparent"
             indicatorStyle={styles.indicator}
             renderLabel={_renderLabel(props)}
             tabStyle={styles.tab}

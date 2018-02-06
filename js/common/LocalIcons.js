@@ -1,5 +1,6 @@
 import Icon from "react-native-vector-icons/Ionicons";
 import {colors} from "../Styles";
+import { Platform } from "react-native";
 
 let Icons = {
     homeIcon : null,
@@ -46,20 +47,16 @@ async function loadIcon() {
         Icon.getImageSource('ios-contact', 26),
         Icon.getImageSource('ios-contact', 26),
 
-        Icon.getImageSource('md-checkmark', 28, colors.primary),
-        Icon.getImageSource('md-close', 28, "#d9534f"),
+        Icon.getImageSource('md-checkmark', 28),
+        Icon.getImageSource('md-close', 28),
 
-        Icon.getImageSource('ios-heart-outline', 26, colors.primary),
+        Icon.getImageSource('ios-heart-outline', 26),
         Icon.getImageSource('ios-heart', 26, "#d9534f"),
-        Icon.getImageSource('ios-more', 26, colors.primary),
-        Icon.getImageSource('ios-cog', 26, colors.primary),
+        Platform.OS === 'ios' ? Icon.getImageSource('ios-more', 26)
+            : Icon.getImageSource('md-more', 26),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26),
     ]);
 
-    // for (let index = 0; index < icons.length; index++) {
-    //     let icon = icons[index];
-    //     let name = names[index];
-    //     Icons[name] = icon;
-    // }
     let index = 0;
     for(let name in Icons) {
         Icons[name] = icons[index];

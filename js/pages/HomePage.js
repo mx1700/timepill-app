@@ -8,10 +8,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import Events from "../Events";
 
 const HEADER_PADDING = Platform.OS === 'android' ? 20 : 40;
-export default class HomeScreen extends React.Component {
+
+export default class HomePage extends React.Component {
 
     static navigatorStyle = {
         navBarHidden: true,
+        // statusBarHidden: true,
+        // statusBarBlur: true,
     };
 
     componentWillMount() {
