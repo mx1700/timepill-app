@@ -32,6 +32,7 @@ export default class PhotoPage extends Component {
             width: 0,
             height: 0,
         };
+        // let url = diary.photoUrl.replace('w640', 'w640-q75');
     }
 
     componentWillMount() {
@@ -45,7 +46,7 @@ export default class PhotoPage extends Component {
     }
 
     savePhoto() {
-
+        //TODO:保存照片未实现
     }
 
     render() {

@@ -163,11 +163,10 @@ export default class DiaryList extends Component {
     }
 
     onPhotoPress(diary) {
-        let url = diary.photoUrl.replace('w640', 'w640-q75');
         this.props.navigator.push({
             screen: 'Photo',
             title: '照片',
-            passProps: { url: url },
+            passProps: { url: diary.photoUrl },
             animationType: 'fade'
         });
     }

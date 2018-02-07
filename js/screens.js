@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import DiaryDetail from "./pages/DiaryDetail";
+import DiaryDetail from "./pages/DiaryDetailPage";
 import PhotoPage from "./pages/PhotoPage";
 import UserPage from "./pages/UserPage";
 import NotificationPage from "./pages/NotificationPage";

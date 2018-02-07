@@ -20,7 +20,7 @@ import LocalIcons from "../common/LocalIcons";
 
 const DefaultInputHeight = 55;
 
-export default class DiaryDetail extends React.Component {
+export default class DiaryDetailPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -243,11 +243,10 @@ export default class DiaryDetail extends React.Component {
     }
 
     onPhotoPress(diary) {
-        let url = diary.photoUrl.replace('w640', 'w640-q75');
         this.props.navigator.push({
             screen: 'Photo',
             title: '照片',
-            passProps: { url: url },
+            passProps: { url: diary.photoUrl },
             animationType: 'fade'
         });
     }
