@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {
     StatusBar, Text, View, Animated, BackHandler, Easing, Dimensions, ActivityIndicator,
-    TouchableWithoutFeedback, Platform
+    TouchableWithoutFeedback, Platform, CameraRoll
 } from "react-native";
-import navOption from "../components/NavOption";
 import {colors} from "../Styles";
-import TPTouchable from "../components/TPTouchable";
 import PropTypes from 'prop-types';
-import RootSiblings from "react-native-root-siblings";
 import ImageZoom from 'react-native-image-pan-zoom';
 import Image from 'react-native-image-progress';
+import ActionSheet from 'react-native-actionsheet-api';
+import Toast from 'react-native-root-toast';
 
 export default class PhotoPage extends Component {
 
@@ -45,8 +44,37 @@ export default class PhotoPage extends Component {
         });
     }
 
-    savePhoto() {
-        //TODO:保存照片未实现
+    onLongPress() {
+        ActionSheet.showActionSheetWithOptions({
+            options:['保存照片', '取消'],
+            cancelButtonIndex:1,
+        }, (index) => {
+            if(index === 0) {
+                this.savePhoto().done();
+            }
+        });
+
+    }
+
+    async savePhoto() {
+        if(Platform.OS === 'ios') {
+            try {
+                await CameraRoll.saveToCameraRoll(this.props.url);
+                Toast.show('照片已保存', {
+                    duration: 2000,
+                    position: Toast.positions.BOTTOM,
+                    shadow: false,
+                    hideOnPress: true,
+                })
+            } catch (err) {
+                Toast.show('照片保存失败:' + err.message, {
+                    duration: 2000,
+                    position: Toast.positions.BOTTOM,
+                    shadow: false,
+                    hideOnPress: true,
+                })
+            }
+        }
     }
 
     render() {
@@ -69,7 +97,7 @@ export default class PhotoPage extends Component {
                            imageHeight={this.state.height}
                            onClick={() => this.close()}
                            doubleClickInterval={350}
-                           onLongPress={this.savePhoto.bind(this)}
+                           onLongPress={this.onLongPress.bind(this)}
                 >
                     <Image
                         style={{flex: 1, width: '100%', height: '100%'}}
