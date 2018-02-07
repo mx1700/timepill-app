@@ -3,6 +3,7 @@ package com.timepill;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -26,8 +27,10 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
-    return Arrays.<ReactPackage>asList(
+    return Arrays.<ReactPackage>
+            asList(
 //            new MainReactPackage(),
+            new RNFetchBlobPackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage()
     );

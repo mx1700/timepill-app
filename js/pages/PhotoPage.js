@@ -9,6 +9,8 @@ import ImageZoom from 'react-native-image-pan-zoom';
 import Image from 'react-native-image-progress';
 import ActionSheet from 'react-native-actionsheet-api';
 import Toast from 'react-native-root-toast';
+import RNFetchBlob from "react-native-fetch-blob";
+import moment from "moment";
 
 export default class PhotoPage extends Component {
 
@@ -57,23 +59,34 @@ export default class PhotoPage extends Component {
     }
 
     async savePhoto() {
-        if(Platform.OS === 'ios') {
-            try {
-                await CameraRoll.saveToCameraRoll(this.props.url);
-                Toast.show('照片已保存', {
-                    duration: 2000,
-                    position: Toast.positions.BOTTOM,
-                    shadow: false,
-                    hideOnPress: true,
-                })
-            } catch (err) {
-                Toast.show('照片保存失败:' + err.message, {
-                    duration: 2000,
-                    position: Toast.positions.BOTTOM,
-                    shadow: false,
-                    hideOnPress: true,
-                })
+        let url = this.props.url;
+
+        try {
+
+            if(Platform.OS === 'android') {
+                let dirs = RNFetchBlob.fs.dirs;
+                let path = dirs.DownloadDir + '/timepill/' + moment().format('YYYYMMDD-hhmmss') + '.jpg';
+                let res = await RNFetchBlob.config({ path : path, }).fetch('GET', this.props.url, { });
+                await RNFetchBlob.fs.scanFile([{ path: res.path() }]);
+                // url = res.path();
+                // console.log('savePhoto url:' + url);
+            } else {
+                await CameraRoll.saveToCameraRoll(url);
             }
+
+            Toast.show('照片已保存', {
+                duration: 2000,
+                position: Toast.positions.BOTTOM,
+                shadow: false,
+                hideOnPress: true,
+            })
+        } catch (err) {
+            Toast.show('照片保存失败:' + err.message, {
+                duration: 2000,
+                position: Toast.positions.BOTTOM,
+                shadow: false,
+                hideOnPress: true,
+            })
         }
     }
 
