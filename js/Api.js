@@ -314,11 +314,11 @@ export async function getSettings() {
 
 //==========================================================================
 
-var baseUrl = 'http://open.timepill.net/api';
+const baseUrl = 'http://open.timepill.net/api';
 //var baseUrl = 'http://openbeta.timepill.net/api';
 async function call(method, api, body, _timeout = 10000) {
   console.log('request:', baseUrl + api, body);
-  var token = await TokenManager.getToken();
+  let token = await TokenManager.getToken();
   //console.log(token);
   // if (body) {
   //   let formData = new FormData();
@@ -344,7 +344,7 @@ async function call(method, api, body, _timeout = 10000) {
 
 async function upload(method, api, body) {
   console.log('request upload:', baseUrl + api)
-  var token = await TokenManager.getToken();
+  let token = await TokenManager.getToken();
   let formData = new FormData();
   for (let prop of Object.keys(body)) {
     formData.append(prop, body[prop]);
@@ -356,7 +356,7 @@ async function upload(method, api, body) {
         headers: {
           'Authorization': token,
           'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+          'Content-Type': 'multipart/form-data',
         },
         body: formData
       })

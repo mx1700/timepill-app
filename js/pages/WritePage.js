@@ -15,6 +15,7 @@ import Notebook from '../components/Notebook'
 import ImagePicker from 'react-native-image-crop-picker';
 import ActionSheet from 'react-native-actionsheet-api';
 import ImageResizer from "react-native-image-resizer";
+import Toast from 'react-native-root-toast';
 
 export default class WritePage extends Component {
 
@@ -36,10 +37,10 @@ export default class WritePage extends Component {
 
         const diary = props.diary;
         this.state = {
-            selectBookId: diary == null ? 0 : diary.notebook_id,
+            selectBookId: props.diary == null ? 0 : diary.notebook_id,
             modalVisible: false,
             books: [],
-            content: diary == null ? '' : diary.content,
+            content: props.diary == null ? '' : props.diary.content,
             loading: false,
             photoUri: null,
             photoSource: null,
@@ -68,29 +69,19 @@ export default class WritePage extends Component {
     onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
         if (event.type === 'NavBarButtonPress') { // this is the event type for button presses
             if (event.id === 'cancel') { // this is the same id field from the static navigatorButtons definition
-                // this.props.navigator.dismissModal();
-                if (this.props.tabOpen) {
-                    this.props.navigator.switchToTab({
-                        tabIndex: this.tabIndexToSelect
-                    });
-                } else {
-                    this.props.navigator.pop();
-                }
+                this.goBack();
             }
             if(event.id === 'save') {
-
+                this._writePress()
             }
         }
         if (event.selectedTabIndex === 2 && this.props.tabOpen) {
             this.contentInput.focus();
             this.tabIndexToSelect = !event.unselectedTabIndex || event.unselectedTabIndex === 2 ? 0 : event.unselectedTabIndex;
+            //TODO:加载日记本列表
         }
         if (event.id === 'backPress') {
-            if (this.props.tabOpen) {
-                this.props.navigator.switchToTab({
-                    tabIndex: this.tabIndexToSelect
-                });
-            }
+            this.goBack();
         }
     }
 
@@ -172,7 +163,7 @@ export default class WritePage extends Component {
                     ? ImagePicker.openCamera({cropping: false}) : ImagePicker.openPicker({cropping: false});
                 imageSelect.then(image => {
                     if (index === 0) {
-                        CameraRoll.saveToCameraRoll(image.path);
+                        CameraRoll.saveToCameraRoll(image.path).done();
                     }
 
                     if (image.size > 1024 * 1024 * 2) {
@@ -211,15 +202,16 @@ export default class WritePage extends Component {
 
     _createBook() {
         this.closeModal(false);
-        InteractionManager.runAfterInteractions(() => {
-            this.props.navigator.push({
-                name: 'NotebookAddPage',
-                component: NotebookAddPage,
-                params: {
-                    onCreated: this._setCreatedBook.bind(this)
-                }
-            });
-        });
+        //TODO:创建日记本
+        // InteractionManager.runAfterInteractions(() => {
+        //     this.props.navigator.push({
+        //         name: 'NotebookAddPage',
+        //         component: NotebookAddPage,
+        //         params: {
+        //             onCreated: this._setCreatedBook.bind(this)
+        //         }
+        //     });
+        // });
     }
 
     openPhoto = (uri) => {
@@ -240,6 +232,97 @@ export default class WritePage extends Component {
             loadBookError: false,
         });
     }
+
+    _writePress() {
+        if (this.state.loadBookError) {
+            Alert.alert('失败','日记本列表加载失败');  //TODO:提供重新加载功能
+            return;
+        }
+
+        if (this.state.bookEmptyError) {
+            Alert.alert('失败','没有可用的日记本');
+            return;
+        }
+
+        if (this.state.content.length === 0) {
+            Alert.alert('提示','请填写日记内容');
+            return;
+        }
+
+        this.write().done();
+    }
+
+    async write() {
+        this.setState({loading: true});
+
+        let photoUri = this.state.photoUri;
+        let r = null;
+        try {
+            const  topic = this.props.topic ? 1 : 0;
+            r = this.props.diary == null
+                ? await Api.addDiary(this.state.selectBookId,
+                    this.state.content,
+                    photoUri, topic)
+                : await Api.updateDiary(this.props.diary.id,
+                    this.state.selectBookId,
+                    this.state.content);
+        } catch (err) {
+            //Alert.alert('日记保存失败', err.message);
+            Toast.show("保存失败\n" + err.message, {
+                duration: 2000,
+                position: -80,
+                shadow: false,
+                hideOnPress: true,
+            });
+            return;
+        } finally {
+            this.setState({loading: false});
+        }
+
+
+        if (r) {
+            Toast.show("日记保存完成", {
+                duration: 2000,
+                position: -80,
+                shadow: false,
+                hideOnPress: true,
+            });
+            //TODO;清除内容
+            this.goBack();
+
+            InteractionManager.runAfterInteractions(() => {
+                // NotificationCenter.trigger('onWriteDiary');      //TODO:触发事件
+                // if (this.props.topic) {
+                //     NotificationCenter.trigger('onWriteTopicDiary');
+                // }
+                // const type = photoUri == null ? 'text' : 'photo';
+                // Answers.logCustom('WriteDiary', {type: type});   //TODO:统计
+                if (this.props.onSuccess) {
+                    this.props.onSuccess(r);
+                }
+            });
+        }
+    }
+
+    goBack = () => {
+        //Api.clearTempDraft();     //TODO
+        if (this.props.tabOpen) {
+            this.props.navigator.switchToTab({
+                tabIndex: this.tabIndexToSelect
+            });
+            this.setState({
+                modalVisible: false,
+                content: '',
+                loading: false,
+                photoUri: null,
+                photoSource: null,
+                loadBookError: false,
+                bookEmptyError: false,
+            });
+        } else {
+            this.props.navigator.pop();
+        }
+    };
 
     render() {
         const selectedBook = this.state.books.length > 0
