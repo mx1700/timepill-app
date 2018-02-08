@@ -213,7 +213,6 @@ export default class DiaryList extends Component {
 
     async _deleteDiary(diary) {
         try {
-            console.log(Api, Api.deleteDiary);
             await Api.deleteDiary(diary.id);
             Toast.show("日记已删除", {
                 duration: 2000,
@@ -231,8 +230,6 @@ export default class DiaryList extends Component {
         if (this.state.diaries.length === 0) {
             return this.renderEmpty();
         }
-        console.log('render: ');
-        // console.log(this.state);
         return (
             <View>
                 <FlatList

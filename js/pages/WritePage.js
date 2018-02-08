@@ -171,8 +171,6 @@ export default class WritePage extends Component {
                 let imageSelect = index === 0
                     ? ImagePicker.openCamera({cropping: false}) : ImagePicker.openPicker({cropping: false});
                 imageSelect.then(image => {
-                    console.log(image);
-
                     if (index === 0) {
                         CameraRoll.saveToCameraRoll(image.path);
                     }

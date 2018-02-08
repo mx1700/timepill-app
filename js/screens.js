@@ -20,7 +20,6 @@ import TestPage from "./pages/TestPage";
 function WriteTab(props) {
     let navigator = props.navigator;
     navigator.setOnNavigatorEvent(event => {
-        console.log('111111111111', event);
         if (event.selectedTabIndex === 2) {
             navigator.showModal({
                 screen: 'Write',

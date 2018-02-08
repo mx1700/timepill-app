@@ -514,7 +514,6 @@ export default class DiaryDetailPage extends React.Component {
                 height = height > max ? max : height;
             }
         }
-        console.log(height);
         if (this.state.inputHeight !== height) {
             this.setState({
                 inputHeight: height,

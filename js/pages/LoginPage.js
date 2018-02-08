@@ -49,7 +49,6 @@ export default class LoginPage extends Component {
     showKeyboard = false;
 
     componentWillMount () {
-        console.log("componentWillMount");
         this.keyboardDidShowListener =
             Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow', this._keyboardDidShow);
         this.keyboardDidHideListener =
@@ -62,7 +61,6 @@ export default class LoginPage extends Component {
     }
 
     _keyboardDidShow = () => {
-        console.log("_keyboardDidShow");
         this.showKeyboard = true;
         this.showAnim = Animated.timing(
             this.state.paddingAnim,
