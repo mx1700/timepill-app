@@ -328,7 +328,7 @@ export default class WritePage extends Component {
                         ),
                         Animated.timing(
                             this.state.fadeAnimHeight,
-                            {toValue: 245, duration: 350, easing: Easing.out(Easing.cubic)}
+                            {toValue: Platform.OS === 'ios' ? 250 : 260 , duration: 350, easing: Easing.out(Easing.cubic)}
                         )
                     ]).start();
                 }}
@@ -349,7 +349,7 @@ export default class WritePage extends Component {
                             </TouchableOpacity>
                         </View>
                         <ScrollView horizontal={true}
-                                    contentContainerStyle={{padding: 10, paddingRight: 0}}
+                                    contentContainerStyle={{padding: 10, paddingRight: 0, paddingBottom:0,}}
                                     keyboardDismissMode="on-drag"
                                     keyboardShouldPersistTaps="always"
                                     automaticallyAdjustInsets={false}
