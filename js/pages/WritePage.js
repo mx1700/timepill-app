@@ -247,7 +247,7 @@ export default class WritePage extends Component {
             : null;
 
         const bookButton = selectedBook
-            ? (<LabelButton text={selectedBook.subject} icon="ios-book-outline"
+            ? (<LabelButton text={selectedBook.subject} icon="ios-bookmarks-outline"
                             onPress={this.openModal.bind(this)} />)
             : null;
 
