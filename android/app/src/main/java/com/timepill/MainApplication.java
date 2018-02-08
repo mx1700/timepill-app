@@ -3,6 +3,7 @@ package com.timepill;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends NavigationApplication {
     return Arrays.<ReactPackage>
             asList(
 //            new MainReactPackage(),
+            new RNDeviceInfo(),
             new ImageResizerPackage(),
             new PickerPackage(),
             new RNFetchBlobPackage(),

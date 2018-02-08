@@ -4,6 +4,14 @@
 
 import TokenManager from './TokenManager'
 import UpdateInfo from './UpdateInfo';
+const DeviceInfo = require('react-native-device-info');
+
+const OS = DeviceInfo.getSystemName();
+const OS_VERSION = DeviceInfo.getSystemVersion();
+const DEVICE_ID = DeviceInfo.getUniqueID();
+const VERSION = DeviceInfo.getVersion();
+
+console.log(OS, OS_VERSION, DEVICE_ID, VERSION);
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
   return call('GET', '/diaries/today?page=' + page + '&page_size=' + page_size + `&first_id=${first_id}`)
@@ -23,7 +31,7 @@ export async function login(username, password) {
     return user_info;
   } catch(err) {
     await TokenManager.setToken('');
-      if (err.code && err.code == 401) {
+      if (err.code && err.code === 401) {
           return false;
       }
       throw err;
@@ -331,7 +339,11 @@ async function call(method, api, body, _timeout = 10000) {
         headers: {
           'Authorization': token,
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+            'X-TP-OS': OS,
+            'X-TP-OS-Version': OS_VERSION,
+            'X-TP-Version': VERSION,
+            'X-Device-ID': DEVICE_ID,
         },
         body: body ? JSON.stringify(body) : null
       })
@@ -343,28 +355,32 @@ async function call(method, api, body, _timeout = 10000) {
 }
 
 async function upload(method, api, body) {
-  console.log('request upload:', baseUrl + api)
-  let token = await TokenManager.getToken();
-  let formData = new FormData();
-  for (let prop of Object.keys(body)) {
-    formData.append(prop, body[prop]);
-  }
-  console.log(formData);
-  return timeout(
-      fetch(baseUrl + api, {
-        method: method,
-        headers: {
-          'Authorization': token,
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData
-      })
-          .then(checkStatus)
-          .then(parseJSON)
-          .catch(handleCatch)
-      ,
-      60000)
+    console.log('request upload:', baseUrl + api)
+    let token = await TokenManager.getToken();
+    let formData = new FormData();
+    for (let prop of Object.keys(body)) {
+        formData.append(prop, body[prop]);
+    }
+    console.log(formData);
+    return timeout(
+        fetch(baseUrl + api, {
+            method: method,
+            headers: {
+                'Authorization': token,
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data',
+                'X-TP-OS': OS,
+                'X-TP-OS-Version': OS_VERSION,
+                'X-TP-Version': VERSION,
+                'X-TP-Device-ID': DEVICE_ID,
+            },
+            body: formData
+        })
+            .then(checkStatus)
+            .then(parseJSON)
+            .catch(handleCatch)
+        ,
+        60000)
 }
 
 
@@ -390,7 +406,7 @@ async function checkStatus(response) {
 }
 
 function parseJSON(response) {
-  if (response.headers.get('content-type') == 'application/json') {
+  if (response.headers.get('content-type') === 'application/json') {
     const r = response.json();
     return r;
   } else {
@@ -409,7 +425,7 @@ function timeout(promise, time) {
 
 function handleCatch(err) {
   //console.log(err, err.id, err.message);
-  if (err.message == 'Network request failed') {
+  if (err.message === 'Network request failed') {
     throw new Error('网络连接失败', err.id)
   } else {
     throw err;
