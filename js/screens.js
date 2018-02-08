@@ -11,6 +11,7 @@ import WritePage from "./pages/WritePage";
 import {Text, View} from "react-native";
 
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import TestPage from "./pages/TestPage";
 
 
 /**
@@ -60,6 +61,7 @@ export function registerScreens() {
     Navigation.registerComponent('Notification', () => NotificationPage);
     Navigation.registerComponent('Write', () => WritePage);
     Navigation.registerComponent('WriteTab', () => WriteTab);
+    Navigation.registerComponent('Test', () => TestPage);
 
     Navigation.registerComponent('UserHeader', () => UserHeader);
 

@@ -3730,6 +3730,10 @@ react-native-gesture-handler@^1.0.0-alpha.40:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-image-crop-picker@^0.19.1:
+  version "0.19.1"
+  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.19.1.tgz#29ac98104b89e623501d5bcf476ada875679cce8"
+
 react-native-image-pan-zoom@^2.0.16:
   version "2.0.16"
   resolved "http://registry.npm.taobao.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.0.16.tgz#84cf96b530da73141d25f10e1ee26c862444d4d2"
@@ -3739,6 +3743,10 @@ react-native-image-progress@^1.0.1:
   resolved "http://registry.npm.taobao.org/react-native-image-progress/download/react-native-image-progress-1.0.1.tgz#5ceb4cfefd39d7ebdffab802bc984b5a0fc41021"
   dependencies:
     prop-types "^15.5.10"
+
+react-native-image-resizer@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/react-native-image-resizer/download/react-native-image-resizer-1.0.0.tgz#d47e14943c37938e287fbd639e4db7ceb7fd8917"
 
 react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"

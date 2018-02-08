@@ -56,6 +56,7 @@ async function appStart() {
                 selectedIcon: LocalIcon.writeSelectedIcon, // iOS only
                 title: '写日记',
                 iconInsets: insets,
+                overrideBackPress: true,
                 navigatorStyle: {
                     tabBarHidden: true,
                 },

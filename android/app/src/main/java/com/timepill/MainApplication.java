@@ -3,6 +3,8 @@ package com.timepill;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import fr.bamlab.rnimageresizer.ImageResizerPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -30,6 +32,8 @@ public class MainApplication extends NavigationApplication {
     return Arrays.<ReactPackage>
             asList(
 //            new MainReactPackage(),
+            new ImageResizerPackage(),
+            new PickerPackage(),
             new RNFetchBlobPackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage()
