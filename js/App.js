@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import {registerScreens} from "./screens";
-import {Navigation, ScreenVisibilityListener} from "react-native-navigation";
+import {Navigation, NativeEventsReceiver} from 'react-native-navigation';
 import {colors} from "./Styles";
 import {Platform, StatusBar} from 'react-native'
 import LocalIcon from "./common/LocalIcons";

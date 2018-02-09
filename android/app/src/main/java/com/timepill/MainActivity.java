@@ -1,7 +1,11 @@
 package com.timepill;
 
+import android.os.Bundle;
+
 import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.controllers.SplashActivity;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends SplashActivity {
 
@@ -13,4 +17,6 @@ public class MainActivity extends SplashActivity {
 //    protected String getMainComponentName() {
 //        return "timepill";
 //    }
+
+
 }

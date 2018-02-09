@@ -11,7 +11,7 @@ const OS_VERSION = DeviceInfo.getSystemVersion();
 const DEVICE_ID = DeviceInfo.getUniqueID();
 const VERSION = DeviceInfo.getVersion();
 
-console.log(OS, OS_VERSION, DEVICE_ID, VERSION);
+console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
   return call('GET', '/diaries/today?page=' + page + '&page_size=' + page_size + `&first_id=${first_id}`)

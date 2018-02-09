@@ -98,7 +98,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.timepill"
+        applicationId "com.timepill.diary"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -107,6 +107,10 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [
+                JPUSH_APPKEY: "564641515a9d0a94fd6af648",
+                APP_CHANNEL: "developer-default"
+        ]
     }
     splits {
         abi {
@@ -149,6 +153,8 @@ android {
 }
 
 dependencies {
+    compile project(':jpush-react-native')
+    compile project(':jcore-react-native')
     compile project(':react-native-device-info')
     compile project(':react-native-image-resizer')
     compile project(':react-native-image-crop-picker')

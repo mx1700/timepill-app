@@ -1,12 +1,19 @@
 package com.timepill;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
+import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
+
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.reactnativejpush.JPushPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import com.reactnativenavigation.controllers.ActivityCallbacks;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -33,6 +40,7 @@ public class MainApplication extends NavigationApplication {
     return Arrays.<ReactPackage>
             asList(
 //            new MainReactPackage(),
+            new JPushPackage(!BuildConfig.DEBUG, !BuildConfig.DEBUG),
             new RNDeviceInfo(),
             new ImageResizerPackage(),
             new PickerPackage(),
@@ -50,6 +58,47 @@ public class MainApplication extends NavigationApplication {
   @Override
   public String getJSMainModuleName() {
     return "index";
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    setActivityCallbacks(new ActivityCallbacks() {
+      @Override
+      public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        JPushInterface.init(activity);
+      }
+
+      @Override
+      public void onActivityStarted(Activity activity) {
+
+      }
+
+      @Override
+      public void onActivityResumed(Activity activity) {
+        JPushInterface.onResume(activity);
+      }
+
+      @Override
+      public void onActivityPaused(Activity activity) {
+        JPushInterface.onPause(activity);
+      }
+
+      @Override
+      public void onActivityStopped(Activity activity) {
+
+      }
+
+      @Override
+      public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+      }
+
+      @Override
+      public void onActivityDestroyed(Activity activity) {
+
+      }
+    });
   }
 
 }
