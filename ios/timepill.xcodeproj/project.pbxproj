@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -63,7 +64,7 @@
 		C1BE583423CA45F28FE2D830 /* libRCTJCoreModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218256A64AC34C50AF464693 /* libRCTJCoreModule.a */; };
 		C29F33A4551042278D6EAAE5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 998C4C3DC9494F9EAC07E4D7 /* libRNDeviceInfo.a */; };
 		D788F6527F0249D2876EA66C /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B08C1193434AA988DCFBB3 /* libimageCropPicker.a */; };
-		F12F35D7C6F241D4A36F3376 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C45432253343198B8B9373 /* UserNotifications.framework */; };
+		F12F35D7C6F241D4A36F3376 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C45432253343198B8B9373 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F88696CB6A644FF5B6CF871A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DC68E25ECEF4202B72748D3 /* FontAwesome.ttf */; };
 		FAA5DE3A20219DAD00C325C3 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA5DE3820219D5300C325C3 /* libReactNativeNavigation.a */; };
 		FAA5DE7C202AAFD600C325C3 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA5DE7A202AACD800C325C3 /* libRCTCameraRoll.a */; };
@@ -490,6 +491,7 @@
 		F7186E21B1F24331B763EDEF /* CFNetwork.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FAA5DE0E20219D5200C325C3 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		FAA5DE75202AACD700C325C3 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
+		FAF60AB020304E63000550FB /* timepill.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = timepill.entitlements; path = timepill/timepill.entitlements; sourceTree = "<group>"; };
 		FD552C9FB2AB47F0936EB197 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -668,6 +670,7 @@
 		13B07FAE1A68108700A75B9A /* timepill */ = {
 			isa = PBXGroup;
 			children = (
+				FAF60AB020304E63000550FB /* timepill.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1001,6 +1004,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 96T8KJDKQ3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1689,6 +1697,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = timepill/timepill.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 96T8KJDKQ3;
@@ -1721,6 +1730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = timepill/timepill.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 96T8KJDKQ3;
 				HEADER_SEARCH_PATHS = (

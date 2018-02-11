@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View} from "react-native";
+import {Text, View, NativeAppEventEmitter, Platform} from "react-native";
 import ErrorView from "../components/ErrorView";
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import navOption from "../components/NavOption";
@@ -13,17 +13,25 @@ export default class NotificationPage extends Component {
             text: 'Notification'
         }
     }
-    componentDidMount() {
-        JPushModule.notifyJSDidLoad((resultCode) => {
-            console.log("JPushModule.notifyJSDidLoad", resultCode);
-            if (resultCode === 0) {
-                this.initPush().done()
-            }
-        });
 
+    componentDidMount() {
+        if (Platform.OS === 'android') {
+            this.initAndroid().done()
+        } else {
+            this.initIOS().done()
+        }
     }
 
-    async initPush() {
+    async initAndroid() {
+        let resultCode = await JPushModule.notifyJSDidLoad();
+        console.log('JPushModule.notifyJSDidLoad:' + resultCode);
+
+        if (resultCode !== 0) {
+            return;
+        }
+
+        this.registerUser().done();
+
         JPushModule.addReceiveNotificationListener((map) => {
             console.log("alertContent: " + map.alertContent);
             console.log("extras: " + map.extras);
@@ -34,10 +42,7 @@ export default class NotificationPage extends Component {
             // var extra = JSON.parse(map.extras);
             // console.log(extra.key + ": " + extra.value);
         });
-        JPushModule.getRegistrationID((registrationId) => {
-            console.log("Device register succeed, registrationId " + registrationId);
-        });
-        this.registerUser().done();
+
         JPushModule.addReceiveOpenNotificationListener((r) => {
             this.setState({
                 text: 'click:' + r.alertContent
@@ -45,6 +50,27 @@ export default class NotificationPage extends Component {
             // JPushModule.jumpToPushActivity("Test");
             console.log('JPushModule.addReceiveOpenNotificationListener', r);
         });
+    }
+
+    async initIOS() {
+        JPushModule.getRegistrationID((registrationId) => {
+            console.log("Device register succeed, registrationId " + registrationId);
+        });
+
+        let subscription1 = NativeAppEventEmitter.addListener(
+            'ReceiveNotification',
+            (notification) => console.log('ReceiveNotification', notification)
+        );
+
+        let subscription2 = NativeAppEventEmitter.addListener(
+            'OpenNotification',
+            (notification) => console.log('OpenNotification', notification)
+        );
+
+        let subscription3 = NativeAppEventEmitter.addListener(
+            'networkDidReceiveMessage',
+            (message) => console.log('networkDidReceiveMessage', message)
+        );
     }
 
     async registerUser() {
