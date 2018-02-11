@@ -18,17 +18,17 @@ react-native-navigation 在启动过程中一旦出现问题，app 会白屏无�
 
 android 平台 jpush 和 react-native-navigation 兼容问题解决
 -----
-###问题现象
+### 问题现象
 
 android App 在后台状态，点击通知 App 会重置
 
-###原因
+### 原因
 
 react-native-navigation 的启动逻辑是在 MainActivity 启动时，主 Activity 从 MainActivity 替换成 NavigationActivity
 见：https://wix.github.io/react-native-navigation/#/android-specific-use-cases?id=why-overriding-these-methods-in-mainactivity-won39t-work
 而 jpush 处理点击时，总是去激活 MainActivity ，这就导致总会产生一个新的 NavigationActivity
 
-###处理办法是修改 jpush 处理点击的逻辑
+### 处理办法是修改 jpush 处理点击的逻辑
 
 修改 jpush-react-native/android/src/main/java/cn/jpush/reactnativejpush/JPushModule.java 544 行
 ```java
@@ -59,7 +59,7 @@ private static ComponentName getTopActivity(Context context){
 }
 ```
 
-###获取 getTopActivity 的原因
+### 获取 getTopActivity 的原因
 App 后台，或者退出后，通过通知唤起，都会进入 isApplicationRunningBackground 的分支条件
 从后台唤起，应该激活 NavigationActivity ，而退出状态下唤起，不能直接启动 NavigationActivity，因为缺少初始化的参数
 NavigationActivity 的初始化时通过 MainActivity 运行的
