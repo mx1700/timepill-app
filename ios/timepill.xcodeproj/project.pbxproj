@@ -58,6 +58,7 @@
 		A3B8C7EAE49E4F1499DC8BA0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DC949E2A354B9A87833A73 /* CoreGraphics.framework */; };
 		A424C68C3C8845DFB1C3BD07 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17839C8E2D0542569304FF51 /* Feather.ttf */; };
 		A7DA962AB606403BA6081370 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A31656DFC28C440BB44A7CA0 /* libRNVectorIcons.a */; };
+		A83FC9F3D40A9A51DAA03A14 /* libPods-timepill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB08CB2CFFC2C9A6C152D76F /* libPods-timepill.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B9000E4D23D54BF58B32EC23 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C322463DF96149D98F370D95 /* EvilIcons.ttf */; };
 		BB425109CE024255A634B8DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2CA41AD5354637AF574C27 /* UIKit.framework */; };
@@ -447,9 +448,12 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = timepill/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = timepill/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		16A51FAF3FEBFF8674CF6A55 /* libPods-timepill-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepill-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17839C8E2D0542569304FF51 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		17C72B7D3EA54954844186CC /* libRCTImageResizer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTImageResizer.a; sourceTree = "<group>"; };
+		2044BEAD33AD2975351CD55E /* Pods-timepill.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timepill.debug.xcconfig"; path = "Pods/Target Support Files/Pods-timepill/Pods-timepill.debug.xcconfig"; sourceTree = "<group>"; };
 		218256A64AC34C50AF464693 /* libRCTJCoreModule.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTJCoreModule.a; sourceTree = "<group>"; };
+		296EB97E0CF9584ED92919B7 /* libPods-timepill-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepill-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9E63DDBB484281A7C2DE62 /* Foundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2D02E47B1E0B4A5D006451C7 /* timepill-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "timepill-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* timepill-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "timepill-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -480,8 +484,10 @@
 		B6D3E2F09B764C7CA42515AA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		B937964F1CD24468BA86632B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		B97DF0F84D7543779BA0776C /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
+		B9C631CF7602BF9D5DFE9E56 /* libPods-timepillTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepillTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C322463DF96149D98F370D95 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		C507C97B96804791868340B2 /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTJCoreModule.xcodeproj; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; };
+		CB08CB2CFFC2C9A6C152D76F /* libPods-timepill.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepill.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19CBFD285954AED802F2237 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		E2261C436EE54DB383AF95DC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		EE45D9E309A64CFBAF5D1EDB /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -489,9 +495,13 @@
 		F4884C2653654EAA927A613F /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		F65F229CDE3540438DD846C4 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		F7186E21B1F24331B763EDEF /* CFNetwork.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F7D9763DD8D86A9BAC19D1D8 /* Pods-timepill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timepill.release.xcconfig"; path = "Pods/Target Support Files/Pods-timepill/Pods-timepill.release.xcconfig"; sourceTree = "<group>"; };
 		FAA5DE0E20219D5200C325C3 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		FAA5DE75202AACD700C325C3 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		FAF60AB020304E63000550FB /* timepill.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = timepill.entitlements; path = timepill/timepill.entitlements; sourceTree = "<group>"; };
+		FAF60B7020314C84000550FB /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAF60B7120314C84000550FB /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAF60BBA20314ED9000550FB /* timepill-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "timepill-tvOS.entitlements"; path = "timepill-tvOS/timepill-tvOS.entitlements"; sourceTree = "<group>"; };
 		FD552C9FB2AB47F0936EB197 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -542,6 +552,7 @@
 				BB425109CE024255A634B8DC /* UIKit.framework in Frameworks */,
 				99408FEAA6254D01989CF627 /* libresolv.tbd in Frameworks */,
 				A3B8C7EAE49E4F1499DC8BA0 /* CoreGraphics.framework in Frameworks */,
+				A83FC9F3D40A9A51DAA03A14 /* libPods-timepill.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +719,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAF60B7020314C84000550FB /* QBImagePicker.framework */,
+				FAF60B7120314C84000550FB /* RSKImageCropper.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				A1F67B5D6EB441A3936E772F /* libz.tbd */,
 				81C45432253343198B8B9373 /* UserNotifications.framework */,
@@ -720,6 +733,10 @@
 				8D2CA41AD5354637AF574C27 /* UIKit.framework */,
 				3BD1E2B0A29B496F90EC62BA /* libresolv.tbd */,
 				45DC949E2A354B9A87833A73 /* CoreGraphics.framework */,
+				CB08CB2CFFC2C9A6C152D76F /* libPods-timepill.a */,
+				16A51FAF3FEBFF8674CF6A55 /* libPods-timepill-tvOS.a */,
+				296EB97E0CF9584ED92919B7 /* libPods-timepill-tvOSTests.a */,
+				B9C631CF7602BF9D5DFE9E56 /* libPods-timepillTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -740,6 +757,15 @@
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7A689127680DAE33EDAF1E97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2044BEAD33AD2975351CD55E /* Pods-timepill.debug.xcconfig */,
+				F7D9763DD8D86A9BAC19D1D8 /* Pods-timepill.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -783,6 +809,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				FAF60BBA20314ED9000550FB /* timepill-tvOS.entitlements */,
 				13B07FAE1A68108700A75B9A /* timepill */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* timepillTests */,
@@ -790,6 +817,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				0552D19A0A7740CDB4C8A502 /* Resources */,
 				FA4F825E2015CDE7004017D3 /* Recovered References */,
+				7A689127680DAE33EDAF1E97 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -938,10 +966,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "timepill" */;
 			buildPhases = (
+				01137813E46810A3F49D3D8F /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				DB58B5ADE631BB974653E738 /* [CP] Embed Pods Frameworks */,
+				90CA4656EA0036073FCE9B51 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1013,6 +1044,11 @@
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1531,6 +1567,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		01137813E46810A3F49D3D8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-timepill-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1544,6 +1598,41 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		90CA4656EA0036073FCE9B51 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-timepill/Pods-timepill-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
+				"${PODS_ROOT}/RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RSKImageCropperStrings.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-timepill/Pods-timepill-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB58B5ADE631BB974653E738 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-timepill/Pods-timepill-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1695,6 +1784,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2044BEAD33AD2975351CD55E /* Pods-timepill.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = timepill/timepill.entitlements;
@@ -1728,6 +1818,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7D9763DD8D86A9BAC19D1D8 /* Pods-timepill.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = timepill/timepill.entitlements;
@@ -1768,6 +1859,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1817,6 +1909,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

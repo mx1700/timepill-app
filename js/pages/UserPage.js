@@ -54,7 +54,7 @@ export default class UserPage extends Component {
             });
         }
         if (event.type === 'NavBarButtonPress' && event.id === 'follow') {
-            this.updateRelation();
+            this.updateRelation().done();
         }
     }
 
@@ -83,7 +83,7 @@ export default class UserPage extends Component {
                 this.diaryList.refresh()
             });
         }
-        this.loadNavButtons();
+        this.loadNavButtons().done();
     }
 
     async loadNavButtons() {

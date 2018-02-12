@@ -28,6 +28,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+  entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+  [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
   [JPUSHService setupWithOption:launchOptions appKey:@"3cd4420cf525f22756f31e14"
                         channel:nil apsForProduction:false];
 
@@ -59,36 +62,43 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  NSLog(@"jpush My token is: %@", deviceToken);
   [JPUSHService registerDeviceToken:deviceToken];
 }
 
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"jpush token error: %@", error);
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+  // 取得 APNs 标准信息内容
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object:userInfo];
+}
+//iOS 7 Remote Notification
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:  (NSDictionary *)userInfo fetchCompletionHandler:(void (^)   (UIBackgroundFetchResult))completionHandler {
+  
   [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object:userInfo];
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-  [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object: notification.userInfo];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)   (UIBackgroundFetchResult))completionHandler {
-  [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object:userInfo];
-}
-
+// iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+  // Required
   NSDictionary * userInfo = notification.request.content.userInfo;
-  if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-    [JPUSHService handleRemoteNotification:userInfo];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object:userInfo];
-  }
-  completionHandler(UNNotificationPresentationOptionAlert);
+  [JPUSHService handleRemoteNotification:userInfo];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object:userInfo];
+  
+  completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
 
+// iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+  
   NSDictionary * userInfo = response.notification.request.content.userInfo;
-  if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-    [JPUSHService handleRemoteNotification:userInfo];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kJPFOpenNotification object:userInfo];
-  }
+  [JPUSHService handleRemoteNotification:userInfo];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kJPFOpenNotification object:userInfo];
+  
   completionHandler();
 }
 

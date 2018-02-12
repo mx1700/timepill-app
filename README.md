@@ -16,6 +16,11 @@ android 版本调试过程会经常会白屏，需要删除 app 重新安装
 react-native-navigation 在启动过程中一旦出现问题，app 会白屏无法操作
 所以必须保证 app 能正常启动，才能进行调试，一旦白屏，即使重启 app 也无法解决
 
+react-native-image-crop-picker iOS 安装问题
+-----
+建议按照官方的 pod 方式安装
+注意：安装 pod 后，需要从 xcode 里打开 xcworkspace 文件才能编译通过
+
 android 平台 jpush 和 react-native-navigation 兼容问题解决
 -----
 ### 问题现象
