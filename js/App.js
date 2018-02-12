@@ -121,7 +121,7 @@ async function appStart() {
             // navBarNoBorder: false,
             topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
 
-            initialTabIndex: 4,
+            initialTabIndex: 0,
         },
     });
 

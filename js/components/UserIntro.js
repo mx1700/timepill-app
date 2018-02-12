@@ -73,7 +73,6 @@ export default class UserIntro extends Component {
             Alert.alert('加载失败', err);
             return;
         }
-        console.log('222222222222222222', this);
         this.setState({
             user: user,
             loading: false,
@@ -87,7 +86,6 @@ export default class UserIntro extends Component {
                 console.log(err);
                 return;
             }
-            console.log('111111111111111', this);
             this.setState({
                 user: newUser,
             });
@@ -99,7 +97,7 @@ export default class UserIntro extends Component {
         if (this.state.loading) {
             return (
                 <View style={[{flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}, this.props.style]}>
-                    <ActivityIndicator color={colors.light} />
+                    <ActivityIndicator color={colors.light} size="large"/>
                 </View>
             )
         }

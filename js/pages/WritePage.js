@@ -62,6 +62,7 @@ export default class WritePage extends Component {
                 // this._loadTempDraftAndDraft();       //TODO:
             }
             // this._autoSaveTempDraft();
+            // this._loadBooks().done();
 
             if(!this.props.tabOpen) {
                 this._loadBooks().done();
@@ -130,7 +131,6 @@ export default class WritePage extends Component {
     };
 
     _imagePress() {
-        //TODO:当选择照片后,再次点击,放大图片,里边有取消按钮
         this.selectPhoto();
     }
 
@@ -381,6 +381,7 @@ export default class WritePage extends Component {
     }
 
     closeModal(showKeyboard = true) {
+        this.contentInput.blur();
         Animated.parallel([
             Animated.timing(
                 this.state.fadeAnimOpacity,
@@ -388,12 +389,13 @@ export default class WritePage extends Component {
             ),
             Animated.timing(
                 this.state.fadeAnimHeight,
-                {toValue: 1, duration: 350, easing: Easing.out(Easing.cubic)}   //toValue: 1 为解决 RN 0.36-rc.1 奇怪的闪退 bug
+                {toValue: 0, duration: 350, easing: Easing.out(Easing.cubic)}   //toValue: 1 为解决 RN 0.36-rc.1 奇怪的闪退 bug
             )
-        ]).start(() => {
+        ]).start(({finished}) => {
             this.setState({modalVisible: false});
+            if (!finished) return;
             if (showKeyboard) {
-                this.contentInput.focus();
+                setTimeout(() => this.contentInput.focus(), 100);
             }
         });
     }
@@ -405,6 +407,7 @@ export default class WritePage extends Component {
                 transparent={true}
                 visible={this.state.modalVisible}
                 onShow={() => {
+                    console.log(this.state.fadeAnimHeight);
                     Animated.parallel([
                         Animated.timing(
                             this.state.fadeAnimOpacity,

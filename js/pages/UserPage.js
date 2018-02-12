@@ -46,7 +46,8 @@ export default class UserPage extends Component {
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
             this.setState({
-                visible: true
+                visible: true,
+                tabLoad: true,
             });
         }
         if (event.id === 'willDisappear') {
@@ -56,13 +57,6 @@ export default class UserPage extends Component {
         }
         if (event.type === 'NavBarButtonPress' && event.id === 'follow') {
             this.updateRelation().done();
-        }
-        if (event.selectedTabIndex === 4 && this.props.tabOpen) {
-            if(!this.state.tabLoad) {
-                this.setState({
-                    tabLoad: true,
-                });
-            }
         }
     }
 
@@ -174,7 +168,7 @@ export default class UserPage extends Component {
     _renderPager = props => <TabViewPagerPan {...props} />;
 
     render() {
-        if (!this.state.tabLoad) return null;
+        if (!this.state.tabLoad) return <View />;
         return (
                 <TabViewAnimated
                     style={[styles.container, {flex: this.state.visible ? 1 : 0}]}
