@@ -168,14 +168,14 @@ export default class NotificationPage extends Component {
     }
 
     _onCommentPress(msg) {
-        // this.props.navigator.push({  //TODO
-        //     name: 'DiaryPage',
-        //     component: DiaryPage,
-        //     params: {
-        //         diary_id: msg.link_id,
-        //         new_comments: msg.list.map(it => it.content.comment_id)
-        //     }
-        // });
+        this.props.navigator.push({
+            screen: 'DiaryDetail',
+            title: '日记详情',
+            passProps: {
+                diary_id: msg.link_id,
+                new_comments: msg.list.map(it => it.content.comment_id)
+            }
+        });
         this._setRead(msg).done();
     }
 
@@ -193,7 +193,6 @@ export default class NotificationPage extends Component {
     }
 
     async _setRead(msg) {
-        return;
         let ids = null;
         if (msg.type === 1) {    //回复
             ids = msg.list.map(it => it.id);
