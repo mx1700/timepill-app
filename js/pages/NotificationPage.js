@@ -167,11 +167,9 @@ export default class NotificationPage extends Component {
 
         this.props.navigator.setTabBadge({
             tabIndex: 3,
-            badge: rowData.length,
+            badge: rowData.length === 0 ? null : rowData.length,
             badgeColor: colors.danger,
         });
-        // PushNotificationIOS.setApplicationIconBadgeNumber(list.length);
-        // NotificationCenter.trigger('tipCount', list.length);     //TODO:tabbar增加提醒
     }
 
     _onRefresh() {
