@@ -259,7 +259,7 @@ export default class DiaryList extends Component {
                     ListFooterComponent={this.renderFooter()}
                     automaticallyAdjustContentInsets={true}
                     onEndReached={this.state.more ? this.loadMore.bind(this) : null}
-                    onEndReachedThreshold={0.5}
+                    onEndReachedThreshold={2}
                     {...this.props}
                     // onEndReachedThreshold={0.1}
                     // ListEmptyComponent={this.renderEmpty()}
