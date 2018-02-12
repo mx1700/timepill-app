@@ -1,6 +1,6 @@
 import * as Api from "../Api";
 
-const PAGE_SIZE = 11;
+const PAGE_SIZE = 21;
 
 export default class HomeListData {
     last_id: 0;
