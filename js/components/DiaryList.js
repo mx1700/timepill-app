@@ -150,7 +150,7 @@ export default class DiaryList extends Component {
     }
 
     onRefresh() {
-        this.refresh();
+        this.refresh().done();
     }
 
     showToast(msg) {

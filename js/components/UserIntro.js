@@ -44,14 +44,15 @@ export default class UserIntro extends Component {
     componentDidMount() {
         InteractionManager.runAfterInteractions(() => {
             this._loadUser().done();
+
+            if(this.props.mySelf) {
+                this.updateListener = DeviceEventEmitter.addListener(Events.updateUserInfo, this._updateUserInfo);
+            }
         });
-        if(this.props.mySelf) {
-            this.updateListener = DeviceEventEmitter.addListener(Events.updateUserInfo, this._updateUserInfo);
-        }
     }
 
     componentWillUnmount() {
-        if(this.props.mySelf) {
+        if(this.updateListener) {
             this.updateListener.remove();
         }
     }
@@ -72,6 +73,7 @@ export default class UserIntro extends Component {
             Alert.alert('加载失败', err);
             return;
         }
+        console.log('222222222222222222', this);
         this.setState({
             user: user,
             loading: false,
@@ -82,15 +84,14 @@ export default class UserIntro extends Component {
             try {
                 newUser = await Api.getUserInfo(user.id)
             } catch (err) {
-                console.log(err)
+                console.log(err);
+                return;
             }
-            if (newUser) {
-                this.setState({
-                    user: newUser,
-                    loading: false,
-                });
-                await Api.updateUserInfoStore(newUser);
-            }
+            console.log('111111111111111', this);
+            this.setState({
+                user: newUser,
+            });
+            Api.updateUserInfoStore(newUser).done();
         }
     }
 

@@ -83,12 +83,10 @@ export default class UserPage extends Component {
     componentDidMount() {
         if (this.props.isMyself) {
             this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
-                //TODO:刷新日记本和个人信息
-                this.diaryList.refresh()
+                this.diaryList && this.diaryList.refresh()  //页面懒加载，可能list还没加载完成
             });
             this.deleteListener = DeviceEventEmitter.addListener(Events.diaryDelete, () => {
-                //TODO:刷新日记本和个人信息
-                this.diaryList.refresh()
+                this.diaryList && this.diaryList.refresh()
             });
         }
         this.loadNavButtons().done();

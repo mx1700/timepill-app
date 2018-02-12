@@ -13,8 +13,6 @@ export default class HomePage extends React.Component {
 
     static navigatorStyle = {
         navBarHidden: true,
-        // statusBarHidden: true,
-        // statusBarBlur: true,
     };
 
     componentWillMount() {

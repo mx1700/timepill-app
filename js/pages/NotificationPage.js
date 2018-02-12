@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import {Text, View, NativeAppEventEmitter, Platform, ListView, InteractionManager, StyleSheet, RefreshControl, ActivityIndicator} from "react-native";
+import {
+    Text, View, NativeAppEventEmitter, Platform, ListView, InteractionManager, StyleSheet, RefreshControl,
+    ActivityIndicator, DeviceEventEmitter
+} from "react-native";
 import ErrorView from "../components/ErrorView";
 import JPushModule from 'jpush-react-native';
 import * as Api from "../Api";
 import TPTouchable from "../components/TPTouchable";
 import Icon from 'react-native-vector-icons/Ionicons';
 import {colors} from '../Styles'
+import Events from "../Events";
 
 const LOOP_TIME_SHORT = 30 * 1000;
 const LOOP_TIME_LONG = 60 * 1000;
@@ -35,8 +39,17 @@ export default class NotificationPage extends Component {
             } else {
                 this.initIOS().done()
             }
+
             this.restartTipTimer().done();
         });
+        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
+            this.registerUser().done();
+            this.restartTipTimer().done();
+        })
+    }
+
+    componentWillUnmount() {
+        this.loginListener.remove();
     }
 
     async restartTipTimer() {
@@ -95,6 +108,7 @@ export default class NotificationPage extends Component {
 
     async registerUser() {
         const user = await Api.getSelfInfoByStore();
+        if (!user) return;
         const settings = await Api.getSettings();
         const push = settings['pushMessage'];
         const alias = push ? user.id.toString() : user.id.toString() + '_close';
