@@ -58,11 +58,14 @@ export default class WritePage extends Component {
 
     componentDidMount() {
         InteractionManager.runAfterInteractions(() => {
-            this._loadBooks().done();
             if (!this.props.diary) {
                 // this._loadTempDraftAndDraft();       //TODO:
             }
             // this._autoSaveTempDraft();
+
+            if(!this.props.tabOpen) {
+                this._loadBooks().done();
+            }
         });
     }
 
@@ -78,7 +81,7 @@ export default class WritePage extends Component {
         if (event.selectedTabIndex === 2 && this.props.tabOpen) {
             this.contentInput.focus();
             this.tabIndexToSelect = !event.unselectedTabIndex || event.unselectedTabIndex === 2 ? 0 : event.unselectedTabIndex;
-            //TODO:加载日记本列表
+            this._loadBooks().done();
         }
         if (event.id === 'backPress') {
             this.goBack();

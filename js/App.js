@@ -87,6 +87,7 @@ async function appStart() {
                 },
                 passProps: {
                     isMyself: true,
+                    tabOpen: true,
                 }
             },
         ],
@@ -98,7 +99,7 @@ async function appStart() {
             navBarTranslucent: true,
             drawUnderNavBar: true,
 
-            initialTabIndex: 4,
+            initialTabIndex: 0,
         },
         appStyle: {
             tabBarHidden: true,

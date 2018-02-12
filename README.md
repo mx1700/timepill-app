@@ -1,6 +1,11 @@
 timepill app
 =====
 
+TODO
+-----
+1. 在日记详情页修改日记后，回到详情页日记内容没有变更
+1. 草稿功能未实现
+
 bugs
 -----
 https://github.com/oblador/react-native-vector-icons/issues/626

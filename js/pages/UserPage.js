@@ -37,7 +37,8 @@ export default class UserPage extends Component {
                 { key: 'diary', title: '日记' },
                 { key: 'notebooks', title: '日记本' },
             ],
-            visible: true,
+            visible: true,  //用以修复tab滚动问题，tab 和 nav 组件不兼容
+            tabLoad: !this.props.tabOpen, //是否加载tab页，如果是从底部 tab 打开，则默认不加载，等点击底部tab事件触发再加载
         };
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
@@ -55,6 +56,13 @@ export default class UserPage extends Component {
         }
         if (event.type === 'NavBarButtonPress' && event.id === 'follow') {
             this.updateRelation().done();
+        }
+        if (event.selectedTabIndex === 4 && this.props.tabOpen) {
+            if(!this.state.tabLoad) {
+                this.setState({
+                    tabLoad: true,
+                });
+            }
         }
     }
 
@@ -168,6 +176,7 @@ export default class UserPage extends Component {
     _renderPager = props => <TabViewPagerPan {...props} />;
 
     render() {
+        if (!this.state.tabLoad) return null;
         return (
                 <TabViewAnimated
                     style={[styles.container, {flex: this.state.visible ? 1 : 0}]}
