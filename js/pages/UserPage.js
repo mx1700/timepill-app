@@ -49,6 +49,7 @@ export default class UserPage extends Component {
                 visible: true,
                 tabLoad: true,
             });
+            this.loadNavButtons().done();   //用以修复 android nav button 加载不上的问题
         }
         if (event.id === 'willDisappear') {
             this.setState({
@@ -87,7 +88,9 @@ export default class UserPage extends Component {
     }
 
     async loadNavButtons() {
+        console.log('loadNavButtons');
         if (this.props.isMyself) {
+            console.log('loadNavButtons isMyself');
             this.props.navigator.setButtons({
                 rightButtons: [{ id: 'setting', icon: LocalIcons.navButtonSetting }],
                 animated: false
