@@ -109,6 +109,7 @@ async function appStart() {
             tabBarSelectedButtonColor: colors.primary,   //android
 
             navBarTranslucent: Platform.OS === 'ios',
+            drawUnderStatusBar: false,
             statusBarTextColorScheme: 'dark',
             keepStyleAcrossPush: false,     //iOS
             // drawUnderNavBar: true,
@@ -116,8 +117,8 @@ async function appStart() {
 
             //android only
             navigationBarColor: '#FFF',
-            statusBarColor: '#FFF',
-            navBarHeight: 52,
+            statusBarColor: '#efefef',
+            navBarHeight: 56,
             // navBarNoBorder: false,
             topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
 

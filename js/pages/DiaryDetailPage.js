@@ -103,7 +103,7 @@ export default class DiaryDetailPage extends React.Component {
                 comment_count: diary.comment_count,
                 diaryLoadingError: false,
             });
-            this._loadIsMy();
+            this._loadIsMy().done();
         } else {
             this.setState({
                 diary: null,
@@ -335,7 +335,6 @@ export default class DiaryDetailPage extends React.Component {
             return;
         }
         Alert.alert('提示', '日记已删除', [{text: '好', onPress: () => this.props.navigator.pop()}]);
-
         DeviceEventEmitter.emit(Events.diaryDelete);
     }
 
@@ -344,7 +343,7 @@ export default class DiaryDetailPage extends React.Component {
     };
 
     _onCommentLongPress = (comment) => {
-        ActionSheetIOS.showActionSheetWithOptions({
+        ActionSheet.showActionSheetWithOptions({
             options: ['复制内容', '取消'],
             cancelButtonIndex: 1,
         }, (index) => {
@@ -376,9 +375,9 @@ export default class DiaryDetailPage extends React.Component {
                         text="日记加载失败了 :("
                         button="重试一下"
                         onButtonPress={() => {
-                            this._loadDiary();
+                            this._loadDiary().done();
                             if (this.state.commentsLoadingError) {
-                                this._loadComments();
+                                this._loadComments().done();
                             }
                         }}/>
                 </View>
@@ -525,7 +524,7 @@ export default class DiaryDetailPage extends React.Component {
         // console.log(comment)
         const new_comment = this.props.new_comments != null
             && this.props.new_comments.some(it => it === comment.id);
-        const style = new_comment ? {backgroundColor: '#eef5ff'} : null;
+        const style = new_comment ? {backgroundColor: colors.textSelect} : null;
         const content = comment.recipient == null
             ? <Text style={styles.content}>{comment.content}</Text>
             : (
@@ -537,12 +536,13 @@ export default class DiaryDetailPage extends React.Component {
 
         const action = this.isToday && this.state.isMy
             ? (
-                <Touchable onPress={() => this._onCommentActionPress(comment)}>
+                <TouchableOpacity onPress={() => this._onCommentActionPress(comment)}
+                                  style={{ position: 'absolute', bottom: 0, right: 10, paddingHorizontal: 12, paddingVertical: 5 }}>
                     <Icon name="ios-more"
                           size={16}
                           color={colors.inactiveText}
-                          style={{ position: 'absolute', bottom: 0, right: 10, paddingHorizontal: 12, paddingVertical: 5}} />
-                </Touchable>
+                          style={{ }} />
+                </TouchableOpacity>
             ) : null;
 
         return (
