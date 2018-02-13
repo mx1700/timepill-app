@@ -14,7 +14,9 @@ const colors = {
     spaceBackground: '#f3f3ff', //空内容背景
     navBackground: Platform.OS === 'ios' ? '#F9F9F9' : '#FFFFFF',
     line: '#eee',
-    textSelect: '#b6d8ff'
+    textSelect: '#b6d8ff',
+
+    refreshColor: '#007AFF',
 };
 
 const styles = StyleSheet.create({

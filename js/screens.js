@@ -8,6 +8,8 @@ import UserPage from "./pages/UserPage";
 import NotificationPage from "./pages/NotificationPage";
 import FollowDiaryPage from "./pages/FollowDiaryPage";
 import WritePage from "./pages/WritePage";
+import NotebookPage from './pages/NotebookPage';
+
 import {Text, View} from "react-native";
 
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
@@ -60,6 +62,9 @@ export function registerScreens() {
     Navigation.registerComponent('Notification', () => NotificationPage);
     Navigation.registerComponent('Write', () => WritePage);
     Navigation.registerComponent('WriteTab', () => WriteTab);
+    Navigation.registerComponent('Notebook', () => NotebookPage);
+
+
     Navigation.registerComponent('Test', () => TestPage);
 
     Navigation.registerComponent('UserHeader', () => UserHeader);

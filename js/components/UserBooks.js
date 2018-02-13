@@ -89,12 +89,10 @@ export default class UserBooks extends Component {
 
     _bookPress(book) {
         this.props.navigator.push({
-            name: 'NotebookPage',
-            component: NotebookPage,
-            params: {
-                notebook: book
-            }
-        })
+            screen: 'Notebook',
+            title: `《${book.subject}》`,
+            passProps: { notebook: book },
+        });
     }
 
     render() {
