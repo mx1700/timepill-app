@@ -28,6 +28,8 @@ let Icons = {
 };
 
 const outline = Platform.OS === 'ios' ? '-outline' : '';
+const iconColor = '#333333';
+
 async function loadIcon() {
     let names = [
 
@@ -48,14 +50,14 @@ async function loadIcon() {
         Icon.getImageSource('ios-contact' + outline, 26),
         Icon.getImageSource('ios-contact', 26),
 
-        Icon.getImageSource('md-checkmark', 28),
-        Icon.getImageSource('md-close', 28),
+        Icon.getImageSource('md-checkmark', 28, iconColor),
+        Icon.getImageSource('md-close', 28, iconColor),
 
-        Icon.getImageSource('ios-heart-outline', 26),
+        Icon.getImageSource('ios-heart-outline', 26, iconColor),
         Icon.getImageSource('ios-heart', 26, "#d9534f"),
-        Platform.OS === 'ios' ? Icon.getImageSource('ios-more', 26)
-            : Icon.getImageSource('md-more', 26),
-        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26),
+        Platform.OS === 'ios' ? Icon.getImageSource('ios-more', 26, iconColor)
+            : Icon.getImageSource('md-more', 26, iconColor),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26, iconColor),
     ]);
 
     let index = 0;
