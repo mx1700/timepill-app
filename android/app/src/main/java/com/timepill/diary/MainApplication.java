@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.facebook.react.ReactApplication;
+import com.smixx.fabric.FabricPackage;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.reactnativejpush.JPushPackage;
@@ -44,6 +45,7 @@ public class MainApplication extends NavigationApplication {
     return Arrays.<ReactPackage>
             asList(
 //            new MainReactPackage(),
+            new FabricPackage(),
             new JPushPackage(!BuildConfig.DEBUG, !BuildConfig.DEBUG),
             new RNDeviceInfo(),
             new ImageResizerPackage(),

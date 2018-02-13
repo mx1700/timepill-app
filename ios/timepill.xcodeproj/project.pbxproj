@@ -69,6 +69,7 @@
 		F88696CB6A644FF5B6CF871A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DC68E25ECEF4202B72748D3 /* FontAwesome.ttf */; };
 		FAA5DE3A20219DAD00C325C3 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA5DE3820219D5300C325C3 /* libReactNativeNavigation.a */; };
 		FAA5DE7C202AAFD600C325C3 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA5DE7A202AACD800C325C3 /* libRCTCameraRoll.a */; };
+		FAADA9932032F150008410FF /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAADA9902032F112008410FF /* libSMXCrashlytics.a */; };
 		FE6267873B3D4FFD909DECAA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609484A3647F49F68B039336 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -395,6 +396,20 @@
 			remoteGlobalIDString = 5D72D2E81C16249000E22EC1;
 			remoteInfo = RCTImageResizer;
 		};
+		FAADA98F2032F112008410FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAADA95A2032F112008410FF /* SMXCrashlytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
+			remoteInfo = SMXCrashlytics;
+		};
+		FAADA9912032F112008410FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAADA95A2032F112008410FF /* SMXCrashlytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6463C84C1EBA12A60095B8CD;
+			remoteInfo = "SMXCrashlytics-tvOS";
+		};
 		FAF60A16202C2197000550FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E19CBFD285954AED802F2237 /* RNDeviceInfo.xcodeproj */;
@@ -498,6 +513,7 @@
 		F7D9763DD8D86A9BAC19D1D8 /* Pods-timepill.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timepill.release.xcconfig"; path = "Pods/Target Support Files/Pods-timepill/Pods-timepill.release.xcconfig"; sourceTree = "<group>"; };
 		FAA5DE0E20219D5200C325C3 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		FAA5DE75202AACD700C325C3 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
+		FAADA95A2032F112008410FF /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
 		FAF60AB020304E63000550FB /* timepill.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = timepill.entitlements; path = timepill/timepill.entitlements; sourceTree = "<group>"; };
 		FAF60B7020314C84000550FB /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF60B7120314C84000550FB /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,6 +534,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAADA9932032F150008410FF /* libSMXCrashlytics.a in Frameworks */,
 				FAA5DE7C202AAFD600C325C3 /* libRCTCameraRoll.a in Frameworks */,
 				FAA5DE3A20219DAD00C325C3 /* libReactNativeNavigation.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -771,6 +788,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FAADA95A2032F112008410FF /* SMXCrashlytics.xcodeproj */,
 				FAA5DE75202AACD700C325C3 /* RCTCameraRoll.xcodeproj */,
 				FAA5DE0E20219D5200C325C3 /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -912,6 +930,15 @@
 			isa = PBXGroup;
 			children = (
 				FAA5DF51202AFE0A00C325C3 /* libRCTImageResizer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAADA95B2032F112008410FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAADA9902032F112008410FF /* libSMXCrashlytics.a */,
+				FAADA9922032F112008410FF /* libSMXCrashlytics.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1157,6 +1184,10 @@
 				{
 					ProductGroup = FA4F82942015CDEC004017D3 /* Products */;
 					ProjectRef = 0D7C424E6F4342C58579EAF5 /* RNVectorIcons.xcodeproj */;
+				},
+				{
+					ProductGroup = FAADA95B2032F112008410FF /* Products */;
+					ProjectRef = FAADA95A2032F112008410FF /* SMXCrashlytics.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1476,6 +1507,20 @@
 			fileType = archive.ar;
 			path = libRCTImageResizer.a;
 			remoteRef = FAA5DF50202AFE0A00C325C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAADA9902032F112008410FF /* libSMXCrashlytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSMXCrashlytics.a;
+			remoteRef = FAADA98F2032F112008410FF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAADA9922032F112008410FF /* libSMXCrashlytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSMXCrashlytics.a;
+			remoteRef = FAADA9912032F112008410FF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		FAF60A17202C2197000550FB /* libRNDeviceInfo.a */ = {

@@ -31,6 +31,11 @@ react-native-image-crop-picker iOS 安装问题
 建议按照官方的 pod 方式安装
 注意：安装 pod 后，需要从 xcode 里打开 xcworkspace 文件才能编译通过
 
+react-native-fabric iOS 安装问题
+-----
+react-native-fabric react-native link 的时候，会通过 pod 安装，但是 pod 方式安装编译失败，
+暂时没有找到解决办法，最好是 link 后恢复自动修改的 pod 文件，通过手动方式安装
+
 android 平台 jpush 和 react-native-navigation 兼容问题解决
 -----
 ### 问题现象

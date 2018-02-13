@@ -10,6 +10,7 @@ import TPTouchable from "../components/TPTouchable";
 import Icon from 'react-native-vector-icons/Ionicons';
 import {colors} from '../Styles'
 import Events from "../Events";
+import Fabric, {Crashlytics} from 'react-native-fabric';
 
 const LOOP_TIME_SHORT = 30 * 1000;
 const LOOP_TIME_LONG = 60 * 1000;
@@ -114,7 +115,11 @@ export default class NotificationPage extends Component {
         const alias = push ? user.id.toString() : user.id.toString() + '_close';
         JPushModule.setAlias(alias, success => {
             console.log('JPushModule.setAlias ' + alias + '  ' + success);
-        })
+        });
+
+        Crashlytics.setUserName(user.name);
+        Crashlytics.setUserEmail(user.email);
+        Crashlytics.setUserIdentifier(user.id.toString());
     }
 
     async _loadMessages() {

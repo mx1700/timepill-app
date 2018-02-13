@@ -3752,6 +3752,10 @@ react-native-elements@^0.19.0:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
+react-native-fabric@^0.5.1:
+  version "0.5.1"
+  resolved "http://registry.npm.taobao.org/react-native-fabric/download/react-native-fabric-0.5.1.tgz#e5eb65c56196355b41f230c14adcc9c4bcf60dda"
+
 react-native-fetch-blob@^0.10.8:
   version "0.10.8"
   resolved "http://registry.npm.taobao.org/react-native-fetch-blob/download/react-native-fetch-blob-0.10.8.tgz#4fc256abae0cb5f10e7c41f28c11b3ff330d72a9"

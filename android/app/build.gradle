@@ -176,6 +176,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fabric')
     compile project(':jpush-react-native')
     compile project(':jcore-react-native')
     compile project(':react-native-device-info')
