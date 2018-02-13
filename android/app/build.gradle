@@ -195,6 +195,9 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true;
     }
+    compile('com.crashlytics.sdk.android:answers:1.4.1@aar') {
+        transitive = true;
+    }
 }
 
 // Run this once to be able to run the application with BUCK

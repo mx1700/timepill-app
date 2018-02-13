@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -49,6 +50,7 @@
 		6D686B7E2435433B93ED4D40 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6D3E2F09B764C7CA42515AA /* MaterialIcons.ttf */; };
 		6D830BACFC6D4CE8969ED763 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06052D3BE136461EB02850C8 /* Entypo.ttf */; };
 		7192402B58CE499F9D63B94A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7186E21B1F24331B763EDEF /* CFNetwork.framework */; };
+		78D8219962AFA9D5D436A6BE /* libPods-timepill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C19C40C812D3244AE62D6BAF /* libPods-timepill.a */; };
 		804267EA55614C05876A54C3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E40F311EAF145608F98CF3F /* Zocial.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		943046CA3EF34E3CB5EF0979 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36758CD8204C4906A4E4615A /* SystemConfiguration.framework */; };
@@ -57,7 +59,6 @@
 		A3B8C7EAE49E4F1499DC8BA0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DC949E2A354B9A87833A73 /* CoreGraphics.framework */; };
 		A424C68C3C8845DFB1C3BD07 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17839C8E2D0542569304FF51 /* Feather.ttf */; };
 		A7DA962AB606403BA6081370 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A31656DFC28C440BB44A7CA0 /* libRNVectorIcons.a */; };
-		A83FC9F3D40A9A51DAA03A14 /* libPods-timepill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB08CB2CFFC2C9A6C152D76F /* libPods-timepill.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B9000E4D23D54BF58B32EC23 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C322463DF96149D98F370D95 /* EvilIcons.ttf */; };
 		BB425109CE024255A634B8DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2CA41AD5354637AF574C27 /* UIKit.framework */; };
@@ -484,9 +485,9 @@
 		B937964F1CD24468BA86632B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		B97DF0F84D7543779BA0776C /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
 		B9C631CF7602BF9D5DFE9E56 /* libPods-timepillTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepillTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C19C40C812D3244AE62D6BAF /* libPods-timepill.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepill.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C322463DF96149D98F370D95 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		C507C97B96804791868340B2 /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTJCoreModule.xcodeproj; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; };
-		CB08CB2CFFC2C9A6C152D76F /* libPods-timepill.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-timepill.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19CBFD285954AED802F2237 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		E2261C436EE54DB383AF95DC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		EE45D9E309A64CFBAF5D1EDB /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -551,7 +552,7 @@
 				BB425109CE024255A634B8DC /* UIKit.framework in Frameworks */,
 				99408FEAA6254D01989CF627 /* libresolv.tbd in Frameworks */,
 				A3B8C7EAE49E4F1499DC8BA0 /* CoreGraphics.framework in Frameworks */,
-				A83FC9F3D40A9A51DAA03A14 /* libPods-timepill.a in Frameworks */,
+				78D8219962AFA9D5D436A6BE /* libPods-timepill.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,10 +733,10 @@
 				8D2CA41AD5354637AF574C27 /* UIKit.framework */,
 				3BD1E2B0A29B496F90EC62BA /* libresolv.tbd */,
 				45DC949E2A354B9A87833A73 /* CoreGraphics.framework */,
-				CB08CB2CFFC2C9A6C152D76F /* libPods-timepill.a */,
 				16A51FAF3FEBFF8674CF6A55 /* libPods-timepill-tvOS.a */,
 				296EB97E0CF9584ED92919B7 /* libPods-timepill-tvOSTests.a */,
 				B9C631CF7602BF9D5DFE9E56 /* libPods-timepillTests.a */,
+				C19C40C812D3244AE62D6BAF /* libPods-timepill.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -972,6 +973,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				DB58B5ADE631BB974653E738 /* [CP] Embed Pods Frameworks */,
 				90CA4656EA0036073FCE9B51 /* [CP] Copy Pods Resources */,
+				FAADA7F12032E054008410FF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1624,14 +1626,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-timepill/Pods-timepill-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/QBImagePickerController/QBImagePickerController.framework",
+				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QBImagePickerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-timepill/Pods-timepill-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FAADA7F12032E054008410FF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ae578d2382f4409d11c2b3cbd2589ed33e41eacf d17faf87fc3b951b4d8f1bf296142e6c9757b4c68ff43f30555e29a4901d243b";
 		};
 /* End PBXShellScriptBuildPhase section */
 
