@@ -22,6 +22,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.timepill.diary.BuildConfig;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +69,7 @@ public class MainApplication extends NavigationApplication {
     setActivityCallbacks(new ActivityCallbacks() {
       @Override
       public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        Fabric.with(activity, new Crashlytics());
         JPushInterface.init(activity);
       }
 

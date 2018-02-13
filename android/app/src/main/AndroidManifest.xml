@@ -34,6 +34,10 @@
       <meta-data android:name="android.max_aspect" android:value="2.1" />
         <meta-data android:name="JPUSH_CHANNEL" android:value="${APP_CHANNEL}"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="${JPUSH_APPKEY}"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ae578d2382f4409d11c2b3cbd2589ed33e41eacf"
+            />
     </application>
 
 </manifest>
