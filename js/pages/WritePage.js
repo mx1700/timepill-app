@@ -33,7 +33,6 @@ export default class WritePage extends Component {
 
     constructor(props) {
         super(props);
-        this.tabIndexToSelect = 0;
 
         const diary = props.diary;
         this.state = {
@@ -71,6 +70,7 @@ export default class WritePage extends Component {
     }
 
     onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+        console.log('WritePage.onNavigatorEvent', event);
         if (event.type === 'NavBarButtonPress') { // this is the event type for button presses
             if (event.id === 'cancel') { // this is the same id field from the static navigatorButtons definition
                 this.goBack();
@@ -79,9 +79,8 @@ export default class WritePage extends Component {
                 this._writePress()
             }
         }
-        if (event.selectedTabIndex === 2 && this.props.tabOpen) {
+        if (event.id === 'willAppear' && this.props.tabOpen) {
             this.contentInput.focus();
-            this.tabIndexToSelect = !event.unselectedTabIndex || event.unselectedTabIndex === 2 ? 0 : event.unselectedTabIndex;
             this._loadBooks().done();
         }
         if (event.id === 'backPress') {
@@ -311,7 +310,7 @@ export default class WritePage extends Component {
         //Api.clearTempDraft();     //TODO
         if (this.props.tabOpen) {
             this.props.navigator.switchToTab({
-                tabIndex: this.tabIndexToSelect
+                tabIndex: 0,
             });
             this.setState({
                 modalVisible: false,

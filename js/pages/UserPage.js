@@ -44,6 +44,7 @@ export default class UserPage extends Component {
     }
 
     onNavigatorEvent(event) {
+        console.log('UserPage.onNavigatorEvent', event);
         if (event.id === 'willAppear') {
             this.setState({
                 visible: true,
