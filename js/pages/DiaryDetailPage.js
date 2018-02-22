@@ -44,7 +44,7 @@ export default class DiaryDetailPage extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         InteractionManager.runAfterInteractions(() => {
             let load;
             if (!this.state.diary) {

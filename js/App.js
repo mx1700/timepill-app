@@ -25,7 +25,7 @@ async function appStart() {
         right: 0 // optional, default is 0.
     };
 
-    Navigation.startTabBasedApp({
+    await Navigation.startTabBasedApp({
         tabs: [
             {
                 // label: '首页',
@@ -138,5 +138,5 @@ async function appStart() {
 }
 
 export default () => {
-    appStart();
+    appStart().done();
 }

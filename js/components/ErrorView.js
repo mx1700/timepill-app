@@ -28,7 +28,7 @@ errorView.propTypes = {
     text: PropTypes.string.isRequired,
     buttonText: PropTypes.string,
     onButtonPress: PropTypes.func,
-    style: View.propTypes.style,
+    // style: View.propTypes.style,
 };
 
 export default errorView

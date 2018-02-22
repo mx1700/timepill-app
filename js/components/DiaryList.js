@@ -50,11 +50,11 @@ export default class DiaryList extends Component {
         };
     }
 
-    componentWillMount(){
+    componentDidMount(){
         //TODO:检查token是否存在
         if (this.props.autoLoad) {
             InteractionManager.runAfterInteractions(() => {
-                this.refresh();
+                this.refresh().done();
             });
         }
     }

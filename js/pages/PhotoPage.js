@@ -36,9 +36,6 @@ export default class PhotoPage extends Component {
         // let url = diary.photoUrl.replace('w640', 'w640-q75');
     }
 
-    componentWillMount() {
-    }
-
     close() {
         this.props.navigator.pop({
             animated: true,
