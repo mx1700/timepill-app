@@ -17,6 +17,7 @@ import Diary from '../components/Diary'
 import ErrorView from '../components/ErrorView'
 import moment from 'moment'
 import Touchable from "../components/TPTouchable";
+import LocalIcons from "../common/LocalIcons";
 
 export default class NotebookPage extends Component {
     constructor(props) {
@@ -43,10 +44,27 @@ export default class NotebookPage extends Component {
     }
 
     componentDidMount(){
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+
         this._loadSelf().done();
         InteractionManager.runAfterInteractions(() => {
             this._loadDiaries(this.state.page).done();
         });
+    }
+
+    onNavigatorEvent(event) {
+        if (event.type === 'NavBarButtonPress') {
+            if(event.id === 'setting') {
+                //TODO:修改日记本页面
+                this.props.navigator.push({
+                    screen: 'NotebookAdd',
+                    title: '创建日记本',
+                    passProps: {
+                        notebook: this.state.notebook
+                    }
+                });
+            }
+        }
     }
 
     _onRefresh() {
@@ -58,7 +76,14 @@ export default class NotebookPage extends Component {
         const isSelf = this.state.notebook.user_id === user.id;
         this.setState({
             isSelf: isSelf
-        })
+        });
+
+        if(isSelf) {
+            this.props.navigator.setButtons({
+                rightButtons: [{ id: 'setting', icon: LocalIcons.navButtonNotebookSetting }],
+                animated: false
+            });
+        }
     }
 
     async _loadDiaries(page) {

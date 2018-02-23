@@ -196,9 +196,9 @@ export default class WritePage extends Component {
             width = Math.sqrt(oWidth * maxPixel / oHeight);
             height = Math.sqrt(oHeight * maxPixel / oWidth);
         }
-        console.log('resize to :', width, height);
+        // console.log('resize to :', width, height);
         const newUri = await ImageResizer.createResizedImage(uri, width, height, 'JPEG', 80);
-        console.log('resizePhoto:' + newUri.uri);
+        // console.log('resizePhoto:' + newUri.uri);
         return 'file://' + newUri.uri;
     }
 

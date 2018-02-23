@@ -25,6 +25,7 @@ let Icons = {
     navButtonFollowSelected: null,
     navButtonMore: null,
     navButtonSetting: null,
+    navButtonNotebookSetting: null,
 };
 
 const outline = Platform.OS === 'ios' ? '-outline' : '';
@@ -55,9 +56,9 @@ async function loadIcon() {
 
         Icon.getImageSource('ios-heart-outline', 26, iconColor),
         Icon.getImageSource('ios-heart', 26, "#d9534f"),
-        Platform.OS === 'ios' ? Icon.getImageSource('ios-more', 26, iconColor)
-            : Icon.getImageSource('md-more', 26, iconColor),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-more' : 'md-more', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26, iconColor),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-switch-outline' : 'ios-switch', 26, iconColor),
     ]);
 
     let index = 0;

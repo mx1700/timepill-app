@@ -25,6 +25,7 @@ import Toast from 'react-native-root-toast';
 import * as TimeHelper from "../common/TimeHelper";
 import {colors as TPColors} from "../Styles";
 import LocalIcons from "../common/LocalIcons";
+import ActionSheet from 'react-native-actionsheet-api';
 
 const dismissKeyboard = require('dismissKeyboard');
 
@@ -174,7 +175,7 @@ export default class NotebookAddPage extends Component {
     }
 
     _editCover() {
-        ActionSheetIOS.showActionSheetWithOptions({
+        ActionSheet.showActionSheetWithOptions({
             options: ['拍照', '从相册选择', '取消'],
             cancelButtonIndex: 2,
             title: '设置封面'
@@ -249,7 +250,7 @@ export default class NotebookAddPage extends Component {
         }
         //console.log('resize to :', width, height);
         const newUri = await ImageResizer.createResizedImage(uri, width, height, 'JPEG', 75);
-        return 'file://' + newUri;
+        return 'file://' + newUri.uri;
     }
 
     _deleteBook() {
@@ -257,7 +258,7 @@ export default class NotebookAddPage extends Component {
             .then(() => {
                 // NotificationCenter.trigger('onAddNotebook');     //TODO
                 Alert.alert('提示', '日记本已删除', [{text: '好', onPress: () =>  {
-                    this.props.navigator.popToTop();
+                    this.props.navigator.popToRoot();
                 }}]);
             })
             .catch((err) => {
@@ -374,6 +375,8 @@ export default class NotebookAddPage extends Component {
                         <Switch
                             value={this.state.pub}
                             onValueChange={(v) => this.setState({pub: v})}
+                            onTintColor={TPColors.textSelect}
+                            thumbTintColor={Platform.OS === 'android' && this.state.pub ? TPColors.light : null}
                         />
                     </View>
                 </View>
