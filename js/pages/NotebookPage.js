@@ -60,12 +60,20 @@ export default class NotebookPage extends Component {
                     screen: 'NotebookAdd',
                     title: '创建日记本',
                     passProps: {
-                        notebook: this.state.notebook
+                        notebook: this.state.notebook,
+                        onSaved: this.notebookUpdate
                     }
                 });
             }
         }
     }
+
+    notebookUpdate = (book) => {
+        this.setState({notebook: book});
+        this.props.navigator.setTitle({
+            title: `《${book.subject}》`
+        });
+    };
 
     _onRefresh() {
         this._loadDiaries(1).done()

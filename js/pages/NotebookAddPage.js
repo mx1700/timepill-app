@@ -16,7 +16,7 @@ import {
     Switch,
     InteractionManager,
     ActionSheetIOS,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback, DeviceEventEmitter
 } from 'react-native';
 import * as Api from '../Api'
 import ImagePicker from 'react-native-image-crop-picker'
@@ -26,6 +26,7 @@ import * as TimeHelper from "../common/TimeHelper";
 import {colors as TPColors} from "../Styles";
 import LocalIcons from "../common/LocalIcons";
 import ActionSheet from 'react-native-actionsheet-api';
+import Events from "../Events";
 
 const dismissKeyboard = require('dismissKeyboard');
 
@@ -134,9 +135,10 @@ export default class NotebookAddPage extends Component {
                     this.props.onCreated(book);
                 }
                 if (this.props.onSaved) {
-                    this.props.onSaved(book);   //TODO:回调
+                    this.props.onSaved(book);
                 }
-                // NotificationCenter.trigger('onAddNotebook'); //TODO
+                DeviceEventEmitter.emit(Events.updateNotebooks);
+
                 Toast.show(!this.props.notebook ? '创建完成' : '保存完成', {
                     duration: 2000,
                     position: -80,
@@ -221,10 +223,10 @@ export default class NotebookAddPage extends Component {
             if (this.props.onCreated) {
                 this.props.onCreated(book);
             }
-            if (this.props.onSaved) {   //TODO:
+            if (this.props.onSaved) {
                 this.props.onSaved(book);
             }
-            // NotificationCenter.trigger('onAddNotebook'); //TODO
+            DeviceEventEmitter.emit(Events.updateNotebooks);
         } else {
             Toast.show("封面保存失败\n" + error.message, {
                 duration: 2000,
@@ -256,7 +258,7 @@ export default class NotebookAddPage extends Component {
     _deleteBook() {
         Api.deleteNotebook(this.props.notebook.id)
             .then(() => {
-                // NotificationCenter.trigger('onAddNotebook');     //TODO
+                DeviceEventEmitter.emit(Events.updateNotebooks);
                 Alert.alert('提示', '日记本已删除', [{text: '好', onPress: () =>  {
                     this.props.navigator.popToRoot();
                 }}]);
