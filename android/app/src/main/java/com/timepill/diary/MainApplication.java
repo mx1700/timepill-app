@@ -34,7 +34,6 @@ public class MainApplication extends NavigationApplication {
 
   @Override
   public boolean isDebug() {
-    boolean debug = BuildConfig.DEBUG;
     // Make sure you are using BuildConfig from your own application
     return BuildConfig.DEBUG;
   }
@@ -44,7 +43,7 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>
             asList(
-//            new MainReactPackage(),
+            new MainReactPackage(),
             new FabricPackage(),
             new JPushPackage(!BuildConfig.DEBUG, !BuildConfig.DEBUG),
             new RNDeviceInfo(),
