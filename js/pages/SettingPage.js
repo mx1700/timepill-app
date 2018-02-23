@@ -186,10 +186,10 @@ export default class SettingPage extends Component {
                         style={styles.item}
                         onPress={() =>
                             this.props.navigator.push({
-                                name: 'AboutPage',
-                                component: AboutPage,
-                            })}
-                    >
+                                screen: 'About',
+                                title: '关于',
+                            })
+                        }>
                         <Text style={styles.title}>关于</Text>
                         {badge}
                         <Icon name="ios-arrow-forward" style={styles.arrow} size={18}/>

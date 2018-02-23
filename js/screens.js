@@ -16,6 +16,7 @@ import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import TestPage from "./pages/TestPage";
 import NotebookAddPage from "./pages/NotebookAddPage";
 import SettingPage from "./pages/SettingPage";
+import AboutPage from "./pages/AboutPage";
 
 
 /**
@@ -67,6 +68,7 @@ export function registerScreens() {
     Navigation.registerComponent('Notebook', () => NotebookPage);
     Navigation.registerComponent('NotebookAdd', () => NotebookAddPage);
     Navigation.registerComponent('Setting', () => SettingPage);
+    Navigation.registerComponent('About', () => AboutPage);
 
     Navigation.registerComponent('Test', () => TestPage);
 
