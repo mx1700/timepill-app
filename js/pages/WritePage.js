@@ -294,9 +294,9 @@ export default class WritePage extends Component {
 
             InteractionManager.runAfterInteractions(() => {
                 DeviceEventEmitter.emit(Events.writeDiary);
-                // if (this.props.topic) {
-                //     NotificationCenter.trigger('onWriteTopicDiary'); //TODO
-                // }
+                if (this.props.topic) {
+                    DeviceEventEmitter.emit(Events.writeTopicDiary);
+                }
                 // const type = photoUri == null ? 'text' : 'photo';
                 // Answers.logCustom('WriteDiary', {type: type});   //TODO:统计
                 if (this.props.onSuccess) {
