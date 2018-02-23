@@ -204,16 +204,15 @@ export default class WritePage extends Component {
 
     _createBook() {
         this.closeModal(false);
-        //TODO:创建日记本
-        // InteractionManager.runAfterInteractions(() => {
-        //     this.props.navigator.push({
-        //         name: 'NotebookAddPage',
-        //         component: NotebookAddPage,
-        //         params: {
-        //             onCreated: this._setCreatedBook.bind(this)
-        //         }
-        //     });
-        // });
+        InteractionManager.runAfterInteractions(() => {
+            this.props.navigator.push({
+                screen: 'NotebookAdd',
+                title: '创建日记本',
+                passProps: {
+                    onCreated: this._setCreatedBook.bind(this)
+                }
+            });
+        });
     }
 
     openPhoto = (uri) => {
