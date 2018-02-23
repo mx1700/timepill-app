@@ -38,11 +38,11 @@ export default class HomePage extends React.Component {
         console.log(info, VERSION);
         if (info.lastestVersion > VERSION) {
             Alert.alert(
-                '发现新版本：v' + info.lastestVersion,
+                '发现新版本 v' + info.lastestVersion,
                 info.message,
                 [
                     {text: '以后再说', onPress: () => console.log('Ask me later pressed')},
-                    {text: '更新', onPress: () => this.downloadApk(info.apkUrl,)},
+                    {text: '更新', onPress: () => this.downloadApk(info.apkUrl, info.lastestVersion)},
                 ],
                 { cancelable: false }
             )
