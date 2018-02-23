@@ -146,8 +146,8 @@ export default class SettingPage extends Component {
                     <TouchableOpacity
                         style={styles.item}
                         onPress={() => this.props.navigator.push({
-                            name: 'UserIntroEdit',
-                            component: UserIntroEdit,
+                            screen: 'UserEdit',
+                            title: '修改信息',
                         })}
                     >
                         <Text style={styles.title}>修改个人信息</Text>

@@ -17,6 +17,7 @@ import TestPage from "./pages/TestPage";
 import NotebookAddPage from "./pages/NotebookAddPage";
 import SettingPage from "./pages/SettingPage";
 import AboutPage from "./pages/AboutPage";
+import UserEditPage, {EditIntroPage, EditNamePage} from "./pages/UserEditPage";
 
 
 /**
@@ -69,6 +70,10 @@ export function registerScreens() {
     Navigation.registerComponent('NotebookAdd', () => NotebookAddPage);
     Navigation.registerComponent('Setting', () => SettingPage);
     Navigation.registerComponent('About', () => AboutPage);
+
+    Navigation.registerComponent('UserEdit', () => UserEditPage);
+    Navigation.registerComponent('EditName', () => EditNamePage);
+    Navigation.registerComponent('EditIntro', () => EditIntroPage);
 
     Navigation.registerComponent('Test', () => TestPage);
 
