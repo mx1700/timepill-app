@@ -11,7 +11,8 @@ const OS_VERSION = DeviceInfo.getSystemVersion();
 const DEVICE_ID = DeviceInfo.getUniqueID();
 const VERSION = DeviceInfo.getVersion();
 
-console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
+// console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
+const APP_INFO_URL = "https://raw.githubusercontent.com/mx1700/timepill-app/master/app.json";
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
   return call('GET', '/diaries/today?page=' + page + '&page_size=' + page_size + `&first_id=${first_id}`)
@@ -318,6 +319,26 @@ export async function getSetting(name) {
 
 export async function getSettings() {
   return TokenManager.getSettings()
+}
+
+export async function getServerAppInfo(_timeout = 10000) {
+    return timeout(fetch(APP_INFO_URL, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-TP-OS': OS,
+                'X-TP-OS-Version': OS_VERSION,
+                'X-TP-Version': VERSION,
+                'X-Device-ID': DEVICE_ID,
+            },
+            body: null
+        })
+            .then(checkStatus)
+            .then((response) => response.json())
+            .catch(handleCatch)
+        ,
+        _timeout);
 }
 
 //==========================================================================

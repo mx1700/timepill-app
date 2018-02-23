@@ -3,11 +3,11 @@
   "displayName": "胶囊日记",
   "updateInfo": {
     "android": {
-      "lastest_version": "1.1",
-      "lastest_version_code": 2,
+      "lastestVersion": "1.1",
+      "lastestVersionCode": 2,
       "forceUpdate": false,
       "message": "提高稳定性",
-      "apk_url": ""
+      "apkUrl": "https://github.com/mx1700/timepill-app/releases/download/1.0/app-release.apk"
     },
     "ios": {}
   }
