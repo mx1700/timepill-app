@@ -44,7 +44,6 @@ export default class UserPage extends Component {
     }
 
     onNavigatorEvent(event) {
-        console.log('UserPage.onNavigatorEvent', event);
         if (event.id === 'willAppear') {
             this.setState({
                 visible: true,
@@ -59,6 +58,14 @@ export default class UserPage extends Component {
         }
         if (event.type === 'NavBarButtonPress' && event.id === 'follow') {
             this.updateRelation().done();
+        }
+        if (event.type === 'NavBarButtonPress') {
+            if (event.id === 'setting') {
+                this.props.navigator.push({
+                    screen: 'Setting',
+                    title: '设置',
+                });
+            }
         }
     }
 
@@ -92,9 +99,7 @@ export default class UserPage extends Component {
     }
 
     async loadNavButtons() {
-        console.log('loadNavButtons');
         if (this.props.isMyself) {
-            console.log('loadNavButtons isMyself');
             this.props.navigator.setButtons({
                 rightButtons: [{ id: 'setting', icon: LocalIcons.navButtonSetting }],
                 animated: false

@@ -7,4 +7,7 @@ export default {
     login: 'login',
     updateUserInfo: 'updateUserInfo',
     updateNotebooks: 'updateNotebooks',
+
+    onReadUpdateNews: 'onReadUpdateNews',
+    onUpdateStartupPassword: 'onUpdateStartupPassword',
 }
