@@ -6,15 +6,16 @@ import {
     ActivityIndicator,
     InteractionManager,
     Alert,
-    View, DeviceEventEmitter,
+    View, DeviceEventEmitter, Text,
 } from 'react-native';
 import * as Api from '../Api'
-import Notebook from './Notebook'
+import Notebook, { AddBookView } from './Notebook'
 import Events from "../Events";
 import GridView from "./GridView";
 import PropTypes from 'prop-types';
 
 const EmptyBook = "EmptyBook";
+const AddBook = "AddBook";
 
 export default class UserBooks extends Component {
 
@@ -76,6 +77,10 @@ export default class UserBooks extends Component {
             });
         }
 
+        if (this.props.mySelf) {    //如果是自己，则插入一个添加日记本的按钮
+            books.unshift(AddBook)
+        }
+
         if (books.length % 2 === 1) {    //为了向左对齐，插入一个空日记本
             books.push(EmptyBook);
         }
@@ -84,7 +89,6 @@ export default class UserBooks extends Component {
             books: books,
             refreshing: false,
         });
-        //console.log(books);
     }
 
     _bookPress(book) {
@@ -94,6 +98,13 @@ export default class UserBooks extends Component {
             passProps: { notebook: book },
         });
     }
+
+    _addPress = () => {
+        this.props.navigator.push({
+            screen: 'NotebookAdd',
+            title: '创建日记本',
+        });
+    };
 
     render() {
         return (
@@ -120,10 +131,12 @@ export default class UserBooks extends Component {
     }
 
     _renderBook(book) {
-        if (EmptyBook !== book) {
-            return <Notebook key={book.id} book={book} style={{marginBottom: 15}} onPress={() => this._bookPress(book)} />
-        } else {
+        if (book === AddBook) {
+            return (<AddBookView key="AddBook" onPress={this._addPress} style={{marginBottom: 15}} />)
+        } else if(book === EmptyBook) {
             return <View key="EmptyBook" style={{width: 140}} />
+        } else {
+            return <Notebook key={book.id} book={book} style={{marginBottom: 15}} onPress={() => this._bookPress(book)} />
         }
     }
 }

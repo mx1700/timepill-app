@@ -6,9 +6,10 @@ import {
     TouchableOpacity,
     Image, ImageBackground
 } from 'react-native';
-import {colors} from "../Styles";
+import {colors as Colors, colors} from "../Styles";
+import Icon from 'react-native-vector-icons/Ionicons.js';
 
-function bookView(props) {
+export default function bookView(props) {
     const book = props.book;
     const exp = book.isExpired ? '已过期' : '未过期';
     const label = book.isPublic ? null : (
@@ -48,4 +49,26 @@ function bookView(props) {
     )
 }
 
-module.exports = bookView;
+export function AddBookView(props) {
+    return (
+        <TouchableOpacity {...props} activeOpacity={0.7}>
+        <View style={{
+            width: 140,
+            flex:1,
+            shadowColor: '#444',
+            shadowOpacity: 0.1,
+            shadowOffset: { width: 0, height: 0 },
+            elevation: 1,
+            backgroundColor: "#eee",
+            alignItems:'center',
+            justifyContent: 'center',
+            margin:3,
+        }}>
+            <Icon name="md-add"
+                  size={48}
+                  color={Colors.inactiveText}
+            />
+        </View>
+        </TouchableOpacity>
+    )
+}
