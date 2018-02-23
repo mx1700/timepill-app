@@ -81,7 +81,10 @@ export default class UserPage extends Component {
             this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
                 this.diaryList && this.diaryList.refresh()  //页面懒加载，可能list还没加载完成
             });
-            this.deleteListener = DeviceEventEmitter.addListener(Events.diaryDelete, () => {
+            this.deleteListener = DeviceEventEmitter.addListener(Events.deleteDiary, () => {
+                this.diaryList && this.diaryList.refresh()
+            });
+            this.deleteListener = DeviceEventEmitter.addListener(Events.writeDiary, () => {
                 this.diaryList && this.diaryList.refresh()
             });
         }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     Text, View, BackHandler, BackAndroid, InteractionManager, Alert, Animated, Modal,
     TextInput, ActivityIndicator, Easing, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, ScrollView, Image,
-    CameraRoll, Platform, StatusBar
+    CameraRoll, Platform, StatusBar, DeviceEventEmitter
 } from "react-native";
 import LocalIcons from '../common/LocalIcons'
 import * as Api from "../Api";
@@ -16,6 +16,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import ActionSheet from 'react-native-actionsheet-api';
 import ImageResizer from "react-native-image-resizer";
 import Toast from 'react-native-root-toast';
+import Events from "../Events";
 
 export default class WritePage extends Component {
 
@@ -292,9 +293,9 @@ export default class WritePage extends Component {
             this.goBack();
 
             InteractionManager.runAfterInteractions(() => {
-                // NotificationCenter.trigger('onWriteDiary');      //TODO:触发事件
+                DeviceEventEmitter.emit(Events.writeDiary);
                 // if (this.props.topic) {
-                //     NotificationCenter.trigger('onWriteTopicDiary');
+                //     NotificationCenter.trigger('onWriteTopicDiary'); //TODO
                 // }
                 // const type = photoUri == null ? 'text' : 'photo';
                 // Answers.logCustom('WriteDiary', {type: type});   //TODO:统计

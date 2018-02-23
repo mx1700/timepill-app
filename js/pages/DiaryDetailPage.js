@@ -335,7 +335,7 @@ export default class DiaryDetailPage extends React.Component {
             return;
         }
         Alert.alert('提示', '日记已删除', [{text: '好', onPress: () => this.props.navigator.pop()}]);
-        DeviceEventEmitter.emit(Events.diaryDelete);
+        DeviceEventEmitter.emit(Events.deleteDiary);
     }
 
     _editSuccess = (r) => {
