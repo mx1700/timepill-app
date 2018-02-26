@@ -118,7 +118,7 @@ async function appStart() {
             //android only
             navigationBarColor: '#FFF',
             statusBarColor: '#efefef',
-            navBarHeight: 56,
+            // navBarHeight: 56,
             // navBarNoBorder: false,
             topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
 
