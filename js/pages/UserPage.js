@@ -106,7 +106,12 @@ export default class UserPage extends Component {
             });
         } else {
             const uid = this.getId();
-            const rel = await Api.getRelation(uid);
+            let rel = null;
+            try {
+                rel = await Api.getRelation(uid);
+            } catch(err) {
+
+            }
             this.followed = rel;
             const icon = rel ? LocalIcons.navButtonFollowSelected : LocalIcons.navButtonFollow;
             this.props.navigator.setButtons({

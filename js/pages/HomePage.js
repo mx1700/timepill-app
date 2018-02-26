@@ -31,22 +31,27 @@ export default class HomePage extends React.Component {
     }
 
     async updateAndroid() {
-        let info = await Api.getServerAppInfo();
-        console.log(info);
-        info = info.updateInfo.android;
-        const VERSION = DeviceInfo.getVersion();
-        console.log(info, VERSION);
-        if (info.lastestVersion > VERSION) {
-            Alert.alert(
-                '发现新版本 v' + info.lastestVersion,
-                info.message,
-                [
-                    {text: '以后再说', onPress: () => console.log('Ask me later pressed')},
-                    {text: '更新', onPress: () => this.downloadApk(info.apkUrl, info.lastestVersion)},
-                ],
-                { cancelable: false }
-            )
+        try {
+            let info = await Api.getServerAppInfo();
+            // console.log(info);
+            info = info.updateInfo.android;
+            const VERSION = DeviceInfo.getVersion();
+            // console.log(info, VERSION);
+            if (info.lastestVersion > VERSION) {
+                Alert.alert(
+                    '发现新版本 v' + info.lastestVersion,
+                    info.message,
+                    [
+                        {text: '以后再说', onPress: () => console.log('Ask me later pressed')},
+                        {text: '更新', onPress: () => this.downloadApk(info.apkUrl, info.lastestVersion)},
+                    ],
+                    { cancelable: false }
+                )
+            }
+        } catch (err) {
+            //TODO:上报异常
         }
+
     }
 
     downloadApk(url, version) {

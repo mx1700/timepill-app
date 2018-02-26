@@ -260,7 +260,7 @@ export default class WritePage extends Component {
         let photoUri = this.state.photoUri;
         let r = null;
         try {
-            const  topic = this.props.topic ? 1 : 0;
+            const topic = this.props.topic ? 1 : 0;
             r = this.props.diary == null
                 ? await Api.addDiary(this.state.selectBookId,
                     this.state.content,
