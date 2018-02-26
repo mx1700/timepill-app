@@ -19,7 +19,8 @@ export default class HomePage extends React.Component {
     };
 
     componentWillMount() {
-        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => this.list.refresh())
+        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => this.list.refresh());
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
     componentWillUnmount() {
@@ -28,6 +29,13 @@ export default class HomePage extends React.Component {
 
     componentDidMount() {
         this.updateAndroid().done()
+    }
+
+    onNavigatorEvent(event) {
+        // console.log(event);
+        if (event.id === 'bottomTabReselected') {
+            this.list.scrollToTop();
+        }
     }
 
     async updateAndroid() {
@@ -45,7 +53,7 @@ export default class HomePage extends React.Component {
                         {text: '以后再说', onPress: () => console.log('Ask me later pressed')},
                         {text: '更新', onPress: () => this.downloadApk(info.apkUrl, info.lastestVersion)},
                     ],
-                    { cancelable: false }
+                    {cancelable: false}
                 )
             }
         } catch (err) {
@@ -57,8 +65,8 @@ export default class HomePage extends React.Component {
     downloadApk(url, version) {
         RNFetchBlob
             .config({
-                addAndroidDownloads : {
-                    useDownloadManager : true,
+                addAndroidDownloads: {
+                    useDownloadManager: true,
                     notification: true,
                     mediaScannable: true,
                     mime: 'application/vnd.android.package-archive',
@@ -76,15 +84,15 @@ export default class HomePage extends React.Component {
 
     render() {
         return (
-            <View style={{backgroundColor:'#FFFFFF'}}>
+            <View style={{backgroundColor: '#FFFFFF'}}>
                 <DiaryList
-                    ref={(r) => this.list = r }
+                    ref={(r) => this.list = r}
                     dataSource={new HomeListData()}
                     openLogin={true}
                     ListHeaderComponent={() => {
                         return (<View style={{paddingTop: HEADER_PADDING, paddingHorizontal: 20}}>
                             <Text style={{color: colors.inactiveText, fontSize: 14, height: 16}}>1月27日</Text>
-                            <Text style={{fontSize:30, color: colors.text, height: 40}}>Today</Text>
+                            <Text style={{fontSize: 30, color: colors.text, height: 40}}>Today</Text>
                         </View>)
                     }}
                     navigator={this.props.navigator}

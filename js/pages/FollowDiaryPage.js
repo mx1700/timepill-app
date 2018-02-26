@@ -16,11 +16,19 @@ export default class FollowDiaryPage extends React.Component {
     };
 
     componentWillMount() {
-        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => this.list.refresh())
+        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => this.list.refresh());
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
     componentWillUnmount() {
         this.loginListener.remove();
+    }
+
+    onNavigatorEvent(event) {
+        // console.log(event);
+        if (event.id === 'bottomTabReselected') {
+            this.list.scrollToTop();
+        }
     }
 
     render() {

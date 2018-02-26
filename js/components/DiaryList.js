@@ -59,6 +59,14 @@ export default class DiaryList extends Component {
         }
     }
 
+    scrollToTop() {
+        if (!this.list) return;
+        this.list.scrollToOffset({
+            offset: 0,
+            animated: true,
+        });
+    }
+
     async refresh() {
         if (this.state.refreshing) {
             return;
@@ -233,6 +241,7 @@ export default class DiaryList extends Component {
         return (
             <View>
                 <FlatList
+                    ref={(r) => { this.list = r; }}
                     style={{backgroundColor: 'white'}}
                     data={this.state.diaries}
                     keyExtractor={(item, index) => {
