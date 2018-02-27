@@ -13,11 +13,9 @@ import {
 } from 'react-native';
 import * as Api from '../Api'
 import Icon from 'react-native-vector-icons/Ionicons';
-// import UserIntroEdit from './UserIntroEdit'
-// import AboutPage from './AboutPage'
-// import PasswordPage from './PasswordPage'
 import JPushModule from 'jpush-react-native'
 import {colors as TPColors} from "../Styles";
+import {startLoginPage} from "../App";
 
 export default class SettingPage extends Component {
 
@@ -63,11 +61,7 @@ export default class SettingPage extends Component {
         Alert.alert('提示','确认退出登录?',[
             {text: '退出', style: 'destructive', onPress: () => {
                 Api.logout().done();
-                this.props.navigator.popToRoot();
-                    this.props.navigator.showModal({
-                        screen: "Login",
-                        title: "登录"
-                    });
+                startLoginPage().done();
             }},
             {text: '取消', onPress: () => console.log('OK Pressed!')},
         ]);

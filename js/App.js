@@ -11,13 +11,51 @@ import {colors} from "./Styles";
 import {Platform, StatusBar} from 'react-native'
 import LocalIcon from "./common/LocalIcons";
 import { loadIcon } from './common/LocalIcons';
+import * as Api from './Api'
+import Token from './TokenManager'
 
 registerScreens();
 
+function registerScreenVisibilityListener() {
+    // new ScreenVisibilityListener({
+    //     willAppear: ({screen}) => console.log(`Displaying screen ${screen}`),
+    //     didAppear: ({screen, startTime, endTime, commandType}) => console.log('screenVisibility', `Screen ${screen} displayed in ${endTime - startTime} millis [${commandType}]`),
+    //     willDisappear: ({screen}) => console.log(`Screen will disappear ${screen}`),
+    //     didDisappear: ({screen}) => console.log(`Screen disappeared ${screen}`)
+    // }).register();
+}
+registerScreenVisibilityListener();
+
+
 async function appStart() {
-
     await loadIcon();
+    //TODO:Fabric 初始化
+    //TODO:退出登录清除登录密码
+    //TODO:UserIntro 刷新用户信息
+    const password = await Api.getLoginPassword();
+    if (password) {
+        //TODO:跳转到密码页面
+        return;
+    }
 
+    const token = await Token.getToken();
+    if (!token) {
+        await startLoginPage();
+        return;
+    }
+    await startTabPage();
+}
+
+export async function startLoginPage() {
+    await Navigation.startSingleScreenApp({
+        screen: {
+            screen: 'Login',
+            title: '登录',
+        }
+    });
+}
+
+export async function startTabPage() {
     let insets = { // add this to change icon position (optional, iOS only).
         top: 6, // optional, default is 0.
         left: 0, // optional, default is 0.
@@ -125,16 +163,6 @@ async function appStart() {
             initialTabIndex: 0,
         },
     });
-
-    function registerScreenVisibilityListener() {
-        // new ScreenVisibilityListener({
-        //     willAppear: ({screen}) => console.log(`Displaying screen ${screen}`),
-        //     didAppear: ({screen, startTime, endTime, commandType}) => console.log('screenVisibility', `Screen ${screen} displayed in ${endTime - startTime} millis [${commandType}]`),
-        //     willDisappear: ({screen}) => console.log(`Screen will disappear ${screen}`),
-        //     didDisappear: ({screen}) => console.log(`Screen disappeared ${screen}`)
-        // }).register();
-    }
-    registerScreenVisibilityListener();
 }
 
 export default () => {

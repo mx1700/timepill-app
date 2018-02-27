@@ -18,12 +18,11 @@ import {
 import * as Api from '../Api'
 import { colors } from "../Styles";
 import TPButton from '../components/TPButton';
-import { NavigationActions } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Toast from 'react-native-root-toast';
 import {FormInput} from "react-native-elements";
 import Events from "../Events";
-import {Navigation} from "react-native-navigation";
+import {startTabPage} from "../App";
 
 // var Fabric = require('react-native-fabric');
 // var { Answers } = Fabric;
@@ -91,7 +90,7 @@ export default class LoginPage extends Component {
     }
 
     _passwordSubmit() {
-        this._click()
+        this._click().done()
     }
 
     async _click() {
@@ -125,9 +124,9 @@ export default class LoginPage extends Component {
         }
 
         if(this.state.isLoginPage) {
-            this.login()
+            this.login().done()
         } else {
-            this.register()
+            this.register().done()
         }
     }
 
@@ -145,7 +144,7 @@ export default class LoginPage extends Component {
         setTimeout(() => {
             if (result) {
                 DeviceEventEmitter.emit(Events.login, { user: result });
-                Navigation.dismissAllModals();
+                startTabPage().done();
             } else {
                 Alert.alert(
                     '账号或密码不正确',
@@ -174,7 +173,7 @@ export default class LoginPage extends Component {
             if (result) {
                 //Answers.log注册('Email', true);
                 DeviceEventEmitter.emit(Events.login, { user: result });
-                Navigation.dismissAllModals();
+                startTabPage().done();
             } else {
                 //Answers.logLogin('Email', false);
                 // Answers.logCustom('RegisterError', {message: errMsg});
