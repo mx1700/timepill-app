@@ -65,7 +65,7 @@ export async function startPasswordPage() {
         },
         passProps: {
             type: 'login'
-        }
+        },
     });
 }
 
@@ -176,7 +176,8 @@ export async function startTabPage() {
 
             initialTabIndex: 0,
         },
-    });
+        animationType: 'none'
+    })
 }
 
 export default () => {
