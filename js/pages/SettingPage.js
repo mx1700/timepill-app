@@ -85,15 +85,13 @@ export default class SettingPage extends Component {
     }
 
     changePassword = () => {
-        setTimeout(() => {
-            this.props.navigator.push({ //TODO:
-                name: 'PasswordPage',
-                component: PasswordPage,
-                params: {
-                    type: 'setting'
-                }
-            })
-        }, 200);
+        this.props.navigator.push({
+            screen: 'Password',
+            title: '修改启动密码',
+            passProps: {
+                type: 'setting'
+            }
+        })
     };
 
     changePush = (val) => {
@@ -148,14 +146,14 @@ export default class SettingPage extends Component {
                         <Icon name="ios-arrow-forward" style={styles.arrow} size={18} color='#0076FF'/>
                     </TouchableOpacity>
                     <View style={styles.line} />
-                    {/*<View style={styles.item}>*/}
-                        {/*<Text style={styles.title}>启动密码</Text>*/}
-                        {/*<Switch value={this.state.hasPassword}*/}
-                                {/*onTintColor={TPColors.textSelect}*/}
-                                {/*thumbTintColor={Platform.OS === 'android' && this.state.hasPassword ? TPColors.light : null}*/}
-                                {/*onValueChange={this.changePassword} />*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.line} />*/}
+                    <View style={styles.item}>
+                        <Text style={styles.title}>启动密码</Text>
+                        <Switch value={this.state.hasPassword}
+                                onTintColor={TPColors.textSelect}
+                                thumbTintColor={Platform.OS === 'android' && this.state.hasPassword ? TPColors.light : null}
+                                onValueChange={this.changePassword} />
+                    </View>
+                    <View style={styles.line} />
                     <View style={styles.item}>
                         <Text style={styles.title}>提醒推送</Text>
                         <Switch value={this.state.settings['pushMessage']}

@@ -32,9 +32,11 @@ async function appStart() {
     //TODO:Fabric 初始化
     //TODO:退出登录清除登录密码
     //TODO:UserIntro 刷新用户信息
+    //TODO:关注自己的问题
+
     const password = await Api.getLoginPassword();
     if (password) {
-        //TODO:跳转到密码页面
+        await startPasswordPage();
         return;
     }
 
@@ -51,6 +53,18 @@ export async function startLoginPage() {
         screen: {
             screen: 'Login',
             title: '登录',
+        }
+    });
+}
+
+export async function startPasswordPage() {
+    await Navigation.startSingleScreenApp({
+        screen: {
+            screen: 'Password',
+            title: '胶囊日记',
+        },
+        passProps: {
+            type: 'login'
         }
     });
 }
