@@ -103,7 +103,7 @@ export default class WritePage extends Component {
         if (abooks.length === 0) {
             Alert.alert('提示','没有可用日记本,无法写日记',[
                 {text: '取消', onPress: () =>  this.goBack()},
-                {text: '创建一个', onPress: () => this._createBook()}   //TODO:未实现
+                {text: '创建一个', onPress: () => this._createBook()}
             ]);
             this.state.bookEmptyError = true;
             return;

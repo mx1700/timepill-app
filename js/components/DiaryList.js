@@ -51,7 +51,6 @@ export default class DiaryList extends Component {
     }
 
     componentDidMount(){
-        //TODO:检查token是否存在
         if (this.props.autoLoad) {
             InteractionManager.runAfterInteractions(() => {
                 this.refresh().done();
@@ -185,7 +184,6 @@ export default class DiaryList extends Component {
             title: '日记详情',
             passProps: { diary: diary }
         });
-        //TODO:只传 id 有问题
     }
 
     onIconPress(diary) {

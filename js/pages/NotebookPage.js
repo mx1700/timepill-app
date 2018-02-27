@@ -55,7 +55,6 @@ export default class NotebookPage extends Component {
     onNavigatorEvent(event) {
         if (event.type === 'NavBarButtonPress') {
             if(event.id === 'setting') {
-                //TODO:修改日记本页面
                 this.props.navigator.push({
                     screen: 'NotebookAdd',
                     title: '创建日记本',
