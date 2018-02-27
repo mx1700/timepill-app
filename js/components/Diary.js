@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     box: {
         overflow: "hidden",
         paddingHorizontal: 15,
-        paddingTop: 20,
+        paddingTop: 15,
         flexDirection: "row"
     },
     user_icon: {
