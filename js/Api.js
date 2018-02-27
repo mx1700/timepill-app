@@ -29,6 +29,7 @@ export async function login(username, password) {
   try {
     const user_info = await getSelfInfo();
     await TokenManager.setUser(user_info);
+    await setLoginPassword("");
     return user_info;
   } catch(err) {
     await TokenManager.setToken('');

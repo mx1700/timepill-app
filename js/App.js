@@ -30,9 +30,14 @@ registerScreenVisibilityListener();
 async function appStart() {
     await loadIcon();
     //TODO:Fabric 初始化
-    //TODO:退出登录清除登录密码
     //TODO:UserIntro 刷新用户信息
     //TODO:关注自己的问题
+
+    const token = await Token.getToken();
+    if (!token) {
+        await startLoginPage();
+        return;
+    }
 
     const password = await Api.getLoginPassword();
     if (password) {
@@ -40,11 +45,6 @@ async function appStart() {
         return;
     }
 
-    const token = await Token.getToken();
-    if (!token) {
-        await startLoginPage();
-        return;
-    }
     await startTabPage();
 }
 

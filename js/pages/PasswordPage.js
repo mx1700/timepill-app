@@ -3,7 +3,7 @@ import {
     View,
     Text,
     Alert,
-    StatusBar, DeviceEventEmitter,
+    StatusBar, DeviceEventEmitter, TouchableOpacity,
 } from 'react-native';
 import HomePage from './HomePage'
 import * as Api from '../Api'
@@ -44,7 +44,7 @@ export default class PasswordPage extends Component {
     componentDidMount() {
         if (this.props.type === 'setting') {
             Api.getLoginPassword().then((pwd) => {
-                if(pwd) {
+                if (pwd) {
                     this.setState({
                         title: '请输入密码',
                         password: null,
@@ -60,7 +60,7 @@ export default class PasswordPage extends Component {
                         password: null,
                         step: 1,
                         oldPassword: null,
-                    })
+                    });
                     this.props.navigator.setTitle({
                         title: "设置启动密码"
                     });
@@ -85,7 +85,7 @@ export default class PasswordPage extends Component {
     }
 
     _login(password) {
-        if(this.state.oldPassword === false) {
+        if (this.state.oldPassword === false) {
             Alert.alert('错误', '密码加载失败');
             return;
         }
@@ -101,7 +101,7 @@ export default class PasswordPage extends Component {
         setTimeout(() => {
             this.refs.input.clear();
         }, 200);
-        if(this.state.oldPassword === false) {
+        if (this.state.oldPassword === false) {
             Alert.alert('错误', '密码加载失败');
             return;
         }
@@ -110,7 +110,7 @@ export default class PasswordPage extends Component {
             if (this.state.oldPassword === password) {
                 this._clearPassword();
             } else {
-                Alert.alert('提示','密码不正确');
+                Alert.alert('提示', '密码不正确');
             }
         } else if (this.state.step === 1) {
             this.setState({
@@ -154,7 +154,7 @@ export default class PasswordPage extends Component {
     }
 
     _clearPassword() {
-        if(this.state.oldPassword === false) {
+        if (this.state.oldPassword === false) {
             Alert.alert('错误', '密码加载失败');
             return;
         }
@@ -173,35 +173,38 @@ export default class PasswordPage extends Component {
         })
     }
 
+    toLogin = () => {
+        this.props.navigator.push({
+            screen: 'Login',
+            title: '登录',
+        });
+    };
+
     render() {
-        // const title = this.state.step === 0
-        //     ? '取消启动密码' : '设置启动密码';
-        // const nav = this.props.type === 'setting'
-        //     ? (
-        //     <NavigationBar
-        //         title={title}
-        //         backPress={() => {
-        //             dismissKeyboard();
-        //             this.props.navigator.pop();
-        //         } }
-        //     />
-        //     ) : (
-        //     <NavigationBar
-        //         title="胶囊日记" />
-        // );
 
         const tip = this.props.type === 'setting' && this.state.step !== 0
             ? (
                 <Text style={{marginTop: 50, fontSize: 11, color: TPColors.inactiveText}}>提示: 从后台切切换前台时不需要输入密码</Text>
             ) : null;
 
+        const resetPassword = this.props.type === 'setting' ? null : (
+            <View style={{flex: 1, alignItems: "center", paddingTop: 22}}>
+                <TouchableOpacity onPress={this.toLogin}>
+                    <Text style={{fontSize: 14, color: TPColors.primary, padding: 10}}>
+                        忘记密码？通过登录重设
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        );
+
         return (
             <View style={{flex: 1, backgroundColor: '#EFEFF4'}}>
-                <StatusBar barStyle="default" />
+                <StatusBar barStyle="default"/>
                 <View style={{flex: 1, alignItems: 'center', marginTop: 60}}>
                     <Text style={{fontSize: 24}}>{this.state.title}</Text>
-                    <PasswordInput ref="input" style={{marginTop: 50}} maxLength={4} onEnd={this._onEnd.bind(this)} />
+                    <PasswordInput ref="input" style={{marginTop: 50}} maxLength={4} onEnd={this._onEnd.bind(this)}/>
                     {tip}
+                    {resetPassword}
                 </View>
             </View>
         );
