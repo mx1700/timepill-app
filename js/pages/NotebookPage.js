@@ -9,7 +9,7 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ListView
+    ListView, SectionList
 } from 'react-native';
 import * as Api from '../Api'
 import {colors} from '../Styles'
@@ -23,13 +23,9 @@ export default class NotebookPage extends Component {
     constructor(props) {
         super(props);
 
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2,
-            sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
-        });
         this.state = {
-            diaries: {},
-            diariesDateSource: ds,
+            diaries: [],
+            diariesDateSource: [],
             page: 1,
             page_size: 20,
             more: false,
@@ -57,7 +53,7 @@ export default class NotebookPage extends Component {
             if(event.id === 'setting') {
                 this.props.navigator.push({
                     screen: 'NotebookAdd',
-                    title: '创建日记本',
+                    title: '修改日记本',
                     passProps: {
                         notebook: this.state.notebook,
                         onSaved: this.notebookUpdate
@@ -109,7 +105,7 @@ export default class NotebookPage extends Component {
 
         if (data) {
             if (page === 1) {
-                this.state.diaries = {};
+                this.state.diaries = [];
             }
 
             const today = moment().format('YYYY年M月D日');
@@ -131,7 +127,7 @@ export default class NotebookPage extends Component {
 
             this.setState({
                 diaries: diaries,
-                diariesDateSource: this.state.diariesDateSource.cloneWithRowsAndSections(diaries),
+                diariesDateSource: this.getDateSource(diaries),
                 page: data.page,
                 more: data.items.length === this.state.page_size,
                 refreshing: false,
@@ -145,7 +141,7 @@ export default class NotebookPage extends Component {
                 diaries = {};
                 this.setState({
                     diaries: diaries,
-                    diariesDateSource: this.state.diariesDateSource.cloneWithRowsAndSections(diaries),
+                    diariesDateSource: this.getDateSource(diaries),
                     page: 1,
                     more: false,
                     refreshing: false,
@@ -164,6 +160,14 @@ export default class NotebookPage extends Component {
         }
     }
 
+    getDateSource(diaries) {
+        let result = [];
+        for(let title in diaries) {
+            result.push({ title: title, data: diaries[title] });
+        }
+        return result;
+    }
+
     _onEndReached(ignoreError = false) {
         if(this.state.refreshing || this.state.loading_more || !this.state.more) {
             return;
@@ -171,7 +175,7 @@ export default class NotebookPage extends Component {
         if (!ignoreError && this.state.loadMoreError) {
             return;
         }
-        this._loadDiaries(this.state.page + 1);
+        this._loadDiaries(this.state.page + 1).done();
     }
 
     _onDiaryPress(diary) {
@@ -195,19 +199,6 @@ export default class NotebookPage extends Component {
         });
     }
 
-    _toEditNotebookPage() {
-        // this.props.navigator.push({      //TODO
-        //     name: 'NotebookAddPage',
-        //     component: NotebookAddPage,
-        //     params: {
-        //         notebook: this.state.notebook,
-        //         onSaved: (book) => {
-        //             this.setState({notebook: book})
-        //         }
-        //     }
-        // })
-    }
-
     render() {
         if (this.state.emptyList) {
             return (<ErrorView text="没有日记"/>);
@@ -222,43 +213,36 @@ export default class NotebookPage extends Component {
 
     renderList() {
         return (
-            <ListView
-                dataSource={this.state.diariesDateSource}
-                renderRow={(rowData) =>
-                    <Touchable onPress={() => this._onDiaryPress(rowData)}>
-                        <Diary diary={rowData}
+            <SectionList
+                sections={this.state.diariesDateSource}
+                renderItem={(rowData) => {
+                    const diary = rowData.item;
+                    return <Touchable onPress={() => this._onDiaryPress(diary)}>
+                        <Diary diary={diary}
                                editable={this.props.editable}
                                showBookSubject={false}
                                deletable={this.props.deletable}
                                onActionPress={this._onActionPress.bind(this)}
-                               onPhotoPress={this.onPhotoPress.bind(this)}
-                               navigator={this.props.navigator} />
+                               onPhotoPress={this.onPhotoPress.bind(this)} />
                     </Touchable>
-                }
-                renderSectionHeader={(s, id) =>
-                    <View style={{
+                }}
+                keyExtractor={(item, index) => item.id}
+                renderSectionHeader={(info) => {
+                    return <View style={{
                         backgroundColor: '#F9F9F9',
                         paddingHorizontal: 15,
                         paddingVertical: 8,
                     }}>
-                        <Text style={{color: colors.text}}>{id}</Text>
+                        <Text style={{color: colors.text}}>{info.section.title}</Text>
                     </View>
-                }
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this._onRefresh.bind(this)}
-                        colors={[colors.refreshColor]}
-                        tintColor={colors.refreshColor} />
-                }
+                }}
                 onEndReached={this._onEndReached.bind(this)}
-                onEndReachedThreshold={200}
-                renderFooter={this.renderFooter.bind(this)}
-                enableEmptySections={true}
-                automaticallyAdjustContentInsets={false}
-                renderSeparator={(sectionID, rowID, adjacentRowHighlighted) =>
+                ListFooterComponent={this.renderFooter.bind(this)}
+                ItemSeparatorComponent={(sectionID, rowID, adjacentRowHighlighted) =>
                     <View key={`${sectionID}-${rowID}`} style={{borderBottomWidth: StyleSheet.hairlineWidth,
-                        borderColor: colors.line, marginHorizontal: 15}} />}
+                        borderColor: colors.line}} />}
+                SectionSeparatorComponent={() => <View style={{borderBottomWidth: StyleSheet.hairlineWidth,
+                    borderColor: colors.line}} />}
                 style={this.props.style}
             />
         );
