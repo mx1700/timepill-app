@@ -12,6 +12,8 @@ const DEVICE_ID = DeviceInfo.getUniqueID();
 const VERSION = DeviceInfo.getVersion();
 
 // console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
+const baseUrl = 'http://open.timepill.net/api';
+const BASE_URL_V2 = 'http://v2.timepill.net/api';
 const APP_INFO_URL = "https://raw.githubusercontent.com/mx1700/timepill-app/master/app.json";
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
@@ -270,6 +272,10 @@ export async function getTodayTopicDiaries(page, page_size) {
       });
 }
 
+export async function updatePushInfo() {
+    return callV2('POST', '/push');
+}
+
 
 export async function hasUnreadUpdateNews() {
   const updateVersion = await TokenManager.getUpdateVersion();
@@ -344,8 +350,6 @@ export async function getServerAppInfo(_timeout = 10000) {
 
 //==========================================================================
 
-const baseUrl = 'http://open.timepill.net/api';
-//var baseUrl = 'http://openbeta.timepill.net/api';
 async function call(method, api, body, _timeout = 10000) {
   console.log('request:', baseUrl + api, body);
   let token = await TokenManager.getToken();
@@ -374,6 +378,33 @@ async function call(method, api, body, _timeout = 10000) {
           .catch(handleCatch)
       ,
       _timeout);
+}
+
+async function callV2(method, api, body, _timeout = 10000) {
+    console.log('request:', BASE_URL_V2 + api, body);
+    let token = await TokenManager.getToken();
+    return timeout(fetch(BASE_URL_V2 + api, {
+            method: method,
+            headers: {
+                'Authorization': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-TP-OS': OS,
+                'X-TP-OS-Version': OS_VERSION,
+                'X-TP-Version': VERSION,
+                'X-Device-ID': DEVICE_ID,
+            },
+            body: body ? JSON.stringify(body) : null
+        })
+            .then((response) => {
+                console.log(BASE_URL_V2 + api, response);
+                return response;
+            })
+            .then(checkStatus)
+            .then(parseJSON)
+            .catch(handleCatch)
+        ,
+        _timeout);
 }
 
 async function upload(method, api, body) {
@@ -421,7 +452,7 @@ async function checkStatus(response) {
         message: '服务器开小差了 :('
       }
     }
-    var error = new Error(errInfo.message, errInfo.code ? errInfo.code : errInfo.status_code);
+    let error = new Error(errInfo.message, errInfo.code ? errInfo.code : errInfo.status_code);
       error.code = errInfo.code ? errInfo.code : errInfo.status_code;
     throw error
   }

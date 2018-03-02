@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {colors} from '../Styles'
 import Events from "../Events";
 import Fabric, {Crashlytics} from 'react-native-fabric';
+import {updatePushInfo} from "../Api";
 
 const LOOP_TIME_SHORT = 30 * 1000;
 const LOOP_TIME_LONG = 60 * 1000;
@@ -46,11 +47,22 @@ export default class NotificationPage extends Component {
         this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
             this.registerUser().done();
             this.restartTipTimer().done();
-        })
+        });
+        this.updatePushInfo().done()
     }
 
     componentWillUnmount() {
         this.loginListener.remove();
+    }
+
+    async updatePushInfo() {
+        let info;
+        try {
+            info = await Api.updatePushInfo()
+        } catch (err) {
+            //TODO:记录日志
+        }
+        console.log('updatePushInfo', info)
     }
 
     async restartTipTimer() {
@@ -63,7 +75,7 @@ export default class NotificationPage extends Component {
         } catch(err) {
             console.log(err);
         }
-        console.log('[message] loop time:' + this.loopTime);
+        // console.log('[message] loop time:' + this.loopTime);
         this.tipTimer = setTimeout(() => {
             this.restartTipTimer().done();
         }, this.loopTime)

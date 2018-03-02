@@ -16,6 +16,7 @@ export default class HomePage extends React.Component {
 
     static navigatorStyle = {
         navBarHidden: true,
+        // navBarHideOnScroll: true,
     };
 
     componentWillMount() {
@@ -28,7 +29,9 @@ export default class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        this.updateAndroid().done()
+        if(Platform.OS === 'android') {
+            this.updateAndroid().done()
+        }
     }
 
     onNavigatorEvent(event) {
