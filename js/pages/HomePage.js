@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {DeviceEventEmitter, Platform, StatusBar, Text, View, Alert} from "react-native";
+import {
+    DeviceEventEmitter, Platform, StatusBar, Text, View, Alert, Image, Dimensions, ImageBackground,
+    TouchableOpacity,
+} from "react-native";
 import DiaryList from '../components/DiaryList'
 import {colors} from "../Styles";
 import HomeListData from "../common/HomeListData";
@@ -8,11 +11,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import Events from "../Events";
 import * as Api from "../Api";
 import RNFetchBlob from "react-native-fetch-blob";
+import * as TimeHelper from "../common/TimeHelper";
+import TPTouchable from "../components/TPTouchable";
 const DeviceInfo = require('react-native-device-info');
 
 const HEADER_PADDING = Platform.OS === 'android' ? 20 : 40;
 
 export default class HomePage extends React.Component {
+
+    state = {
+        topic: null,
+    };
 
     static navigatorStyle = {
         navBarHidden: true,
@@ -85,20 +94,64 @@ export default class HomePage extends React.Component {
             })
     }
 
+    updateTopic = async () => {
+        let topic = null;
+        try {
+            topic = await Api.getTodayTopic();
+        } catch (err) {
+            //
+        }
+        console.log(topic);
+        if (topic) {
+            this.setState({
+                topic: topic,
+            });
+        }
+    };
+
+    openTopicPage = () => {
+
+    }
+
+    renderHeader() {
+        const {height, width} = Dimensions.get('window');
+        console.log(width);
+        const topic = this.state.topic;
+        const topicView = topic ? (
+            <TouchableOpacity onPress={this.openTopicPage} activeOpacity={0.7}>
+                <ImageBackground
+                    style={{ flex: 1, height: 240, marginTop: 15, marginBottom: 15 }}
+                    imageStyle={{ borderRadius: 18 }}
+                    source={{ uri: topic.imageUrl }} >
+                    <Text style={{ fontSize: 36, color: '#FFF', paddingHorizontal: 20, paddingVertical: 15,  textShadowColor: '#333', textShadowOffset: { width: 2, height: 2 }}} elevation={1}># {topic.title}</Text>
+                    <Text style={{ fontSize: 18, color: '#FFF', paddingHorizontal: 22, textShadowColor: '#333', textShadowOffset: { width: 1, height: 1 }}}>{topic.intro}</Text>
+                </ImageBackground>
+            </TouchableOpacity>
+        ) : null;
+
+        console.log(TimeHelper);
+        const now = TimeHelper.now();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+
+        return (<View style={{paddingTop: HEADER_PADDING, paddingHorizontal: 20}}>
+            <Text style={{color: colors.inactiveText, fontSize: 14, height: 16}} allowFontScaling={false}>{month}月{day}日</Text>
+            <Text style={{fontSize: 30, color: colors.text, height: 40}} allowFontScaling={false}>Today</Text>
+            {topicView}
+        </View>)
+    }
+
     render() {
+
         return (
             <View style={{backgroundColor: '#FFFFFF'}}>
                 <DiaryList
                     ref={(r) => this.list = r}
                     dataSource={new HomeListData()}
                     openLogin={true}
-                    ListHeaderComponent={() => {
-                        return (<View style={{paddingTop: HEADER_PADDING, paddingHorizontal: 20}}>
-                            <Text style={{color: colors.inactiveText, fontSize: 14, height: 16}}>1月27日</Text>
-                            <Text style={{fontSize: 30, color: colors.text, height: 40}}>Today</Text>
-                        </View>)
-                    }}
+                    ListHeaderComponent={this.renderHeader.bind(this)}
                     navigator={this.props.navigator}
+                    onRefreshList={this.updateTopic}
                 />
             </View>
         );

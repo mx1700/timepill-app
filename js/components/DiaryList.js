@@ -26,6 +26,7 @@ export default class DiaryList extends Component {
         editable: PropTypes.bool,
         openLogin: PropTypes.bool,  //如果接口返回没有登录，是否打开登录页
         autoLoad: PropTypes.bool,   //是否自动加载数据
+        onRefreshList: PropTypes.func,
         ...FlatList.propTypes
     };
 
@@ -72,6 +73,11 @@ export default class DiaryList extends Component {
         }
 
         this.setState({refreshing: true});
+
+        if (this.props.onRefreshList) {
+            this.props.onRefreshList();
+        }
+
         let data = null;
         try {
             data = await this.dataSource.refresh()
