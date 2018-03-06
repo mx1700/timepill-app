@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
     DeviceEventEmitter, Platform, StatusBar, Text, View, Alert, Image, Dimensions, ImageBackground,
-    TouchableOpacity,
+    TouchableOpacity, StyleSheet,
 } from "react-native";
 import DiaryList from '../components/DiaryList'
 import {colors} from "../Styles";
 import HomeListData from "../common/HomeListData";
-import navOption from "../components/NavOption";
-import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import Events from "../Events";
 import * as Api from "../Api";
 import RNFetchBlob from "react-native-fetch-blob";
@@ -110,8 +108,11 @@ export default class HomePage extends React.Component {
     };
 
     openTopicPage = () => {
-
-    }
+        this.props.navigator.push({
+            screen: 'Topic',
+            title: '话题：' + this.state.topic.title,
+        });
+    };
 
     renderHeader() {
         const {height, width} = Dimensions.get('window');
@@ -120,11 +121,11 @@ export default class HomePage extends React.Component {
         const topicView = topic ? (
             <TouchableOpacity onPress={this.openTopicPage} activeOpacity={0.7}>
                 <ImageBackground
-                    style={{ flex: 1, height: 240, marginTop: 15, marginBottom: 15 }}
+                    style={styles.topic_box}
                     imageStyle={{ borderRadius: 18 }}
                     source={{ uri: topic.imageUrl }} >
-                    <Text style={{ fontSize: 36, color: '#FFF', paddingHorizontal: 20, paddingVertical: 15,  textShadowColor: '#333', textShadowOffset: { width: 2, height: 2 }}} elevation={1}># {topic.title}</Text>
-                    <Text style={{ fontSize: 18, color: '#FFF', paddingHorizontal: 22, textShadowColor: '#333', textShadowOffset: { width: 1, height: 1 }}}>{topic.intro}</Text>
+                    <Text style={styles.topic_title} allowFontScaling={false}># {topic.title}</Text>
+                    <Text style={styles.topic_intro} allowFontScaling={false}>{topic.intro}</Text>
                 </ImageBackground>
             </TouchableOpacity>
         ) : null;
@@ -157,3 +158,29 @@ export default class HomePage extends React.Component {
         );
     }
 }
+
+
+const styles = StyleSheet.create({
+    topic_box: {
+        flex: 1,
+        height: 240,
+        marginTop: 15,
+        marginBottom: 15
+    },
+    topic_title: {
+        fontSize: 32,
+        color: '#FFF',
+        paddingHorizontal: 20,
+        paddingTop: 15,
+        paddingBottom: 10,
+        textShadowColor: '#333',
+        textShadowOffset: { width: 2, height: 2 }
+    },
+    topic_intro: {
+        fontSize: 18,
+        color: '#FFF',
+        paddingHorizontal: 22,
+        textShadowColor: '#333',
+        textShadowOffset: { width: 1, height: 1 }
+    }
+});

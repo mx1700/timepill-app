@@ -19,6 +19,7 @@ import SettingPage from "./pages/SettingPage";
 import AboutPage from "./pages/AboutPage";
 import UserEditPage, {EditIntroPage, EditNamePage} from "./pages/UserEditPage";
 import PasswordPage from "./pages/PasswordPage";
+import TopicDiaryPage from "./pages/TopicDiaryPage";
 
 
 /**
@@ -71,6 +72,8 @@ export function registerScreens() {
     Navigation.registerComponent('NotebookAdd', () => NotebookAddPage);
     Navigation.registerComponent('Setting', () => SettingPage);
     Navigation.registerComponent('About', () => AboutPage);
+    Navigation.registerComponent('Topic', () => TopicDiaryPage);
+
 
     Navigation.registerComponent('UserEdit', () => UserEditPage);
     Navigation.registerComponent('EditName', () => EditNamePage);

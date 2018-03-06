@@ -1,7 +1,7 @@
 
 export default {
-    version: 9,
-    date: '1月13日',
+    version: 3,
+    date: '3月6日',
     info: `
 1.话题功能上线
 2.消息提醒推送

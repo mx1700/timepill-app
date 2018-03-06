@@ -263,8 +263,8 @@ export async function getTodayTopic() {
   return call('GET', '/topic/');
 }
 
-export async function getTodayTopicDiaries(page, page_size) {
-  return call('GET', `/topic/diaries?page=${page}&page_size=${page_size}`)
+export async function getTodayTopicDiaries(page, page_size, first_id) {
+  return call('GET', `/topic/diaries?page=${page}&page_size=${page_size}&first_id=${first_id}`)
       .then((json) => {
         json.page = Number(json.page);
         json.page_size = Number(json.page_size);
