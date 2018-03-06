@@ -485,7 +485,7 @@ export default class WritePage extends Component {
 
         return (
             <TouchableOpacity>
-                <Text style={{color: colors.light, fontSize: 15, paddingRight: 15}}>#{this.state.topic.title}</Text>
+                <Text style={{color: colors.light, fontSize: 15, paddingRight: 15}}># {this.state.topic.title}</Text>
             </TouchableOpacity>
         )
     }

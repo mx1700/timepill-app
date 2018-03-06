@@ -26,6 +26,7 @@ let Icons = {
     navButtonMore: null,
     navButtonSetting: null,
     navButtonNotebookSetting: null,
+    navButtonWrite: null,
 };
 
 const outline = Platform.OS === 'ios' ? '-outline' : '';
@@ -59,6 +60,7 @@ async function loadIcon() {
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-more' : 'md-more', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-switch-outline' : 'ios-switch', 26, iconColor),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-create-outline' : 'ios-create', 26, iconColor),
     ]);
 
     let index = 0;

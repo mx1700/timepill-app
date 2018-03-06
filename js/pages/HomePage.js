@@ -111,6 +111,7 @@ export default class HomePage extends React.Component {
         this.props.navigator.push({
             screen: 'Topic',
             title: '话题：' + this.state.topic.title,
+            passProps: { topic: this.state.topic }
         });
     };
 

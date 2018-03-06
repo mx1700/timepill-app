@@ -91,7 +91,7 @@ export default class UserPage extends Component {
             this.deleteListener = DeviceEventEmitter.addListener(Events.deleteDiary, () => {
                 this.diaryList && this.diaryList.refresh()
             });
-            this.deleteListener = DeviceEventEmitter.addListener(Events.writeDiary, () => {
+            this.writeDiaryListener = DeviceEventEmitter.addListener(Events.writeDiary, () => {
                 this.diaryList && this.diaryList.refresh()
             });
         }
@@ -129,6 +129,7 @@ export default class UserPage extends Component {
         if (this.loginListener) {
             this.loginListener.remove();
             this.deleteListener.remove();
+            this.writeDiaryListener.remove();
         }
     }
 
