@@ -210,11 +210,12 @@ export default class DiaryDetailPage extends React.Component {
 
     _onCommentContentChange(text) {
         //console.log(text);
+        // console.log(this.state.reply_user_name, text, text.startsWith('@' + this.state.reply_user_name + ' '));
         if (this.state.reply_user_name === '') {
             this.setState({comment_content: text});
             return
         }
-        if (text.startsWith('@' + this.state.reply_user_name + ' ')) {
+        if (text.indexOf('@' + this.state.reply_user_name + ' ') === 0) {   //String.startsWith 方法有 bug https://github.com/facebook/react-native/issues/11370
             this.setState({comment_content: text});
             return
         }

@@ -17,6 +17,8 @@ const colors = {
     textSelect: '#b6d8ff',
 
     refreshColor: '#007AFF',
+
+    iconColor:'#386DB1'
 };
 
 const styles = StyleSheet.create({
