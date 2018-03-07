@@ -3,10 +3,10 @@
   "displayName": "胶囊日记",
   "updateInfo": {
     "android": {
-      "lastestVersion": "1.0.2",
+      "lastestVersion": "1.0.3",
       "forceUpdate": false,
-      "message": "1. 增加话题功能\n2. 增加推送提醒",
-      "apkUrl": "https://github.com/mx1700/timepill-app/releases/download/1.0.2/app-release.apk"
+      "message": "💀 修复了回复时候丢失被回复人的问题\n👑 新的图标！",
+      "apkUrl": "https://github.com/mx1700/timepill-app/releases/download/1.0.3/app-release.apk"
     },
     "ios": {}
   }
