@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="512"
+    android:viewportHeight="512" android:width="512dp" android:height="512dp">
+    <group>
+        <path android:fillColor="#00000000" android:name="canvas_background"
+            android:pathData="M -1,-1 L 581,-1 L 581,401 L -1,401 z" />
+    </group>
+    <group>
+        <path android:fillColor="#E6E7E8" android:name="svg_3" android:fillType="evenOdd"
+            android:pathData="m256 100.873c-39.619 0 -71.738 32.119 -71.738 71.753l0 82.116c15.938 11.091 60.209 31.695 143.477 1.455l0 -83.571c-0.001 -39.634 -32.12 -71.753 -71.739 -71.753z" />
+        <path android:fillColor="#FFFFFF" android:name="svg_16" android:strokeColor="#000000"
+            android:fillType="evenOdd"
+            android:pathData="m175.936789 250.579395l0 91.564882c0 42.833096 35.613452 77.570905 79.542882 77.570905s79.542882 -34.73781 79.542882 -77.570905l0 -89.99233c-92.326203 32.707769 -141.413756 10.422749 -159.085763 -1.572551z" />
+        <path android:fillColor="#007BFA" android:name="svg_4" android:fillType="evenOdd"
+            android:pathData="m184.262 254.742l0 84.662c0 39.604 32.119 71.723 71.738 71.723s71.738 -32.119 71.738 -71.723l0 -83.208c-83.267 30.242 -127.538 9.637 -143.476 -1.454z" />
+        <path android:fillColor="#FFFFFF" android:name="svg_5"
+            android:pathData="m297.134 192.322c-6.424 0 -11.636 -5.211 -11.636 -11.635c0 -33.923 -25.536 -35.619 -26.627 -35.68c-6.416 -0.334 -11.355 -5.803 -11.022 -12.212c0.326 -6.424 5.485 -11.484 12.22 -11.029c16.848 0.863 48.701 14.302 48.701 58.921c0 6.423 -5.212 11.635 -11.636 11.635z" />
+        <path android:fillColor="#FFFFFF" android:name="svg_15" android:strokeColor="#000000"
+            android:fillType="evenOdd"
+            android:pathData="m255.479619 92.547787c-43.929402 0 -79.542832 35.61343 -79.542832 79.559464l0 91.04992c17.671996 12.29766 66.759519 35.1433 159.086772 1.613299l0 -92.663219c-0.001109 -43.946034 -35.614538 -79.559464 -79.543941 -79.559464z" />
+        <path android:fillColor="#F1F2F2" android:name="svg_6" android:fillType="evenOdd"
+            android:pathData="m256 100.873c-39.619 0 -71.738 32.119 -71.738 71.753l0 82.116c15.938 11.091 60.209 31.695 143.477 1.455l0 -83.571c-0.001 -39.634 -32.12 -71.753 -71.739 -71.753z" />
+        <path android:fillColor="#FFFFFF" android:name="svg_7"
+            android:pathData="m297.134 192.292c-6.394 0 -11.59 -5.211 -11.59 -11.605c0 -32.18 -22.302 -35.422 -26.786 -35.726c-6.333 -0.484 -11.182 -5.939 -10.788 -12.302c0.394 -6.333 5.469 -11.333 12.105 -10.848c16.817 0.849 48.648 14.272 48.648 58.876c0.001 6.393 -5.196 11.605 -11.589 11.605z" />
+        <path android:fillColor="#0069D9" android:name="svg_8"
+            android:pathData="m184.262 254.742l0 20.06c14.09 10.242 63.496 39.543 143.279 1.697l0.197 -20.302c-83.267 30.241 -127.538 9.636 -143.476 -1.455z" />
+    </group>
+</vector>

@@ -28,10 +28,10 @@ public class MainActivity extends SplashActivity {
         LinearLayout view = new LinearLayout(this);
         TextView textView = new TextView(this);
 
-        view.setBackgroundColor(Color.parseColor("#007AFF"));
+        view.setBackgroundColor(Color.parseColor("#E5E6E7"));
         view.setGravity(Gravity.CENTER);
 
-        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setTextColor(Color.parseColor("#386DB1"));
         textView.setText("胶囊日记");
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);

@@ -209,8 +209,6 @@ export default class DiaryDetailPage extends React.Component {
     }
 
     _onCommentContentChange(text) {
-        //console.log(text);
-        // console.log(this.state.reply_user_name, text, text.startsWith('@' + this.state.reply_user_name + ' '));
         if (this.state.reply_user_name === '') {
             this.setState({comment_content: text});
             return
