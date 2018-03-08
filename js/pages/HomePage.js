@@ -82,12 +82,12 @@ export default class HomePage extends React.Component {
                     mime: 'application/vnd.android.package-archive',
                     title: '胶囊日记 v' + version,
                     description: '正在下载 ' + version + ' 版本',
-                    path: `${RNFetchBlob.fs.dirs.DownloadDir}/timepill.apk`,
+                    path: `${RNFetchBlob.fs.dirs.DownloadDir}/timepill-${version}.apk`,
                 }
             })
             .fetch('GET', url)
             .then((resp) => {
-                console.log('download ok', resp.path());
+                console.log('download ok:', resp.path());
                 RNFetchBlob.android.actionViewIntent(resp.path(), 'application/vnd.android.package-archive');
             })
     }

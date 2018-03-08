@@ -176,7 +176,7 @@ export async function startTabPage() {
 
             initialTabIndex: 0,
         },
-        animationType: 'none'
+        animationType: 'fade'
     })
 }
 

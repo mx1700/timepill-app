@@ -77,11 +77,11 @@ export default class UserBooks extends Component {
             });
         }
 
-        if (this.props.mySelf) {    //如果是自己，则插入一个添加日记本的按钮
+        if (books && this.props.mySelf) {    //如果是自己，则插入一个添加日记本的按钮
             books.unshift(AddBook)
         }
 
-        if (books.length % 2 === 1) {    //为了向左对齐，插入一个空日记本
+        if (books && books.length % 2 === 1) {    //为了向左对齐，插入一个空日记本
             books.push(EmptyBook);
         }
 
