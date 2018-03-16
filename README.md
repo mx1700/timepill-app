@@ -87,3 +87,28 @@ App 后台，或者退出后，通过通知唤起，都会进入 isApplicationRu
 NavigationActivity 的初始化时通过 MainActivity 运行的
 所以需要先获取当前激活的 Activity，如果有，则直接激活，如果没有，则启动 MainActivity
 
+## jpush 引起崩溃的问题
+
+Fatal Exception: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Object android.util.SparseArray.get(int)' on a null object reference
+       at cn.jpush.reactnativejpush.JPushModule$MyJPushMessageReceiver.onAliasOperatorResult(JPushModule.java:654)
+       at cn.jpush.android.a.a$a.run(SourceFile:76)
+       at android.os.Handler.handleCallback(Handler.java:808)
+       at android.os.Handler.dispatchMessage(Handler.java:101)
+       at android.os.Looper.loop(Looper.java:166)
+       at android.os.HandlerThread.run(HandlerThread.java:65)
+       
+修改 jpush-react-native/android/src/main/java/cn/jpush/reactnativejpush/JPushModule.java 85 行
+
+```java
+    if (null != sCacheMap) {
+         sCacheMap.clear();
+-        sCacheMap = null;                   //修改成下边
++        sCacheMap = new SparseArray<>();
+    }
+```
+
+## Debug Server 出现 While resolving module `react-native-vector-icons/Ionicons` 错误
+
+rm ./node_modules/react-native/local-cli/core/fixtures/files/package.json
+
+https://github.com/oblador/react-native-vector-icons/issues/627
