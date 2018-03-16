@@ -6,23 +6,26 @@
 
 import React, { Component } from 'react';
 import {registerScreens} from "./screens";
-import {Navigation, NativeEventsReceiver} from 'react-native-navigation';
+import {Navigation, NativeEventsReceiver, ScreenVisibilityListener} from 'react-native-navigation';
 import {colors} from "./Styles";
 import {Platform, StatusBar} from 'react-native'
 import LocalIcon from "./common/LocalIcons";
 import { loadIcon } from './common/LocalIcons';
 import * as Api from './Api'
 import Token from './TokenManager'
+import { Answers } from 'react-native-fabric';
 
 registerScreens();
 
 function registerScreenVisibilityListener() {
-    // new ScreenVisibilityListener({
-    //     willAppear: ({screen}) => console.log(`Displaying screen ${screen}`),
-    //     didAppear: ({screen, startTime, endTime, commandType}) => console.log('screenVisibility', `Screen ${screen} displayed in ${endTime - startTime} millis [${commandType}]`),
-    //     willDisappear: ({screen}) => console.log(`Screen will disappear ${screen}`),
-    //     didDisappear: ({screen}) => console.log(`Screen disappeared ${screen}`)
-    // }).register();
+    new ScreenVisibilityListener({
+        willAppear: ({screen}) => {
+            Answers.logContentView('Route:' + screen, 'Route', screen);
+        },
+        // didAppear: ({screen, startTime, endTime, commandType}) => console.log('screenVisibility', `Screen ${screen} displayed in ${endTime - startTime} millis [${commandType}]`),
+        // willDisappear: ({screen}) => console.log(`Screen will disappear ${screen}`),
+        // didDisappear: ({screen}) => console.log(`Screen disappeared ${screen}`)
+    }).register();
 }
 registerScreenVisibilityListener();
 
