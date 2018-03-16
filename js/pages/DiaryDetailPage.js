@@ -538,7 +538,7 @@ export default class DiaryDetailPage extends React.Component {
                 <TouchableOpacity onPress={() => this._onCommentActionPress(comment)}
                                   style={{ position: 'absolute', bottom: 0, right: 10, paddingHorizontal: 12, paddingVertical: 5 }}>
                     <Icon name="ios-more"
-                          size={16}
+                          size={24}
                           color={colors.inactiveText}
                           style={{ }} />
                 </TouchableOpacity>

@@ -146,7 +146,7 @@ ActionBar = (props) => {
             ? (
                 <TouchableOpacity onPress={() => props.onPress && props.onPress(diary)}>
                     <Icon name="ios-more"
-                          size={18}
+                          size={24}
                           color={colors.inactiveText}
                           style={styles.more_icon} />
                 </TouchableOpacity>
@@ -215,11 +215,13 @@ const styles = StyleSheet.create({
         marginTop: 15,
         backgroundColor: colors.spaceBackground,
         padding: 0,
+        borderRadius: 5,
     },
     photo: {
         flexGrow: 1,
         width: 160,
         height: 160,
+        borderRadius: 5,
     },
     button_icon: {
         marginRight: 8,
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
     },
     more_icon: {
         paddingVertical: 4,
-        paddingHorizontal: 15,
+        paddingHorizontal: 13,
         marginRight: 5,
     },
     action_bar: {
