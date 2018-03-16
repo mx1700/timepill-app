@@ -56,6 +56,17 @@ export async function startLoginPage() {
         screen: {
             screen: 'Login',
             title: '登录',
+        },
+        appStyle: {
+            navBarTranslucent: Platform.OS === 'ios',
+            drawUnderStatusBar: false,
+            statusBarTextColorScheme: 'dark',
+            keepStyleAcrossPush: false,     //iOS
+
+            //android only
+            navigationBarColor: '#FFF',
+            statusBarColor: '#efefef',
+            initialTabIndex: 0,
         }
     });
 }
@@ -69,6 +80,17 @@ export async function startPasswordPage() {
         passProps: {
             type: 'login'
         },
+        appStyle: {
+            navBarTranslucent: Platform.OS === 'ios',
+            drawUnderStatusBar: false,
+            statusBarTextColorScheme: 'dark',
+            keepStyleAcrossPush: false,     //iOS
+
+            //android only
+            navigationBarColor: '#FFF',
+            statusBarColor: '#efefef',
+            initialTabIndex: 0,
+        }
     });
 }
 
