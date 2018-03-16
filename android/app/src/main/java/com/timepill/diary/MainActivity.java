@@ -23,15 +23,20 @@ public class MainActivity extends SplashActivity {
 //        return "timepill";
 //    }
 
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        overridePendingTransition(R.anim.design_fab_in, R.anim.design_fab_out);
+//    }
+
     @Override
     public LinearLayout createSplashLayout() {
         LinearLayout view = new LinearLayout(this);
         TextView textView = new TextView(this);
 
-        view.setBackgroundColor(Color.parseColor("#E5E6E7"));
+        view.setBackgroundColor(Color.parseColor("#FFFFFF"));
         view.setGravity(Gravity.CENTER);
 
-        textView.setTextColor(Color.parseColor("#386DB1"));
+        textView.setTextColor(Color.parseColor("#0071E1"));
         textView.setText("胶囊日记");
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);

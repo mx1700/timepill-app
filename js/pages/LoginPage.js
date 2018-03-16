@@ -215,10 +215,6 @@ export default class LoginPage extends Component {
         ) : null;
         return (
             <View style={{flex: 1, backgroundColor: "white"}}>
-                <StatusBar
-                    backgroundColor="#FFFFFF"
-                    barStyle="dark-content"
-                />
                 <Modal
                     visible={this.state.loading}
                     onRequestClose={() => {}}

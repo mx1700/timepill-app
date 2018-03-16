@@ -199,7 +199,6 @@ export default class PasswordPage extends Component {
 
         return (
             <View style={{flex: 1, backgroundColor: '#EFEFF4'}}>
-                <StatusBar barStyle="default"/>
                 <View style={{flex: 1, alignItems: 'center', marginTop: 60}}>
                     <Text style={{fontSize: 24}}>{this.state.title}</Text>
                     <PasswordInput ref="input" style={{marginTop: 50}} maxLength={4} onEnd={this._onEnd.bind(this)}/>

@@ -66,7 +66,6 @@ export async function startLoginPage() {
             //android only
             navigationBarColor: '#FFF',
             statusBarColor: '#efefef',
-            initialTabIndex: 0,
         }
     });
 }
@@ -89,7 +88,6 @@ export async function startPasswordPage() {
             //android only
             navigationBarColor: '#FFF',
             statusBarColor: '#efefef',
-            initialTabIndex: 0,
         }
     });
 }
