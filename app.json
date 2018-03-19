@@ -3,7 +3,7 @@
   "displayName": "胶囊日记",
   "updateInfo": {
     "android": {
-      "lastestVersion": "1.0.3",
+      "lastestVersion": "1.0.4",
       "forceUpdate": false,
       "message": "💀 修复两个崩溃问题\n💀 修复启动密码无法输入的问题\n🤔 UI 细节调整\n👑 新的图标！",
       "apkUrl": "https://github.com/mx1700/timepill-app/releases/download/1.0.4/app-release.apk"
