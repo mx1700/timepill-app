@@ -4,6 +4,7 @@
 
 import TokenManager from './TokenManager'
 import UpdateInfo from './UpdateInfo';
+import {AsyncStorage} from "react-native";
 const DeviceInfo = require('react-native-device-info');
 
 const OS = DeviceInfo.getSystemName();
@@ -274,6 +275,30 @@ export async function getTodayTopicDiaries(page, page_size, first_id) {
 
 export async function updatePushInfo() {
     return callV2('POST', '/push');
+}
+
+async function getSplash() {
+    return {
+        start_time: 0,
+        end_time: 0,
+        image_url: 'http://s.timepill.net/s/w640/photos/2018-03-20/dpqqurdxp7ur2st8rxn02e9m7i0scdk2.png',
+        link: {
+            screen: 'Test',
+            passProps: {
+                a: 1,
+            }
+        }
+    };
+}
+
+export async function syncSplash() {
+    const info = await getSplash();
+    await AsyncStorage.setItem('splash', JSON.stringify(info));
+}
+
+export async function getSplashByStore() {
+    const info = await AsyncStorage.getItem('splash');
+    return info ? JSON.parse(info) : null;
 }
 
 

@@ -20,6 +20,7 @@ import AboutPage from "./pages/AboutPage";
 import UserEditPage, {EditIntroPage, EditNamePage} from "./pages/UserEditPage";
 import PasswordPage from "./pages/PasswordPage";
 import TopicDiaryPage from "./pages/TopicDiaryPage";
+import SplashPage from "./pages/SplashPage";
 
 
 /**
@@ -73,6 +74,7 @@ export function registerScreens() {
     Navigation.registerComponent('Setting', () => SettingPage);
     Navigation.registerComponent('About', () => AboutPage);
     Navigation.registerComponent('Topic', () => TopicDiaryPage);
+    Navigation.registerComponent('Splash', () => SplashPage);
 
 
     Navigation.registerComponent('UserEdit', () => UserEditPage);

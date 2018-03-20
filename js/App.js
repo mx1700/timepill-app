@@ -93,6 +93,10 @@ export async function startPasswordPage() {
 }
 
 export async function startTabPage() {
+
+    const splash = await Api.getSplashByStore();
+    console.log('1111111111111', splash);
+
     let insets = { // add this to change icon position (optional, iOS only).
         top: 6, // optional, default is 0.
         left: 0, // optional, default is 0.
@@ -111,6 +115,9 @@ export async function startTabPage() {
                 iconInsets: insets,
                 navigatorStyle: {
                     tabBarHidden: false,
+                },
+                passProps: {
+                    splash: splash
                 }
             },
             {

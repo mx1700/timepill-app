@@ -59,7 +59,7 @@ async function loadIcon() {
         Icon.getImageSource('ios-heart', 26, "#d9534f"),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-more' : 'md-more', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26, iconColor),
-        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-switch-outline' : 'ios-switch', 26, iconColor),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-switch' : 'ios-switch', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-create-outline' : 'ios-create', 26, iconColor),
     ]);
 

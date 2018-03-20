@@ -26,6 +26,23 @@ export default class HomePage extends React.Component {
         // navBarHideOnScroll: true,
     };
 
+    constructor(props) {
+        super(props);
+        //判断时间，且重复广告一天只出一次
+        if (props.splash && props.splash.image_url) {
+            // this.props.navigator.showModal({
+            //     screen: 'Splash',
+            //     animationType: 'none',
+            //     passProps: props.splash,
+            // });
+            this.props.navigator.push({
+                screen: 'Splash',
+                passProps: props.splash,
+                animationType: 'fade'
+            });
+        }
+    }
+
     componentWillMount() {
         this.loginListener = DeviceEventEmitter.addListener(Events.login, () => this.list.refresh());
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -38,6 +55,10 @@ export default class HomePage extends React.Component {
     componentDidMount() {
         if(Platform.OS === 'android') {
             this.updateAndroid().done()
+        }
+
+        if (Platform.OS === 'ios') {
+            Api.syncSplash();
         }
     }
 
@@ -53,6 +74,7 @@ export default class HomePage extends React.Component {
             let info = await Api.getServerAppInfo();
             // console.log(info);
             info = info.updateInfo.android;
+            info.lastestVersion = "1.0.4"   //TODO:删除
             const VERSION = DeviceInfo.getVersion();
             // console.log(info, VERSION);
             if (info.lastestVersion > VERSION) {
@@ -73,6 +95,7 @@ export default class HomePage extends React.Component {
     }
 
     downloadApk(url, version) {
+        console.log('updateAndroid', RNFetchBlob.fs.dirs.DownloadDir);
         RNFetchBlob
             .config({
                 addAndroidDownloads: {
