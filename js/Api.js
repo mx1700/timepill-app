@@ -279,8 +279,9 @@ export async function updatePushInfo() {
 
 async function getSplash() {
     return {
+        id: 3,
         start_time: 0,
-        end_time: 0,
+        end_time: 1521545592,
         image_url: 'http://s.timepill.net/s/w640/photos/2018-03-20/dpqqurdxp7ur2st8rxn02e9m7i0scdk2.png',
         link: {
             screen: 'Test',
@@ -293,14 +294,47 @@ async function getSplash() {
 
 export async function syncSplash() {
     const info = await getSplash();
-    await AsyncStorage.setItem('splash', JSON.stringify(info));
+    await setStore('splash', info);
 }
 
 export async function getSplashByStore() {
-    const info = await AsyncStorage.getItem('splash');
+
+    const info = await getStore('splash');
+    if (!info) {
+        return false;
+    }
+
+    const now = Date.parse( new Date()) / 1000;
+    if (info.start_time <= now && now >= info.end_time) {
+        return null;
+    }
+
+    const id = info.id;
+    const pre_show = await getStore('splash_show');
+    const today = (new Date()).getDate();
+console.log('getSplashByStore::splash_show', pre_show);
+    if (pre_show) {
+        if (pre_show.id === id && pre_show.day === today) {
+            return null;
+        }
+    }
+
+    await setStore('splash_show', {
+        id: info.id,
+        day: today,
+    });
+
+    return info;
+}
+
+async function getStore(item) {
+    const info = await AsyncStorage.getItem(item);
     return info ? JSON.parse(info) : null;
 }
 
+async function setStore(item, data) {
+    await AsyncStorage.setItem(item, JSON.stringify(data));
+}
 
 export async function hasUnreadUpdateNews() {
   const updateVersion = await TokenManager.getUpdateVersion();
