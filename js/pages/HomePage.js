@@ -28,13 +28,7 @@ export default class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
-        //判断时间，且重复广告一天只出一次
         if (props.splash && props.splash.image_url) {
-            // this.props.navigator.showModal({
-            //     screen: 'Splash',
-            //     animationType: 'none',
-            //     passProps: props.splash,
-            // });
             this.props.navigator.push({
                 screen: 'Splash',
                 passProps: props.splash,

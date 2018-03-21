@@ -27,6 +27,9 @@ let Icons = {
     navButtonSetting: null,
     navButtonNotebookSetting: null,
     navButtonWrite: null,
+
+    navButtonBack: null,
+    navButtonOpen: null,
 };
 
 const outline = Platform.OS === 'ios' ? '-outline' : '';
@@ -61,6 +64,9 @@ async function loadIcon() {
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-settings' : 'md-settings', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-switch' : 'ios-switch', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-create-outline' : 'ios-create', 26, iconColor),
+
+        Icon.getImageSource(Platform.OS === 'ios' ? 'md-arrow-back' : 'md-arrow-back', 26, iconColor),
+        Icon.getImageSource(Platform.OS === 'ios' ? 'ios-open-outline' : 'md-open', 26, iconColor),
     ]);
 
     let index = 0;

@@ -279,14 +279,14 @@ export async function updatePushInfo() {
 
 async function getSplash() {
     return {
-        id: 3,
+        id: 6,
         start_time: 0,
-        end_time: 1521545592,
+        end_time: 1522545592,
         image_url: 'http://s.timepill.net/s/w640/photos/2018-03-20/dpqqurdxp7ur2st8rxn02e9m7i0scdk2.png',
         link: {
-            screen: 'Test',
+            screen: 'WebView',
             passProps: {
-                a: 1,
+                uri: "http://www.baidu.com/",
             }
         }
     };
@@ -312,7 +312,7 @@ export async function getSplashByStore() {
     const id = info.id;
     const pre_show = await getStore('splash_show');
     const today = (new Date()).getDate();
-console.log('getSplashByStore::splash_show', pre_show);
+// console.log('getSplashByStore::splash_show', pre_show);
     if (pre_show) {
         if (pre_show.id === id && pre_show.day === today) {
             return null;
