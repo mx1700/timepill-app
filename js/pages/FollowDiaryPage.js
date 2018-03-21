@@ -6,6 +6,7 @@ import DiaryList from "../components/DiaryList";
 import navOption from "../components/NavOption";
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import Events from "../Events";
+import TPTouchable from "../components/TPTouchable";
 
 const HEADER_PADDING = Platform.OS === 'android' ? 20 : 40;
 
@@ -33,15 +34,28 @@ export default class FollowDiaryPage extends React.Component {
 
     render() {
         return (
-            <View style={{backgroundColor:'#FFFFFF'}}>
+            <View style={{backgroundColor: '#FFFFFF'}}>
                 <DiaryList
-                    ref={(r) => this.list = r }
+                    ref={(r) => this.list = r}
                     dataSource={new FollowDiaryData()}
                     ListHeaderComponent={() => {
-                        return (<View style={{paddingTop: HEADER_PADDING, paddingHorizontal: 20}}>
-                            <Text style={{color: '#FFFFFF', fontSize: 14, height: 16}}>1月27日</Text>
-                            <Text style={{fontSize:30, color: colors.text, height: 40}}>关注</Text>
-                        </View>)
+                        return (
+                            <View style={{
+                                paddingTop: HEADER_PADDING + 16,
+                                paddingHorizontal: 20,
+                                flexDirection: "row",
+                                flexGrow: 1,
+                                flexShrink: 1,
+                            }}>
+                                <Text style={{fontSize: 30, color: colors.text, height: 40, flex: 1}}>关注</Text>
+                                <TPTouchable>
+                                    <Ionicons name="ios-contacts"
+                                              size={28}
+                                              color={colors.primary}
+                                              style={{paddingVertical: 2, paddingHorizontal: 5, marginRight: -10}}/>
+                                </TPTouchable>
+                            </View>
+                        )
                     }}
                     navigator={this.props.navigator}
                 />
