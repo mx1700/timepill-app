@@ -59,7 +59,7 @@ export default class Password extends Component {
                 <View style={[styles.container,this.props.style]} >
                     <TextInput
                         style={{width: 0, padding: 0, margin: 0,}}
-                        ref='textInput'
+                        ref={(r) => this.inputText = r}
                         maxLength={this.props.maxLength}
                         autoFocus={false}
                         keyboardType={ Platform.OS === 'ios' ? "number-pad" : 'numeric'}
@@ -106,7 +106,7 @@ export default class Password extends Component {
 
     _onPress(){
         setTimeout(() => {
-            this.refs.textInput.focus();
+            this.inputText.focus();
         }, 500);
     }
 }
