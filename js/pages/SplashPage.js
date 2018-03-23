@@ -1,5 +1,8 @@
 import React, {Component} from "react";
-import {Image, ImageBackground, ScrollView, TextInput, TouchableWithoutFeedback, View} from "react-native";
+import {
+    Image, ImageBackground, Platform, ScrollView, Text, TextInput, TouchableWithoutFeedback,
+    View
+} from "react-native";
 import {colors} from "../Styles";
 import TPButton from "../components/TPButton";
 
@@ -51,7 +54,10 @@ export default class SplashPage extends Component {
 
     press = () => {
         this.close();
-        this.props.navigator.push(this.props.link);
+        if (this.props.link && this.props.link.screen) {
+            const params = JSON.parse(JSON.stringify(this.props.link));
+            this.props.navigator.push(params);
+        }
     };
 
     render() {
@@ -60,19 +66,23 @@ export default class SplashPage extends Component {
             <View style={{flex: 1}}>
                 <TouchableWithoutFeedback style={{flex: 1}} onPress={this.press}>
                     <ImageBackground style={{flex: 1}} source={{uri: this.props.image_url}}>
-                        <TPButton title={title}
-                                  buttonStyle={{
-                                      backgroundColor: '#FFF',
-                                      width: 70,
-                                      height: 28,
-                                      position: 'absolute',
-                                      top: 30,
-                                      right: 0,
-                                      opacity: 0.65
-                                  }}
-                                  onPress={this.close}
-                                  textStyle={{fontWeight: 'bold', fontSize: 12, color: 'black'}}
-                        />
+                        <View style={{
+                            position: 'absolute',
+                            top: Platform.OS === 'ios' ? 30 : 20,
+                            right: 0,
+                            opacity: 0.65
+                        }}>
+                            <TPButton title={title}
+
+                                      buttonStyle={{
+                                          backgroundColor: '#FFF',
+                                          width: 70,
+                                          height: 28,
+                                      }}
+                                      onPress={this.close}
+                                      textStyle={{fontWeight: 'bold', fontSize: 12, color: 'black'}}
+                            />
+                        </View>
                     </ImageBackground>
                 </TouchableWithoutFeedback>
             </View>

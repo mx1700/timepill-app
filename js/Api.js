@@ -14,7 +14,8 @@ const VERSION = DeviceInfo.getVersion();
 
 // console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
 const baseUrl = 'http://open.timepill.net/api';
-const BASE_URL_V2 = 'http://v2.timepill.net/api';
+// const BASE_URL_V2 = 'http://v2.timepill.net/api';
+const BASE_URL_V2 = 'http://172.16.149.10:8000/api';
 const APP_INFO_URL = "https://raw.githubusercontent.com/mx1700/timepill-app/master/app.json";
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
@@ -278,18 +279,7 @@ export async function updatePushInfo() {
 }
 
 async function getSplash() {
-    return {
-        id: 6,
-        start_time: 0,
-        end_time: 1522545592,
-        image_url: 'http://s.timepill.net/s/w640/photos/2018-03-20/dpqqurdxp7ur2st8rxn02e9m7i0scdk2.png',
-        link: {
-            screen: 'WebView',
-            passProps: {
-                uri: "http://www.baidu.com/",
-            }
-        }
-    };
+    return callV2('GET', '/splash');
 }
 
 export async function syncSplash() {
@@ -312,7 +302,7 @@ export async function getSplashByStore() {
     const id = info.id;
     const pre_show = await getStore('splash_show');
     const today = (new Date()).getDate();
-// console.log('getSplashByStore::splash_show', pre_show);
+
     if (pre_show) {
         if (pre_show.id === id && pre_show.day === today) {
             return null;
@@ -407,6 +397,10 @@ export async function getServerAppInfo(_timeout = 10000) {
         _timeout);
 }
 
+export async function getUpdateInfo() {
+    return callV2('GET', '/updateInfo')
+}
+
 //==========================================================================
 
 async function call(method, api, body, _timeout = 10000) {
@@ -439,7 +433,7 @@ async function call(method, api, body, _timeout = 10000) {
       _timeout);
 }
 
-async function callV2(method, api, body, _timeout = 10000) {
+async function callV2(method, api, body = null, _timeout = 10000) {
     console.log('request:', BASE_URL_V2 + api, body);
     let token = await TokenManager.getToken();
     return timeout(fetch(BASE_URL_V2 + api, {

@@ -51,9 +51,9 @@ export default class HomePage extends React.Component {
             this.updateAndroid().done()
         }
 
-        if (Platform.OS === 'ios') {
+        //if (Platform.OS === 'ios') {
             Api.syncSplash();
-        }
+        //}
     }
 
     onNavigatorEvent(event) {
@@ -65,12 +65,8 @@ export default class HomePage extends React.Component {
 
     async updateAndroid() {
         try {
-            let info = await Api.getServerAppInfo();
-            // console.log(info);
-            info = info.updateInfo.android;
-            info.lastestVersion = "1.0.4"   //TODO:删除
+            let info = await Api.getUpdateInfo();
             const VERSION = DeviceInfo.getVersion();
-            // console.log(info, VERSION);
             if (info.lastestVersion > VERSION) {
                 Alert.alert(
                     '发现新版本 v' + info.lastestVersion,
