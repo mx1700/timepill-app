@@ -17,6 +17,9 @@ import ActionSheet from 'react-native-actionsheet-api';
 import ImageResizer from "react-native-image-resizer";
 import Toast from 'react-native-root-toast';
 import Events from "../Events";
+import { isIphoneX } from 'react-native-iphone-x-helper'
+
+const isIpx = isIphoneX();
 
 export default class WritePage extends Component {
 
@@ -336,9 +339,9 @@ export default class WritePage extends Component {
                             onPress={this.openModal.bind(this)} />)
             : null;
 
-        const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null;
+        const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer topSpacing={isIpx ? -30 : 0} /> : null;
         return (
-            <ScrollView style={{flex: 1, backgroundColor:'white'}}
+            <ScrollView style={{flex: 1, backgroundColor:'white', paddingBottom: isIpx ? 30 : 0}}
                         contentContainerStyle={{flex: 1}}
                         keyboardShouldPersistTaps="always"
             >

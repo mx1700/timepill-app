@@ -17,6 +17,9 @@ import {Avatar, Divider} from "react-native-elements";
 import ActionSheet from 'react-native-actionsheet-api';
 import Events from "../Events";
 import LocalIcons from "../common/LocalIcons";
+import { isIphoneX } from 'react-native-iphone-x-helper'
+
+const isIpx = isIphoneX();
 
 const DefaultInputHeight = 55;
 
@@ -398,9 +401,9 @@ export default class DiaryDetailPage extends React.Component {
         const commentInput = isToday ? this.renderCommentInputBox() : null;
         this.setButtons(isToday);
 
-        const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null;
+        const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer topSpacing={isIpx ? -30 : 0} /> : null;
         return (
-            <View style={{flex: 1, backgroundColor: 'white', justifyContent: "space-between"}}>
+            <View style={{flex: 1, backgroundColor: 'white', justifyContent: "space-between", paddingBottom: isIpx ? 30 : 0}}>
                 <FlatList
                     ref={(r) => this.list = r}
                     data={this.state.comments}
