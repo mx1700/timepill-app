@@ -149,9 +149,18 @@ export default class HomePage extends React.Component {
         const month = now.getMonth() + 1;
         const day = now.getDate();
 
-        return (<View style={{paddingTop: HEADER_PADDING, paddingHorizontal: 20}}>
-            <Text style={{color: colors.inactiveText, fontSize: 14, height: 16}} allowFontScaling={false}>{month}月{day}日</Text>
-            <Text style={{fontSize: 30, color: colors.text, height: 40}} allowFontScaling={false}>Today</Text>
+        return (<View style={{paddingTop: HEADER_PADDING}}>
+            <Text style={{paddingLeft: 20, color: colors.inactiveText, fontSize: 14, paddingBottom: 5}}
+                  allowFontScaling={false}>{month}月{day}日</Text>
+            <View style={{
+                paddingLeft: 20,
+                flexDirection: "row",
+                flexGrow: 1,
+                flexShrink: 1,
+                alignItems:"center",}}>
+                <Text allowFontScaling={false}
+                      style={{fontSize: 30, color: colors.text, flex: 1}}>Today</Text>
+            </View>
             {topicView}
         </View>)
     }

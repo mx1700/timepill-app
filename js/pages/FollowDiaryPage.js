@@ -41,19 +41,25 @@ export default class FollowDiaryPage extends React.Component {
                     ListHeaderComponent={() => {
                         return (
                             <View style={{
-                                paddingTop: HEADER_PADDING + 16,
-                                paddingHorizontal: 20,
-                                flexDirection: "row",
-                                flexGrow: 1,
-                                flexShrink: 1,
+                                paddingTop: HEADER_PADDING,
                             }}>
-                                <Text style={{fontSize: 30, color: colors.text, height: 40, flex: 1}}>关注</Text>
-                                <TPTouchable>
-                                    <Ionicons name="ios-contacts"
-                                              size={28}
-                                              color={colors.primary}
-                                              style={{paddingVertical: 2, paddingHorizontal: 5, marginRight: -10}}/>
-                                </TPTouchable>
+                                <Text style={{paddingLeft: 20, color: colors.inactiveText, fontSize: 14, paddingBottom: 5}}
+                                      allowFontScaling={false}> </Text>
+                                <View style={{
+                                    paddingLeft: 20,
+                                    flexDirection: "row",
+                                    flexGrow: 1,
+                                    flexShrink: 1,
+                                    alignItems:"center",}}>
+                                    <Text allowFontScaling={false}
+                                          style={{fontSize: 30, color: colors.text, flex: 1}}>关注</Text>
+                                    <TPTouchable>
+                                        <Ionicons name="ios-contacts"
+                                                  size={30}
+                                                  color={colors.primary}
+                                                  style={{paddingHorizontal: 15}}/>
+                                    </TPTouchable>
+                                </View>
                             </View>
                         )
                     }}
