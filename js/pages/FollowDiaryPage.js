@@ -53,7 +53,12 @@ export default class FollowDiaryPage extends React.Component {
                                     alignItems:"center",}}>
                                     <Text allowFontScaling={false}
                                           style={{fontSize: 30, color: colors.text, flex: 1}}>关注</Text>
-                                    <TPTouchable>
+                                    <TPTouchable onPress={() => {
+                                        this.props.navigator.push({
+                                            screen: 'FollowUsers',
+                                            title: '关注用户'
+                                        });
+                                    }}>
                                         <Ionicons name="ios-contacts"
                                                   size={30}
                                                   color={colors.primary}

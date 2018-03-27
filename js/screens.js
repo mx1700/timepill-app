@@ -22,6 +22,7 @@ import PasswordPage from "./pages/PasswordPage";
 import TopicDiaryPage from "./pages/TopicDiaryPage";
 import SplashPage from "./pages/SplashPage";
 import WebViewPage from "./pages/WebViewPage";
+import FollowUsersPage from "./pages/FollowUsersPage";
 
 
 /**
@@ -77,7 +78,8 @@ export function registerScreens() {
     Navigation.registerComponent('Topic', () => TopicDiaryPage);
     Navigation.registerComponent('Splash', () => SplashPage);
     Navigation.registerComponent('WebView', () => WebViewPage);
-
+    Navigation.registerComponent('WebView', () => WebViewPage);
+    Navigation.registerComponent('FollowUsers', () => FollowUsersPage);
 
     Navigation.registerComponent('UserEdit', () => UserEditPage);
     Navigation.registerComponent('EditName', () => EditNamePage);
@@ -85,8 +87,6 @@ export function registerScreens() {
     Navigation.registerComponent('Password', () => PasswordPage);
 
     Navigation.registerComponent('Test', () => TestPage);
-
     Navigation.registerComponent('UserHeader', () => UserHeader);
-
     Navigation.registerComponent('TabBar', () => TabBar);
 }
