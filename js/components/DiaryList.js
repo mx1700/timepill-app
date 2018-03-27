@@ -246,7 +246,7 @@ export default class DiaryList extends Component {
             <View>
                 <FlatList
                     ref={(r) => { this.list = r; }}
-                    style={{backgroundColor: 'white'}}
+                    style={{backgroundColor: 'white', height: '100%'}}
                     data={this.state.diaries}
                     keyExtractor={(item, index) => {
                         return item.id
