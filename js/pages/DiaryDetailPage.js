@@ -8,7 +8,7 @@ import moment from 'moment';
 import * as Api from "../Api";
 import * as TimeHelper from "../common/TimeHelper";
 import ErrorView from "../components/ErrorView";
-import {colors} from '../Styles'
+import {colors as Colors, colors} from '../Styles'
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import KeyboardSpacer from "react-native-keyboard-spacer";
 import Diary from "../components/Diary";
@@ -403,8 +403,9 @@ export default class DiaryDetailPage extends React.Component {
 
         const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer topSpacing={isIpx ? -30 : 0} /> : null;
         return (
-            <View style={{flex: 1, backgroundColor: 'white', justifyContent: "space-between", paddingBottom: isIpx ? 30 : 0}}>
+            <View style={{flex: 1, backgroundColor: Colors.navBackground, justifyContent: "space-between", paddingBottom: isIpx ? 30 : 0}}>
                 <FlatList
+                    style={{backgroundColor: '#FFF'}}
                     ref={(r) => this.list = r}
                     data={this.state.comments}
                     keyExtractor={(item, index) => {
@@ -651,7 +652,7 @@ const styles = StyleSheet.create({
     },
     comment_box: {
         height: 55,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.navBackground,
         elevation: 3,
         borderColor: '#bbb',
         borderTopWidth: StyleSheet.hairlineWidth,
@@ -659,6 +660,7 @@ const styles = StyleSheet.create({
     comment_input: {
         flexGrow: 1,
         borderColor: '#bbb',
+        backgroundColor: '#fff',
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 19,
         paddingRight: 30,

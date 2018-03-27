@@ -7,7 +7,7 @@ import {Platform, TouchableNativeFeedback, TouchableOpacity, View} from "react-n
 import PropTypes from 'prop-types';
 
 let TouchableIOS = (props) => {
-    return <TouchableOpacity {...props} />
+    return <TouchableOpacity activeOpacity={0.7} {...props}/>
 };
 
 let TouchableAndroid = (props) => {

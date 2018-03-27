@@ -58,10 +58,11 @@ export async function startLoginPage() {
             title: '登录',
         },
         appStyle: {
-            navBarTranslucent: Platform.OS === 'ios',
+            navBarTranslucent: false,
             drawUnderStatusBar: false,
             statusBarTextColorScheme: 'dark',
             keepStyleAcrossPush: false,     //iOS
+            navBarBackgroundColor: colors.navBackground,
 
             //android only
             navigationBarColor: '#FFF',
@@ -80,10 +81,11 @@ export async function startPasswordPage() {
             type: 'login'
         },
         appStyle: {
-            navBarTranslucent: Platform.OS === 'ios',
+            navBarTranslucent: false,
             drawUnderStatusBar: false,
             statusBarTextColorScheme: 'dark',
             keepStyleAcrossPush: false,     //iOS
+            navBarBackgroundColor: colors.navBackground,
 
             //android only
             navigationBarColor: '#FFF',
@@ -177,7 +179,7 @@ export async function startTabPage() {
             // tabBarButtonColor: '#abc',   //iOS
             tabBarSelectedButtonColor: colors.primary,   //iOS
 
-            navBarTranslucent: true,
+            navBarTranslucent: false,
             drawUnderNavBar: true,
 
             initialTabIndex: 0,
@@ -189,10 +191,11 @@ export async function startTabPage() {
             tabBarButtonColor: '#999',   //android
             tabBarSelectedButtonColor: colors.primary,   //android
 
-            navBarTranslucent: Platform.OS === 'ios',
+            navBarTranslucent: false,
             drawUnderStatusBar: false,
             statusBarTextColorScheme: 'dark',
             keepStyleAcrossPush: false,     //iOS
+            navBarBackgroundColor: colors.navBackground,
             // drawUnderNavBar: true,
             // topBarElevationShadowEnabled: false,
 

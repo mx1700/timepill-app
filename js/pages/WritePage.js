@@ -7,7 +7,7 @@ import {
 import LocalIcons from '../common/LocalIcons'
 import * as Api from "../Api";
 import KeyboardSpacer from "react-native-keyboard-spacer";
-import {colors} from "../Styles";
+import {colors as Colors, colors} from "../Styles";
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons'
 import LabelButton from '../components/LabelButton'
@@ -341,7 +341,7 @@ export default class WritePage extends Component {
 
         const keyboardSpacer = Platform.OS === 'ios' ? <KeyboardSpacer topSpacing={isIpx ? -30 : 0} /> : null;
         return (
-            <ScrollView style={{flex: 1, backgroundColor:'white', paddingBottom: isIpx ? 30 : 0}}
+            <ScrollView style={{flex: 1, backgroundColor: colors.navBackground, paddingBottom: isIpx ? 30 : 0}}
                         contentContainerStyle={{flex: 1}}
                         keyboardShouldPersistTaps="always"
             >
@@ -356,7 +356,8 @@ export default class WritePage extends Component {
                 {this.renderSelectBook()}
                 <TextInput
                     ref={(r) => this.contentInput = r }
-                    style={{flex: 1, padding: 15, paddingTop: 10, fontSize: 15, lineHeight: 24, color: colors.text, textAlignVertical:'top'}}
+                    style={{flex: 1, padding: 15, paddingTop: 10, fontSize: 15, backgroundColor: '#fff',
+                        lineHeight: 24, color: colors.text, textAlignVertical:'top'}}
                     autoCorrect={false}
                     underlineColorAndroid="transparent"
                     selectionColor={colors.primary}
@@ -508,7 +509,7 @@ WritePage.defaultProps = {
 const styles = StyleSheet.create({
     comment_box: {
         height: 50,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.navBackground,
         elevation: 3,
         borderColor: '#bbb',
         borderTopWidth: StyleSheet.hairlineWidth,
