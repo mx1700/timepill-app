@@ -13,7 +13,7 @@ import {
     Animated,
     LayoutAnimation,
     InteractionManager,
-    Alert, StatusBar, DeviceEventEmitter,
+    Alert, StatusBar, DeviceEventEmitter, Linking,
 } from 'react-native';
 import * as Api from '../Api'
 import { colors } from "../Styles";
@@ -23,6 +23,7 @@ import Toast from 'react-native-root-toast';
 import {FormInput} from "react-native-elements";
 import Events from "../Events";
 import {startTabPage} from "../App";
+import { Answers } from 'react-native-fabric';
 
 // var Fabric = require('react-native-fabric');
 // var { Answers } = Fabric;
@@ -137,15 +138,15 @@ export default class LoginPage extends Component {
             result = await Api.login(this.state.username, this.state.password);
         } catch (err) {
             console.log(err);
-            // Answers.logCustom('LoginError', {message: err.message});
+            Answers.logCustom('LoginError', {message: err.message});
         }
-        console.log("login:", result);
-        this.setState({loading: false});
+        // console.log("login:", result);
         setTimeout(() => {
             if (result) {
                 DeviceEventEmitter.emit(Events.login, { user: result });
                 startTabPage().done();
             } else {
+                this.setState({loading: false});
                 Alert.alert(
                     '账号或密码不正确',
                     '',
@@ -165,18 +166,18 @@ export default class LoginPage extends Component {
         try {
             result = await Api.register(this.state.nickname, this.state.username, this.state.password);
         } catch (err) {
-            // Answers.logCustom('RegisterError', {message: err.message});
+            Answers.logCustom('RegisterError', {message: err.message});
             errMsg = err.message;
         }
-        this.setState({loading: false});
         setTimeout(() => {
             if (result) {
-                //Answers.log注册('Email', true);
+                Answers.logSignUp('Email', true);
                 DeviceEventEmitter.emit(Events.login, { user: result });
                 startTabPage().done();
             } else {
-                //Answers.logLogin('Email', false);
-                // Answers.logCustom('RegisterError', {message: errMsg});
+                Answers.logSignUp('Email', false);
+                Answers.logCustom('RegisterError', {message: errMsg});
+                this.setState({loading: false});
                 Alert.alert(
                     errMsg ? errMsg : "注册失败",
                     '',
@@ -194,6 +195,10 @@ export default class LoginPage extends Component {
          this.setState({
              isLoginPage: !this.state.isLoginPage
          });
+    }
+
+    toWeb() {
+        Linking.openURL("https://timepill.net/home/forgot_password");
     }
 
     render() {
@@ -273,12 +278,17 @@ export default class LoginPage extends Component {
                         type="bordered"
                         style={{ }}/>
 
-                    <View style={{flex: 1, alignItems: "center", paddingTop: 22}}>
+                    <View style={{flexDirection: 'row', justifyContent: "space-between", paddingTop: 22, paddingHorizontal: 5}}>
                         <TouchableOpacity onPress={this.toRegister.bind(this)}>
                             <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
                                 {this.state.isLoginPage ? '没有账号？注册一个' : '已有账号？马上登录'}
                             </Text>
                         </TouchableOpacity>
+                        {this.state.isLoginPage && (<TouchableOpacity onPress={this.toWeb.bind(this)}>
+                            <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
+                                忘记密码？
+                            </Text>
+                        </TouchableOpacity>)}
                     </View>
 
                 </Animated.View>
