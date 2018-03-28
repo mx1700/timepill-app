@@ -60,9 +60,8 @@ export default class NotificationPage extends Component {
         try {
             info = await Api.updatePushInfo()
         } catch (err) {
-            //TODO:记录日志
         }
-        console.log('updatePushInfo', info)
+        // console.log('updatePushInfo', info)
     }
 
     async restartTipTimer() {

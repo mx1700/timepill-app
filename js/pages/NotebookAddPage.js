@@ -183,7 +183,7 @@ export default class NotebookAddPage extends Component {
             title: '设置封面'
         }, (index) => {
             if (index === 2) {
-                console.log('cancel')
+                // console.log('cancel')
             } else {
                 let imageOption = {
                     width: 640,

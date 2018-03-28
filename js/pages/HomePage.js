@@ -135,7 +135,6 @@ export default class HomePage extends React.Component {
 
     renderHeader() {
         const {height, width} = Dimensions.get('window');
-        console.log(width);
         const topic = this.state.topic;
         const topicView = topic ? (
             <TouchableOpacity onPress={this.openTopicPage} activeOpacity={0.7}>
@@ -149,7 +148,6 @@ export default class HomePage extends React.Component {
             </TouchableOpacity>
         ) : null;
 
-        console.log(TimeHelper);
         const now = TimeHelper.now();
         const month = now.getMonth() + 1;
         const day = now.getDate();

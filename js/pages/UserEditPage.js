@@ -185,7 +185,6 @@ export default class UserEditPage extends Component {
                 </View>
             );
         }
-        console.log('this.state.loading', this.state.loading);
         return (
             <View style={{flex: 1, backgroundColor: '#EFEFF4'}}>
                 <Modal
