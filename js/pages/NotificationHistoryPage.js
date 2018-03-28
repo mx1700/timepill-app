@@ -12,21 +12,11 @@ import {colors} from '../Styles'
 import Events from "../Events";
 import Fabric, {Crashlytics} from 'react-native-fabric';
 import {updatePushInfo} from "../Api";
-import LocalIcons from "../common/LocalIcons";
 
 const LOOP_TIME_SHORT = 30 * 1000;
 const LOOP_TIME_LONG = 60 * 1000;
 
-export default class NotificationPage extends Component {
-
-    static get navigatorButtons() {
-        return {
-            rightButtons: [{
-                id: "history",
-                icon: LocalIcons.navButtonTime
-            }]
-        }
-    }
+export default class NotificationHistoryPage extends Component {
 
     constructor(props) {
         super(props);
@@ -40,136 +30,16 @@ export default class NotificationPage extends Component {
         });
     }
 
-    loading = false;
-    loopTime = LOOP_TIME_LONG;
-    tipTimer = null;
-
     componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            if (Platform.OS === 'android') {
-                this.initAndroid().done()
-            } else {
-                this.initIOS().done()
-            }
-
-            this.restartTipTimer().done();
-        });
-        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => {
-            this.registerUser().done();
-            this.restartTipTimer().done();
-        });
-        this.updatePushInfo().done();
-
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
-    }
-
-    onNavigatorEvent(event) {
-        if (event.id === 'history') {
-            this.props.navigator.push({
-                screen: 'NotificationHistory',
-                title: '提醒历史',
-            })
-        }
-    }
-
-    componentWillUnmount() {
-        this.loginListener.remove();
-    }
-
-    async updatePushInfo() {
-        let info;
-        try {
-            info = await Api.updatePushInfo()
-        } catch (err) {
-        }
-        // console.log('updatePushInfo', info)
-    }
-
-    async restartTipTimer() {
-        if (this.tipTimer) {
-            clearTimeout(this.tipTimer);
-        }
-
-        try {
-            await this._loadMessages();
-        } catch(err) {
-            console.log(err);
-        }
-        // console.log('[message] loop time:' + this.loopTime);
-        this.tipTimer = setTimeout(() => {
-            this.restartTipTimer().done();
-        }, this.loopTime)
-    }
-
-    async initAndroid() {
-        JPushModule.notifyJSDidLoad((resultCode) => {
-            console.log('JPushModule.notifyJSDidLoad:' + resultCode);
-            if (resultCode !== 0) {
-                return;
-            }
-            this.registerUser().done();
-
-            JPushModule.addReceiveNotificationListener((map) => {
-                console.log("alertContent: " + map.alertContent);
-                this.restartTipTimer().done();
-            });
-
-            JPushModule.addReceiveOpenNotificationListener((r) => {
-                this.restartTipTimer().done();
-                console.log('JPushModule.addReceiveOpenNotificationListener', r);
-            });
-        });
-    }
-
-    async initIOS() {
-        JPushModule.getRegistrationID((registrationId) => {
-            console.log("Device register succeed, registrationId " + registrationId);
-        });
-
-        this.registerUser().done();
-
-        JPushModule.addReceiveNotificationListener(map => {
-            console.log('JPushModule.addReceiveNotificationListener', map);
-            this.restartTipTimer().done();
-        });
-
-        JPushModule.addReceiveOpenNotificationListener(map => {
-            console.log('JPushModule.addReceiveOpenNotificationListener', map);
-            this.restartTipTimer().done();
-        });
-    }
-
-    async registerUser() {
-        const user = await Api.getSelfInfoByStore();
-        if (!user) return;
-        const settings = await Api.getSettings();
-        const push = settings['pushMessage'];
-        const alias = push ? user.id.toString() : user.id.toString() + '_close';
-        JPushModule.setAlias(alias, success => {
-            console.log('JPushModule.setAlias ' + alias + '  ' + success);
-        });
-
-        Crashlytics.setUserName(user.name);
-        Crashlytics.setUserEmail(user.email);
-        Crashlytics.setUserIdentifier(user.id.toString());
+        this._loadMessages().done()
     }
 
     async _loadMessages() {
-        let user = await Api.getSelfInfoByStore();
-        if (!user || this.loading) {
-            this.setState({
-                refreshing: false,
-            });
-            return;
-        }
-        this.loading = true;
         let list = [];
         try {
-            list = await Api.getMessages(0);
+            list = await Api.getMessagesHistory();
         } catch (err) {
         }
-        this.loading = false;
-        //console.log(list);
         this._setMsgList(list);
     }
 
@@ -195,17 +65,10 @@ export default class NotificationPage extends Component {
                 return ret;
             }, []);
 
-        console.log(rowData);
         this.setState({
             messagesDataSource: this.state.messagesDataSource.cloneWithRows(rowData),
             messages: list,
             refreshing: false,
-        });
-
-        this.props.navigator.setTabBadge({
-            tabIndex: 3,
-            badge: rowData.length === 0 ? null : rowData.length,
-            badgeColor: colors.danger,
         });
     }
 
@@ -213,7 +76,7 @@ export default class NotificationPage extends Component {
         this.setState({
             refreshing: true,
         });
-        this.restartTipTimer().done();
+        this._loadMessages().done();
     }
 
     _onCommentPress(msg) {
@@ -225,7 +88,6 @@ export default class NotificationPage extends Component {
                 new_comments: msg.list.map(it => it.content.comment_id)
             }
         });
-        this._setRead(msg).done();
     }
 
     _onFollowPress(msg) {
@@ -234,32 +96,6 @@ export default class NotificationPage extends Component {
             title: msg.content.user.name,
             passProps: { user: msg.content.user }
         });
-        this._setRead(msg).done();
-    }
-
-    _onDeletePress(msg) {
-        this._setRead(msg).done();
-    }
-
-    async _setRead(msg) {
-        let ids = null;
-        if (msg.type === 1) {    //回复
-            ids = msg.list.map(it => it.id);
-        } else if (msg.type === 2) {     //关注
-            ids = [msg.id];
-        }
-
-        try {
-            const newMsg = this.state.messages.filter((msg) => ids.indexOf(msg.id) === -1);
-            this._setMsgList(newMsg);
-            await Api.deleteMessage(ids);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    refresh() {
-        this.restartTipTimer().done()
     }
 
     render() {
@@ -306,9 +142,6 @@ export default class NotificationPage extends Component {
                 <View style={styles.message}>
                     <Icon name="ios-text" size={16} style={styles.icon} color={colors.light} />
                     <Text style={{flex: 1, lineHeight: 20}}>{body}</Text>
-                    <TPTouchable onPress={() => this._onDeletePress(msg)}>
-                        <Icon name="md-close" size={16} style={styles.delete} color={colors.inactiveText} />
-                    </TPTouchable>
                 </View>
             </TPTouchable>
         )
@@ -321,9 +154,6 @@ export default class NotificationPage extends Component {
                 <View style={styles.message}>
                     <Icon name="ios-heart" size={16} style={styles.icon} color='#d9534f' />
                     <Text key={msg.link_id} style={{flex: 1, lineHeight: 20}}>{body}</Text>
-                    <TPTouchable onPress={() => this._onDeletePress(msg)}>
-                        <Icon name="md-close" size={16} style={styles.delete} color={colors.inactiveText} />
-                    </TPTouchable>
                 </View>
             </TPTouchable>
         )
@@ -337,9 +167,9 @@ export default class NotificationPage extends Component {
                 </View>
             )
         }
-        let text = this.state.error ? '出错了 :(':'没有提醒 :)';
+        let text = this.state.error ? '出错了 :(':'没有历史提醒 :)';
         return (
-            <ErrorView text={text} buttonText="刷新一下" onButtonPress={this.refresh.bind(this)}/>
+            <ErrorView text={text} onButtonPress={this._onRefresh.bind(this)}/>
         );
     }
 }

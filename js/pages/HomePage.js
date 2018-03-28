@@ -52,6 +52,13 @@ export default class HomePage extends React.Component {
             this.updateAndroid().done()
         }
 
+        const test = async () => {
+            const a = await Api.getMessagesHistory();
+            console.log('1111111111111', a);
+        };
+
+        test().done()
+
         //if (Platform.OS === 'ios') {
         // try {
             Api.syncSplash().catch((err) => console.log('errrrrrrrrrrrr',err));

@@ -23,6 +23,7 @@ import TopicDiaryPage from "./pages/TopicDiaryPage";
 import SplashPage from "./pages/SplashPage";
 import WebViewPage from "./pages/WebViewPage";
 import FollowUsersPage from "./pages/FollowUsersPage";
+import NotificationHistoryPage from "./pages/NotificationHistoryPage";
 
 
 /**
@@ -69,6 +70,8 @@ export function registerScreens() {
     Navigation.registerComponent('Photo', () => PhotoPage);
     Navigation.registerComponent('User', () => UserPage);
     Navigation.registerComponent('Notification', () => NotificationPage);
+    Navigation.registerComponent('NotificationHistory', () => NotificationHistoryPage);
+    //NotificationHistoryPage
     Navigation.registerComponent('Write', () => WritePage);
     Navigation.registerComponent('WriteTab', () => WriteTab);
     Navigation.registerComponent('Notebook', () => NotebookPage);

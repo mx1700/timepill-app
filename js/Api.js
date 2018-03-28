@@ -242,6 +242,10 @@ export async function getMessages(last_id = 0) {
   return call('GET', '/tip')
 }
 
+export async function getMessagesHistory() {
+    return call('GET', '/tip/history')
+}
+
 export async function deleteMessage(ids) {
   return call('POST', '/tip/read/' + ids.join(','))
 }

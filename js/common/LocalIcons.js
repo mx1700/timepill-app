@@ -30,6 +30,8 @@ let Icons = {
 
     navButtonBack: null,
     navButtonOpen: null,
+
+    navButtonTime: null,
 };
 
 const outline = Platform.OS === 'ios' ? '-outline' : '';
@@ -67,6 +69,8 @@ async function loadIcon() {
 
         Icon.getImageSource(Platform.OS === 'ios' ? 'md-arrow-back' : 'md-arrow-back', 26, iconColor),
         Icon.getImageSource(Platform.OS === 'ios' ? 'ios-open-outline' : 'md-open', 26, iconColor),
+
+        Icon.getImageSource(Platform.OS === 'ios' ? 'md-time' : 'md-time', 26, iconColor),
     ]);
 
     let index = 0;
