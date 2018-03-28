@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {StyleSheet} from "react-native";
 import {Avatar} from "react-native-elements";
 import PropTypes from 'prop-types';
+import Hyperlink from 'react-native-hyperlink'
 
 /**
  * 日记视图
@@ -36,7 +37,11 @@ Diary = (props) => {
     }
 
     const content = props.showAllContent
-        ? (<Text style={styles.content} selectable={true} selectionColor={colors.textSelect}>{diary.content}</Text>)
+        ? (
+            <Hyperlink linkDefault={true} linkStyle={{ color: colors.primary }}>
+                <Text style={styles.content} selectable={true} selectionColor={colors.textSelect}>{diary.content}</Text>
+            </Hyperlink>
+                )
         : <Text style={styles.content} numberOfLines={5}>{diary.content.trim()}</Text>;
 
     return (
