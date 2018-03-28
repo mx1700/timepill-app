@@ -292,8 +292,8 @@ export default class WritePage extends Component {
                 shadow: false,
                 hideOnPress: true,
             });
-            //TODO;清除内容
-            this.goBack();
+
+            this.goBack(true);
 
             InteractionManager.runAfterInteractions(() => {
                 DeviceEventEmitter.emit(Events.writeDiary);
@@ -309,21 +309,31 @@ export default class WritePage extends Component {
         }
     }
 
-    goBack = () => {
-        //Api.clearTempDraft();     //TODO
+    goBack = (clear = false) => {
         if (this.props.tabOpen) {
             this.props.navigator.switchToTab({
-                tabIndex: 0,
+                tabIndex: 0,    //todo:调回之前的页面
             });
-            this.setState({
-                modalVisible: false,
-                content: '',
-                loading: false,
-                photoUri: null,
-                photoSource: null,
-                loadBookError: false,
-                bookEmptyError: false,
-            });
+            if(clear) {
+                this.setState({
+                    modalVisible: false,
+                    content: '',
+                    loading: false,
+                    photoUri: null,
+                    photoSource: null,
+                    loadBookError: false,
+                    bookEmptyError: false,
+                });
+            } else {
+                this.setState({
+                    modalVisible: false,
+                    loading: false,
+                    photoUri: null,
+                    photoSource: null,
+                    loadBookError: false,
+                    bookEmptyError: false,
+                });
+            }
         } else {
             this.props.navigator.pop();
         }

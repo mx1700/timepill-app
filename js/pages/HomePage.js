@@ -28,13 +28,6 @@ export default class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
-        if (props.splash && props.splash.image_url) {
-            this.props.navigator.push({
-                screen: 'Splash',
-                passProps: props.splash,
-                animationType: 'fade'
-            });
-        }
     }
 
     componentWillMount() {
@@ -47,12 +40,24 @@ export default class HomePage extends React.Component {
     }
 
     componentDidMount() {
+        if (this.props.splash && this.props.splash.image_url) {
+            this.props.navigator.push({
+                screen: 'Splash',
+                passProps: this.props.splash,
+                animationType: 'fade'
+            });
+        }
+
         if(Platform.OS === 'android') {
             this.updateAndroid().done()
         }
 
         //if (Platform.OS === 'ios') {
-            Api.syncSplash();
+        // try {
+            Api.syncSplash().catch((err) => console.log('errrrrrrrrrrrr',err));
+        // } catch (err) {
+        //     console.log(err)
+        // }
         //}
     }
 

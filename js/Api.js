@@ -14,8 +14,8 @@ const VERSION = DeviceInfo.getVersion();
 
 // console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
 const baseUrl = 'http://open.timepill.net/api';
-// const BASE_URL_V2 = 'http://v2.timepill.net/api';
-const BASE_URL_V2 = 'http://172.16.149.10:8000/api';
+const BASE_URL_V2 = 'http://v2.timepill.net/api';
+// const BASE_URL_V2 = 'http://172.16.149.10:8000/api';
 const APP_INFO_URL = "https://raw.githubusercontent.com/mx1700/timepill-app/master/app.json";
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
@@ -303,11 +303,11 @@ export async function getSplashByStore() {
     const pre_show = await getStore('splash_show');
     const today = (new Date()).getDate();
 
-    if (pre_show) {
-        if (pre_show.id === id && pre_show.day === today) {
-            return null;
-        }
-    }
+    // if (pre_show) {
+    //     if (pre_show.id === id && pre_show.day === today) {
+    //         return null;
+    //     }
+    // }
 
     await setStore('splash_show', {
         id: info.id,
@@ -461,7 +461,7 @@ async function callV2(method, api, body = null, _timeout = 10000) {
 }
 
 async function upload(method, api, body) {
-    console.log('request upload:', baseUrl + api)
+    console.log('request upload:', baseUrl + api);
     let token = await TokenManager.getToken();
     let formData = new FormData();
     for (let prop of Object.keys(body)) {
