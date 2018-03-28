@@ -25,9 +25,6 @@ import Events from "../Events";
 import {startTabPage} from "../App";
 import { Answers } from 'react-native-fabric';
 
-// var Fabric = require('react-native-fabric');
-// var { Answers } = Fabric;
-
 export default class LoginPage extends Component {
 
     static navigatorStyle = {

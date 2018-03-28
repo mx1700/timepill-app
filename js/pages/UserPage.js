@@ -229,8 +229,9 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 13,
         fontWeight: 'bold',
-        margin: 8,
-        marginTop: -6,
+        paddingBottom: 8,
+        // marginTop: 4,
+        paddingTop: 2,
     },
     tabbar: {
         backgroundColor: colors.navBackground,

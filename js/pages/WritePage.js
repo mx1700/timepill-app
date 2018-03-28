@@ -18,6 +18,7 @@ import ImageResizer from "react-native-image-resizer";
 import Toast from 'react-native-root-toast';
 import Events from "../Events";
 import { isIphoneX } from 'react-native-iphone-x-helper'
+import { Answers } from 'react-native-fabric';
 
 const isIpx = isIphoneX();
 
@@ -300,8 +301,8 @@ export default class WritePage extends Component {
                 if (this.props.topic) {
                     DeviceEventEmitter.emit(Events.writeTopicDiary);
                 }
-                // const type = photoUri == null ? 'text' : 'photo';
-                // Answers.logCustom('WriteDiary', {type: type});   //TODO:统计
+                const type = photoUri == null ? 'text' : 'photo';
+                Answers.logCustom('WriteDiary', {type: type});
                 if (this.props.onSuccess) {
                     this.props.onSuccess(r);
                 }
