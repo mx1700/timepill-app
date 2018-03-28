@@ -117,7 +117,8 @@ export default class DiaryList extends Component {
         }
         let diaries = data.list;
         let old = this.state.diaries;
-        if (old.length > 0 && diaries.length > 0 && old[0].id === diaries[0].id) {
+        if (!this.props.editable && old.length > 0 && diaries.length > 0 && old[0].id === diaries[0].id) {
+            //!this.props.editable 表明不是自己的日记页
             this.showToast('没有新内容');
         }
         this.setState({

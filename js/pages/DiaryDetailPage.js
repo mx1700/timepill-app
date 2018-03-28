@@ -303,7 +303,12 @@ export default class DiaryDetailPage extends React.Component {
                         screen: 'Write',
                         title: '修改日记',
                         passProps: {
-                            diary: this.state.diary
+                            diary: this.state.diary,
+                            onSuccess: (diary) => {
+                                this.setState({
+                                    diary: diary
+                                })
+                            }
                         }
                     });
                 } else if (index === 1) {
