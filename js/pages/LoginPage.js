@@ -138,12 +138,12 @@ export default class LoginPage extends Component {
             Answers.logCustom('LoginError', {message: err.message});
         }
         // console.log("login:", result);
+        this.setState({loading: false});
         setTimeout(() => {
             if (result) {
                 DeviceEventEmitter.emit(Events.login, { user: result });
                 startTabPage().done();
             } else {
-                this.setState({loading: false});
                 Alert.alert(
                     '账号或密码不正确',
                     '',
@@ -153,7 +153,7 @@ export default class LoginPage extends Component {
                     { cancelable: false }
                 )
             }
-        }, 1)
+        }, 200)
     }
 
     async register() {
@@ -166,6 +166,8 @@ export default class LoginPage extends Component {
             Answers.logCustom('RegisterError', {message: err.message});
             errMsg = err.message;
         }
+        this.setState({loading: false});
+
         setTimeout(() => {
             if (result) {
                 Answers.logSignUp('Email', true);
@@ -174,7 +176,6 @@ export default class LoginPage extends Component {
             } else {
                 Answers.logSignUp('Email', false);
                 Answers.logCustom('RegisterError', {message: errMsg});
-                this.setState({loading: false});
                 Alert.alert(
                     errMsg ? errMsg : "注册失败",
                     '',
@@ -184,7 +185,7 @@ export default class LoginPage extends Component {
                     { cancelable: false }
                 )
             }
-        }, 1);
+        }, 200);
     }
 
     toRegister() {
