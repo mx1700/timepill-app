@@ -7,8 +7,10 @@ export default class WebViewPage extends Component {
     static get navigatorButtons() {
         return {
             leftButtons: [{
-                id: 'close', icon: LocalIcons.navButtonBack
-            },],
+                id: 'back', icon: LocalIcons.navButtonBack
+            },{
+                id: 'close', icon: LocalIcons.navButtonClose
+            }],
             rightButtons: [{
                 id: "open",
                 icon: LocalIcons.navButtonOpen
@@ -43,10 +45,12 @@ export default class WebViewPage extends Component {
     onNavigatorEvent(event) {
         console.log(this.webViewState);
         console.log("onNavigatorEvent", event);
-        if (event.id === 'close') {
+        if (event.id === 'back') {
             this.goBack();
         } else if (event.id === 'open') {
             Linking.openURL(this.webViewState.url)
+        } else if (event.id === 'close') {
+            this.props.navigator.pop()
         }
     }
 
