@@ -125,13 +125,18 @@ export default class WritePage extends Component {
     }
 
     _onChangeText = (text) => {
-        if(!this.tempDraft) {
-            this.tempDraft = text;
-        } else if(Math.abs(text.length - this.tempDraft.length) > 10) {
-            Api.saveTempDraft(text);
-            this.tempDraft = text;
-        }
+        // if(!this.tempDraft) {
+        //     this.tempDraft = text;
+        // } else if(Math.abs(text.length - this.tempDraft.length) > 10) {
+        //     Api.saveTempDraft(text);
+        //     this.tempDraft = text;
+        // }
         this.setState({ content: text });
+        // this.state.content = text;
+        // InteractionManager.runAfterInteractions(() => {
+        //     // this.state.content = text;
+        //     this.contentInput.setNativeProps({ text: text })
+        // })
     };
 
     _imagePress() {
@@ -367,16 +372,25 @@ export default class WritePage extends Component {
                 {this.renderSelectBook()}
                 <TextInput
                     ref={(r) => this.contentInput = r }
-                    style={{flex: 1, padding: 15, paddingTop: 10, fontSize: 15, backgroundColor: '#fff',
-                        lineHeight: 24, color: colors.text, textAlignVertical:'top'}}
+                    style={styles.textContent}
                     autoCorrect={false}
                     underlineColorAndroid="transparent"
-                    selectionColor={colors.primary}
-                    maxLength={5000}
+                    selectionColor={colors.light}
                     multiline={true}
+                    maxLength={2000}
                     placeholder="记录点滴生活"
                     value={this.state.content}
                     onChangeText={this._onChangeText}
+                    autoCapitalize="none"
+                    // onChange={() => {
+                    //     this.contentInput.setNativeProps({ text: 'BBB' })
+                    // }}
+                    // onKeyPress={() => {
+                    //     const v = this.contentInput.getNativeProps
+                    // }}
+                    // onEndEditing={() => {
+                    //     this.contentInput.setNativeProps({ text: 'CCC' })
+                    // }}
                 />
                 <View style={styles.comment_box}>
                     {bookButton}
@@ -421,7 +435,6 @@ export default class WritePage extends Component {
                 transparent={true}
                 visible={this.state.modalVisible}
                 onShow={() => {
-                    console.log(this.state.fadeAnimHeight);
                     Animated.parallel([
                         Animated.timing(
                             this.state.fadeAnimOpacity,
@@ -543,5 +556,15 @@ const styles = StyleSheet.create({
     closeButtonText: {
         color: colors.light,
         fontSize: 15,
+    },
+    textContent: {
+        flex: 1,
+        padding: 15,
+        paddingTop: 10,
+        fontSize: 15,
+        backgroundColor: '#fff',
+        lineHeight: 24,
+        color: colors.text,
+        textAlignVertical:'top'
     }
 });
