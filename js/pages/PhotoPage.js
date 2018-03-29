@@ -106,7 +106,7 @@ export default class PhotoPage extends Component {
                            imageWidth={this.state.width}
                            imageHeight={this.state.height}
                            onClick={() => this.close()}
-                           doubleClickInterval={350}
+                           doubleClickInterval={250}
                            onLongPress={this.onLongPress.bind(this)}
                 >
                     <Image
