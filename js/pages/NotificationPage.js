@@ -195,7 +195,6 @@ export default class NotificationPage extends Component {
                 return ret;
             }, []);
 
-        console.log(rowData);
         this.setState({
             messagesDataSource: this.state.messagesDataSource.cloneWithRows(rowData),
             messages: list,
