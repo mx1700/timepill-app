@@ -293,32 +293,38 @@ export async function syncSplash() {
 
 export async function getSplashByStore() {
 
-    const info = await getStore('splash');
-    if (!info) {
+    try {
+        const info = await getStore('splash');
+        if (!info) {
+            return false;
+        }
+
+        const now = Date.parse( new Date()) / 1000;
+        if ((info.start_time  && info.start_time <= now) ||
+            (info.end_time && now >= info.end_time)) {
+            return null;
+        }
+
+        const id = info.id;
+        const pre_show = await getStore('splash_show');
+        const today = (new Date()).getDate();
+
+        // if (pre_show) {
+        //     if (pre_show.id === id && pre_show.day === today) {
+        //         return null;
+        //     }
+        // }
+
+        await setStore('splash_show', {
+            id: info.id,
+            day: today,
+        });
+
+        return info;
+    } catch (err) {
+        //TODO:记录错误
         return false;
     }
-
-    const now = Date.parse( new Date()) / 1000;
-    if (info.start_time <= now && now >= info.end_time) {
-        return null;
-    }
-
-    const id = info.id;
-    const pre_show = await getStore('splash_show');
-    const today = (new Date()).getDate();
-
-    // if (pre_show) {
-    //     if (pre_show.id === id && pre_show.day === today) {
-    //         return null;
-    //     }
-    // }
-
-    await setStore('splash_show', {
-        id: info.id,
-        day: today,
-    });
-
-    return info;
 }
 
 async function getStore(item) {
