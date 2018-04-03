@@ -291,6 +291,10 @@ export async function syncSplash() {
     await setStore('splash', info);
 }
 
+export async function feedback(content) {
+    return callV2('POST', '/feedback', { content: content })
+}
+
 export async function getSplashByStore() {
 
     try {

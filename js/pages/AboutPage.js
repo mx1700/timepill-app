@@ -12,7 +12,6 @@ import {
     ActionSheetIOS, DeviceEventEmitter,
 } from 'react-native';
 let DeviceInfo = require('react-native-device-info');
-// import CodePush from "react-native-code-push";
 import * as Api from '../Api'
 import Events from "../Events";
 import {colors as TPColors} from "../Styles";

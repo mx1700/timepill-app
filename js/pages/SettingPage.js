@@ -132,6 +132,20 @@ export default class SettingPage extends Component {
             </View>
             )
             : null;
+
+        const appStoreLink = Platform.OS == 'ios' ? (
+            <View>
+                <TouchableOpacity
+                    style={styles.item}
+                    onPress={() =>
+                        Linking.openURL("https://itunes.apple.com/us/app/jiao-nang-ri-ji/id1142102323?l=zh&ls=1&mt=8")}
+                >
+                    <Text style={styles.title}>去 App Store 评价</Text>
+                    <Icon name="ios-arrow-forward" style={styles.arrow} size={18}/>
+                </TouchableOpacity>
+                <View style={styles.line} />
+            </View>
+        ) : null;
         return (
             <View style={{flex: 1, backgroundColor: '#EFEFF4'}}>
                 <View style={styles.group}>
@@ -149,7 +163,7 @@ export default class SettingPage extends Component {
                     <View style={styles.item}>
                         <Text style={styles.title}>启动密码</Text>
                         <Switch value={this.state.hasPassword}
-                                onTintColor={TPColors.textSelect}
+                                onTintColor={Platform.OS === 'android' ? TPColors.textSelect : null}
                                 thumbTintColor={Platform.OS === 'android' && this.state.hasPassword ? TPColors.light : null}
                                 onValueChange={this.changePassword} />
                     </View>
@@ -157,7 +171,7 @@ export default class SettingPage extends Component {
                     <View style={styles.item}>
                         <Text style={styles.title}>提醒推送</Text>
                         <Switch value={this.state.settings['pushMessage']}
-                                onTintColor={TPColors.textSelect}
+                                onTintColor={Platform.OS === 'android' ? TPColors.textSelect : null}
                                 thumbTintColor={Platform.OS === 'android' && this.state.settings['pushMessage'] ? TPColors.light : null}
                                 onValueChange={this.changePush} />
                     </View>
@@ -165,15 +179,19 @@ export default class SettingPage extends Component {
                 </View>
 
                 <View style={[styles.group]}>
-                    {/*<TouchableOpacity*/}
-                        {/*style={styles.item}*/}
-                        {/*onPress={() =>*/}
-                            {/*Linking.openURL("https://itunes.apple.com/us/app/jiao-nang-ri-ji/id1142102323?l=zh&ls=1&mt=8")}*/}
-                    {/*>*/}
-                        {/*<Text style={styles.title}>去 App Store 评价</Text>*/}
-                        {/*<Icon name="ios-arrow-forward" style={styles.arrow} size={18}/>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<View style={styles.line} />*/}
+                    {appStoreLink}
+                    <TouchableOpacity
+                        style={styles.item}
+                        onPress={() =>
+                            this.props.navigator.push({
+                                screen: 'Feedback',
+                                title: '意见反馈',
+                            })
+                        }>
+                        <Text style={styles.title}>意见反馈</Text>
+                        <Icon name="ios-arrow-forward" style={styles.arrow} size={18}/>
+                    </TouchableOpacity>
+                    <View style={styles.line} />
                     <TouchableOpacity
                         style={styles.item}
                         onPress={() =>

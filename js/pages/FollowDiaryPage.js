@@ -52,7 +52,7 @@ export default class FollowDiaryPage extends React.Component {
                                     flexShrink: 1,
                                     alignItems:"center",}}>
                                     <Text allowFontScaling={false}
-                                          style={{fontSize: 30, color: colors.text, flex: 1}}>关注</Text>
+                                          style={{fontSize: 30, color: '#000', flex: 1}}>关注</Text>
                                     <TPTouchable onPress={() => {
                                         this.props.navigator.push({
                                             screen: 'FollowUsers',

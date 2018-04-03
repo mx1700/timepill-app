@@ -169,7 +169,7 @@ export default class HomePage extends React.Component {
                 flexShrink: 1,
                 alignItems:"center",}}>
                 <Text allowFontScaling={false}
-                      style={{fontSize: 30, color: colors.text, flex: 1}}>Today</Text>
+                      style={{fontSize: 30, color: '#000', flex: 1}}>Today</Text>
             </View>
             {topicView}
         </View>)

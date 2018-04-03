@@ -24,6 +24,7 @@ import SplashPage from "./pages/SplashPage";
 import WebViewPage from "./pages/WebViewPage";
 import FollowUsersPage from "./pages/FollowUsersPage";
 import NotificationHistoryPage from "./pages/NotificationHistoryPage";
+import FeedbackPage from "./pages/FeedbackPage";
 
 
 /**
@@ -71,7 +72,6 @@ export function registerScreens() {
     Navigation.registerComponent('User', () => UserPage);
     Navigation.registerComponent('Notification', () => NotificationPage);
     Navigation.registerComponent('NotificationHistory', () => NotificationHistoryPage);
-    //NotificationHistoryPage
     Navigation.registerComponent('Write', () => WritePage);
     Navigation.registerComponent('WriteTab', () => WriteTab);
     Navigation.registerComponent('Notebook', () => NotebookPage);
@@ -83,6 +83,7 @@ export function registerScreens() {
     Navigation.registerComponent('WebView', () => WebViewPage);
     Navigation.registerComponent('WebView', () => WebViewPage);
     Navigation.registerComponent('FollowUsers', () => FollowUsersPage);
+    Navigation.registerComponent('Feedback', () => FeedbackPage);
 
     Navigation.registerComponent('UserEdit', () => UserEditPage);
     Navigation.registerComponent('EditName', () => EditNamePage);
