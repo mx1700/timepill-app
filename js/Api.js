@@ -303,6 +303,8 @@ export async function getSplashByStore() {
             return false;
         }
 
+        console.log('splash store:', info);
+
         const now = Date.parse( new Date()) / 1000;
         if ((info.start_time  && info.start_time <= now) ||
             (info.end_time && now >= info.end_time)) {
