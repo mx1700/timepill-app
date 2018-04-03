@@ -97,7 +97,7 @@ export default class UserIntro extends Component {
         if (this.state.loading) {
             return (
                 <View style={[{flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}, this.props.style]}>
-                    <ActivityIndicator color={colors.light} size="large"/>
+                    <ActivityIndicator color={colors.light} size={Platform.OS === 'android' ? 'large' : 'small'}/>
                 </View>
             )
         }

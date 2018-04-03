@@ -366,7 +366,7 @@ export default class WritePage extends Component {
                     transparent={true}
                     onRequestClose={() => {}}>
                     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
-                        <ActivityIndicator animating={true} color={colors.light} />
+                        <ActivityIndicator animating={true} color={colors.light} size={Platform.OS === 'android' ? 'large' : 'small'} />
                     </View>
                 </Modal>
                 {this.renderSelectBook()}

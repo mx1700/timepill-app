@@ -163,7 +163,7 @@ export default class NotificationHistoryPage extends Component {
         if (this.state.refreshing) {
             return (
                 <View style={{alignItems:'center', justifyContent: 'center' , height: '100%'}}>
-                    <ActivityIndicator animating={true} color={colors.primary} size="large"/>
+                    <ActivityIndicator animating={true} color={colors.primary} size={Platform.OS === 'android' ? 'large' : 'small'}/>
                 </View>
             )
         }

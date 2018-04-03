@@ -228,7 +228,7 @@ export default class LoginPage extends Component {
                         alignItems: "center",
                         backgroundColor: "rgba(255, 255, 255, 0.8)"
                     }}>
-                        <ActivityIndicator animating={true} color={colors.primary} size="large"/>
+                        <ActivityIndicator animating={true} color={colors.primary} size={Platform.OS === 'android' ? 'large' : 'small'}/>
                     </View>
                 </Modal>
                 <Animated.View style={{flex: 1, paddingTop: this.state.paddingAnim, paddingHorizontal: 15}}>

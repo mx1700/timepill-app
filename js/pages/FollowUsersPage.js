@@ -351,7 +351,7 @@ class FollowList extends Component {
         if (this.state.more) {
             return (
                 <View style={{ height: 60, justifyContent: "center", alignItems: "center"}}>
-                    <ActivityIndicator animating={true} color={TPColors.light} size="small" />
+                    <ActivityIndicator animating={true} color={TPColors.light} size={Platform.OS === 'android' ? 'large' : 'small'} />
                 </View>
             )
         } else {

@@ -395,7 +395,7 @@ export default class DiaryDetailPage extends React.Component {
             return (
                 <View style={{flex: 1, backgroundColor: 'white', justifyContent: "space-between"}}>
                     <View style={{flex: 1, alignItems: 'center', paddingTop: 30}}>
-                        <ActivityIndicator animating={true} color={colors.light} size="large"/>
+                        <ActivityIndicator animating={true} color={colors.light} size={Platform.OS === 'android' ? 'large' : 'small'}/>
                     </View>
                 </View>
             )
