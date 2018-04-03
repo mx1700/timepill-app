@@ -120,9 +120,9 @@ android {
     defaultConfig {
         applicationId "com.timepill.diary"
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 4
-        versionName "1.0.3"
+        targetSdkVersion 25
+        versionCode 5
+        versionName "1.0.4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
