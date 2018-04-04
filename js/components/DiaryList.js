@@ -28,6 +28,7 @@ export default class DiaryList extends Component {
         autoLoad: PropTypes.bool,   //是否自动加载数据
         onRefreshList: PropTypes.func,
         emptyMessage: PropTypes.string,
+        isRefresh: PropTypes.bool,
         ...FlatList.propTypes
     };
 
@@ -38,7 +39,8 @@ export default class DiaryList extends Component {
         editable: false,
         openLogin: false,
         autoLoad: true,
-        emptyMessage: '今天还没有日记，马上写一篇吧'
+        emptyMessage: '今天还没有日记，马上写一篇吧',
+        isRefresh: true,
     };
 
     constructor(props) {
@@ -270,7 +272,7 @@ export default class DiaryList extends Component {
                         )
                     }}
                     ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
-                    onRefresh={this.onRefresh.bind(this)}
+                    onRefresh={this.props.isRefresh ? this.onRefresh.bind(this) : null}
                     refreshing={this.state.refreshing}
                     ListFooterComponent={this.renderFooter()}
                     automaticallyAdjustContentInsets={true}
