@@ -302,7 +302,7 @@ export async function getSplashByStore() {
             return false;
         }
 
-        console.log('splash store:', info);
+        // console.log('splash store:', info);
 
         const now = Date.parse( new Date()) / 1000;
         if ((info.start_time  && info.start_time <= now) ||
@@ -399,7 +399,7 @@ export async function getUpdateInfo() {
 //==========================================================================
 
 async function call(method, api, body, _timeout = 10000) {
-  console.log('request:', baseUrl + api, body);
+  // console.log('request:', baseUrl + api, body);
   let token = await TokenManager.getToken();
   //console.log(token);
   // if (body) {
@@ -429,7 +429,7 @@ async function call(method, api, body, _timeout = 10000) {
 }
 
 async function callV2(method, api, body = null, _timeout = 10000) {
-    console.log('request:', BASE_URL_V2 + api, body);
+    // console.log('request:', BASE_URL_V2 + api, body);
     let token = await TokenManager.getToken();
     return timeout(fetch(BASE_URL_V2 + api, {
             method: method,
@@ -445,7 +445,7 @@ async function callV2(method, api, body = null, _timeout = 10000) {
             body: body ? JSON.stringify(body) : null
         })
             .then((response) => {
-                console.log(BASE_URL_V2 + api, response);
+                // console.log(BASE_URL_V2 + api, response);
                 return response;
             })
             .then(checkStatus)
