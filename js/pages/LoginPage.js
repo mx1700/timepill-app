@@ -137,23 +137,24 @@ export default class LoginPage extends Component {
             console.log(err);
             Answers.logCustom('LoginError', {message: err.message});
         }
-        // console.log("login:", result);
-        this.setState({loading: false});
-        setTimeout(() => {
+
+        InteractionManager.runAfterInteractions(() => {
             if (result) {
+                Answers.logLogin('Email', true);
                 DeviceEventEmitter.emit(Events.login, { user: result });
                 startTabPage().done();
             } else {
+                Answers.logLogin('Email', false);
                 Alert.alert(
                     '账号或密码不正确',
                     '',
                     [
-                        {text: '确定', onPress: () => console.log('OK Pressed')},
+                        {text: '确定', onPress: () => this.setState({loading: false})},
                     ],
                     { cancelable: false }
                 )
             }
-        }, 200)
+        })
     }
 
     async register() {
@@ -166,9 +167,8 @@ export default class LoginPage extends Component {
             Answers.logCustom('RegisterError', {message: err.message});
             errMsg = err.message;
         }
-        this.setState({loading: false});
 
-        setTimeout(() => {
+        InteractionManager.runAfterInteractions(() => {
             if (result) {
                 Answers.logSignUp('Email', true);
                 DeviceEventEmitter.emit(Events.login, { user: result });
@@ -180,12 +180,12 @@ export default class LoginPage extends Component {
                     errMsg ? errMsg : "注册失败",
                     '',
                     [
-                        {text: '确定', onPress: () => console.log('OK Pressed')},
+                        {text: '确定', onPress: () => this.setState({loading: false})},
                     ],
                     { cancelable: false }
                 )
             }
-        }, 200);
+        });
     }
 
     toRegister() {
