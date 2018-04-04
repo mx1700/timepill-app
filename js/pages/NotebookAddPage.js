@@ -73,6 +73,10 @@ export default class NotebookAddPage extends Component {
                 this.refs.subjectInput.focus();
             }
         });
+
+        // setTimeout(() => {
+        //
+        // }, 750);
     }
 
     onNavigatorEvent(event) {
@@ -302,7 +306,7 @@ export default class NotebookAddPage extends Component {
                         <Text style={{flex: 1, textAlign: 'center', color: '#d9534f', fontSize: 16}}>删除</Text>
                     </TouchableOpacity>
                 </View>
-                <Text style={{fontSize: 12, padding: 10, paddingTop: 8, color: TPColors.inactiveText}}>提示：有日记的日记本不能被删除</Text>
+                <Text style={{fontSize: 12, padding: 10, paddingTop: 8, color: TPColors.inactiveText}}>提示：写过的日记本不能被删除</Text>
             </View>
         );
 
