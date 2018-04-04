@@ -8,12 +8,12 @@ import React, { Component } from 'react';
 import {registerScreens} from "./screens";
 import {Navigation, NativeEventsReceiver, ScreenVisibilityListener} from 'react-native-navigation';
 import {colors} from "./Styles";
-import {Platform, StatusBar} from 'react-native'
+import {Platform, StatusBar, Alert} from 'react-native'
 import LocalIcon from "./common/LocalIcons";
 import { loadIcon } from './common/LocalIcons';
 import * as Api from './Api'
 import Token from './TokenManager'
-import { Answers } from 'react-native-fabric';
+import { Answers, Crashlytics } from 'react-native-fabric';
 
 registerScreens();
 
@@ -31,12 +31,21 @@ registerScreenVisibilityListener();
 
 
 async function appStart() {
-    await loadIcon();
+    try {
+        await loadIcon();
+    } catch (err) {
+        Alert.alert("loadIcon err: " + err.toString())
+    }
     //TODO:Fabric 初始化
     //TODO:UserIntro 刷新用户信息
     //TODO:关注自己的问题
 
-    const token = await Token.getToken();
+    let token = null;
+    try {
+        token = await Token.getToken();
+    } catch(err) {
+        console.error(err)
+    }
     if (!token) {
         await startLoginPage();
         return;
@@ -209,7 +218,19 @@ export async function startTabPage() {
             initialTabIndex: 0,
         },
         animationType: 'fade'
-    })
+    });
+
+    //load user
+    try {
+        const user = await Api.getSelfInfoByStore();
+        if (user) {
+            Crashlytics.setUserIdentifier(user.id.toString());
+            Crashlytics.setUserName(user.name);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+
 }
 
 export default () => {
