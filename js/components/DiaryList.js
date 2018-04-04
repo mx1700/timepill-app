@@ -254,7 +254,7 @@ export default class DiaryList extends Component {
                     style={{backgroundColor: 'white', height: '100%'}}
                     data={this.state.diaries}
                     keyExtractor={(item, index) => {
-                        return item.id
+                        return item.id.toString()
                     }}
                     renderItem={({item}) => {
                         return (
