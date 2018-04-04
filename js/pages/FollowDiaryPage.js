@@ -43,8 +43,6 @@ export default class FollowDiaryPage extends React.Component {
                             <View style={{
                                 paddingTop: HEADER_PADDING,
                             }}>
-                                <Text style={{paddingLeft: 20, color: colors.inactiveText, fontSize: 14, paddingBottom: 5}}
-                                      allowFontScaling={false}> </Text>
                                 <View style={{
                                     paddingLeft: 20,
                                     flexDirection: "row",

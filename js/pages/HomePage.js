@@ -153,8 +153,6 @@ export default class HomePage extends React.Component {
         const day = now.getDate();
 
         return (<View style={{paddingTop: HEADER_PADDING}}>
-            <Text style={{paddingLeft: 20, color: colors.inactiveText, fontSize: 14, paddingBottom: 5}}
-                  allowFontScaling={false}>{month}月{day}日</Text>
             <View style={{
                 paddingLeft: 20,
                 flexDirection: "row",
