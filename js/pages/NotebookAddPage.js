@@ -365,7 +365,7 @@ export default class NotebookAddPage extends Component {
                     <View style={styles.item}>
                         <TextInput
                             ref="subjectInput"
-                            style={{flex: 1, fontSize: 16, height: 24}}
+                            style={{flex: 1, fontSize: 16, height: 24, padding: 0}}
                             placeholder="主题"
                             value={this.state.subject}
                             onChangeText={(text) => this.setState({subject: text})}

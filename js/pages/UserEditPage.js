@@ -338,7 +338,7 @@ export class EditNamePage extends Component {
                             selectionColor={TPColors.primary}
                             value={this.state.name}
                             onChangeText={(text) => this.setState({name: text})}
-                            style={{flex: 1, fontSize: 16, marginLeft: 15, paddingTop: 2, height: 24, color: TPColors.content}}
+                            style={{ flex: 1, fontSize: 16, marginLeft: 15, padding: 0, height: 24, color: TPColors.content }}
                         />
                     </View>
                 </View>
