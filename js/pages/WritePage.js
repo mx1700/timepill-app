@@ -200,7 +200,7 @@ export default class WritePage extends Component {
         //图片最大 1440 * 900 像素
         let oWidth = width;
         let oHeight = height;
-        let maxPixel = 1440 * 900;
+        let maxPixel = 2560 * 1920;
         let oPixel = oWidth * oHeight;
         if (oPixel > maxPixel) {
             width = Math.sqrt(oWidth * maxPixel / oHeight);
@@ -318,7 +318,7 @@ export default class WritePage extends Component {
     goBack = (clear = false) => {
         if (this.props.tabOpen) {
             this.props.navigator.switchToTab({
-                tabIndex: 0,    //todo:调回之前的页面
+                tabIndex: 4,    //todo:调回之前的页面
             });
             if(clear) {
                 this.setState({
