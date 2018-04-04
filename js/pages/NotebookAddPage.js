@@ -381,7 +381,7 @@ export default class NotebookAddPage extends Component {
                         <Switch
                             value={this.state.pub}
                             onValueChange={(v) => this.setState({pub: v})}
-                            onTintColor={TPColors.textSelect}
+                            onTintColor={Platform.OS === 'android' ? TPColors.textSelect : null}
                             thumbTintColor={Platform.OS === 'android' && this.state.pub ? TPColors.light : null}
                         />
                     </View>
