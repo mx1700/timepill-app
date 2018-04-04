@@ -188,7 +188,9 @@ export default class DiaryDetailPage extends React.Component {
     }
 
     _scrollToBottom() {
-        this.list.scrollToEnd();
+        setTimeout(() => {
+            this.list.scrollToEnd();
+        }, 750);    //防止视图还没渲染完
     }
 
     _onCommentPress(comment) {
