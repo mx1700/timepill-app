@@ -71,7 +71,8 @@ export default class UserBooks extends Component {
                 ? await Api.getSelfNotebooks()
                 : await Api.getUserNotebooks(this.props.userId);
         } catch(err) {
-            Alert.alert('加载失败', err.message);
+            //Alert.alert('加载失败', err.message);
+            //TODO:展示加载失败页面
             this.setState({
                 refreshing: false,
             });

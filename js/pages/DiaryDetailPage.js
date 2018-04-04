@@ -17,6 +17,7 @@ import {Avatar, Divider} from "react-native-elements";
 import ActionSheet from 'react-native-actionsheet-api';
 import Events from "../Events";
 import LocalIcons from "../common/LocalIcons";
+import Toast from 'react-native-root-toast';
 import { isIphoneX } from 'react-native-iphone-x-helper'
 
 const isIpx = isIphoneX();
@@ -327,7 +328,12 @@ export default class DiaryDetailPage extends React.Component {
                 if (index === 0) {
                     Api.report(this.state.diary.user_id, this.state.diary.id)
                         .catch(err => console.log(err));
-                    Alert.alert('提示', '感谢你的贡献')
+                    Toast.show("举报成功，感谢你的贡献 :)", {
+                        duration: 2000,
+                        position: -80,
+                        shadow: false,
+                        hideOnPress: true,
+                    })
                 }
             });
         }
