@@ -27,6 +27,7 @@ export default class DiaryList extends Component {
         openLogin: PropTypes.bool,  //如果接口返回没有登录，是否打开登录页
         autoLoad: PropTypes.bool,   //是否自动加载数据
         onRefreshList: PropTypes.func,
+        emptyMessage: PropTypes.string,
         ...FlatList.propTypes
     };
 
@@ -37,6 +38,7 @@ export default class DiaryList extends Component {
         editable: false,
         openLogin: false,
         autoLoad: true,
+        emptyMessage: '今天还没有日记，马上写一篇吧'
     };
 
     constructor(props) {
@@ -292,7 +294,7 @@ export default class DiaryList extends Component {
                 </View>
             )
         }
-        let text = this.state.error ? '出错了 :(':'今天还没有日记，马上写一篇吧';
+        let text = this.state.error ? '出错了 :(' : this.props.emptyMessage;
         return (
             <ErrorView text={text} buttonText="刷新一下" onButtonPress={this.refresh.bind(this)}/>
         );

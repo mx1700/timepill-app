@@ -146,6 +146,7 @@ export default class UserPage extends Component {
             dataSource={new UserDiaryData(this.getId())}
             navigator={this.props.navigator}
             editable={this.props.isMyself}
+            emptyMessage={this.props.isMyself ? "今天还没有写日记，马上写一篇吧" : "今天还没有写日记"}
         />,
         notebooks: () => <UserBooks
             ref={(r) => this.notebooks = r }

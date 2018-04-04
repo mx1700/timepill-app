@@ -67,6 +67,7 @@ export default class FollowDiaryPage extends React.Component {
                         )
                     }}
                     navigator={this.props.navigator}
+                    emptyMessage={"今天还没有人写日记"}
                 />
             </View>
         )
