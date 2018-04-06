@@ -2,7 +2,7 @@ import React from "react";
 import {
     View, InteractionManager, Alert, ActionSheetIOS, Clipboard, ActivityIndicator, StyleSheet,
     TextInput, TouchableOpacity, ListView, FlatList, Text, Platform,
-    DeviceEventEmitter
+    DeviceEventEmitter, Keyboard
 } from "react-native";
 import moment from 'moment';
 import * as Api from "../Api";
@@ -160,6 +160,7 @@ export default class DiaryDetailPage extends React.Component {
             return;
         }
         this.setState({comment_sending: true});
+
         let ret = null;
         try {
             ret = await Api.addComment(this.state.diary.id, content, this.state.reply_user_id)
@@ -177,6 +178,7 @@ export default class DiaryDetailPage extends React.Component {
                 comment_count: this.state.comment_count + 1,
                 inputHeight: DefaultInputHeight,
             }, () => {
+                Keyboard.dismiss();
                 this._scrollToBottom();
             });
         } else {
