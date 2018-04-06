@@ -422,7 +422,7 @@ export default class DiaryDetailPage extends React.Component {
                     ref={(r) => this.list = r}
                     data={this.state.comments}
                     keyExtractor={(item, index) => {
-                        return item.id
+                        return item.id.toString()
                     }}
                     renderItem={({item}) => this.renderComment(item) }
                     ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: colors.line, height: StyleSheet.hairlineWidth}}/>}

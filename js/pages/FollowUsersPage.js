@@ -14,12 +14,12 @@ import {
 import * as Api from '../Api'
 import UserPage from './UserPage'
 import {colors as TPColors} from "../Styles";
-import errorView from "../components/ErrorView";
 import PropTypes from 'prop-types';
 import TPTouchable from "../components/TPTouchable";
 import {SceneMap, TabBar, TabViewAnimated, TabViewPagerPan} from "react-native-tab-view";
 import UserDiaryData from "../common/UserDiaryData";
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
+import ErrorView from '../components/ErrorView'
 
 const initialLayout = {
     height: 0,

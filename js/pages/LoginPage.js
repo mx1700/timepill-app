@@ -138,23 +138,27 @@ export default class LoginPage extends Component {
             Answers.logCustom('LoginError', {message: err.message});
         }
 
-        InteractionManager.runAfterInteractions(() => {
-            if (result) {
-                Answers.logLogin('Email', true);
-                DeviceEventEmitter.emit(Events.login, { user: result });
-                startTabPage().done();
-            } else {
-                Answers.logLogin('Email', false);
-                Alert.alert(
-                    '账号或密码不正确',
-                    '',
-                    [
-                        {text: '确定', onPress: () => this.setState({loading: false})},
-                    ],
-                    { cancelable: false }
-                )
-            }
-        })
+        this.setState({loading: false});
+
+        setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
+                if (result) {
+                    Answers.logLogin('Email', true);
+                    DeviceEventEmitter.emit(Events.login, { user: result });
+                    startTabPage().done();
+                } else {
+                    Answers.logLogin('Email', false);
+                    Alert.alert(
+                        '账号或密码不正确',
+                        '',
+                        [
+                            {text: '确定', onPress: () => {}},
+                        ],
+                        { cancelable: false }
+                    )
+                }
+            })
+        }, 500);
     }
 
     async register() {
@@ -168,24 +172,28 @@ export default class LoginPage extends Component {
             errMsg = err.message;
         }
 
-        InteractionManager.runAfterInteractions(() => {
-            if (result) {
-                Answers.logSignUp('Email', true);
-                DeviceEventEmitter.emit(Events.login, { user: result });
-                startTabPage().done();
-            } else {
-                Answers.logSignUp('Email', false);
-                Answers.logCustom('RegisterError', {message: errMsg});
-                Alert.alert(
-                    errMsg ? errMsg : "注册失败",
-                    '',
-                    [
-                        {text: '确定', onPress: () => this.setState({loading: false})},
-                    ],
-                    { cancelable: false }
-                )
-            }
-        });
+        this.setState({loading: false});
+
+        setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
+                if (result) {
+                    Answers.logSignUp('Email', true);
+                    DeviceEventEmitter.emit(Events.login, {user: result});
+                    startTabPage().done();
+                } else {
+                    Answers.logSignUp('Email', false);
+                    Answers.logCustom('RegisterError', {message: errMsg});
+                    Alert.alert(
+                        errMsg ? errMsg : "注册失败",
+                        '',
+                        [
+                            {text: '确定', onPress: () => {}},
+                        ],
+                        {cancelable: false}
+                    )
+                }
+            });
+        }, 500);
     }
 
     toRegister() {
@@ -216,6 +224,7 @@ export default class LoginPage extends Component {
                     placeholderTextColor={colors.inactiveText}
                     placeholder="名字"/>
         ) : null;
+
         return (
             <View style={{flex: 1, backgroundColor: "white"}}>
                 <Modal
@@ -237,7 +246,6 @@ export default class LoginPage extends Component {
                     </Text>
                     <View style={styles.inputBox}>
                         {nicknameInput}
-
                         <FormInput
                             ref="inputEmail"
                             containerStyle={styles.input}
