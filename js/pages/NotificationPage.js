@@ -203,9 +203,15 @@ export default class NotificationPage extends Component {
 
         this.props.navigator.setTabBadge({
             tabIndex: 3,
-            badge: rowData.length === 0 ? null : rowData.length,
+            badge: list.length === 0 ? null : list.length,
             badgeColor: colors.danger,
         });
+
+        if (Platform.OS === 'ios') {
+            JPushModule.setBadge(list.length, (r) => {
+                //alert("JPushModule.setBadge: " + JSON.stringify(r))
+            })
+        }
     }
 
     _onRefresh() {
