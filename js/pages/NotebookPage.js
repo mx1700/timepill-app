@@ -212,6 +212,17 @@ export default class NotebookPage extends Component {
     }
 
     renderList() {
+        if (this.state.refreshing && this.state.diaries.length === 0) {
+            return (
+                <View style={{alignItems:'center', justifyContent: 'center' , height: '100%'}}>
+                    <ActivityIndicator animating={true} color={colors.primary} size={Platform.OS === 'android' ? 'large' : 'small'}/>
+                </View>
+            );
+        }
+        if (this.state.errorPage) {
+            return <ErrorView text="日记加载失败了 :(" button="重试一下" onButtonPress={this._onRefresh.bind(this)}/>
+        }
+
         return (
             <SectionList
                 sections={this.state.diariesDateSource}
@@ -236,6 +247,7 @@ export default class NotebookPage extends Component {
                         <Text style={{color: colors.text}}>{info.section.title}</Text>
                     </View>
                 }}
+                automaticallyAdjustContentInsets={true}
                 onEndReached={this._onEndReached.bind(this)}
                 ListFooterComponent={this.renderFooter.bind(this)}
                 ItemSeparatorComponent={(sectionID, rowID, adjacentRowHighlighted) =>
@@ -249,10 +261,6 @@ export default class NotebookPage extends Component {
     }
 
     renderFooter() {
-        if (this.state.errorPage) {
-            return <ErrorView text="日记加载失败了 :(" button="重试一下" onButtonPress={this._onRefresh.bind(this)}/>
-        }
-
         if (!this.state.loading_more && this.state.loadMoreError) {
             return (
                 <View style={{height: 60, justifyContent: "center", alignItems: "center", paddingBottom: 15}}>
