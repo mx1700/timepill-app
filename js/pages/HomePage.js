@@ -140,7 +140,7 @@ export default class HomePage extends React.Component {
             <TouchableOpacity onPress={this.openTopicPage} activeOpacity={0.7}>
                 <ImageBackground
                     style={styles.topic_box}
-                    imageStyle={{ borderRadius: 18 }}
+                    imageStyle={{ borderRadius: 8 }}
                     source={{ uri: topic.imageUrl }} >
                     <Text style={styles.topic_title} allowFontScaling={false}># {topic.title}</Text>
                     <Text style={styles.topic_intro} allowFontScaling={false}>{topic.intro}</Text>
@@ -189,19 +189,20 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 240,
         marginTop: 15,
-        marginBottom: 15
+        marginBottom: 15,
+        marginHorizontal: 15,
     },
     topic_title: {
-        fontSize: 32,
+        fontSize: 24,
         color: '#FFF',
         paddingHorizontal: 20,
         paddingTop: 15,
         paddingBottom: 10,
         textShadowColor: '#333',
-        textShadowOffset: { width: 2, height: 2 }
+        textShadowOffset: { width: 1, height: 1 }
     },
     topic_intro: {
-        fontSize: 18,
+        fontSize: 16,
         color: '#FFF',
         paddingHorizontal: 22,
         textShadowColor: '#333',
