@@ -75,7 +75,7 @@ export async function startLoginPage() {
 
             //android only
             navigationBarColor: '#FFF',
-            statusBarColor: '#efefef',
+            statusBarColor: colors.navBackground,
         }
     });
 }
@@ -98,7 +98,7 @@ export async function startPasswordPage() {
 
             //android only
             navigationBarColor: '#FFF',
-            statusBarColor: '#efefef',
+            statusBarColor: colors.navBackground,
         }
     });
 }
@@ -209,8 +209,8 @@ export async function startTabPage() {
             // topBarElevationShadowEnabled: false,
 
             //android only
-            navigationBarColor: '#FFF',
-            statusBarColor: '#efefef',
+            navigationBarColor: colors.navBackground,
+            statusBarColor: colors.navBackground,
             // navBarHeight: 56,
             // navBarNoBorder: false,
             topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.

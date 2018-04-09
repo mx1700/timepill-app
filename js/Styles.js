@@ -12,7 +12,8 @@ const colors = {
     lightText: '#7F91A7',
 
     spaceBackground: '#f3f3ff', //空内容背景
-    navBackground: Platform.OS === 'ios' ? '#F9F9F9' : '#FFFFFF',
+    // navBackground: Platform.OS === 'ios' ? '#F9F9F9' : '#FFFFFF',
+    navBackground: '#F9F9F9',
     line: '#eee',
     textSelect: '#b6d8ff',
 

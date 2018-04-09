@@ -31,7 +31,7 @@ export default class FollowUsersPage extends Component {
     static navigatorStyle = {
         navBarNoBorder: true,
         topBarElevationShadowEnabled: false,
-        topBarBorderColor: '#FFF',
+        topBarBorderColor: TPColors.navBackground,
     };
 
     constructor(props) {
