@@ -1,0 +1,43 @@
+<svg id="图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250.4 250.4">
+    <defs>
+        <style>
+            .cls-1{fill:#ffffff;}
+            .cls-2{fill:#8e8e8e;}
+            .cls-3{fill:#525151;}
+            .cls-4{fill:#ffffff;}
+            .cls-5{fill:#0071E1;}
+            .cls-6{fill:#2690fc;}
+            .cls-7{fill:#b5b5b6;}
+            .cls-8{fill:#005eba;}
+        </style>
+    </defs>
+    <title>icon</title>
+    <rect class="cls-1" width="250.4" height="250.4"/>
+    <path class="cls-1"
+          d="M239.8,482.3h0c-68.9,0-125.2-56.3-125.2-125.2h0c0-68.9,56.3-125.2,125.2-125.2h0c68.9,0,125.2,56.3,125.2,125.2h0C365,426,308.7,482.3,239.8,482.3Z"
+          transform="translate(-114.6 -231.9)"/>
+    <ellipse class="cls-2" cx="125.2" cy="182.7" rx="57.5" ry="9.3"/>
+    <rect class="cls-3" x="68.3" y="146.7" width="113.9" height="8"/>
+    <rect class="cls-3" x="60.3" y="138.7" width="8" height="8"/>
+    <rect class="cls-3" x="182" y="138.7" width="8" height="8"/>
+    <rect class="cls-3" x="52.3" y="130.7" width="8" height="8"/>
+    <rect class="cls-3" x="190.1" y="130.7" width="8" height="8"/>
+    <rect class="cls-3" x="44.4" y="98.9" width="8" height="31.8"/>
+    <rect class="cls-3" x="198" y="98.9" width="8" height="31.8"/>
+    <rect class="cls-3" x="68.2" y="75" width="113.9" height="8"/>
+    <rect class="cls-3" x="60.3" y="83" width="8" height="8"/>
+    <rect class="cls-3" x="182.1" y="83" width="8" height="8"/>
+    <rect class="cls-3" x="52.3" y="90.9" width="8" height="8"/>
+    <rect class="cls-3" x="190.1" y="90.9" width="8" height="8"/>
+    <rect class="cls-4" x="52.3" y="98.9" width="8" height="31.8"/>
+    <rect class="cls-4" x="60.3" y="90.9" width="8" height="47.8"/>
+    <rect class="cls-4" x="68.3" y="83" width="56.9" height="63.7"/>
+    <polygon class="cls-5"
+             points="198 98.9 190.1 98.9 190.1 90.9 182.1 90.9 182.1 83 125.2 83 125.2 146.7 182.1 146.7 182.1 138.7 190.1 138.7 190.1 130.7 198 130.7 198 98.9"/>
+    <rect class="cls-6" x="125.2" y="90.9" width="23.9" height="8"/>
+    <rect class="cls-6" x="157" y="90.9" width="8" height="8"/>
+    <polygon class="cls-7"
+             points="127 123.6 68.1 123.6 68.1 131.6 76.1 131.6 76.1 139 126.7 139 126.7 131.6 127 131.6 127 123.6"/>
+    <polygon class="cls-8"
+             points="182.2 123.6 125.1 123.6 125.1 131.5 125.1 131.5 125.1 139 174.2 139 174.2 131.5 182.2 131.5 182.2 123.6"/>
+</svg>
