@@ -76,6 +76,7 @@ export async function startLoginPage() {
             //android only
             navigationBarColor: '#FFF',
             statusBarColor: colors.navBackground,
+            orientation: 'portrait',
         }
     });
 }
@@ -99,6 +100,7 @@ export async function startPasswordPage() {
             //android only
             navigationBarColor: '#FFF',
             statusBarColor: colors.navBackground,
+            orientation: 'portrait',
         }
     });
 }
@@ -197,11 +199,11 @@ export async function startTabPage() {
             tabBarHidden: true,
             // hideBackButtonTitle: true,
             // forceTitlesDisplay: true,
+            tabBarBackgroundColor: colors.navBackground,
             tabBarButtonColor: '#999',   //android
             tabBarSelectedButtonColor: colors.primary,   //android
 
             navBarTranslucent: false,
-            drawUnderStatusBar: false,
             statusBarTextColorScheme: 'dark',
             keepStyleAcrossPush: false,     //iOS
             navBarBackgroundColor: colors.navBackground,
@@ -213,8 +215,9 @@ export async function startTabPage() {
             statusBarColor: colors.navBackground,
             // navBarHeight: 56,
             // navBarNoBorder: false,
+            drawUnderStatusBar: false,
             topBarBorderColor: '#ddd', // Optional, set a flat border under the TopBar.
-
+            orientation: 'portrait',
             initialTabIndex: 0,
         },
         animationType: 'fade'
