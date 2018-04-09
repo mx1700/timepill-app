@@ -72,7 +72,7 @@ export default class DiaryDetailPage extends React.Component {
      * @param event
      */
     onNavigatorEvent(event) {
-        if (event.type === 'NavBarButtonPress' && event.id === 'more') {
+        if (event.id === 'more') {
             this._onDiaryMorePress()
         }
     }
