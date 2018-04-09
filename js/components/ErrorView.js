@@ -31,4 +31,8 @@ errorView.propTypes = {
     // style: View.propTypes.style,
 };
 
+errorView.defaultProps = {
+    buttonText: '刷新一下',
+};
+
 export default errorView

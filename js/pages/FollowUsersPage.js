@@ -208,7 +208,7 @@ class FollowList extends Component {
                 more: data.users.length === this.state.page_size,
                 loading_more: false,
                 refreshing: false,
-                emptyList: false,
+                emptyList: users.length === 0,
                 errorPage: false,
                 loadMoreError: false,
             });
@@ -279,6 +279,15 @@ class FollowList extends Component {
     }
 
     render() {
+
+        if (this.state.errorPage) {
+            return <ErrorView text="加载失败了 :(" onButtonPress={this._onRefresh.bind(this)}/>
+        }
+
+        if (this.state.emptyList) {
+            return (<ErrorView text="空空如也" onButtonPress={this._onRefresh.bind(this)} />)
+        }
+
         return (
             <ListView
                 ref="list"
@@ -325,15 +334,6 @@ class FollowList extends Component {
     }
 
     renderFooter() {
-        //todo:按照日记列表更改
-        if (this.state.errorPage) {
-            return <ErrorView text="加载失败了 :(" />
-        }
-
-        if (this.state.emptyList) {
-            return (<ErrorView text="还没有关注任何人" />)
-        }
-
         if(!this.state.loading_more && this.state.loadMoreError) {
             return (
                 <View style={{ height: 60, justifyContent: "center", alignItems: "center", paddingBottom: 15}}>
