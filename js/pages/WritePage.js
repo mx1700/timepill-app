@@ -62,22 +62,23 @@ export default class WritePage extends Component {
 
     componentDidMount() {
         InteractionManager.runAfterInteractions(() => {
-            if (!this.props.diary) {
-                // this._loadTempDraftAndDraft();       //TODO:
-            }
-            // this._autoSaveTempDraft();
-            // this._loadBooks().done();
-
             if(!this.props.tabOpen) {
                 this._loadBooks().done();
+                this._loadDraft();
+                this._autoSaveDraft();
             }
         });
     }
 
-    onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
-        console.log('WritePage.onNavigatorEvent', event);
-        if (event.type === 'NavBarButtonPress') { // this is the event type for button presses
-            if (event.id === 'cancel') { // this is the same id field from the static navigatorButtons definition
+    onNavigatorEvent(event) {
+        console.log('onNavigatorEvent', event);
+        if (event.id === 'bottomTabSelected') {
+            //进入事件
+            this._loadDraft();
+            this._autoSaveDraft();
+        }
+        if (event.type === 'NavBarButtonPress') {
+            if (event.id === 'cancel') {
                 this.goBack();
             }
             if(event.id === 'save') {
@@ -90,6 +91,15 @@ export default class WritePage extends Component {
         }
         if (event.id === 'backPress') {
             this.goBack();
+        }
+    }
+
+    async _loadDraft() {
+        const draft = await Api.getDraft();
+        if (draft && draft.length > 0) {
+            this.setState({
+                content: draft,
+            });
         }
     }
 
@@ -125,18 +135,19 @@ export default class WritePage extends Component {
     }
 
     _onChangeText = (text) => {
-        // if(!this.tempDraft) {
-        //     this.tempDraft = text;
-        // } else if(Math.abs(text.length - this.tempDraft.length) > 10) {
-        //     Api.saveTempDraft(text);
-        //     this.tempDraft = text;
-        // }
-        this.setState({ content: text });
-        // this.state.content = text;
-        // InteractionManager.runAfterInteractions(() => {
-        //     // this.state.content = text;
-        //     this.contentInput.setNativeProps({ text: text })
-        // })
+        this.setState({content: text});
+    };
+
+    _autoSaveDraft = () => {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+        this.timer = setInterval(() => {
+            console.log('_autoSaveDraft save');
+            if (this.state.content.length > 0) {
+                Api.saveDraft(this.state.content);
+            }
+        }, 5 * 1000)
     };
 
     _imagePress() {
@@ -298,8 +309,9 @@ export default class WritePage extends Component {
                 shadow: false,
                 hideOnPress: true,
             });
-
-            this.goBack(true);
+            await Api.clearDraft();
+            this.setState({ content: '' });
+            this.goBack();
 
             InteractionManager.runAfterInteractions(() => {
                 DeviceEventEmitter.emit(Events.writeDiary);
@@ -315,35 +327,53 @@ export default class WritePage extends Component {
         }
     }
 
-    goBack = (clear = false) => {
+    goBack = () => {
+        clearInterval(this.timer);
+        if (this.state.content.length === 0) {
+            Api.clearDraft();
+            this.closePage();
+            return;
+        }
+
+        InteractionManager.runAfterInteractions(() => {
+            Alert.alert('提示', '日记还未保存，是否保存草稿？', [
+                {
+                    text: '删除日记', style: 'destructive', onPress: () => {
+                        Api.clearDraft();
+                        this.closePage();
+                    }
+                },
+                {
+                    text: '保存草稿', onPress: () => {
+                        Api.saveDraft(this.state.content);
+                        this.closePage();
+                    }
+                },
+                {
+                    text: '取消'
+                },
+            ]);
+        });
+    };
+
+    closePage(clear) {
         if (this.props.tabOpen) {
             this.props.navigator.switchToTab({
                 tabIndex: 4,    //todo:调回之前的页面
             });
-            if(clear) {
-                this.setState({
-                    modalVisible: false,
-                    content: '',
-                    loading: false,
-                    photoUri: null,
-                    photoSource: null,
-                    loadBookError: false,
-                    bookEmptyError: false,
-                });
-            } else {
-                this.setState({
-                    modalVisible: false,
-                    loading: false,
-                    photoUri: null,
-                    photoSource: null,
-                    loadBookError: false,
-                    bookEmptyError: false,
-                });
-            }
+            this.setState({
+                modalVisible: false,
+                content: '',
+                loading: false,
+                photoUri: null,
+                photoSource: null,
+                loadBookError: false,
+                bookEmptyError: false,
+            });
         } else {
             this.props.navigator.pop();
         }
-    };
+    }
 
     render() {
         const selectedBook = this.state.books.length > 0
