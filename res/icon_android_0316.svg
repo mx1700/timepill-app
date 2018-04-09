@@ -1,0 +1,40 @@
+<svg id="图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.45 88.45">
+    <defs>
+        <style>
+            .cls-1{fill:#f9f9f9;}
+            .cls-2{fill:#8e8e8e;}
+            .cls-3{fill:#525151;}
+            .cls-4{fill:#fff;}
+            .cls-5{fill:#0071E1;}
+            .cls-6{fill:#2690fc;}
+            .cls-7{fill:#b5b5b6;}
+            .cls-8{fill:#005eba;}
+        </style>
+    </defs>
+    <title>icon</title>
+    <rect class="cls-1" width="88.45" height="88.45" rx="23.1" ry="23.1"/>
+    <ellipse class="cls-2" cx="44.23" cy="64.53" rx="20.3" ry="3.29"/>
+    <rect class="cls-3" x="24.12" y="51.81" width="40.21" height="2.81"/>
+    <rect class="cls-3" x="21.31" y="49" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="64.31" y="48.98" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="18.5" y="46.17" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="67.14" y="46.18" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="15.69" y="34.93" width="2.81" height="11.25"/>
+    <rect class="cls-3" x="69.96" y="34.93" width="2.81" height="11.25"/>
+    <rect class="cls-3" x="24.12" y="26.5" width="40.21" height="2.81"/>
+    <rect class="cls-3" x="21.31" y="29.31" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="64.33" y="29.31" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="18.49" y="32.12" width="2.81" height="2.81"/>
+    <rect class="cls-3" x="67.14" y="32.12" width="2.81" height="2.81"/>
+    <rect class="cls-4" x="18.5" y="34.93" width="2.81" height="11.25"/>
+    <rect class="cls-4" x="21.31" y="32.12" width="2.81" height="16.87"/>
+    <rect class="cls-4" x="24.12" y="29.31" width="20.11" height="22.5"/>
+    <polygon class="cls-5"
+             points="69.95 34.93 67.14 34.93 67.14 32.12 64.33 32.12 64.33 29.31 44.22 29.31 44.22 51.81 64.33 51.81 64.33 49 67.14 49 67.14 46.18 69.95 46.18 69.95 34.93"/>
+    <rect class="cls-6" x="44.21" y="32.12" width="8.44" height="2.81"/>
+    <rect class="cls-6" x="55.47" y="32.12" width="2.81" height="2.81"/>
+    <polygon class="cls-7"
+             points="44.88 43.66 24.06 43.66 24.06 46.48 26.88 46.48 26.88 49.09 44.76 49.09 44.76 46.48 44.88 46.48 44.88 43.66"/>
+    <polygon class="cls-8"
+             points="64.35 43.66 44.21 43.66 44.21 46.47 44.21 46.47 44.21 49.09 61.54 49.09 61.54 46.47 64.35 46.47 64.35 43.66"/>
+</svg>
