@@ -160,6 +160,19 @@ export default class SettingPage extends Component {
                         <Icon name="ios-arrow-forward" style={styles.arrow} size={18} color='#0076FF'/>
                     </TouchableOpacity>
                     <View style={styles.line} />
+
+                    <TouchableOpacity
+                        style={styles.item}
+                        onPress={() => this.props.navigator.push({
+                            screen: 'FollowUsers',
+                            title: '关注用户',
+                        })}
+                    >
+                        <Text style={styles.title}>关注用户</Text>
+                        <Icon name="ios-arrow-forward" style={styles.arrow} size={18} color='#0076FF'/>
+                    </TouchableOpacity>
+                    <View style={styles.line} />
+
                     <View style={styles.item}>
                         <Text style={styles.title}>启动密码</Text>
                         <Switch value={this.state.hasPassword}
@@ -168,6 +181,7 @@ export default class SettingPage extends Component {
                                 onValueChange={this.changePassword} />
                     </View>
                     <View style={styles.line} />
+
                     <View style={styles.item}>
                         <Text style={styles.title}>提醒推送</Text>
                         <Switch value={this.state.settings['pushMessage']}
