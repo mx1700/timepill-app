@@ -122,11 +122,11 @@ export default class UserBooks extends Component {
                 automaticallyAdjustContentInsets={false}
                 removeClippedSubviews={false}
                 // style={this.props.style}
-                // refreshControl={
-                //     <RefreshControl
-                //         refreshing={this.state.refreshing}
-                //         onRefresh={this._onRefresh.bind(this)}/>
-                // }
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh.bind(this)}/>
+                }
             />
         );
     }
