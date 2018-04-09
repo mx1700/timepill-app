@@ -43,6 +43,8 @@ export default class DiaryList extends Component {
         isRefresh: true,
     };
 
+    scrollY = 0;
+
     constructor(props) {
         super(props);
         this.dataSource = props.dataSource;
@@ -65,6 +67,12 @@ export default class DiaryList extends Component {
 
     scrollToTop() {
         if (!this.list) return;
+
+        if (this.scrollY <= 10) {
+            this.refresh();
+            return;
+        }
+
         this.list.scrollToOffset({
             offset: 0,
             animated: true,
@@ -281,6 +289,9 @@ export default class DiaryList extends Component {
                     {...this.props}
                     // onEndReachedThreshold={0.1}
                     // ListEmptyComponent={this.renderEmpty()}
+                    onScroll={(event) => {
+                        this.scrollY = event.nativeEvent.contentOffset.y;
+                    }}
                 >
                 </FlatList>
                 <ActionSheet/>
