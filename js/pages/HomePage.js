@@ -12,8 +12,10 @@ import RNFetchBlob from "react-native-fetch-blob";
 import * as TimeHelper from "../common/TimeHelper";
 import TPTouchable from "../components/TPTouchable";
 const DeviceInfo = require('react-native-device-info');
+import { isIphoneX } from 'react-native-iphone-x-helper'
 
-const HEADER_PADDING = Platform.OS === 'android' ? 20 : 40;
+const isIpx = isIphoneX();
+const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 55 : 45);
 
 export default class HomePage extends React.Component {
 

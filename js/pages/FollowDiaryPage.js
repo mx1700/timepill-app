@@ -7,8 +7,10 @@ import navOption from "../components/NavOption";
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import Events from "../Events";
 import TPTouchable from "../components/TPTouchable";
+import { isIphoneX } from 'react-native-iphone-x-helper'
 
-const HEADER_PADDING = Platform.OS === 'android' ? 20 : 40;
+const isIpx = isIphoneX();
+const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 55 : 45);
 
 export default class FollowDiaryPage extends React.Component {
 
