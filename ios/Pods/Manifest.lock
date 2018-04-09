@@ -1,9 +1,9 @@
 PODS:
-  - Crashlytics (3.10.0):
-    - Fabric (~> 1.7.3)
-  - Fabric (1.7.3)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Fabric (1.7.6)
   - QBImagePickerController (3.4.0)
-  - RSKImageCropper (2.0.0)
+  - RSKImageCropper (2.0.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -12,11 +12,11 @@ DEPENDENCIES:
   - RSKImageCropper
 
 SPEC CHECKSUMS:
-  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
-  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
-  RSKImageCropper: d9a1acbc0600bf8decc8f0d21895872c99a9e4cf
+  RSKImageCropper: 50d5a3e4160f0309b14d75b89d5ae2f496d56e0d
 
-PODFILE CHECKSUM: 9d4b132d752e962f155f233632b141ab0ab1fc85
+PODFILE CHECKSUM: a730592f86d669586a11f411cba02b44b94f4a50
 
 COCOAPODS: 1.4.0
