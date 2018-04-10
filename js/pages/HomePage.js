@@ -116,14 +116,11 @@ export default class HomePage extends React.Component {
         let topic = null;
         try {
             topic = await Api.getTodayTopic();
-        } catch (err) {
-            //
-        }
-        console.log(topic);
-        if (topic) {
             this.setState({
                 topic: topic,
             });
+        } catch (err) {
+            console.error(err);
         }
     };
 
