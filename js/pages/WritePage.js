@@ -202,6 +202,13 @@ export default class WritePage extends Component {
                             photoUri: image.path,
                         });
                     }
+                }).catch((err) => {
+                    Toast.show('操作失败:' + err.message, {
+                        duration: 2000,
+                        position: -80,
+                        shadow: false,
+                        hideOnPress: true,
+                    })
                 });
             }
         });
