@@ -130,3 +130,17 @@ RNFetchBlob.android.actionViewIntent(resp.path(), 'application/vnd.android.packa
 https://github.com/wkh237/react-native-fetch-blob/pull/614
 
 需要持续关注
+
+
+## iOS FlatList 手动下拉刷新后，用程序触发刷新，刷新指示器不显示的问题
+
+修改 react 源码 /React/Views/RCTRefreshControl.m 57 行
+
+```objective-c
+-    CGPoint offset = {scrollView.contentOffset.x, scrollView.contentOffset.y - self.frame.size.height};
++    CGPoint offset = {scrollView.contentOffset.x, scrollView.contentOffset.y - 60};
+```
+
+一直存在的问题，官方一直没有修改
+
+https://github.com/facebook/react-native/issues/17734
