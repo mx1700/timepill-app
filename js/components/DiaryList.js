@@ -92,15 +92,17 @@ export default class DiaryList extends Component {
 
         let data = null;
         try {
-            //const start = new Date().getTime();
+            const start = new Date().getTime();
             data = await this.dataSource.refresh();
-            // const end = new Date().getTime();
-            // const timer = end - start;
-            // if (timer < 1000 && this.state.diaries.length > 0) {
-            //     await new Promise((resolve, reject) => {
-            //         setTimeout(resolve, 1000 - timer)
-            //     })
-            // }
+            if (Platform.OS === 'ios') {
+                const end = new Date().getTime();
+                const timer = end - start;
+                if (timer < 500 && this.state.diaries.length > 0) {
+                    await new Promise((resolve, reject) => {
+                        setTimeout(resolve, 500 - timer)
+                    })
+                }
+            }
         } catch (e) {
             if (e.code && e.code === 401) {
                 if (this.props.openLogin) {
