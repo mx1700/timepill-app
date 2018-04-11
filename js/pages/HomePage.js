@@ -69,7 +69,7 @@ export default class HomePage extends React.Component {
         try {
             let info = await Api.getUpdateInfo();
             const VERSION = DeviceInfo.getVersion();
-            if (info.lastestVersion >= VERSION) {   //TODO 1111111111111111
+            if (info.lastestVersion > VERSION) {
                 Alert.alert(
                     '发现新版本 v' + info.lastestVersion,
                     info.message,
