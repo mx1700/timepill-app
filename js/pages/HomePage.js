@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     DeviceEventEmitter, Platform, StatusBar, Text, View, Alert, Image, Dimensions, ImageBackground,
-    TouchableOpacity, StyleSheet,
+    TouchableOpacity, StyleSheet, PermissionsAndroid,
 } from "react-native";
 import DiaryList from '../components/DiaryList'
 import {colors} from "../Styles";
@@ -13,6 +13,7 @@ import * as TimeHelper from "../common/TimeHelper";
 import TPTouchable from "../components/TPTouchable";
 const DeviceInfo = require('react-native-device-info');
 import { isIphoneX } from 'react-native-iphone-x-helper'
+import Toast from 'react-native-root-toast';
 
 const isIpx = isIphoneX();
 const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 55 : 45);
@@ -25,7 +26,6 @@ export default class HomePage extends React.Component {
 
     static navigatorStyle = {
         navBarHidden: true,
-        // navBarHideOnScroll: true,
     };
 
     constructor(props) {
@@ -33,12 +33,14 @@ export default class HomePage extends React.Component {
     }
 
     componentWillMount() {
-        this.loginListener = DeviceEventEmitter.addListener(Events.login, () => this.list.refresh());
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
-    componentWillUnmount() {
-        this.loginListener.remove();
+    onNavigatorEvent(event) {
+        // console.log(event);
+        if (event.id === 'bottomTabReselected') {
+            this.list.scrollToTop();
+        }
     }
 
     componentDidMount() {
@@ -51,22 +53,15 @@ export default class HomePage extends React.Component {
         }
 
         if(Platform.OS === 'android') {
-            this.updateAndroid().done()
+            setTimeout(() => {
+                this.updateAndroid().done()
+            }, 2000);
         }
         
-        //if (Platform.OS === 'ios') {
-        // try {
+        try {
             Api.syncSplash().catch((err) => console.log('errrrrrrrrrrrr',err));
-        // } catch (err) {
-        //     console.log(err)
-        // }
-        //}
-    }
-
-    onNavigatorEvent(event) {
-        // console.log(event);
-        if (event.id === 'bottomTabReselected') {
-            this.list.scrollToTop();
+        } catch (err) {
+            console.log(err)
         }
     }
 
@@ -74,7 +69,7 @@ export default class HomePage extends React.Component {
         try {
             let info = await Api.getUpdateInfo();
             const VERSION = DeviceInfo.getVersion();
-            if (info.lastestVersion > VERSION) {
+            if (info.lastestVersion >= VERSION) {   //TODO 1111111111111111
                 Alert.alert(
                     '发现新版本 v' + info.lastestVersion,
                     info.message,
@@ -86,13 +81,25 @@ export default class HomePage extends React.Component {
                 )
             }
         } catch (err) {
-            //TODO:上报异常
         }
 
     }
 
-    downloadApk(url, version) {
-        console.log('updateAndroid', RNFetchBlob.fs.dirs.DownloadDir);
+    async downloadApk(url, version) {
+        const toastConf = {
+            duration: 2500,
+            position: -50,
+            shadow: false,
+            hideOnPress: true,
+        };
+
+        const pass = await this.checkPermissions();
+        if (!pass) {
+            Toast.show("更新失败：没有写入文件的权限", toastConf);
+            return;
+        }
+        Toast.show("开始下载更新包", toastConf);
+        // console.log('updateAndroid', RNFetchBlob.fs.dirs.DownloadDir);
         RNFetchBlob
             .config({
                 addAndroidDownloads: {
@@ -107,10 +114,22 @@ export default class HomePage extends React.Component {
             })
             .fetch('GET', url)
             .then((resp) => {
-                console.log('download ok:', resp.path());
+                Toast.show("更新包下载完成", toastConf);
+                // console.log('download ok:', resp.path());
                 RNFetchBlob.android.actionViewIntent(resp.path(), 'application/vnd.android.package-archive');
             })
     }
+
+    checkPermissions = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+            return granted === PermissionsAndroid.RESULTS.GRANTED;
+        } catch (err) {
+            console.error(err);
+            return false;
+        }
+
+    };
 
     updateTopic = async () => {
         let topic = null;
@@ -133,7 +152,6 @@ export default class HomePage extends React.Component {
     };
 
     renderHeader() {
-        const {height, width} = Dimensions.get('window');
         const topic = this.state.topic;
         const topicView = topic ? (
             <TouchableOpacity onPress={this.openTopicPage} activeOpacity={0.7}>
@@ -146,10 +164,6 @@ export default class HomePage extends React.Component {
                 </ImageBackground>
             </TouchableOpacity>
         ) : null;
-
-        const now = TimeHelper.now();
-        const month = now.getMonth() + 1;
-        const day = now.getDate();
 
         return (<View style={{paddingTop: HEADER_PADDING}}>
             <View style={{
@@ -168,7 +182,7 @@ export default class HomePage extends React.Component {
     render() {
 
         return (
-            <View style={{backgroundColor: '#FFFFFF'}}>
+            <View style={{backgroundColor: '#FFFFFF', flex: 1}}>
                 <DiaryList
                     ref={(r) => this.list = r}
                     dataSource={new HomeListData()}
