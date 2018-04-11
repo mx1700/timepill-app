@@ -114,3 +114,19 @@ Fatal Exception: java.lang.NullPointerException: Attempt to invoke virtual metho
 rm ./node_modules/react-native/local-cli/core/fixtures/files/package.json
 
 https://github.com/oblador/react-native-vector-icons/issues/627
+
+
+## android react-native-fetch-blob 问题
+如果 android targetSdkVersion >= 24 ，自动更新打开安装包的动作会报错
+
+```javascript
+RNFetchBlob.android.actionViewIntent(resp.path(), 'application/vnd.android.package-archive');
+```
+
+所以 sdk 暂时使用 23
+
+官方有一个修复的pull，不过还没合并
+
+https://github.com/wkh237/react-native-fetch-blob/pull/614
+
+需要持续关注
