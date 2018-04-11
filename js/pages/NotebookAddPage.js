@@ -321,7 +321,7 @@ export default class NotebookAddPage extends Component {
                     transparent={true}
                     onRequestClose={() => {}}>
                     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
-                        <ActivityIndicator animating={true} color={TPColors.light} />
+                        <ActivityIndicator animating={true} color={TPColors.light} size={Platform.OS === 'android' ? 'large' : 'small'}/>
                     </View>
                 </Modal>
                 <Modal
