@@ -479,7 +479,7 @@ export default class WritePage extends Component {
                         ),
                         Animated.timing(
                             this.state.fadeAnimHeight,
-                            {toValue: Platform.OS === 'ios' ? 250 : 260 , duration: 350, easing: Easing.out(Easing.cubic)}
+                            {toValue: Platform.OS === 'ios' ? (isIpx ? 280 : 250) : 260 , duration: 350, easing: Easing.out(Easing.cubic)}
                         )
                     ]).start();
                 }}
