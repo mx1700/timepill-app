@@ -10,7 +10,7 @@ import TPTouchable from "../components/TPTouchable";
 import { isIphoneX } from 'react-native-iphone-x-helper'
 
 const isIpx = isIphoneX();
-const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 55 : 45);
+const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 55 : 25);
 
 export default class FollowDiaryPage extends React.Component {
 
@@ -31,7 +31,7 @@ export default class FollowDiaryPage extends React.Component {
 
     render() {
         return (
-            <View style={{backgroundColor: '#FFFFFF'}}>
+            <View style={{backgroundColor: '#FFFFFF', flex: 1, paddingTop: isIpx ? 0 : 20}}>
                 <DiaryList
                     ref={(r) => this.list = r}
                     dataSource={new FollowDiaryData()}

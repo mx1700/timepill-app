@@ -321,7 +321,7 @@ class FollowList extends Component {
             >
                 <View style={{flexDirection: 'row', borderBottomWidth: 1, borderColor: TPColors.line, alignItems: 'center', backgroundColor: 'white'}}>
                     <Image source={{uri: user.iconUrl}} style={{ width: 32, height: 32, borderRadius: 16, marginRight: 15, marginLeft: 20 }} />
-                    <Text style={{flex: 1, color: TPColors.text, fontWeight: 'bold'}}>{user.name}</Text>
+                    <Text style={{flex: 1, color: TPColors.text, fontSize: 16}}>{user.name}</Text>
                     <TPTouchable onPress={this._onDeletePress.bind(this, user)}>
                         <Ionicons name="md-close"
                                 size={20}
