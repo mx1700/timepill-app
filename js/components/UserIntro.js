@@ -16,6 +16,7 @@ import {colors} from "../Styles";
 import PropTypes from 'prop-types';
 import Events from "../Events";
 import {Avatar} from "react-native-elements";
+import Toast from 'react-native-root-toast';
 
 export default class UserIntro extends Component {
 
@@ -70,7 +71,12 @@ export default class UserIntro extends Component {
                 user = await Api.getUserInfo(this.getId())
             }
         } catch (err) {
-            Alert.alert('加载失败', err);
+            Toast.show('用户信息加载失败:' + err, {
+                duration: 2500,
+                position: -50,
+                shadow: false,
+                hideOnPress: true,
+            });
             return;
         }
         this.setState({
