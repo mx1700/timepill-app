@@ -33,7 +33,7 @@
     "react-native-root-siblings": "^3.0.0",
     "react-native-root-toast": "^3.0.0",
     "react-native-scrollable-tab-view": "^0.8.0",
-    "react-native-tab-view": "^0.0.74",
+    "react-native-tab-view": "0.0.77",
     "react-native-vector-icons": "^4.5.0"
   },
   "devDependencies": {
