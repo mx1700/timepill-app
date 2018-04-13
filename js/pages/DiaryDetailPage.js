@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 19,
-        paddingRight: 30,
+        paddingRight: 40,
         paddingLeft: 15,
         paddingTop: 10,
         paddingBottom: 10,
