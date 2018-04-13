@@ -205,6 +205,8 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 15,
         marginHorizontal: 15,
+        backgroundColor: colors.spaceBackground,
+        borderRadius: 8,
     },
     topic_title: {
         fontSize: 24,
@@ -212,14 +214,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingTop: 15,
         paddingBottom: 10,
-        textShadowColor: '#333',
+        textShadowColor: '#000',
         textShadowOffset: { width: 1, height: 1 }
     },
     topic_intro: {
         fontSize: 16,
         color: '#FFF',
         paddingHorizontal: 22,
-        textShadowColor: '#333',
+        textShadowColor: '#000',
         textShadowOffset: { width: 1, height: 1 }
     }
 });
