@@ -15,6 +15,8 @@ const initialLayout = {
     width: Dimensions.get('window').width,
 };
 
+const isAndroid = Platform.OS === 'android';
+
 export default class UserPage extends Component {
 
     static navigatorStyle = {
@@ -37,27 +39,31 @@ export default class UserPage extends Component {
                 { key: 'diary', title: '日记' },
                 { key: 'notebooks', title: '日记本' },
             ],
-            visible: false,  //用以修复tab滚动问题，tab 和 nav 组件不兼容
-            tabLoad: !this.props.tabOpen, //是否加载tab页，如果是从底部 tab 打开，则默认不加载，等点击底部tab事件触发再加载
+            visible: true,  //用以修复tab滚动问题，tab 和 nav 组件不兼容
+            tabLoad: !this.props.tabOpen, //从tab加载不进行 render，因为不知道哪里有bug，tab加载render的话，子视图会加载两次，启动时依稀，点击底部tab时一次
         };
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
-            this.setState({
-                visible: true,
-                tabLoad: true,
-                index: this.state.index,
-            });
-            if(Platform.OS === 'android') {
+            if (!this.state.tabLoad) {
+                this.setState({
+                    tabLoad: true,
+                });
+            }
+            if(isAndroid) {
+                this.setState({
+                    visible: true,
+                });
                 this.loadNavButtons().done();   //用以修复 android nav button 加载不上的问题
             }
         }
         if (event.id === 'willDisappear') {
-            this.setState({
-                visible: false
-            });
+            if (isAndroid) {
+                this.setState({
+                    visible: false
+                });
+            }
         }
         if (event.type === 'NavBarButtonPress' && event.id === 'follow') {
             this.updateRelation().done();
@@ -98,6 +104,7 @@ export default class UserPage extends Component {
                 this.diaryList && this.diaryList.refresh()
             });
         }
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
         this.loadNavButtons().done();
     }
 
