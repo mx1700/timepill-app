@@ -39,10 +39,10 @@ export default class UserBooks extends Component {
     componentDidMount(){
         InteractionManager.runAfterInteractions(() => {
             this._loadBooks().done();
+            if (this.props.mySelf) {
+                this.updateListener = DeviceEventEmitter.addListener(Events.updateNotebooks, this._onAddNotebook);
+            }
         });
-        if (this.props.mySelf) {
-            this.updateListener = DeviceEventEmitter.addListener(Events.updateNotebooks, this._onAddNotebook);
-        }
     }
 
     componentWillUnmount() {

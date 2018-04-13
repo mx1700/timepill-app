@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, Animated, Dimensions, DeviceEventEmitter, Alert} from "react-native";
+import {Text, View, StyleSheet, Animated, Dimensions, DeviceEventEmitter, Alert, Platform} from "react-native";
 import DiaryList from "../components/DiaryList";
 import UserDiaryData from "../common/UserDiaryData";
 import LocalIcons from "../common/LocalIcons";
@@ -37,7 +37,7 @@ export default class UserPage extends Component {
                 { key: 'diary', title: '日记' },
                 { key: 'notebooks', title: '日记本' },
             ],
-            visible: true,  //用以修复tab滚动问题，tab 和 nav 组件不兼容
+            visible: false,  //用以修复tab滚动问题，tab 和 nav 组件不兼容
             tabLoad: !this.props.tabOpen, //是否加载tab页，如果是从底部 tab 打开，则默认不加载，等点击底部tab事件触发再加载
         };
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -48,8 +48,11 @@ export default class UserPage extends Component {
             this.setState({
                 visible: true,
                 tabLoad: true,
+                index: this.state.index,
             });
-            this.loadNavButtons().done();   //用以修复 android nav button 加载不上的问题
+            if(Platform.OS === 'android') {
+                this.loadNavButtons().done();   //用以修复 android nav button 加载不上的问题
+            }
         }
         if (event.id === 'willDisappear') {
             this.setState({
