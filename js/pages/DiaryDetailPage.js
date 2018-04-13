@@ -549,7 +549,7 @@ export default class DiaryDetailPage extends React.Component {
             ? <Text style={styles.content}>{comment.content}</Text>
             : (
                 <Text style={styles.content}>
-                    <Text style={{color: colors.text, fontWeight: 'bold'}}>@{comment.recipient.name} </Text>
+                    <Text style={{color: colors.primary, fontWeight: 'bold'}}>@{comment.recipient.name} </Text>
                     {comment.content}
                 </Text>
             );
