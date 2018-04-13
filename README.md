@@ -104,8 +104,7 @@ Fatal Exception: java.lang.NullPointerException: Attempt to invoke virtual metho
 ```java
     if (null != sCacheMap) {
          sCacheMap.clear();
--        sCacheMap = null;                   //修改成下边
-+        sCacheMap = new SparseArray<>();
+-        sCacheMap = null;                   //删掉这行
     }
 ```
 
