@@ -71,7 +71,7 @@ export default class WritePage extends Component {
     }
 
     onNavigatorEvent(event) {
-        console.log('onNavigatorEvent', event);
+        //console.log('onNavigatorEvent', event);
         if (event.id === 'bottomTabSelected') {
             //进入事件
             this._loadDraft();
@@ -183,7 +183,7 @@ export default class WritePage extends Component {
                 this.openPhoto(this.state.photoUri)
             } else {
                 let imageSelect = index === 0
-                    ? ImagePicker.openCamera({cropping: false}) : ImagePicker.openPicker({cropping: false});
+                    ? ImagePicker.openCamera({cropping: false}) : ImagePicker.openPicker({cropping: false, mediaType: 'photo'});
                 imageSelect.then(image => {
                     if (index === 0) {
                         CameraRoll.saveToCameraRoll(image.path).done();
@@ -203,6 +203,9 @@ export default class WritePage extends Component {
                         });
                     }
                 }).catch((err) => {
+                    if (err.message === "User cancelled image selection") {
+                        return;
+                    }
                     Toast.show('操作失败:' + err.message, {
                         duration: 2000,
                         position: -80,
