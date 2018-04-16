@@ -11,7 +11,7 @@ import { isIphoneX } from 'react-native-iphone-x-helper'
 
 const isIpx = isIphoneX();
 const isAndroid = Platform.OS === 'android';
-const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 55 : 25);
+const HEADER_PADDING = Platform.OS === 'android' ? 20 : (isIpx ? 10 : 25);
 
 export default class FollowDiaryPage extends React.Component {
 
@@ -32,7 +32,7 @@ export default class FollowDiaryPage extends React.Component {
 
     render() {
         return (
-            <View style={{backgroundColor: '#FFFFFF', flex: 1, paddingTop: isIpx || isAndroid ? 0 : 20}}>
+            <View style={{backgroundColor: '#FFFFFF', flex: 1, paddingTop: isIpx || isAndroid ? 44 : 20}}>
                 <DiaryList
                     ref={(r) => this.list = r}
                     dataSource={new FollowDiaryData()}
