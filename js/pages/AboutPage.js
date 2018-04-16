@@ -43,8 +43,9 @@ export default class AboutPage extends Component {
 
         return (
             <View style={{flex: 1, backgroundColor: 'white'}}>
-                <View style={{flex: 1, padding: 15, alignItems: 'center', justifyContent: 'center'}}>
-                    <Image source={require('../img/Icon.png')} style={{width: 128, height: 128, borderRadius: 28}} />
+                <View style={{flex: 1, padding: 15,alignItems: 'center', paddingTop: 80}}>
+                    <Image source={require('../img/Icon.png')}
+                           style={{width: 128, height: 128, borderRadius: 28, borderWidth: 1, borderColor:"#d9d9d9"}} />
                     <Text style={{paddingTop: 20, paddingBottom: 60}}>版本: {DeviceInfo.getVersion()}{label}</Text>
                     <Text style={{color: TPColors.inactiveText}}>{this.state.news.date} 更新日志</Text>
                     <Text style={{lineHeight: 20}}>{this.state.news.info}</Text>
