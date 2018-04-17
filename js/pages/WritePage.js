@@ -281,7 +281,7 @@ export default class WritePage extends Component {
             return;
         }
 
-        this.write().done();
+        this.write();
     }
 
     async write() {
@@ -319,7 +319,7 @@ export default class WritePage extends Component {
                 shadow: false,
                 hideOnPress: true,
             });
-            await Api.clearDraft();
+            Api.clearDraft();
             this.setState({ content: '' });
             this.goBack();
 
@@ -331,7 +331,11 @@ export default class WritePage extends Component {
                 const type = photoUri == null ? 'text' : 'photo';
                 Answers.logCustom('WriteDiary', {type: type});
                 if (this.props.onSuccess) {
-                    this.props.onSuccess(r);
+                    try {
+                        this.props.onSuccess(r);
+                    } catch(err) {
+
+                    }
                 }
             });
         }
