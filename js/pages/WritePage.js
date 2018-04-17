@@ -113,6 +113,9 @@ export default class WritePage extends Component {
             this.state.loadBookError = true;
             return;
         }
+        if (!books) {
+            books = [];
+        }
         const abooks = books.filter(it => !it.isExpired);
         if (abooks.length === 0) {
             Alert.alert('提示','没有可用日记本,无法写日记',[

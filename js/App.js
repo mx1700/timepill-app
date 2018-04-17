@@ -226,7 +226,7 @@ export async function startTabPage() {
     //load user
     try {
         const user = await Api.getSelfInfoByStore();
-        if (user) {
+        if (user && user.id) {
             Crashlytics.setUserIdentifier(user.id.toString());
             Crashlytics.setUserName(user.name);
         }

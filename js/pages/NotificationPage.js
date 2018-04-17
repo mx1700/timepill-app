@@ -141,7 +141,7 @@ export default class NotificationPage extends Component {
 
     async registerUser() {
         const user = await Api.getSelfInfoByStore();
-        if (!user) return;
+        if (!user || !user.id) return;
         const settings = await Api.getSettings();
         const push = settings['pushMessage'];
         const alias = push ? user.id.toString() : user.id.toString() + '_close';

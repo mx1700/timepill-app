@@ -102,6 +102,9 @@ export default class SettingPage extends Component {
         });
         Api.getSelfInfoByStore()
             .then(user => {
+                if (!user || !user.id) {
+                    return;
+                }
                 const alias = val ? user.id.toString() : user.id.toString() + '_close';
                 console.log(alias);
                 JPushModule.setAlias(alias, (resultCode) => {
