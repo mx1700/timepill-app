@@ -103,7 +103,7 @@ export default class NotebookPage extends Component {
             console.log(e);
         }
 
-        if (data && data.items) {
+        if (data) {
             if (page === 1) {
                 this.state.diaries = [];
             }
