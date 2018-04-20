@@ -46,7 +46,7 @@ export default class UserBooks extends Component {
     }
 
     componentWillUnmount() {
-        if (this.props.mySelf && this.updateListener) {
+        if (this.updateListener) {
             this.updateListener.remove();
         }
     }
