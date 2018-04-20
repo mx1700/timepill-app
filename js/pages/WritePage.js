@@ -113,7 +113,8 @@ export default class WritePage extends Component {
             this.state.loadBookError = true;
             return;
         }
-        if (!books) {
+        if (!books || books.filter) {
+            //TODO: 有崩溃是因为 books 不是数组，怎么产生的不知道
             books = [];
         }
         const abooks = books.filter(it => !it.isExpired);
