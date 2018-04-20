@@ -305,8 +305,8 @@ export async function getSplashByStore() {
         // console.log('splash store:', info);
 
         const now = Date.parse( new Date()) / 1000;
-        if ((info.start_time  && info.start_time <= now) ||
-            (info.end_time && now >= info.end_time)) {
+        if ((info.start_time  && info.start_time > now) ||
+            (info.end_time && now > info.end_time)) {
             return null;
         }
 
