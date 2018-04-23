@@ -4119,9 +4119,9 @@ react-native-hyperlink@^0.0.12:
   dependencies:
     linkify-it "^1.2.0"
 
-react-native-image-crop-picker@^0.19.1:
-  version "0.19.2"
-  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.19.2.tgz#56afde2232c3da36f8e32378d24e6074e10bb0dd"
+react-native-image-crop-picker@^0.20.1:
+  version "0.20.1"
+  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.20.1.tgz#048c70219ba9f4fcf70fea5819f8dcaadefc63f9"
 
 react-native-image-pan-zoom@^2.0.16:
   version "2.0.16"
@@ -4146,8 +4146,8 @@ react-native-keyboard-spacer@^0.4.1:
   resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
 
 react-native-navigation@^1.1.376:
-  version "1.1.432"
-  resolved "http://registry.npm.taobao.org/react-native-navigation/download/react-native-navigation-1.1.432.tgz#84341c48c9f5b9f260e49a6df4fbbb8b4ee6a2bc"
+  version "1.1.446"
+  resolved "http://registry.npm.taobao.org/react-native-navigation/download/react-native-navigation-1.1.446.tgz#ecf577fa8679443868dc6409d18c4028d51b0198"
   dependencies:
     lodash "4.x.x"
 
