@@ -5,6 +5,9 @@ import {
 } from "react-native";
 import {colors} from "../Styles";
 import TPButton from "../components/TPButton";
+import { isIphoneX } from 'react-native-iphone-x-helper'
+
+const isIpx = isIphoneX();
 
 export default class SplashPage extends Component {
 
@@ -68,7 +71,7 @@ export default class SplashPage extends Component {
                     <ImageBackground style={{flex: 1}} source={{uri: this.props.image_url}}>
                         <View style={{
                             position: 'absolute',
-                            top: Platform.OS === 'ios' ? 30 : 20,
+                            top: Platform.OS === 'ios' ? (isIpx ? 50 : 30) : 20,
                             right: 0,
                             opacity: 0.65
                         }}>
