@@ -1,18 +1,10 @@
 package com.timepill.diary;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.controllers.SplashActivity;
-
-import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends SplashActivity {
 
