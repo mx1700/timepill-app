@@ -21,7 +21,8 @@ export default class PhotoPage extends Component {
 
     static navigatorStyle = {
         navBarHidden: true,
-        statusBarColor: '#000000'
+        statusBarColor: '#000000',
+        //statusBarHidden: true, //android hidden 时页面会有跳动的感觉，iOS 不起作用。。。
     };
 
     constructor(props) {
