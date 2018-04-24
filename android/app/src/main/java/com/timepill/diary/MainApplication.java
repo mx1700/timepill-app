@@ -15,7 +15,6 @@ import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.reactnativenavigation.controllers.ActivityCallbacks;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -50,7 +49,6 @@ public class MainApplication extends NavigationApplication {
             new ImageResizerPackage(),
             new PickerPackage(),
             new RNFetchBlobPackage(),
-            new RNGestureHandlerPackage(),
             new VectorIconsPackage()
     );
   }
