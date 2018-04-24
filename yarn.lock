@@ -4133,7 +4133,7 @@ react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"
   resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
 
-react-native-navigation@^1.1.376:
+react-native-navigation@^1.1.446:
   version "1.1.446"
   resolved "http://registry.npm.taobao.org/react-native-navigation/download/react-native-navigation-1.1.446.tgz#ecf577fa8679443868dc6409d18c4028d51b0198"
   dependencies:
