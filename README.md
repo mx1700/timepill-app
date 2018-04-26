@@ -20,6 +20,14 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 ```
 
 
+RN 版本问题
+-----
+目前使用的 0.53 版本，iOS 完美，android 有个 TextInput 的 崩溃问题
+
+0.55 在 iOS 上问题较多，自带输入法无法输入中文，react-native-navigation 兼容问题（隐藏 tab 不稳定，有时候出白条，有时候闪烁）
+android 没有仔细测试，不清楚具体问题多少
+
+
 
 android 已知问题修复
 -----
