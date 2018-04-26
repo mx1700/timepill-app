@@ -125,7 +125,7 @@ export default class HomePage extends React.Component {
     checkPermissions = async () => {
         try {
             const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
-            return granted === PermissionsAndroid.RESULTS.GRANTED;
+            return granted === true || granted === PermissionsAndroid.RESULTS.GRANTED;
         } catch (err) {
             console.error(err);
             return false;
@@ -216,13 +216,17 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 10,
         textShadowColor: '#000',
-        textShadowOffset: { width: 1, height: 1 }
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+        shadowOpacity: 0.2,
     },
     topic_intro: {
         fontSize: 16,
         color: '#FFF',
         paddingHorizontal: 22,
         textShadowColor: '#000',
-        textShadowOffset: { width: 1, height: 1 }
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+        shadowOpacity: 0.5,
     }
 });
