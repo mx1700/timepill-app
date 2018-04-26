@@ -76,6 +76,7 @@ export default class WritePage extends Component {
             //进入事件
             this._loadDraft();
             this._autoSaveDraft();
+            this._loadBooks();
         }
         if (event.type === 'NavBarButtonPress') {
             if (event.id === 'cancel') {
@@ -87,7 +88,6 @@ export default class WritePage extends Component {
         }
         if (event.id === 'willAppear' && this.props.tabOpen) {
             this.contentInput.focus();
-            this._loadBooks().done();
         }
         if (event.id === 'backPress') {
             this.goBack();
@@ -126,10 +126,18 @@ export default class WritePage extends Component {
             this.state.bookEmptyError = true;
             return;
         }
+        let bid = this.state.selectBookId;
+        if(bid === 0 && abooks.length > 0) {
+            bid = abooks[0].id;
+        } else if (bid !== 0) {
+            if (abooks.filter(b => b.id === bid).length === 0) {
+                bid = 0;
+            }
+        }
         if (this.props.diary == null) {
             this.setState({
                 books: abooks,
-                selectBookId: abooks.length > 0 ? abooks[0].id : 0
+                selectBookId: bid
             })
         } else {
             this.setState({
@@ -543,7 +551,7 @@ export default class WritePage extends Component {
         }
         const content = this.state.photoSource != null
             ? (<Image source={this.state.photoSource}
-                      style={{width: 30, height: 30}} />)
+                      style={{width: 30, height: 30, borderRadius: 3}} />)
             : (<Icon name="ios-image-outline" size={30} style={{paddingTop: 4}} color={colors.light} />);
         return (
             <TouchableOpacity
