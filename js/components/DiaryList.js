@@ -289,7 +289,7 @@ export default class DiaryList extends Component {
                             </Touchable>
                         )
                     }}
-                    ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: '#eee'}}/>}
+                    ItemSeparatorComponent={({highlighted}) => <Divider style={styles.line}/>}
                     onRefresh={this.props.isRefresh ? this.onRefresh.bind(this) : null}
                     refreshing={this.state.refreshing}
                     ListFooterComponent={this.renderFooter()}
@@ -356,3 +356,10 @@ export default class DiaryList extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    line: {
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: colors.line,
+    },
+});

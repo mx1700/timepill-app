@@ -20,6 +20,7 @@ import {SceneMap, TabBar, TabViewAnimated, TabViewPagerPan} from "react-native-t
 import UserDiaryData from "../common/UserDiaryData";
 import Ionicons from 'react-native-vector-icons/Ionicons.js';
 import ErrorView from '../components/ErrorView'
+import {Divider} from "react-native-elements";
 
 const initialLayout = {
     height: 0,
@@ -141,6 +142,11 @@ const styles = StyleSheet.create({
     },
     page: {
         backgroundColor: '#f9f9f9',
+    },
+    line: {
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: TPColors.line,
+        marginLeft: 64,
     },
 });
 
@@ -308,6 +314,7 @@ class FollowList extends Component {
                 style={this.props.style}
                 rightOpenValue={-60}
                 disableRightSwipe={true}
+                renderSeparator={() => <Divider style={styles.line}/>}
             />
         )
     }
@@ -319,7 +326,7 @@ class FollowList extends Component {
                 underlayColor="#efefef"
                 key={user.id}
             >
-                <View style={{flexDirection: 'row', borderBottomWidth: 1, borderColor: TPColors.line, alignItems: 'center', backgroundColor: 'white'}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'white'}}>
                     <Image source={{uri: user.iconUrl}} style={{ width: 32, height: 32, borderRadius: 16, marginRight: 15, marginLeft: 20 }} />
                     <Text style={{flex: 1, color: TPColors.text, fontSize: 16}}>{user.name}</Text>
                     <TPTouchable onPress={this._onDeletePress.bind(this, user)}>
@@ -368,3 +375,4 @@ FollowList.propTypes = {
     onLoadDate: PropTypes.func,
     onDeletePress: PropTypes.func,
 };
+

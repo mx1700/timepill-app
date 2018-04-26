@@ -429,7 +429,7 @@ export default class DiaryDetailPage extends React.Component {
                         return item.id.toString()
                     }}
                     renderItem={({item}) => this.renderComment(item) }
-                    ItemSeparatorComponent={({highlighted}) => <Divider style={{backgroundColor: colors.line, height: StyleSheet.hairlineWidth}}/>}
+                    ItemSeparatorComponent={({highlighted}) => <Divider style={styles.line}/>}
                     ListFooterComponent={this.renderFooter()}
                     ListHeaderComponent={this.renderTop()}
                     keyboardDismissMode="on-drag"
@@ -458,7 +458,7 @@ export default class DiaryDetailPage extends React.Component {
                     onPhotoPress={this.onPhotoPress.bind(this)}
                 />
                 <View style={{borderBottomWidth: StyleSheet.hairlineWidth,
-                    borderColor: colors.line, marginHorizontal: 15}} />
+                    borderColor: colors.line}} />
                 <Text style={{marginHorizontal: 16, marginTop: 20, marginBottom: 20, color: colors.inactiveText}}>
                     {content}
                 </Text>
@@ -590,7 +590,6 @@ export default class DiaryDetailPage extends React.Component {
                         </View>
                     </View>
                     {action}
-                    <View style={styles.line}/>
                 </View>
             </Touchable>
         );
@@ -664,7 +663,6 @@ const styles = StyleSheet.create({
     line: {
         height: StyleSheet.hairlineWidth,
         backgroundColor: colors.line,
-        marginHorizontal: 16,
         marginLeft: 56,
     },
     comment_box: {
