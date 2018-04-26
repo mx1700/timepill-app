@@ -5,6 +5,9 @@ import {
 } from "react-native";
 import {colors} from "../Styles";
 import TPButton from "../components/TPButton";
+import { isIphoneX } from 'react-native-iphone-x-helper'
+
+const isIpx = isIphoneX();
 
 export default class SplashPage extends Component {
 
@@ -61,26 +64,27 @@ export default class SplashPage extends Component {
     };
 
     render() {
-        const title = "关闭 " + this.state.time + 's';
+        const title = "关闭 " + this.state.time;
         return (
             <View style={{flex: 1}}>
                 <TouchableWithoutFeedback style={{flex: 1}} onPress={this.press}>
                     <ImageBackground style={{flex: 1}} source={{uri: this.props.image_url}}>
                         <View style={{
                             position: 'absolute',
-                            top: Platform.OS === 'ios' ? 30 : 20,
+                            top: Platform.OS === 'ios' ? (isIpx ? 50 : 30) : 20,
                             right: 0,
                             opacity: 0.65
                         }}>
                             <TPButton title={title}
-
                                       buttonStyle={{
                                           backgroundColor: '#FFF',
-                                          width: 70,
-                                          height: 28,
+                                          borderWidth:1,
+                                          borderColor: 'black',
+                                          paddingVertical:6,
+                                          paddingHorizontal:12
                                       }}
                                       onPress={this.close}
-                                      textStyle={{fontWeight: 'bold', fontSize: 12, color: 'black'}}
+                                      textStyle={{fontWeight: 'bold', fontSize: 12, color: 'black', fontFamily:"Helvetica"}}
                             />
                         </View>
                     </ImageBackground>
