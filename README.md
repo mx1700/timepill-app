@@ -18,41 +18,24 @@ android 打包 js bundle 方法（iOS编译时会自动打包）
 ```bash
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 ```
-bugs
+
+
+
+android 已知问题修复
 -----
-https://github.com/oblador/react-native-vector-icons/issues/626
 
-android 目前加载图片没有进度条，因为官方的 Image 组件没有获取进度的事件
-
-第三方组件 react-native-fast-image 有进度事件
-但是 onLoad 事件触发诡异，无法实现加载进度
-
-react-native-navigation 在 android 上 debug 时没有进度条，如果无法链接更新服务器则会卡在启动屏上
-
-
-react-native-image-crop-picker iOS 安装问题
------
-建议按照官方的 pod 方式安装
-注意：安装 pod 后，需要从 xcode 里打开 xcworkspace 文件才能编译通过
-
-react-native-fabric iOS 安装问题
------
-react-native-fabric react-native link 的时候，会通过 pod 安装，但是 pod 方式安装编译失败，
-暂时没有找到解决办法，最好是 link 后恢复自动修改的 pod 文件，通过手动方式安装
-
-android 平台 jpush 和 react-native-navigation 兼容问题解决
------
-### 问题现象
+### android 平台 jpush 和 react-native-navigation 兼容问题解决
+#### 问题现象
 
 android App 在后台状态，点击通知 App 会重置
 
-### 原因
+#### 原因
 
 react-native-navigation 的启动逻辑是在 MainActivity 启动时，主 Activity 从 MainActivity 替换成 NavigationActivity
 见：https://wix.github.io/react-native-navigation/#/android-specific-use-cases?id=why-overriding-these-methods-in-mainactivity-won39t-work
 而 jpush 处理点击时，总是去激活 MainActivity ，这就导致总会产生一个新的 NavigationActivity
 
-### 处理办法是修改 jpush 处理点击的逻辑
+#### 处理办法是修改 jpush 处理点击的逻辑
 
 修改 jpush-react-native/android/src/main/java/cn/jpush/reactnativejpush/JPushModule.java 544 行
 ```java
@@ -83,13 +66,13 @@ private static ComponentName getTopActivity(Context context){
 }
 ```
 
-### 获取 getTopActivity 的原因
+#### 获取 getTopActivity 的原因
 App 后台，或者退出后，通过通知唤起，都会进入 isApplicationRunningBackground 的分支条件
 从后台唤起，应该激活 NavigationActivity ，而退出状态下唤起，不能直接启动 NavigationActivity，因为缺少初始化的参数
 NavigationActivity 的初始化时通过 MainActivity 运行的
 所以需要先获取当前激活的 Activity，如果有，则直接激活，如果没有，则启动 MainActivity
 
-## jpush 引起崩溃的问题
+### jpush 引起崩溃的问题
 
 Fatal Exception: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Object android.util.SparseArray.get(int)' on a null object reference
        at cn.jpush.reactnativejpush.JPushModule$MyJPushMessageReceiver.onAliasOperatorResult(JPushModule.java:654)
@@ -108,14 +91,7 @@ Fatal Exception: java.lang.NullPointerException: Attempt to invoke virtual metho
     }
 ```
 
-## Debug Server 出现 While resolving module `react-native-vector-icons/Ionicons` 错误
-
-rm ./node_modules/react-native/local-cli/core/fixtures/files/package.json
-
-https://github.com/oblador/react-native-vector-icons/issues/627
-
-
-## android react-native-fetch-blob 问题
+### android react-native-fetch-blob 问题
 如果 android targetSdkVersion >= 24 ，自动更新打开安装包的动作会报错
 
 ```javascript
@@ -131,7 +107,19 @@ https://github.com/wkh237/react-native-fetch-blob/pull/614
 需要持续关注
 
 
-## iOS FlatList 手动下拉刷新后，用程序触发刷新，刷新指示器不显示的问题
+iOS 已知问题修复
+-----
+
+### react-native-image-crop-picker iOS 安装问题
+建议按照官方的 pod 方式安装
+注意：安装 pod 后，需要从 xcode 里打开 xcworkspace 文件才能编译通过
+
+
+### react-native-fabric iOS 安装问题
+react-native-fabric react-native link 的时候，会通过 pod 安装，但是 pod 方式安装编译失败，
+暂时没有找到解决办法，最好是 link 后恢复自动修改的 pod 文件，通过手动方式安装
+
+### iOS FlatList 手动下拉刷新后，用程序触发刷新，刷新指示器不显示的问题
 
 修改 react 源码 /React/Views/RCTRefreshControl.m 57 行
 
@@ -143,3 +131,36 @@ https://github.com/wkh237/react-native-fetch-blob/pull/614
 一直存在的问题，官方一直没有修改
 
 https://github.com/facebook/react-native/issues/17734
+
+### RN 0.55 TextInput 无法输入中文的问题
+已确认 RN bug
+
+反馈：https://github.com/facebook/react-native/issues/18403#issuecomment-380051333
+
+pull：https://github.com/facebook/react-native/pull/18456
+
+还未合并，持续关注
+
+可手工修改代码解决
+
+bugs
+-----
+https://github.com/oblador/react-native-vector-icons/issues/626
+
+android 目前加载图片没有进度条，因为官方的 Image 组件没有获取进度的事件
+
+第三方组件 react-native-fast-image 有进度事件
+但是 onLoad 事件触发诡异，无法实现加载进度
+
+react-native-navigation 在 android 上 debug 时没有进度条，如果无法链接更新服务器则会卡在启动屏上
+
+
+Debug Server 问题
+-----
+### Debug Server 出现 While resolving module `react-native-vector-icons/Ionicons` 错误
+
+rm ./node_modules/react-native/local-cli/core/fixtures/files/package.json
+
+https://github.com/oblador/react-native-vector-icons/issues/627
+
+
