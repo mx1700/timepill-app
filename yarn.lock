@@ -2069,10 +2069,6 @@ hoek@4.x.x:
   version "4.2.0"
   resolved "http://registry.npm.taobao.org/hoek/download/hoek-4.2.0.tgz#72d9d0754f7fe25ca2d01ad8f8f9a9449a89526d"
 
-hoist-non-react-statics@^2.3.1:
-  version "2.3.1"
-  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
-
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/home-or-tmp/download/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -3755,23 +3751,15 @@ react-native-fetch-blob@^0.10.8:
     base-64 "0.1.0"
     glob "7.0.6"
 
-react-native-gesture-handler@^1.0.0-alpha.40:
-  version "1.0.0-alpha.40"
-  resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.0.0-alpha.40.tgz#b0eb2a158db1d38d2eee17d8600125dd82fa5989"
-  dependencies:
-    hoist-non-react-statics "^2.3.1"
-    invariant "^2.2.2"
-    prop-types "^15.5.10"
-
 react-native-hyperlink@^0.0.12:
   version "0.0.12"
   resolved "http://registry.npm.taobao.org/react-native-hyperlink/download/react-native-hyperlink-0.0.12.tgz#07fcd81bdc23da35dafde0546073347398adcaff"
   dependencies:
     linkify-it "^1.2.0"
 
-react-native-image-crop-picker@^0.19.1:
-  version "0.19.2"
-  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.19.2.tgz#56afde2232c3da36f8e32378d24e6074e10bb0dd"
+react-native-image-crop-picker@^0.20.1:
+  version "0.20.1"
+  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.20.1.tgz#048c70219ba9f4fcf70fea5819f8dcaadefc63f9"
 
 react-native-image-pan-zoom@^2.0.16:
   version "2.0.16"
@@ -3795,9 +3783,9 @@ react-native-keyboard-spacer@^0.4.1:
   version "0.4.1"
   resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
 
-react-native-navigation@^1.1.376:
-  version "1.1.432"
-  resolved "http://registry.npm.taobao.org/react-native-navigation/download/react-native-navigation-1.1.432.tgz#84341c48c9f5b9f260e49a6df4fbbb8b4ee6a2bc"
+react-native-navigation@^1.1.446:
+  version "1.1.447"
+  resolved "http://registry.npm.taobao.org/react-native-navigation/download/react-native-navigation-1.1.447.tgz#c54876460b6356b80c747642350484336aee6ebc"
   dependencies:
     lodash "4.x.x"
 
