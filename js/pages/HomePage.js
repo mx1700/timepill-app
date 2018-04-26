@@ -184,7 +184,7 @@ export default class HomePage extends React.Component {
     render() {
 
         return (
-            <View style={{backgroundColor: '#FFFFFF', flex: 1, paddingTop: isIpx || isAndroid ? 44 : 20}}>
+            <View style={{backgroundColor: '#FFFFFF', flex: 1, paddingTop: isAndroid ? 0 : (isIpx ? 44 : 20)}}>
                 <DiaryList
                     ref={(r) => this.list = r}
                     dataSource={new HomeListData()}
