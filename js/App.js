@@ -116,6 +116,9 @@ export async function startTabPage() {
         right: 0 // optional, default is 0.
     };
 
+    //TODO:低版本 android 使用黑色导航栏
+    //Platform.OS === 'android' &&
+
     await Navigation.startTabBasedApp({
         tabs: [
             {
@@ -192,6 +195,7 @@ export async function startTabPage() {
 
             navBarTranslucent: false,
             drawUnderNavBar: true,
+            statusBarTextColorScheme: 'dark',
 
             initialTabIndex: 0,
         },
