@@ -168,6 +168,7 @@ Debug Server 问题
 ### Debug Server 出现 While resolving module `react-native-vector-icons/Ionicons` 错误
 
 rm ./node_modules/react-native/local-cli/core/fixtures/files/package.json
+rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
 
 https://github.com/oblador/react-native-vector-icons/issues/627
 
