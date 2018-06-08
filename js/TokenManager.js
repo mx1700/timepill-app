@@ -91,6 +91,20 @@ class TokenManager {
     }
     return settings;
   }
+
+  async getWriteNotificationTime() {
+    let v = await this.getSetting('writeNotificationTime');
+    if (!v) {
+      v = {
+        hours: 21, min: 0
+      };
+    }
+    return v;
+  }
+
+  async setWriteNotificationTime(set) {
+    return this.setSetting('writeNotificationTime', set);
+  }
 }
 
 export default new TokenManager()

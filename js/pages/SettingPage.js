@@ -16,6 +16,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import JPushModule from 'jpush-react-native'
 import {colors as TPColors} from "../Styles";
 import {startLoginPage} from "../App";
+import TokenManager from "../TokenManager";
+import * as LocalPush from "../LocalPush";
 
 export default class SettingPage extends Component {
 
@@ -127,6 +129,26 @@ export default class SettingPage extends Component {
             })
     };
 
+    changeWriteNotification = (val) => {
+        let run = async () => {
+            await TokenManager.setSetting('writeNotification', val);
+            let settings = this.state.settings;
+            settings['writeNotification'] = val;
+            this.setState({
+                settings: settings
+            });
+            LocalPush.register();
+            //register
+        };
+        run().done();
+        if (val) {
+            this.props.navigator.push({
+                screen: 'WriteNotification',
+                title: '每日提醒时间设置',
+            })
+        }
+    };
+
     render() {
         const badge = this.state.hasUpdateNews
             ? (
@@ -186,11 +208,20 @@ export default class SettingPage extends Component {
                     <View style={styles.line} />
 
                     <View style={styles.item}>
-                        <Text style={styles.title}>提醒推送</Text>
+                        <Text style={styles.title}>关注&回复提醒推送</Text>
                         <Switch value={this.state.settings['pushMessage']}
                                 onTintColor={Platform.OS === 'android' ? TPColors.textSelect : null}
                                 thumbTintColor={Platform.OS === 'android' && this.state.settings['pushMessage'] ? TPColors.light : null}
                                 onValueChange={this.changePush} />
+                    </View>
+                    <View style={styles.line} />
+
+                    <View style={styles.item}>
+                        <Text style={styles.title}>每天写日记提醒</Text>
+                        <Switch value={this.state.settings['writeNotification']}
+                                onTintColor={Platform.OS === 'android' ? TPColors.textSelect : null}
+                                thumbTintColor={Platform.OS === 'android' && this.state.settings['writeNotification'] ? TPColors.light : null}
+                                onValueChange={this.changeWriteNotification} />
                     </View>
 
                 </View>

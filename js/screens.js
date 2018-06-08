@@ -25,6 +25,7 @@ import WebViewPage from "./pages/WebViewPage";
 import FollowUsersPage from "./pages/FollowUsersPage";
 import NotificationHistoryPage from "./pages/NotificationHistoryPage";
 import FeedbackPage from "./pages/FeedbackPage";
+import WriteNotificationPage from "./pages/WriteNotificationPage";
 
 
 /**
@@ -84,6 +85,7 @@ export function registerScreens() {
     Navigation.registerComponent('WebView', () => WebViewPage);
     Navigation.registerComponent('FollowUsers', () => FollowUsersPage);
     Navigation.registerComponent('Feedback', () => FeedbackPage);
+    Navigation.registerComponent('WriteNotification', () => WriteNotificationPage);
 
     Navigation.registerComponent('UserEdit', () => UserEditPage);
     Navigation.registerComponent('EditName', () => EditNamePage);

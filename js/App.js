@@ -14,6 +14,7 @@ import { loadIcon } from './common/LocalIcons';
 import * as Api from './Api'
 import Token from './TokenManager'
 import { Answers, Crashlytics } from 'react-native-fabric';
+import * as LocalPush from "./LocalPush";
 
 registerScreens();
 
@@ -58,6 +59,8 @@ async function appStart() {
     }
 
     await startTabPage();
+
+    await LocalPush.register();
 }
 
 export async function startLoginPage() {
