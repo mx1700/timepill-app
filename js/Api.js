@@ -14,8 +14,8 @@ const VERSION = DeviceInfo.getVersion();
 
 // console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
 const baseUrl = 'http://open.timepill.net/api';
-const BASE_URL_V2 = 'http://v2.timepill.net/api';
-// const BASE_URL_V2 = 'http://172.16.149.10:8000/api';
+// const BASE_URL_V2 = 'http://v2.timepill.net/api';
+const BASE_URL_V2 = 'http://127.0.0.1:8000/api';
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
   return call('GET', '/diaries/today?page=' + page + '&page_size=' + page_size + `&first_id=${first_id}`)
@@ -394,6 +394,35 @@ export async function getSettings() {
 
 export async function getUpdateInfo() {
     return callV2('GET', '/updateInfo')
+}
+
+export async function mobileRegister(nickname, mobile, password, code) {
+    const result = await callV2('POST', '/users', {
+        type: 'mobile',
+        name: nickname,
+        mobile: mobile,
+        password: password,
+        code: code,
+    });
+
+    if (result) {
+        const token = TokenManager.generateToken(mobile, password);
+        await TokenManager.setToken(token);
+        const user_info = await getSelfInfo();
+        await TokenManager.setUser(user_info);
+    }
+    return result;
+}
+
+export async function sendRegisterVerificationCode(mobile) {
+    return callV2('POST', '/verification/register', {
+        'type': 'mobile',
+        'sendTo': mobile,
+    });
+}
+
+export async function clearAppCache() {
+
 }
 
 //==========================================================================
