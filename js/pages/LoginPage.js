@@ -46,11 +46,18 @@ export default class LoginPage extends Component {
 
             mobile: '',     //注册-手机
             code: '',       //注册-手机验证码
+            mobileSendTime: 0,  //发送验证码倒计时
 
             loading: false,
             page: LoginPage.pageLogin,
             paddingAnim: new Animated.Value(100)
         });
+
+        this.timer = setInterval(() => {
+            if (this.state.mobileSendTime > 0) {
+                this.setState({mobileSendTime: this.state.mobileSendTime - 1})
+            }
+        }, 1000)
     }
 
     showKeyboard = false;
@@ -65,6 +72,7 @@ export default class LoginPage extends Component {
     componentWillUnmount () {
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
+        clearInterval(this.timer)
     }
 
     _keyboardDidShow = () => {
@@ -95,6 +103,8 @@ export default class LoginPage extends Component {
             this.login();
         } else if (this.state.page === LoginPage.pageRegisterMobile) {
             this.registerMobile();
+        } else {
+            this.registerEmail();
         }
     }
 
@@ -233,7 +243,7 @@ export default class LoginPage extends Component {
             });
             return;
         }
-        if (this.state.username.length === 0) {
+        if (this.state.email.length === 0) {
             Toast.show("请输入邮箱", {
                 duration: 2500,
                 position: -50,
@@ -257,7 +267,7 @@ export default class LoginPage extends Component {
         let errMsg;
         this.setState({loading: true});
         try {
-            result = await Api.register(this.state.nickname, this.state.username, this.state.password);
+            result = await Api.register(this.state.nickname, this.state.email, this.state.password);
         } catch (err) {
             Answers.logCustom('RegisterError', {message: err.message});
             errMsg = err.message;
@@ -324,7 +334,11 @@ export default class LoginPage extends Component {
                     shadow: false,
                     hideOnPress: true,
                 });
+                return;
             }
+
+            this.setState({mobileSendTime: 60});
+
             Toast.show("验证码已发送", {
                 duration: 2500,
                 position: -50,
@@ -337,15 +351,13 @@ export default class LoginPage extends Component {
     render() {
 
         let content = null;
-        console.log("page!!!", this.state.page);
         if (this.state.page === LoginPage.pageLogin) {
             console.log('pageLogin');
             content = this.renderLogin();
         } else if (this.state.page === LoginPage.pageRegisterMobile) {
-            console.log('pageRegisterMobile');
             content = this.renderMobileRegister();
         } else {
-
+            content = this.renderEmailRegister();
         }
 
         return (
@@ -365,7 +377,7 @@ export default class LoginPage extends Component {
                 </Modal>
                 <Animated.View style={{flex: 1, paddingTop: this.state.paddingAnim, paddingHorizontal: 15}}>
                     <Text style={{fontSize: 26, paddingBottom: 35, color: '#222', textAlign: 'center'}}>
-                        {this.state.page === this.pageLogin ? '欢迎来到胶囊日记' : '注册胶囊日记账号'}
+                        {this.state.page === LoginPage.pageLogin ? '欢迎来到胶囊日记' : '注册胶囊日记账号'}
                     </Text>
 
                     {content}
@@ -382,16 +394,46 @@ export default class LoginPage extends Component {
                                 {this.state.page === LoginPage.pageLogin ? '没有账号？注册一个' : '已有账号？马上登录'}
                             </Text>
                         </TouchableOpacity>
-                        {this.state.page === LoginPage.pageLogin && (<TouchableOpacity onPress={this.toWeb.bind(this)}>
-                            <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
-                                忘记密码？
-                            </Text>
-                        </TouchableOpacity>)}
+                        {this.renderActionLink()}
                     </View>
 
                 </Animated.View>
             </View>
         );
+    }
+
+    renderActionLink() {
+        if (this.state.page === LoginPage.pageLogin) {
+            return (
+                <TouchableOpacity onPress={this.toWeb.bind(this)}>
+                    <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
+                        忘记密码？
+                    </Text>
+                </TouchableOpacity>
+            );
+        } else if (this.state.page === LoginPage.pageRegisterMobile) {
+            return (
+                <TouchableOpacity onPress={() => {
+                    LayoutAnimation.easeInEaseOut();
+                    this.setState({page: LoginPage.pageRegisterEmail});
+                }}>
+                    <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
+                        邮箱注册
+                    </Text>
+                </TouchableOpacity>
+            );
+        } else {
+            return (
+                <TouchableOpacity onPress={() => {
+                    LayoutAnimation.easeInEaseOut();
+                    this.setState({page: LoginPage.pageRegisterMobile});
+                }}>
+                    <Text style={{fontSize: 14, color: colors.primary, padding: 10}}>
+                        手机注册
+                    </Text>
+                </TouchableOpacity>
+            );
+        }
     }
 
     renderLogin() {
@@ -441,7 +483,6 @@ export default class LoginPage extends Component {
                     onChangeText={(text) => this.setState({nickname: text})}
                     value={this.state.nickname}
                     onSubmitEditing={() => this.refs.inputMobile.focus()}
-                    keyboardType="email-address"
                     autoCorrect={false}
                     autoFocus={false}
                     autoCapitalize="none"
@@ -465,9 +506,16 @@ export default class LoginPage extends Component {
                         returnKeyType="next"
                         placeholderTextColor={colors.inactiveText}
                         placeholder="手机号"/>
-                    <TPButton title={"发送验证码"}
+                    <TPButton title={this.state.mobileSendTime === 0 ? "发送验证码" : (this.state.mobileSendTime) + '秒后重发'}
+                              disabled={this.state.mobileSendTime > 0}
                               large={false}
-                              style={{marginBottom: 5, height: 10}}
+                              style={{marginBottom: 5, marginTop:5, marginRight:5, marginLeft:-15}}
+                              buttonStyle={{
+                                  paddingVertical:8,
+                                  paddingHorizontal:12,
+                                  width: 90
+                              }}
+                              textStyle={{fontWeight: 'bold', fontSize: 12, fontFamily:"Helvetica"}}
                               onPress={this.sendRegisterVerificationCode}
                     />
                 </View>
@@ -507,7 +555,55 @@ export default class LoginPage extends Component {
     }
 
     renderEmailRegister() {
+        return (
+            <View style={styles.inputBox}>
+                <FormInput
+                    containerStyle={styles.input}
+                    underlineColorAndroid="transparent"
+                    selectionColor={colors.primary}
+                    onChangeText={(text) => this.setState({nickname: text})}
+                    value={this.state.nickname}
+                    onSubmitEditing={() => this.refs.inputEmail.focus()}
+                    autoCorrect={false}
+                    autoFocus={false}
+                    autoCapitalize="none"
+                    returnKeyType="next"
+                    placeholderTextColor={colors.inactiveText}
+                    placeholder="名字"/>
 
+                <FormInput
+                    ref="inputEmail"
+                    containerStyle={styles.input}
+                    underlineColorAndroid="transparent"
+                    selectionColor={colors.primary}
+                    onChangeText={(text) => this.setState({email: text})}
+                    value={this.state.email}
+                    onSubmitEditing={() => this.refs.inputPw.focus()}
+                    keyboardType="email-address"
+                    autoCorrect={false}
+                    autoFocus={false}
+                    autoCapitalize="none"
+                    returnKeyType="next"
+                    placeholderTextColor={colors.inactiveText}
+                    placeholder="邮箱"/>
+
+                <FormInput
+                    ref="inputPw"
+                    containerStyle={styles.input}
+                    underlineColorAndroid="transparent"
+                    selectionColor={colors.primary}
+                    onChangeText={(text) => this.setState({password: text})}
+                    value={this.state.password}
+                    onSubmitEditing={this._click.bind(this)}
+                    autoCorrect={false}
+                    placeholder="登录密码"
+                    placeholderTextColor={colors.inactiveText}
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                    selectTextOnFocus={true}/>
+
+            </View>
+        );
     }
 }
 
