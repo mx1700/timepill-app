@@ -310,6 +310,16 @@ export default class NotebookAddPage extends Component {
             </View>
         );
 
+        const tip = this.props.notebook ? null : (
+            <View style={{padding: 15}}>
+                <Text style={[styles.tip, { paddingBottom: 3 }]}>什么是胶囊日记？</Text>
+                <Text style={styles.tip}>胶囊日记是一个记录生活的日记本。</Text>
+                <Text style={styles.tip}>
+                    首先你需要建立一个胶囊日记本，公开或是私密，并为它设定一个期限，这个期限决定了这个日记本的“厚度”，然后你就可以开始写日记了。 你可以在上面记录喜悦，悲伤，发牢骚，流水账，甚至只是一张相片，一条电话号码。 之后你会发现，一觉醒来，前一天你和所有人的日记都不见了，放心，它们并没有被删除，只是存放在你建好的日记本里， 等到日记本“写满”那天，你所有的日记就都可以再次被浏览。
+                </Text>
+            </View>
+        );
+
         //console.log(dataSelect);
 //                <LoadingModal loading={this.state.loading} />
 
@@ -388,6 +398,7 @@ export default class NotebookAddPage extends Component {
                 </View>
                 {setCoverView}
                 {deleteView}
+                {tip}
             </View>
         );
     }
@@ -533,5 +544,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#d9534f',
         fontSize: 16,
+    },
+    tip: {
+        fontSize: 12,
+        color: '#89A',
+        lineHeight: 18,
     }
 });
