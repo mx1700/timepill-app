@@ -26,6 +26,7 @@ import FollowUsersPage from "./pages/FollowUsersPage";
 import NotificationHistoryPage from "./pages/NotificationHistoryPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import WriteNotificationPage from "./pages/WriteNotificationPage";
+import NotebookMargePage from "./pages/NotebookMargePage";
 
 
 /**
@@ -77,6 +78,7 @@ export function registerScreens() {
     Navigation.registerComponent('WriteTab', () => WriteTab);
     Navigation.registerComponent('Notebook', () => NotebookPage);
     Navigation.registerComponent('NotebookAdd', () => NotebookAddPage);
+    Navigation.registerComponent('NotebookMarge', () => NotebookMargePage);
     Navigation.registerComponent('Setting', () => SettingPage);
     Navigation.registerComponent('About', () => AboutPage);
     Navigation.registerComponent('Topic', () => TopicDiaryPage);

@@ -272,6 +272,14 @@ export default class NotebookAddPage extends Component {
             });
     }
 
+    openMargePage = () => {
+        this.props.navigator.push({
+            screen: 'NotebookMarge',
+            title: `选择一个日记本合并`,
+            passProps: { notebook: this.props.notebook },
+        });
+    };
+
     render() {
         const date = this.state.date;
         const dateString = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
@@ -296,6 +304,12 @@ export default class NotebookAddPage extends Component {
                 <TouchableOpacity style={styles.item} onPress={this._editCover.bind(this)}>
                     <Text style={{flex: 1, textAlign: 'center', color: TPColors.light, fontSize: 16}}>设置封面</Text>
                 </TouchableOpacity>
+                {(this.props.notebook && this.props.notebook.isExpired) && (<View style={styles.line} />)}
+                {(this.props.notebook && this.props.notebook.isExpired) && (
+                    <TouchableOpacity style={styles.item} onPress={this.openMargePage}>
+                        <Text style={{flex: 1, textAlign: 'center', color: TPColors.light, fontSize: 16}}>合并日记本</Text>
+                    </TouchableOpacity>
+                )}
             </View>
         );
 
@@ -320,10 +334,6 @@ export default class NotebookAddPage extends Component {
             </View>
         );
 
-        //console.log(dataSelect);
-//                <LoadingModal loading={this.state.loading} />
-
-        //console.log('this.state.loading',this.state.loading);
         return (
             <View style={{flex: 1, backgroundColor: '#EFEFF4'}}>
                 <Modal

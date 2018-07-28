@@ -22,10 +22,13 @@ export default class UserBooks extends Component {
     static propTypes = {
         userId: PropTypes.number,
         mySelf: PropTypes.bool,
+        showAdd: PropTypes.bool,
+        filter: PropTypes.func,
+        onPress: PropTypes.func,
     };
 
     static defaultProps = {
-
+        showAdd: true,
     };
 
     constructor(props) {
@@ -78,12 +81,16 @@ export default class UserBooks extends Component {
             });
         }
 
-        if (books && this.props.mySelf) {    //如果是自己，则插入一个添加日记本的按钮
+        if (books && this.props.mySelf && this.props.showAdd) {    //如果是自己，则插入一个添加日记本的按钮
             books.unshift(AddBook)
         }
 
         if (books && books.length % 2 === 1) {    //为了向左对齐，插入一个空日记本
             books.push(EmptyBook);
+        }
+
+        if(this.props.filter) {
+            books = books.filter(this.props.filter);
         }
 
         this.setState({
@@ -93,6 +100,10 @@ export default class UserBooks extends Component {
     }
 
     _bookPress(book) {
+        if (this.props.onPress) {
+            this.props.onPress(book);
+            return;
+        }
         this.props.navigator.push({
             screen: 'Notebook',
             title: `《${book.subject}》`,

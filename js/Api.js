@@ -12,10 +12,9 @@ const OS_VERSION = DeviceInfo.getSystemVersion();
 const DEVICE_ID = DeviceInfo.getUniqueID();
 const VERSION = DeviceInfo.getVersion();
 
-// console.log(OS, OS_VERSION, DEVICE_ID, VERSION, DeviceInfo.getBundleId());
 const baseUrl = 'http://open.timepill.net/api';
-// const BASE_URL_V2 = 'http://v2.timepill.net/api';
-const BASE_URL_V2 = 'http://127.0.0.1:8000/api';
+const BASE_URL_V2 = 'http://v2.timepill.net/api';
+// const BASE_URL_V2 = 'http://127.0.0.1:8000/api';
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
   return call('GET', '/diaries/today?page=' + page + '&page_size=' + page_size + `&first_id=${first_id}`)
@@ -284,6 +283,13 @@ export async function updatePushInfo() {
 async function getSplash() {
     return callV2('GET', '/splash');
 }
+
+export async function margeNotebook(from, to) {
+    return callV2('POST', `/notebooks/${from}/marge_to/${to}`);
+}
+
+
+//------------------------------------------------
 
 export async function syncSplash() {
     const info = await getSplash();
