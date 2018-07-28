@@ -99,7 +99,9 @@ export default class PasswordPage extends Component {
 
     _setting(password) {
         setTimeout(() => {
-            this.refs.input.clear();
+            if (this && this.refs.input) {
+                this.refs.input.clear();
+            }
         }, 200);
         if (this.state.oldPassword === false) {
             Alert.alert('错误', '密码加载失败');
