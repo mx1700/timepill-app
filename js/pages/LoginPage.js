@@ -510,11 +510,11 @@ export default class LoginPage extends Component {
                               disabled={this.state.mobileSendTime > 0}
                               large={false}
                               style={{marginBottom: 5, marginTop:5, marginRight:5, marginLeft:-15}}
-                              buttonStyle={{
+                              buttonStyle={Platform.OS === 'ios' ? {
                                   paddingVertical:8,
                                   paddingHorizontal:12,
                                   width: 90
-                              }}
+                              } : { width: 90 }}
                               textStyle={{fontWeight: 'bold', fontSize: 12, fontFamily:"Helvetica"}}
                               onPress={this.sendRegisterVerificationCode}
                     />
