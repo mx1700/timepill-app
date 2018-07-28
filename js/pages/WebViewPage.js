@@ -70,6 +70,19 @@ export default class WebViewPage extends Component {
         })
     };
 
+    onShouldStartLoadWithRequest = (e) => {
+        // Implement any custom loading logic here, don't forget to return!
+        // 解决WebKitErrorDomain code:101的警告
+        // http://leonhwa.com/blog/0014905236320002ebb3db97fe64fb3bb6f047eafb1c5de000
+        //淘宝打开的时候会先加载一个空白页，不知道什么原因
+        // console.log('LOAD URL:' + e.url);
+        let scheme = e.url.split('://')[0];
+        if (scheme === 'http' || scheme === 'https') {
+            return true
+        }
+        return false
+    };
+
     render() {
         return (
             <WebView
@@ -78,6 +91,7 @@ export default class WebViewPage extends Component {
                 style={{flex: 1}}
                 onLoad={this.onLoad}
                 onNavigationStateChange={this.onNavigationStateChange}
+                onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
             />
         );
     }
