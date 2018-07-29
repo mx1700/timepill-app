@@ -57,6 +57,7 @@ export function AddBookView(props) {
         <TouchableOpacity {...props} activeOpacity={0.7}>
         <View style={{
             width: 140,
+            minHeight: 188,
             flex:1,
             shadowColor: '#444',
             shadowOpacity: 0.1,
