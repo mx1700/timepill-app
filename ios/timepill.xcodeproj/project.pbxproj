@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -55,7 +54,6 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		943046CA3EF34E3CB5EF0979 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36758CD8204C4906A4E4615A /* SystemConfiguration.framework */; };
 		99408FEAA6254D01989CF627 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD1E2B0A29B496F90EC62BA /* libresolv.tbd */; };
-		9B555C517F9845739A7D6EC3 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4884C2653654EAA927A613F /* libRNGestureHandler.a */; };
 		A3B8C7EAE49E4F1499DC8BA0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45DC949E2A354B9A87833A73 /* CoreGraphics.framework */; };
 		A424C68C3C8845DFB1C3BD07 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17839C8E2D0542569304FF51 /* Feather.ttf */; };
 		A7DA962AB606403BA6081370 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A31656DFC28C440BB44A7CA0 /* libRNVectorIcons.a */; };
@@ -361,13 +359,6 @@
 			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
 			remoteInfo = ReactNativeNavigation;
 		};
-		FAA5DE732028154B00C325C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 77930200DE9C4E48AC10B36C /* RNGestureHandler.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNGestureHandler;
-		};
 		FAA5DE79202AACD800C325C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FAA5DE75202AACD700C325C3 /* RCTCameraRoll.xcodeproj */;
@@ -482,7 +473,6 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		609484A3647F49F68B039336 /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		70AC0803D85F454B91C4B63B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		77930200DE9C4E48AC10B36C /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A2D0C54A8F7477EB7D0E8A4 /* RCTImageResizer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTImageResizer.xcodeproj; path = "../node_modules/react-native-image-resizer/ios/RCTImageResizer.xcodeproj"; sourceTree = "<group>"; };
 		81C45432253343198B8B9373 /* UserNotifications.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -552,7 +542,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				A7DA962AB606403BA6081370 /* libRNVectorIcons.a in Frameworks */,
-				9B555C517F9845739A7D6EC3 /* libRNGestureHandler.a in Frameworks */,
 				11B89DEC574140FCA6A39EA1 /* libRNFetchBlob.a in Frameworks */,
 				D788F6527F0249D2876EA66C /* libimageCropPicker.a in Frameworks */,
 				29571C438D4145678B49F9E4 /* libRCTImageResizer.a in Frameworks */,
@@ -805,7 +794,6 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				0D7C424E6F4342C58579EAF5 /* RNVectorIcons.xcodeproj */,
-				77930200DE9C4E48AC10B36C /* RNGestureHandler.xcodeproj */,
 				38C8D7CF7C1B4498B03A171F /* RNFetchBlob.xcodeproj */,
 				B2AAA920B02C4155ABC6AA38 /* imageCropPicker.xcodeproj */,
 				7A2D0C54A8F7477EB7D0E8A4 /* RCTImageResizer.xcodeproj */,
@@ -891,14 +879,6 @@
 			isa = PBXGroup;
 			children = (
 				FAA5DE3820219D5300C325C3 /* libReactNativeNavigation.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FAA5DE702028154B00C325C3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FAA5DE742028154B00C325C3 /* libRNGestureHandler.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1177,10 +1157,6 @@
 				{
 					ProductGroup = FAA5DEB6202AB6D700C325C3 /* Products */;
 					ProjectRef = 38C8D7CF7C1B4498B03A171F /* RNFetchBlob.xcodeproj */;
-				},
-				{
-					ProductGroup = FAA5DE702028154B00C325C3 /* Products */;
-					ProjectRef = 77930200DE9C4E48AC10B36C /* RNGestureHandler.xcodeproj */;
 				},
 				{
 					ProductGroup = FA4F82942015CDEC004017D3 /* Products */;
@@ -1473,13 +1449,6 @@
 			fileType = archive.ar;
 			path = libReactNativeNavigation.a;
 			remoteRef = FAA5DE3720219D5300C325C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FAA5DE742028154B00C325C3 /* libRNGestureHandler.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNGestureHandler.a;
-			remoteRef = FAA5DE732028154B00C325C3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		FAA5DE7A202AACD800C325C3 /* libRCTCameraRoll.a */ = {
