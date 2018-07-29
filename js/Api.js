@@ -14,6 +14,8 @@ const VERSION = DeviceInfo.getVersion();
 
 const baseUrl = 'http://open.timepill.net/api';
 const BASE_URL_V2 = 'http://v2.timepill.net/api';
+
+// const baseUrl = 'http://open.timepill.local/api';
 // const BASE_URL_V2 = 'http://127.0.0.1:8000/api';
 
 export async function getTodayDiaries(page = 1, page_size = 20, first_id = '') {
@@ -456,7 +458,7 @@ async function call(method, api, body, _timeout = 10000) {
         },
         body: body ? JSON.stringify(body) : null
       })
-          .then(checkStatus)
+          .then((r) => checkStatus(r, api))
           .then(parseJSON)
           .catch(handleCatch)
       ,
@@ -483,7 +485,7 @@ async function callV2(method, api, body = null, _timeout = 10000) {
                 // console.log(BASE_URL_V2 + api, response);
                 return response;
             })
-            .then(checkStatus)
+            .then((r) => checkStatus(r, api))
             .then(parseJSON)
             .catch(handleCatch)
         ,
@@ -520,7 +522,7 @@ async function upload(method, api, body) {
 }
 
 
-async function checkStatus(response) {
+async function checkStatus(response, url) {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
@@ -535,7 +537,12 @@ async function checkStatus(response) {
         message: '服务器开小差了 :('
       }
     }
-    let error = new Error(errInfo.message, errInfo.code ? errInfo.code : errInfo.status_code);
+    if (!url) {
+        url = ''
+    } else {
+        url = url + ', ';
+    }
+    let error = new Error(url + errInfo.message, errInfo.code ? errInfo.code : errInfo.status_code);
       error.code = errInfo.code ? errInfo.code : errInfo.status_code;
     throw error
   }
