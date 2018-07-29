@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     DeviceEventEmitter, Platform, StatusBar, Text, View, Alert, Image, Dimensions, ImageBackground,
-    TouchableOpacity, StyleSheet, PermissionsAndroid,
+    TouchableOpacity, StyleSheet, PermissionsAndroid,Linking
 } from "react-native";
 import DiaryList from '../components/DiaryList'
 import {colors} from "../Styles";
@@ -71,7 +71,7 @@ export default class HomePage extends React.Component {
         try {
             let info = await Api.getUpdateInfo();
             const VERSION = DeviceInfo.getVersion();
-            if (info.lastestVersion > VERSION) {
+            if (info.lastestVersion > VERSION || true) {
                 Alert.alert(
                     '发现新版本 v' + info.lastestVersion,
                     info.message,
@@ -95,31 +95,34 @@ export default class HomePage extends React.Component {
             hideOnPress: true,
         };
 
-        const pass = await this.checkPermissions();
-        if (!pass) {
-            Toast.show("更新失败：没有写入文件的权限", toastConf);
-            return;
-        }
-        Toast.show("开始下载更新包", toastConf);
-        // console.log('updateAndroid', RNFetchBlob.fs.dirs.DownloadDir);
-        RNFetchBlob
-            .config({
-                addAndroidDownloads: {
-                    useDownloadManager: true,
-                    notification: true,
-                    mediaScannable: true,
-                    mime: 'application/vnd.android.package-archive',
-                    title: '胶囊日记 v' + version,
-                    description: '正在下载 ' + version + ' 版本',
-                    path: `${RNFetchBlob.fs.dirs.DownloadDir}/timepill-${version}.apk`,
-                }
-            })
-            .fetch('GET', url)
-            .then((resp) => {
-                Toast.show("更新包下载完成", toastConf);
-                // console.log('download ok:', resp.path());
-                RNFetchBlob.android.actionViewIntent(resp.path(), 'application/vnd.android.package-archive');
-            })
+        Linking.openURL(url);
+        Toast.show("从浏览器下载更新包", toastConf);
+
+        // const pass = await this.checkPermissions();
+        // if (!pass) {
+        //     Toast.show("更新失败：没有写入文件的权限", toastConf);
+        //     return;
+        // }
+        // Toast.show("开始下载更新包", toastConf);
+        // // console.log('updateAndroid', RNFetchBlob.fs.dirs.DownloadDir);
+        // RNFetchBlob
+        //     .config({
+        //         addAndroidDownloads: {
+        //             useDownloadManager: true,
+        //             notification: true,
+        //             mediaScannable: true,
+        //             mime: 'application/vnd.android.package-archive',
+        //             title: '胶囊日记 v' + version,
+        //             description: '正在下载 ' + version + ' 版本',
+        //             path: `${RNFetchBlob.fs.dirs.DownloadDir}/timepill-${version}.apk`,
+        //         }
+        //     })
+        //     .fetch('GET', url)
+        //     .then((resp) => {
+        //         Toast.show("更新包下载完成", toastConf);
+        //         // console.log('download ok:', resp.path());
+        //         RNFetchBlob.android.actionViewIntent(resp.path(), 'application/vnd.android.package-archive');
+        //     })
     }
 
     checkPermissions = async () => {
