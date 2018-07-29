@@ -136,16 +136,12 @@ export default class HomePage extends React.Component {
 
     };
 
-    updateTopic = async () => {
-        let topic = null;
-        try {
-            topic = await Api.getTodayTopic();
+    updateTopic = () => {
+        Api.getTodayTopic().then((topic) => {
             this.setState({
                 topic: topic,
             });
-        } catch (err) {
-            console.error(err);
-        }
+        }).catch((err) => console.log(err));
     };
 
     openTopicPage = () => {
