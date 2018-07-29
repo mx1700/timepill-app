@@ -214,15 +214,15 @@ export default class SettingPage extends Component {
                                 thumbTintColor={Platform.OS === 'android' && this.state.settings['pushMessage'] ? TPColors.light : null}
                                 onValueChange={this.changePush} />
                     </View>
-                    <View style={styles.line} />
 
-                    <View style={styles.item}>
+                    {Platform.OS === 'ios' && <View style={styles.line} />}
+                    {Platform.OS === 'ios' && (<View style={styles.item}>
                         <Text style={styles.title}>每天写日记提醒</Text>
                         <Switch value={this.state.settings['writeNotification']}
                                 onTintColor={Platform.OS === 'android' ? TPColors.textSelect : null}
                                 thumbTintColor={Platform.OS === 'android' && this.state.settings['writeNotification'] ? TPColors.light : null}
                                 onValueChange={this.changeWriteNotification} />
-                    </View>
+                    </View>)}
 
                 </View>
 
